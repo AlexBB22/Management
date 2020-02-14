@@ -11,7 +11,10 @@ Add your own name (do not add the names for others!) to the section below.
 | 📸 | Name | Email |
 |---|---|---|
 | ![](https://eu.ui-avatars.com/api/?name=OOPP&length=4&size=50&color=DDD&background=777&font-size=0.325) | Hidde Agterberg | H.M.Agterberg@student.tudelft.nl |
+<<<<<<< README.md
 | ![]https://i.imgur.com/wlG5eL4.png) | Eli Shamayev | E.Shamayev@student.tudelft.nl |
+| ![](https://eu.ui-avatars.com/api/?name=KD&length=4&size=50&color=DDD&background=777&font-size=0.325) | Kanish Dwivedi | K.Dwivedi-1@student.tudelft.nl |
+>>>>>>> README.md
 
 <!-- Instructions (remove once assignment has been completed -->
 <!-- - Add (only!) your own name to the table above (use Markdown formatting) -->
