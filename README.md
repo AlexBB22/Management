@@ -1,4 +1,4 @@
-# Starting template
+﻿# Starting template
 
 This README will need to contain a description of your project, how to run it, how to set up the development environment, and who worked on it.
 This information can be added throughout the course, except for the names of the group members.
@@ -16,6 +16,7 @@ Add your own name (do not add the names for others!) to the section below.
 | ![](https://eu.ui-avatars.com/api/?name=KD&length=4&size=50&color=DDD&background=777&font-size=0.325) | Kanish Dwivedi | K.Dwivedi-1@student.tudelft.nl |
 | ![](https://secure.gravatar.com/avatar/b913655734ba5ca854506985c282140b?s=50&d=identicon) | Scott Jochems | S.A.Jochems@student.tudelft.nl |
 | ![](https://secure.gravatar.com/avatar/8f9344ba6afd751ed94eae0c1ce68b81?s=50&d=identicon) | Niels Tomassen | N.H.C.Tomassen@student.tudelft.nl |
+| ![](https://eu.ui-avatars.com/api/?name=SK&length=4&size=50&color=DDD&background=777&font-size=0.325) | Kendra Sartori | K.Sartori@student.tudelft.nl |
 
 <!-- Instructions (remove once assignment has been completed -->
 <!-- - Add (only!) your own name to the table above (use Markdown formatting) -->
