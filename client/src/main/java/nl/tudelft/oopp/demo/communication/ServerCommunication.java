@@ -16,7 +16,7 @@ public class ServerCommunication {
      */
     public static String getQuote() {
         //used to be /quote
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/getstudents")).build();
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/quote")).build();
         HttpResponse<String> response = null;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());

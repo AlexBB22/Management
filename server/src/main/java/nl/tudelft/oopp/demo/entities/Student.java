@@ -3,11 +3,11 @@ package nl.tudelft.oopp.demo.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Student")
+@Table(name = "student")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "id")
     private int id;
 
     @Column(name = "Name")
@@ -26,14 +26,15 @@ public class Student {
     public Student() {
     }
 
-    public Student(int id, String name, String surname, String email, int age) {
+    public Student(int id, String Name, String Surname, String Email, int Age) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.age = age;
+        this.name = Name;
+        this.surname = Surname;
+        this.email = Email;
+        this.age = Age;
     }
 
+    public int getId() { return id; }
     public String getName() {
         return name;
     }
