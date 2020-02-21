@@ -1,9 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
-
-
 import java.util.List;
 import java.util.Optional;
-
 import nl.tudelft.oopp.demo.entities.Student;
 import nl.tudelft.oopp.demo.repositories.StudentRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -20,27 +17,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Controller
 public class StudentController {
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentRepository studentrep;
 
 
     @GetMapping("getstudents")
     @ResponseBody
     public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+        return studentrep.findAll();
     }
 
     @GetMapping("getStudentsByID/{id}")
     @ResponseBody
     public Optional<Student> getStudentByID(@PathVariable String id) {
         int studentID = Integer.parseInt(id);
-        return studentRepository.findById(studentID);
+        return studentrep.findById(studentID);
     }
 
     @GetMapping("getStudentsByAge/{age}")
     @ResponseBody
     public List<Student> getStudentByAge(@PathVariable String age) {
         int studentage = Integer.parseInt(age);
-        return studentRepository.findByAgeGreaterThan(studentage);
+        return studentrep.findByAgeGreaterThan(studentage);
     }
 
 
