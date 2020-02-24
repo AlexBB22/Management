@@ -66,7 +66,7 @@ public class ServerCommunication {
         if (response.statusCode() != 200) {
             return false;
         }
-        return true;
+        return Boolean.parseBoolean(response.body());
     }
 
     public static String getBikes(String color) throws URISyntaxException {

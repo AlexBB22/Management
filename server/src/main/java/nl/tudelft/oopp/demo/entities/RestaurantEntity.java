@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "restaurant")
 
 public class RestaurantEntity {
-
+    @Id
     @Column(name="res_id")
     private int res_id;
 

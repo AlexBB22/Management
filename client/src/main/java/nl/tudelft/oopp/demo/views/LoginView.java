@@ -19,7 +19,8 @@ public class LoginView extends Application {
         Parent root = loader.load();
 
         primaryStage.setTitle("Welcome user");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Scene scene = new Scene(root, 300, 275);
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
