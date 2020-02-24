@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.demo.communication;
 
+import javafx.fxml.FXML;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -67,6 +69,25 @@ public class ServerCommunication {
             return false;
         }
         return true;
+    }
+
+    public static String getBuildingNames(String BuildingName){
+        String requestUrl = "http://localhost:8080/buildings";
+        requestUrl = requestUrl + "/" + BuildingName;
+        System.out.println(requestUrl);
+
+    HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(requestUrl)).build();
+    HttpResponse<String> response = null;
+        try {
+        response = client.send(request, HttpResponse.BodyHandlers.ofString());
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "Communication with server failed";
+    }
+        if (response.statusCode() != 200) {
+        System.out.println("Status: " + response.statusCode());
+    }
+        return response.body();
     }
 
 

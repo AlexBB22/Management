@@ -29,7 +29,7 @@ public class ClientController {
         String givenPassword = cred[1];
 
         List<ClientEntity> list = clientrep.findByUserNameAndUserPassword(givenUsername, givenPassword);
-        if (list.size() == 0) {
+        if (list == null || list.size() == 0 ) {
             return false;
         }
         //we can do whatever we want with this user now

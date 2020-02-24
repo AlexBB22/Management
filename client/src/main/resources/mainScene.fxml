@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="nl.tudelft.oopp.demo.controllers.MainSceneController">
-    <Label text="Hello world!"/>
-    <Label text="This is a simple demo application."/>
-    <Button fx:id="button" text="Quote" onAction="#buttonClicked"/>
-    <Button fx:id="button2" text="Pun" onAction="#buttonClicked2"/>
+<VBox prefHeight="92.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.MainSceneController">
+    <Label text="Hello world!" />
+    <Label text="This is a simple demo application." />
+    <Label text="Search for a building by name.(type All to get all buildings)" />
+
+    <!--    how to add field in which people can type-->
+    <TextField fx:id="buildingName"/>
+
+    <!--    show list of all building names-->
+    <Button fx:id="building_list" onAction="#buildingclicklist" text="Search"/>
+
+    <Button fx:id="button" onAction="#buttonClicked" text="Quote" />
+    <Button fx:id="button2" contentDisplay="RIGHT" graphicTextGap="5.0" onAction="#buttonClicked2" prefHeight="26.0" prefWidth="50.0" text="Pun" />
 </VBox>
