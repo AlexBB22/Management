@@ -15,4 +15,11 @@ public class MainSceneController {
         alert.setContentText(ServerCommunication.getQuote());
         alert.showAndWait();
     }
+    public void buttonClicked2() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Best pun of the day");
+        alert.setHeaderText(null);
+        alert.setContentText(ServerCommunication.getPun());
+        alert.showAndWait();
+    }
 }
