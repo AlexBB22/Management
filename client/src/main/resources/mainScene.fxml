@@ -10,5 +10,6 @@
     <Label text="Hello world!"/>
     <Label text="This is a simple demo application."/>
     <Button fx:id="button" text="Quote" onAction="#buttonClicked"/>
+    <Button fx:id="bikeButton" mnemonicParsing="false" onAction="#bikeButtonClicked" text="Sort Bikes by Color" />
     <Button fx:id="button2" text="Pun" onAction="#buttonClicked2"/>
 </VBox>
