@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.BikeController">
+    <children>
+        <TextField fx:id="colorField" layoutX="217.0" layoutY="160.0" onAction="#colorInputed" promptText="Enter color to sort by" />
+        <Text layoutX="217.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter preferred bike color here!" translateY="-5.0">
+            <font>
+                <Font name="HP Simplified" size="12.0" />
+            </font></Text>
+    </children>
+</AnchorPane>

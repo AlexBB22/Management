@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface RestaurantRepository extends JpaRepository<ClientEntity, Integer> {
+public interface RestaurantRepository extends JpaRepository<RestaurantEntity, Integer> {
 
     //SELECT * FROM projects_OOPPGroup4.restaurant r WHERE r.building='ewi';
     @Query(value = "SELECT * FROM projects_OOPPGroup4.restaurant r WHERE r.building=?1;", nativeQuery = true)
