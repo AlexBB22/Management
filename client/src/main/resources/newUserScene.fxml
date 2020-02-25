@@ -22,7 +22,7 @@
 
     <!--This bit adds the button which triggers an event which is handled by the controller-->
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
-        <Button onAction="#submitButtonHandler" text="Create a new account" />
+        <Button onAction="#createNewUserButtonHandler" text="Create a new account" />
     </HBox>
 
     <!--Adding fx makes this id available and referencable from elsewhere, so we can set its value later-->
