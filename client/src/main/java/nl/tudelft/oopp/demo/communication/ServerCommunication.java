@@ -13,41 +13,25 @@ public class ServerCommunication {
 
     private static HttpClient client = HttpClient.newBuilder().build();
 
-    /**
-     * Retrieves a quote from the server.
-     * @return the body of a get request to the server.
-     * @throws Exception if communication with the server fails.
-     */
-    public static String getQuote() {
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/quote")).build();
+    // TODO check if email and username are not already in use
+    public static boolean createUser(String username, String email, String password) throws URISyntaxException {
+        String requestURL = "http://localhost:8080/createUser";
+        requestURL += "/" + username + ":" + email + ":" + password;
+
+        URI url = new URI(requestURL);
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(url).build();
         HttpResponse<String> response = null;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
             e.printStackTrace();
-            return "Communication with server failed";
+            return false;
         }
         if (response.statusCode() != 200) {
-            System.out.println("Status: " + response.statusCode());
+            return false;
         }
-        return response.body();
+        return true;
     }
-    public static String getPun() {
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/pun")).build();
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Communication with server failed";
-        }
-        if (response.statusCode() != 200) {
-            System.out.println("Status: " + response.statusCode());
-        }
-        return response.body();
-    }
-
-
 
     public static boolean identifyUser(String userName, String password) throws MalformedURLException, URISyntaxException {
         String requestUrl = "http://localhost:8080/identifyMe";
@@ -68,6 +52,5 @@ public class ServerCommunication {
         }
         return true;
     }
-
 
 }

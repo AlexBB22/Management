@@ -1,25 +1,35 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import javafx.scene.control.Alert;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 
-public class MainSceneController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    /**
-     * Handles clicking the button.
-     */
-    public void buttonClicked() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Quote for you");
-        alert.setHeaderText(null);
-        alert.setContentText(ServerCommunication.getQuote());
-        alert.showAndWait();
+public class MainSceneController implements Initializable {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
-    public void buttonClicked2() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Best pun of the day");
-        alert.setHeaderText(null);
-        alert.setContentText(ServerCommunication.getPun());
-        alert.showAndWait();
+
+    public void reserveRoomButtonHandler(ActionEvent actionEvent) {
+
+    }
+
+    public void rentBikeButtonHandler(ActionEvent actionEvent) {
+
+    }
+
+    public void carParkButtonHandler(ActionEvent actionEvent) {
+
+    }
+
+    public void restaurantButtonHandler(ActionEvent actionEvent) {
+
+    }
+
+    public void accountButtonHandler(MouseEvent mouseEvent) {
     }
 }

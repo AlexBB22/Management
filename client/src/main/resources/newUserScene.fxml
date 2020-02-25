@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="400.0" prefWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.LoginSceneController">
+<GridPane alignment="center" hgap="10" prefHeight="400.0" prefWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.NewUserSceneController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
 
-    <Label text="User name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
     <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
@@ -30,5 +30,16 @@
 
     <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
 </GridPane>

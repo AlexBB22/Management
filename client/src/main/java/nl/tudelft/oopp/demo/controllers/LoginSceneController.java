@@ -1,4 +1,5 @@
 package nl.tudelft.oopp.demo.controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +43,16 @@ public class LoginSceneController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    public void newUserButtonHandler() throws IOException {
+        // TODO: switch to the new user scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserScene.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
