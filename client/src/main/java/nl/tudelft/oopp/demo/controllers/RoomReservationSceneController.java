@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,7 +29,7 @@ public class RoomReservationSceneController implements Initializable {
 
     }
 
-    public void searchButtonHandler(ActionEvent actionEvent) {
+    public void searchButtonHandler(ActionEvent actionEvent) throws URISyntaxException {
         String[] rooms = ServerCommunication.getRooms(datePicker.getValue(), buildingComboBox.getValue(),
                                                         timeslotComboBox.getValue(), roomTypeComboBox.getValue());
 
