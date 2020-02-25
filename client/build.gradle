@@ -1,9 +1,6 @@
 plugins {
     id 'org.openjfx.javafxplugin' version '0.0.8'
-    id 'org.jfxtras.jfxtras-common' version '8.0-r1-SNAPSHOT'
 }
-
-// compile group: 'org.jfxtras', name: 'jfxtras-controls', version: '8.0-r1-SNAPSHOT'
 
 mainClassName = "nl.tudelft.oopp.demo.MainApp"
 

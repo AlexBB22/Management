@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -27,5 +28,8 @@ public class RoomReservationSceneController implements Initializable {
 
     public void searchButtonHandler(ActionEvent actionEvent) {
 
+    }
+
+    public void accountButtonHandler(MouseEvent mouseEvent) {
     }
 }
