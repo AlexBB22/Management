@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -11,18 +12,32 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="192.4" minHeight="10.0" prefHeight="102.4" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="333.39999237060545" minHeight="10.0" prefHeight="297.6" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="192.4" minHeight="10.0" prefHeight="120.4" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="333.39999237060545" minHeight="10.0" prefHeight="279.6" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Button mnemonicParsing="false" text="Reserve a Room" />
-            <Button mnemonicParsing="false" text="Rent a Bike" />
-            <Button mnemonicParsing="false" text="Car Park Spaces" />
-            <Button mnemonicParsing="false" text="Restaurants" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Reserve a Room" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Rent a Bike">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Car Park Spaces">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Restaurants">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Button>
          </children>
       </VBox>
-      <ImageView image="userIcon.png" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+       <ImageView accessibleRole="BUTTON" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+           <Image url="@userIcon.png" />
+         <GridPane.margin>
+            <Insets right="20.0" top="20.0" />
+         </GridPane.margin>
+       </ImageView>
    </children>
 </GridPane>
