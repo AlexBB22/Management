@@ -15,32 +15,31 @@ public class ServerCommunication {
 
     // TODO check if email and username are not already in use
     public static boolean createUser(String username, String email, String password) throws URISyntaxException {
-        String requestURL = "http://localhost:8080/createUser";
-        requestURL += "/" + username + ":" + email + ":" + password;
+        String requestURL = "http://localhost:8080/createUser" +
+                                "/" + username + ":" + email + ":" + password;
 
-        URI url = new URI(requestURL);
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(url).build();
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        if (response.statusCode() != 200) {
-            return false;
-        }
-        return true;
+        return (boolean) request(requestURL);
     }
 
-    public static boolean identifyUser(String userName, String password) throws MalformedURLException, URISyntaxException {
-        String requestUrl = "http://localhost:8080/identifyMe";
+    public static boolean identifyUser(String userName, String password) throws URISyntaxException {
+        String requestUrl = "";
         requestUrl = requestUrl + "/" + userName + ":" + password;
-        System.out.println(requestUrl);
 
-        URI url = new URI(requestUrl);
+        return (boolean) request(requestUrl);
+    }
+
+    public static String[] getRooms(LocalDate date, String building, String timeslot, String roomType) throws URISyntaxException {
+        String url = "http://localhost:8080/getRooms/" +
+                        date.toString() + ":" + building + ":" + timeslot + ":" + roomType;
+
+        return (String[]) request(url);
+    }
+
+    // TODO test that this function works for all cases
+    public static Object request(String urlStr) throws URISyntaxException {
+        URI url = new URI(urlStr);
         HttpRequest request = HttpRequest.newBuilder().GET().uri(url).build();
-        HttpResponse<String> response = null;
+        HttpResponse<String> response;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
@@ -51,11 +50,6 @@ public class ServerCommunication {
             return false;
         }
         return true;
-    }
-
-    public static String[] getRooms(LocalDate date, String building, String timeslot, String roomType) {
-
-        return new String[0];
     }
 
 }
