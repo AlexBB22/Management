@@ -7,6 +7,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import nl.tudelft.oopp.demo.communication.ServerCommunication;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +29,12 @@ public class RoomReservationSceneController implements Initializable {
     }
 
     public void searchButtonHandler(ActionEvent actionEvent) {
+        String[] rooms = ServerCommunication.getRooms(datePicker.getValue(), buildingComboBox.getValue(),
+                                                        timeslotComboBox.getValue(), roomTypeComboBox.getValue());
 
+        for (String str : rooms) {
+            roomList.getChildren().add(new Text(str));
+        }
     }
 
     public void accountButtonHandler(MouseEvent mouseEvent) {

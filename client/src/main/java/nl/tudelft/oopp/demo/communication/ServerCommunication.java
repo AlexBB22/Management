@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
 
 public class ServerCommunication {
 
@@ -51,6 +51,11 @@ public class ServerCommunication {
             return false;
         }
         return true;
+    }
+
+    public static String[] getRooms(LocalDate date, String building, String timeslot, String roomType) {
+
+        return new String[0];
     }
 
 }
