@@ -12,8 +12,8 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="192.4" minHeight="10.0" prefHeight="120.4" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="333.39999237060545" minHeight="10.0" prefHeight="279.6" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="200" minHeight="10.0" prefHeight="120" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="350" minHeight="10.0" prefHeight="280" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
