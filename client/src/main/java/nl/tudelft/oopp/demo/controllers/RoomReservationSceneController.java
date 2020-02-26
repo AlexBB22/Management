@@ -29,6 +29,11 @@ public class RoomReservationSceneController implements Initializable {
 
     }
 
+    /**
+     * Search button handler
+     * @param actionEvent
+     * @throws URISyntaxException
+     */
     public void searchButtonHandler(ActionEvent actionEvent) throws URISyntaxException {
         String[] rooms = ServerCommunication.getRooms(datePicker.getValue(),
                 buildingComboBox.getValue(), timeslotComboBox.getValue(),

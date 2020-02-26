@@ -26,6 +26,11 @@ public class LoginSceneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
+    /**
+     * Handle submit button
+     * @param event
+     * @throws URISyntaxException
+     */
     @FXML
     public void submitButtonHandler(ActionEvent event) throws URISyntaxException {
         submitResponse.setText("Thanks for your info");
@@ -46,6 +51,10 @@ public class LoginSceneController implements Initializable {
         }
     }
 
+    /**
+     * Handle new user button
+     * @throws IOException
+     */
     @FXML
     public void newUserButtonHandler() throws IOException {
         // TODO: switch to the new user scene
@@ -56,6 +65,11 @@ public class LoginSceneController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Load main scene
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void loadSecond(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainScene.fxml"));

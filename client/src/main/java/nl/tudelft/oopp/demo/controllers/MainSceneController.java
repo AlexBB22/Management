@@ -41,6 +41,12 @@ public class MainSceneController implements Initializable {
         switchScene(mouseEvent, "/?.fxml");
     }
 
+    /**
+     * Function that can switch scene
+     * @param actionEvent
+     * @param source
+     * @throws IOException
+     */
     public void switchScene(Event actionEvent, String source) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(source));
         Parent root = loader.load();

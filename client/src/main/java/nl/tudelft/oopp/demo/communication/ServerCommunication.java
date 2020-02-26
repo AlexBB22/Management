@@ -12,15 +12,16 @@ public class ServerCommunication {
     private static HttpClient client = HttpClient.newBuilder().build();
 
     /**
-     *
+     * Create a new user in the database
+     * TODO: check if email and username are not already in use
      * @param username
      * @param email
      * @param password
      * @return
      * @throws URISyntaxException
-     * TODO check if email and username are not already in use
      */
-    public static boolean createUser(String username, String email, String password) throws URISyntaxException {
+    public static boolean createUser(String username, String email, String password)
+                                        throws URISyntaxException {
         String url = "http://localhost:8080/createUser";
         url += "/" + username + ":" + email + ":" + password;
 
@@ -28,7 +29,7 @@ public class ServerCommunication {
     }
 
     /**
-     *
+     * Check login credentials with server
      * @param userName
      * @param password
      * @return
@@ -42,7 +43,7 @@ public class ServerCommunication {
     }
 
     /**
-     *
+     * Request the rooms available (with a certain query)
      * @param date
      * @param building
      * @param timeslot
@@ -50,7 +51,9 @@ public class ServerCommunication {
      * @return
      * @throws URISyntaxException
      */
-    public static String[] getRooms(LocalDate date, String building, String timeslot, String roomType) throws URISyntaxException {
+    public static String[] getRooms(LocalDate date, String building,
+                                    String timeslot, String roomType)
+                                    throws URISyntaxException {
         String url = "http://localhost:8080/getRooms/";
         url += date.toString() + ":" + building + ":" + timeslot + ":" + roomType;
 
@@ -58,11 +61,11 @@ public class ServerCommunication {
     }
 
     /**
-     *
+     * Request function template
+     * TODO: Test that this function works for all cases
      * @param urlStr
      * @return
      * @throws URISyntaxException
-     * TODO test that this function works for all cases
      */
     public static Object request(String urlStr) throws URISyntaxException {
 

@@ -21,6 +21,10 @@ public class NewUserSceneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
+    /**
+     * Handle new user button
+     * @throws URISyntaxException
+     */
     @FXML
     public void createNewUserButtonHandler() throws URISyntaxException {
 
