@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.demo.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -22,6 +24,8 @@ public class Student {
     @Column(name = "Age")
     private int age;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Reservation> reservations = new ArrayList<Reservation>();
 
     public Student() {
     }

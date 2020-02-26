@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.demo.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "room")
@@ -13,6 +15,10 @@ public class Room {
 
     @Column(name = "capacity")
     private int capacity;
+
+    @ManyToMany
+    @JoinTable(name = "ROOM_RESERVATIONS", joinColumns = { @JoinColumn(name="id") }, inverseJoinColumns = { @JoinColumn(name="reservation_id") })
+    private List<Reservation> reservations = new ArrayList<Reservation>();
 
     public Room(int id, int capacity){
         this.capacity=capacity;
