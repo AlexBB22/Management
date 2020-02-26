@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -21,22 +22,27 @@ public class MainSceneController implements Initializable {
 
     }
 
+    @FXML
     public void reserveRoomButtonHandler(ActionEvent actionEvent) throws IOException {
         switchScene(actionEvent, "/roomReservationScene.fxml");
     }
 
+    @FXML
     public void rentBikeButtonHandler(ActionEvent actionEvent) throws IOException {
         switchScene(actionEvent, "/?.fxml");
     }
 
+    @FXML
     public void carParkButtonHandler(ActionEvent actionEvent) throws IOException {
         switchScene(actionEvent, "/?.fxml");
     }
 
+    @FXML
     public void restaurantButtonHandler(ActionEvent actionEvent) throws IOException {
         switchScene(actionEvent, "/?.fxml");
     }
 
+    @FXML
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
         switchScene(mouseEvent, "/?.fxml");
     }
@@ -47,10 +53,9 @@ public class MainSceneController implements Initializable {
      * @param source
      * @throws IOException
      */
-    public void switchScene(Event actionEvent, String source) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(source));
+    public static void switchScene(Event actionEvent, String source) throws IOException {
+        FXMLLoader loader = new FXMLLoader(MainSceneController.class.getResource(source));
         Parent root = loader.load();
-
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
     }

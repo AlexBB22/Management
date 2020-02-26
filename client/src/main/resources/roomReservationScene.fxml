@@ -5,10 +5,10 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.RoomReservationSceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.RoomReservationSceneController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="411.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="200.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="519.2" minWidth="10.0" prefWidth="500.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.00000000000006" minWidth="10.0" prefWidth="300.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="200" minHeight="10.0" prefHeight="120" vgrow="SOMETIMES" />
@@ -18,7 +18,7 @@
         <ImageView accessibleRole="BUTTON" fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
             <Image url="@images/userIcon.png" />
             <GridPane.margin>
-                <Insets right="30.0" top="35.0" />
+                <Insets right="50.0" top="50.0" />
             </GridPane.margin>
         </ImageView>
         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
@@ -26,11 +26,18 @@
                 <Image url="@images/tudelftLogo.png" />
             </image>
             <GridPane.margin>
-                <Insets />
+                <Insets left="20.0" top="10.0" />
             </GridPane.margin>
         </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="50.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <image>
+            <Image url="@images/backBtn.png" />
+         </image>
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin></ImageView>
 
-      <VBox prefHeight="280.0" prefWidth="90.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox prefHeight="280.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <DatePicker fx:id="datePicker">
                <VBox.margin>
@@ -64,7 +71,7 @@
       </VBox>
       <VBox fx:id="roomList" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            <Insets bottom="20.0" left="80.0" right="40.0" />
          </GridPane.margin></VBox>
     </children>
 </GridPane>

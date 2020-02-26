@@ -34,6 +34,7 @@ public class RoomReservationSceneController implements Initializable {
      * @param actionEvent
      * @throws URISyntaxException
      */
+    @FXML
     public void searchButtonHandler(ActionEvent actionEvent) throws URISyntaxException {
         String[] rooms = ServerCommunication.getRooms(datePicker.getValue(),
                 buildingComboBox.getValue(), timeslotComboBox.getValue(),
@@ -44,6 +45,11 @@ public class RoomReservationSceneController implements Initializable {
         }
     }
 
+    @FXML
     public void accountButtonHandler(MouseEvent mouseEvent) {
+    }
+
+    @FXML
+    public void backBtnHandler(MouseEvent mouseEvent) {
     }
 }

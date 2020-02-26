@@ -33,18 +33,17 @@ public class LoginSceneController implements Initializable {
      */
     @FXML
     public void submitButtonHandler(ActionEvent event) throws URISyntaxException {
-        submitResponse.setText("Thanks for your info");
         String username = usernameField.getText();
         String password = passwordfield.getText();
 
         //Now communicating with server to see if user exists in database
         boolean isUser = ServerCommunication.identifyUser(username, password);
+
         if (isUser == false) {
             submitResponse.setText("Please enter credentials again");
         } else {
-            submitResponse.setText("Accepted, welcome");
             try {
-                loadSecond(event);
+                MainSceneController.switchScene(event, "/mainScene.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -59,20 +58,6 @@ public class LoginSceneController implements Initializable {
     public void newUserButtonHandler() throws IOException {
         // TODO: switch to the new user scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserScene.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    /**
-     * Load main scene
-     * @param event
-     * @throws IOException
-     */
-    @FXML
-    public void loadSecond(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mainScene.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
