@@ -35,8 +35,12 @@ public class DataBaseConfig {
     {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
+        //or projects_OOPPGroup4Test for Test DB        projects_OOPPGroup4 for Real DB
         dataSourceBuilder.url("jdbc:mysql://projects-db.ewi.tudelft.nl:3306/projects_OOPPGroup4");
+
+        //pu_ylnfCNSj8WSfx for Test DB      pu_OOPPGroup4 for Real DB
         dataSourceBuilder.username("pu_OOPPGroup4");
+        //yOzgeAlJDkOE for Test DB       cg5EQkKNHN08 for Real DB
         dataSourceBuilder.password("cg5EQkKNHN08");
         return dataSourceBuilder.build();
     }
