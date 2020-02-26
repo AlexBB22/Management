@@ -1,5 +1,9 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,10 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
-
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class RoomReservationSceneController implements Initializable {
 
@@ -30,8 +30,9 @@ public class RoomReservationSceneController implements Initializable {
     }
 
     public void searchButtonHandler(ActionEvent actionEvent) throws URISyntaxException {
-        String[] rooms = ServerCommunication.getRooms(datePicker.getValue(), buildingComboBox.getValue(),
-                                                        timeslotComboBox.getValue(), roomTypeComboBox.getValue());
+        String[] rooms = ServerCommunication.getRooms(datePicker.getValue(),
+                buildingComboBox.getValue(), timeslotComboBox.getValue(),
+                roomTypeComboBox.getValue());
 
         for (String str : rooms) {
             roomList.getChildren().add(new Text(str));

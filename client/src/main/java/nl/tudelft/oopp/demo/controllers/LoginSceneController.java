@@ -1,5 +1,10 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,12 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class LoginSceneController implements Initializable {
     @FXML private Text submitResponse;
@@ -26,7 +27,7 @@ public class LoginSceneController implements Initializable {
     }
 
     @FXML
-    public void submitButtonHandler(ActionEvent event) throws MalformedURLException, URISyntaxException {
+    public void submitButtonHandler(ActionEvent event) throws URISyntaxException {
         submitResponse.setText("Thanks for your info");
         String username = usernameField.getText();
         String password = passwordfield.getText();
