@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.demo.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="bike")
@@ -13,6 +15,11 @@ public class Bike {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="building_name")
     private Building building;
+
+    @OneToMany(mappedBy = "bike_fk")
+    private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
+
+    public Bike(){}
 
     public int getBike_id() {
         return bike_id;

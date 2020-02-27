@@ -33,6 +33,9 @@ public class User {
     @OneToMany(mappedBy = "user_fk")
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
+    @OneToMany(mappedBy = "bike_user_fk")
+    private List<RoomReservation> bikeReservations = new ArrayList<RoomReservation>();
+
     //Constructors + Getters/Setters
     public User() {}
     public User(int user_id, String email, String user_name, String user_password) {
