@@ -2,6 +2,8 @@ package nl.tudelft.oopp.demo.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -27,6 +29,9 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_fk", referencedColumnName = "role_id", nullable = false)
     private Role role;
+
+    @OneToMany(mappedBy = "user_fk")
+    private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
     //Constructors + Getters/Setters
     public User() {}
@@ -75,5 +80,21 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<RoomReservation> getRoomReservations() {
+        return roomReservations;
+    }
+
+    public void setRoomReservations(List<RoomReservation> roomReservations) {
+        this.roomReservations = roomReservations;
+    }
+
+    public void addRoomReservation(RoomReservation roomReservation) {
+        this.roomReservations.add(roomReservation);
+    }
+
+    public void removeRoomReservation(RoomReservation roomReservation) {
+        this.roomReservations.remove(roomReservation);
     }
 }

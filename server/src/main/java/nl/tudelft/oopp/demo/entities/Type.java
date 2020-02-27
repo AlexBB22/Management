@@ -77,11 +77,16 @@ public class Type {
         return listOfRooms;
     }
 
+<<<<<<< HEAD
     public void addRoom(Room room){
         this.listOfRooms.add(room);
     }
 
     public void removeRoom(Room room){
         this.listOfRooms.remove(room);
+=======
+    public void setListOfRooms(List<Room> listOfRooms) {
+        this.listOfRooms = listOfRooms;
+>>>>>>> f5b28f3523a823adb9dc6b1005466a72c7e5bf92
     }
 }
