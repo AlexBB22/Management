@@ -10,13 +10,14 @@ import java.util.Objects;
 @Table(name = "timeslot")
 public class TimeSlot {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int timeslot_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name= "building_name")
     private Building building;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name= "room_id")
     private Room room;
 
@@ -30,10 +31,7 @@ public class TimeSlot {
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
     public TimeSlot() {}
-    public TimeSlot(int timeSlot_id, Building building, Room room, Time start_time, Time end_time) {
-        this.timeslot_id = timeSlot_id;
-        this.building = building;
-        this.room = room;
+    public TimeSlot(Time start_time, Time end_time) {
         this.start_time = start_time;
         this.end_time = end_time;
     }

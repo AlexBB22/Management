@@ -45,12 +45,4 @@ public class MainSceneController {
         alert.showAndWait();
     }
 
-    @FXML
-    public void bikeButtonClicked(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sortByColor.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
 }

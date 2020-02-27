@@ -7,16 +7,17 @@ import javax.persistence.*;
 
 public class Room {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int room_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="type_id")
     private Type type;
 
     @Column(name="capacity")
     private int capacity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="building_name")
     private Building building;
 
@@ -26,6 +27,12 @@ public class Room {
 
     public void setRoom_id(int room_id) {
         this.room_id = room_id;
+    }
+
+    public Room() {}
+
+    public Room(int capacity) {
+        this.capacity = capacity;
     }
 
     public Type getType() {

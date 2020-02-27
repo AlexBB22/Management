@@ -9,6 +9,7 @@ import java.util.List;
 @Table(name = "user")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int user_id;
 
     @Size(max = 255)
@@ -30,8 +31,11 @@ public class User {
     @JoinColumn(name = "role_fk", referencedColumnName = "role_id", nullable = false)
     private Role role;
 
-    @OneToMany(mappedBy = "user_fk")
+    @OneToMany(mappedBy = "user_fk", cascade = CascadeType.ALL)
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
+
+    @OneToMany(mappedBy = "bike_user_fk")
+    private List<RoomReservation> bikeReservations = new ArrayList<RoomReservation>();
 
     //Constructors + Getters/Setters
     public User() {}
