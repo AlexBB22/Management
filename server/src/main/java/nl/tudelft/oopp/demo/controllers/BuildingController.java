@@ -1,14 +1,10 @@
-package nl.tudelft.oopp.demo.controllers;
+/*package nl.tudelft.oopp.demo.controllers;
 
 import java.util.List;
 import java.util.Optional;
 
 import nl.tudelft.oopp.demo.entities.Building;
-import nl.tudelft.oopp.demo.entities.ClientEntity;
-import nl.tudelft.oopp.demo.entities.Student;
 import nl.tudelft.oopp.demo.repositories.BuildingRepository;
-import nl.tudelft.oopp.demo.repositories.ClientRepository;
-import nl.tudelft.oopp.demo.repositories.StudentRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,3 +43,4 @@ public class BuildingController {
         }
     }
 }
+*/
