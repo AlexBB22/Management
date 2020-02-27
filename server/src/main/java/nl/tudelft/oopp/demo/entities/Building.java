@@ -4,3 +4,4 @@ import javax.persistence.*;
 
 public class Building {
 }
+
