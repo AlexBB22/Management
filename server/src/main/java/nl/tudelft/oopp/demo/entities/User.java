@@ -89,4 +89,12 @@ public class User {
     public void setRoomReservations(List<RoomReservation> roomReservations) {
         this.roomReservations = roomReservations;
     }
+
+    public void addRoomReservation(RoomReservation roomReservation) {
+        this.roomReservations.add(roomReservation);
+    }
+
+    public void removeRoomReservation(RoomReservation roomReservation) {
+        this.roomReservations.remove(roomReservation);
+    }
 }

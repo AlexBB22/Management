@@ -76,4 +76,8 @@ public class Type {
     public List<Room> getListOfRooms() {
         return listOfRooms;
     }
+
+    public void setListOfRooms(List<Room> listOfRooms) {
+        this.listOfRooms = listOfRooms;
+    }
 }

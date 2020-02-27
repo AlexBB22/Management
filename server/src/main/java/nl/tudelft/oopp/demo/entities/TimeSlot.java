@@ -66,6 +66,13 @@ public class TimeSlot {
         this.roomReservations = roomReservations;
     }
 
+    public void addRoomReservation(RoomReservation roomReservation) {
+        this.roomReservations.add(roomReservation);
+    }
+    public void removeRoomReservation(RoomReservation roomReservation) {
+        this.roomReservations.remove(roomReservation);
+    }
+
     public void setRoom(Room room) {
         this.room = room;
     }
