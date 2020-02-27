@@ -45,7 +45,7 @@ public class RoomReservationSceneController implements Initializable {
     @FXML
     public void searchButtonHandler(ActionEvent actionEvent) throws URISyntaxException {
         // Clear vbox before adding items
-        //roomList.getChildren().clear();
+        roomList.getChildren().clear();
 
         String[] rooms = {"rooms akdmkwadawdjlawjdjakwd", "wdawdawdawdwadawda", "awjdawjd"};
 
@@ -77,7 +77,8 @@ public class RoomReservationSceneController implements Initializable {
     }
 
     @FXML
-    public void backBtnHandler(MouseEvent mouseEvent) {
+    public void backBtnHandler(MouseEvent mouseEvent) throws IOException {
+        MainSceneController.switchScene(mouseEvent, "/mainScene.fxml");
     }
 
     //TODO: show info in popup
