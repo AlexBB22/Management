@@ -1,6 +1,9 @@
 package nl.tudelft.oopp.demo.entities;
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -9,41 +12,77 @@ public class TimeSlot {
     @Id
     private int timeslot_id;
 
-    @Column
-    private int start_time;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "building_name")
+    private Building building;
 
-    @Column
-    private int end_time;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "room_id")
+    private Room room;
+
+    @Column(name="start_time")
+    private Time start_time;
+
+    @Column(name="end_time")
+    private Time end_time;
+
+    @OneToMany(mappedBy = "timeslot_fk", cascade = CascadeType.ALL)
+    private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
     public TimeSlot() {}
-    public TimeSlot(int timeSlot_id, int start_time, int end_time) {
+    public TimeSlot(int timeSlot_id, Building building, Room room, Time start_time, Time end_time) {
         this.timeslot_id = timeSlot_id;
+        this.building = building;
+        this.room = room;
         this.start_time = start_time;
         this.end_time = end_time;
     }
 
-
-    public int getTimeSlot_id() {
+    public int getTimeslot_id() {
         return timeslot_id;
     }
 
-    public void setTimeSlot_id(int timeSlot_id) {
-        this.timeslot_id = timeSlot_id;
+    public void setTimeslot_id(int timeslot_id) {
+        this.timeslot_id = timeslot_id;
     }
 
-    public int getStart_time() {
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public List<RoomReservation> getRoomReservations() {
+        return roomReservations;
+    }
+
+    public void setRoomReservations(List<RoomReservation> roomReservations) {
+        this.roomReservations = roomReservations;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Time getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(int start_time) {
+    public void setStart_time(Time start_time) {
         this.start_time = start_time;
     }
 
-    public int getEnd_time() {
+    public Time getEnd_time() {
         return end_time;
     }
 
-    public void setEnd_time(int end_time) {
+    public void setEnd_time(Time end_time) {
         this.end_time = end_time;
     }
 
@@ -52,7 +91,7 @@ public class TimeSlot {
         if (this == o) {return true;}
         if (o instanceof TimeSlot) {
             TimeSlot that = (TimeSlot) o;
-            if (this.end_time == that.end_time && this.start_time == that.start_time) {
+            if (this.end_time.equals(that.end_time) && this.start_time.equals(that.start_time)) {
                 return true;
             }
         }
