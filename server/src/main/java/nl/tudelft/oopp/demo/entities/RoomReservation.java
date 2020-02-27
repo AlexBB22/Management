@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class RoomReservation {
     //getting the composite PK that uses two FK's to form the PK
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int reservation_id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -21,9 +22,7 @@ public class RoomReservation {
     private String day;
 
     public RoomReservation() {}
-    public RoomReservation(User user_fk, TimeSlot timeslot_fk, String day) {
-        this.user_fk = user_fk;
-        this.timeslot_fk = timeslot_fk;
+    public RoomReservation(String day) {
         this.day = day;
     }
 
