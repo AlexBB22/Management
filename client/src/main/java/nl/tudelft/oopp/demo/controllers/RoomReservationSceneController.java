@@ -1,17 +1,26 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 
 public class RoomReservationSceneController implements Initializable {
@@ -36,12 +45,29 @@ public class RoomReservationSceneController implements Initializable {
      */
     @FXML
     public void searchButtonHandler(ActionEvent actionEvent) throws URISyntaxException {
-        String[] rooms = ServerCommunication.getRooms(datePicker.getValue(),
-                buildingComboBox.getValue(), timeslotComboBox.getValue(),
-                roomTypeComboBox.getValue());
+        // Clear vbox before adding items
+        //roomList.getChildren().clear();
 
-        for (String str : rooms) {
-            roomList.getChildren().add(new Text(str));
+        String[] rooms = {"rooms akdmkwadawdjlawjdjakwd", "wdawdawdawdwadawda", "awjdawjd"};
+
+        /*String[] rooms = ServerCommunication.getRooms(datePicker.getValue(),
+                buildingComboBox.getValue(), timeslotComboBox.getValue(),
+                roomTypeComboBox.getValue());*/
+
+        for (String room : rooms) {
+            Text roomName = new Text(room);
+            Button reserveBtn = new Button("Reserve");
+            reserveBtn.setOnAction(event -> {
+                // TODO: open new window with the information and a reserve button
+                try {
+                    reservePopUp(buildingComboBox.getValue(), room, datePicker.getValue().toString(), timeslotComboBox.getValue());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            HBox container = new HBox(roomName, reserveBtn);
+            roomList.getChildren().add(container);
         }
     }
 
@@ -52,4 +78,13 @@ public class RoomReservationSceneController implements Initializable {
     @FXML
     public void backBtnHandler(MouseEvent mouseEvent) {
     }
+
+    public void reservePopUp(String building, String room, String date, String time) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/reservationPopUpScene.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 300, 400);
+        st.setScene(sc);
+        st.show();
+    }
+
 }

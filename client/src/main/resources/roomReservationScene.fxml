@@ -69,9 +69,12 @@
             </Button>
          </children>
       </VBox>
-      <VBox fx:id="roomList" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <ScrollPane prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="20.0" left="80.0" right="40.0" />
-         </GridPane.margin></VBox>
+         </GridPane.margin>
+         <content>
+            <VBox fx:id="roomList" prefHeight="308.0" prefWidth="364.0" />
+         </content></ScrollPane>
     </children>
 </GridPane>

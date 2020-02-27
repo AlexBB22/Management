@@ -11,12 +11,9 @@ import javafx.stage.Stage;
 public class MainView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/loginScene.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
+        Parent root = FXMLLoader.load(getClass().getResource("/mainScene.fxml"));
 
-        primaryStage.setTitle("Main Scene");
+        //primaryStage.setTitle("???");
         primaryStage.setScene(new Scene(root, 800, 500));
         primaryStage.show();
     }
