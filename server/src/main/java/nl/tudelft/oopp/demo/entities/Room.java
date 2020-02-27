@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.demo.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="room")
@@ -20,6 +22,9 @@ public class Room {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="building_name")
     private Building building;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<TimeSlot> timeslots = new ArrayList<TimeSlot>();
 
     public int getRoom_id() {
         return room_id;
@@ -57,6 +62,21 @@ public class Room {
 
     public void setBuilding(Building building) {
         this.building = building;
+    }
+
+    public List<TimeSlot> getTimeslots() {
+        return timeslots;
+    }
+
+    public void setTimeslots(List<TimeSlot> timeslots) {
+        this.timeslots = timeslots;
+    }
+    
+    public void addTimeslots(TimeSlot timeSlot) {
+        this.timeslots.add(timeSlot);
+    }
+    public void removeTimeslots(TimeSlot timeSlot) {
+        this.timeslots.remove(timeSlot);
     }
 
 
