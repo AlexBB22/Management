@@ -10,6 +10,7 @@ public class Bike {
 
     @Id
     @Column(name="bike_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int bike_id;
 
     @ManyToOne(fetch = FetchType.LAZY)

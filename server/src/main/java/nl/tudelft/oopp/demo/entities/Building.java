@@ -32,7 +32,7 @@ public class Building {
     private List<Room> rooms = new ArrayList<Room>();
 
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
-    private List<Room> bikes = new ArrayList<Room>();
+    private List<Bike> bikes = new ArrayList<Bike>();
 
 
     public Building(){}

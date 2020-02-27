@@ -9,6 +9,7 @@ public class BikeReservation {
 
     @Id
     @Column(name="bike_reservation_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
