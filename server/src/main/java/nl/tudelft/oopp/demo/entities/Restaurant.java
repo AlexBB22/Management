@@ -11,5 +11,4 @@ public class Restaurant {
     @Column(name = "Building")
     private String buildingName;
 
-    @NotNull
 }
