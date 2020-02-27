@@ -1,6 +1,7 @@
 
 package nl.tudelft.oopp.demo.controllers;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,9 +47,9 @@ public class BuildingController {
         }
     }
 
-    @GetMapping("buildings/{buildingName}/{rooms}")
+    @GetMapping("buildings/{buildingName}/{date}")
     @ResponseBody
-    public List<Room> findRoomsInBuilding(@PathVariable String buildingName){
+    public List<Room> findRoomsInBuilding(@PathVariable String buildingName, Date date){
         List<Room> roomsInBuilding= new ArrayList<Room>();
         try{
             List<Building> allBuildings = buildingRepository.findAll();
