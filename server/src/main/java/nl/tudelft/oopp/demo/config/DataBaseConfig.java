@@ -2,13 +2,9 @@ package nl.tudelft.oopp.demo.config;
 
 import javax.sql.DataSource;
 
-import nl.tudelft.oopp.demo.entities.Student;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -36,12 +32,12 @@ public class DataBaseConfig {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
         //or projects_OOPPGroup4Test for Test DB        projects_OOPPGroup4 for Real DB
-        dataSourceBuilder.url("jdbc:mysql://projects-db.ewi.tudelft.nl:3306/projects_OOPPGroup4");
+        dataSourceBuilder.url("jdbc:mysql://projects-db.ewi.tudelft.nl:3306/projects_OOPPGroup4Test");
 
         //pu_ylnfCNSj8WSfx for Test DB      pu_OOPPGroup4 for Real DB
-        dataSourceBuilder.username("pu_OOPPGroup4");
+        dataSourceBuilder.username("pu_ylnfCNSj8WSfx");
         //yOzgeAlJDkOE for Test DB       cg5EQkKNHN08 for Real DB
-        dataSourceBuilder.password("cg5EQkKNHN08");
+        dataSourceBuilder.password("yOzgeAlJDkOE");
         return dataSourceBuilder.build();
     }
 
