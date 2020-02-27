@@ -71,26 +71,6 @@ public class ServerCommunication {
         return Boolean.parseBoolean(response.body());
     }
 
-    public static String getBikes(String color) throws URISyntaxException {
-        String requestUrl = "http://localhost:8080/bike";
-        requestUrl = requestUrl + "/" + color;
-        System.out.println(requestUrl);
-
-        URI url = new URI(requestUrl);
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(url).build();
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Communication with server failed";
-        }
-        if (response.statusCode() != 200) {
-            return "Communication with server failed";
-        }
-        return response.body();
-    }
-
     public static String getBuildingNames(String BuildingName){
         String requestUrl = "http://localhost:8080/buildings";
         requestUrl = requestUrl + "/" + BuildingName;
