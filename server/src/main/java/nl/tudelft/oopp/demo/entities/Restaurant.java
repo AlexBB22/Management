@@ -7,9 +7,28 @@ public class Restaurant {
     @Id
     private int res_id;
 
-    @NotNull
-    @Column(name = "Building")
-    private String buildingName;
+    @OneToOne
+    @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id")
+    private Menu menu;
 
-    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "building_fk")
+    private Building building;
+
+    public Restaurant() {}
+    public Restaurant(int res_id) {
+        this.res_id = res_id;
+    }
+
+    public int getRes_id() {
+        return res_id;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
 }
