@@ -29,7 +29,9 @@ public class Type {
     @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
     private List<Room> listOfRooms;
 
-    public Type(){
+    public Type() {}
+
+    public Type(int type_id, boolean whiteBoard, boolean powerOutlets, boolean clicker){
         this.type_id = type_id;
         this.whiteBoard = whiteBoard;
         this.powerOutlets = powerOutlets;

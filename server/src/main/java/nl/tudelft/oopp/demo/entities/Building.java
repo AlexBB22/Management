@@ -31,9 +31,11 @@ public class Building {
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
     private List<Room> rooms = new ArrayList<Room>();
 
+    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
+    private List<Restaurant> restaurants = new ArrayList<Restaurant>();
+
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
     private List<Bike> bikes = new ArrayList<Bike>();
-
 
     public Building(){}
 
