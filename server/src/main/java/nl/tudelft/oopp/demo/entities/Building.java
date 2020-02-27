@@ -13,10 +13,10 @@ public class Building {
     @Column(name="building_name")
     private String building_name;
 
-    @Column(name="non-reservable space")
+    @Column(name="non_reservable_space")
     private boolean non_reservable_space;
 
-    @Column(name="car parking spaces")
+    @Column(name="car_parking_spaces")
     private int car_parking_spaces;
 
     @Column(name="description")
