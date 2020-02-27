@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /*package nl.tudelft.oopp.demo.controllers;
 
 import java.util.List;
@@ -44,3 +44,4 @@ public class BuildingController {
         }
     }
 }
+ */
