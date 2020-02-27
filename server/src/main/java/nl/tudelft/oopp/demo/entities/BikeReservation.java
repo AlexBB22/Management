@@ -21,10 +21,6 @@ public class BikeReservation {
     private Bike bike_fk;
 
     public BikeReservation() {}
-    public BikeReservation(User bike_user_fk, Bike bike_fk) {
-        this.bike_user_fk = bike_user_fk;
-        this.bike_fk=bike_fk;
-    }
 
     public int getId() {
         return id;

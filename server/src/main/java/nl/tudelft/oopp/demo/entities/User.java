@@ -35,7 +35,7 @@ public class User {
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
     @OneToMany(mappedBy = "bike_user_fk")
-    private List<RoomReservation> bikeReservations = new ArrayList<RoomReservation>();
+    private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     //Constructors + Getters/Setters
     public User() {}
