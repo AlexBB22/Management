@@ -35,7 +35,6 @@ public class RoomReservationSceneController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO: populate combo boxes and show available rooms
-
     }
 
     /**
@@ -58,9 +57,11 @@ public class RoomReservationSceneController implements Initializable {
             Text roomName = new Text(room);
             Button reserveBtn = new Button("Reserve");
             reserveBtn.setOnAction(event -> {
-                // TODO: open new window with the information and a reserve button
                 try {
-                    reservePopUp(buildingComboBox.getValue(), room, datePicker.getValue().toString(), timeslotComboBox.getValue());
+                    reservePopUp(buildingComboBox.getValue(),
+                            room,
+                            "date", // TODO: datePicker.getValue().toString(),
+                            timeslotComboBox.getValue());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -79,7 +80,9 @@ public class RoomReservationSceneController implements Initializable {
     public void backBtnHandler(MouseEvent mouseEvent) {
     }
 
-    public void reservePopUp(String building, String room, String date, String time) throws IOException {
+    //TODO: show info in popup
+    public void reservePopUp(String building, String room, String date, String time)
+                                throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/reservationPopUpScene.fxml"));
         Stage st = new Stage();
         Scene sc = new Scene(root, 300, 400);
