@@ -12,12 +12,15 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int room_id;
 
+    @Column(name="capacity")
+    private int capacity;
+
+    @Column(name = "room_name")
+    private String room_name;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="type_id")
     private Type type;
-
-    @Column(name="capacity")
-    private int capacity;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="building_name")
@@ -36,8 +39,17 @@ public class Room {
 
     public Room() {}
 
-    public Room(int capacity) {
+    public String getRoom_name() {
+        return room_name;
+    }
+
+    public void setRoom_name(String room_name) {
+        this.room_name = room_name;
+    }
+
+    public Room(int capacity, String room_name) {
         this.capacity = capacity;
+        this.room_name = room_name;
     }
 
     public Type getType() {

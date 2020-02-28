@@ -8,7 +8,11 @@ import java.util.List;
 @Table(name = "type")
 public class Type {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int type_id;
+
+    @Column(name = "name")
+    private String name;
 
     @NotNull
     @Column(name = "whiteboard")
@@ -27,16 +31,23 @@ public class Type {
     private boolean clicker;
 
     @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
-    private List<Room> listOfRooms;
+    private List<Room> listOfRooms = new ArrayList<>();
 
     public Type() {}
 
-    public Type(int type_id, boolean whiteBoard, boolean powerOutlets, boolean clicker){
-        this.type_id = type_id;
+    public Type(String name, boolean whiteBoard, boolean powerOutlets, boolean clicker){
+        this.name = name;
         this.whiteBoard = whiteBoard;
         this.powerOutlets = powerOutlets;
         this.clicker = clicker;
-        listOfRooms = new ArrayList<Room>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getType_id() {
@@ -89,5 +100,10 @@ public class Type {
 
     public void setListOfRooms(List<Room> listOfRooms) {
         this.listOfRooms = listOfRooms;
+    }
+
+    public String toString() {
+        return "type_id: " + this.type_id + ", name: " + this.name + ", clicker: " + this.clicker + ", tv: " + this.tv
+                + ", power_outlets: " + this.powerOutlets + ", whiteboard: " + this.whiteBoard;
     }
 }
