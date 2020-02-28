@@ -25,6 +25,8 @@ public class Role {
 //    //Constructors + Getters/Setters
 //    public Role() {}
 
+    public Role() {}
+
     public Role(int role_id, String role_name) {
         this.role_id = role_id;
         this.role_name = role_name;

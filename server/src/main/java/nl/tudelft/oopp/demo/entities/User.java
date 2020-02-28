@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.ArrayList;
@@ -78,6 +80,9 @@ public class User {
         this.user_password = user_password;
     }
 
+
+    //Understand why this was neccessary to do, even though it shouldnt be.
+    @JsonIgnore
     public Role getRole() {
         return role;
     }
@@ -100,5 +105,8 @@ public class User {
 
     public void removeRoomReservation(RoomReservation roomReservation) {
         this.roomReservations.remove(roomReservation);
+    }
+    public String toString() {
+        return this.user_name + this.user_password + this.email + this.user_id;
     }
 }
