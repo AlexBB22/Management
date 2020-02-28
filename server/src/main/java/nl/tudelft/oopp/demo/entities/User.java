@@ -29,7 +29,7 @@ public class User {
     private String user_password;
 
     //Mapping to a role, creating a FK here to point to Role table PK
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_fk", referencedColumnName = "role_id", nullable = false)
     private Role role;
 
@@ -82,9 +82,9 @@ public class User {
 
 
     //Understand why this was neccessary to do, even though it shouldnt be.
-    @JsonIgnore
+    //@JsonIgnore
     public Role getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(Role role) {
@@ -107,6 +107,7 @@ public class User {
         this.roomReservations.remove(roomReservation);
     }
     public String toString() {
-        return this.user_name + this.user_password + this.email + this.user_id;
+        return "user_id: " + this.user_id + " , email: " + this.email +
+                " , user_name: " + this.user_name + " , user_password: " + this.user_password + " , role_fk: " + this.getRole().getRole_id();
     }
 }

@@ -1,13 +1,14 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import nl.tudelft.oopp.demo.entities.Role;
 import nl.tudelft.oopp.demo.entities.User;
+import nl.tudelft.oopp.demo.repositories.RoleRepository;
 import nl.tudelft.oopp.demo.repositories.UserRepository;
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,11 +20,30 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+
+    @PostMapping("addUser/{roleName}")
+    @ResponseBody
+    public User addUser(@PathVariable String roleName, @RequestBody User user) {
+        User newuser = user;
+        List<Role> roles = roleRepository.findByRoleName(roleName);
+        Role userRole = roles.get(0);
+        newuser.setRole(userRole);
+
+
+        System.out.println("Added this user to the DB: " + user.toString());
+
+        return userRepository.save(newuser);
+    }
+
     @GetMapping("test")
     @ResponseBody
     public List<User> getUsers() {
         return userRepository.findAll();
     }
+
 
 
     @GetMapping("identifyMe/{credentials}")
