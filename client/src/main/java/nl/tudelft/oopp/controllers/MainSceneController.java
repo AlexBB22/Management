@@ -13,9 +13,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import static nl.tudelft.oopp.demo.MainApp.switchScene;
+
 public class MainSceneController implements Initializable {
+
+    @FXML
+    private Text username;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,16 +53,4 @@ public class MainSceneController implements Initializable {
         switchScene(mouseEvent, "/?.fxml");
     }
 
-    /**
-     * Function that can switch scene
-     * @param actionEvent
-     * @param source
-     * @throws IOException
-     */
-    public static void switchScene(Event actionEvent, String source) throws IOException {
-        FXMLLoader loader = new FXMLLoader(MainSceneController.class.getResource(source));
-        Parent root = loader.load();
-        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-    }
 }

@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 
+import static nl.tudelft.oopp.demo.MainApp.switchScene;
+
 public class LoginSceneController implements Initializable {
     @FXML private Text submitResponse;
     @FXML private TextField passwordfield;
@@ -43,7 +45,7 @@ public class LoginSceneController implements Initializable {
             submitResponse.setText("Please enter credentials again");
         } else {
             try {
-                MainSceneController.switchScene(event, "/mainScene.fxml");
+                switchScene(event, "/mainScene.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -55,13 +57,8 @@ public class LoginSceneController implements Initializable {
      * @throws IOException
      */
     @FXML
-    public void newUserButtonHandler() throws IOException {
-        // TODO: switch to the new user scene
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserScene.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+    public void newUserButtonHandler(ActionEvent event) throws IOException {
+        switchScene(event, "/newUserScene.fxml", "Create an account");
     }
 
 }

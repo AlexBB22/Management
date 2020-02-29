@@ -23,14 +23,18 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 
+import static nl.tudelft.oopp.demo.MainApp.switchScene;
+
 public class RoomReservationSceneController implements Initializable {
 
-    @FXML private DatePicker datePicker;
-    @FXML private ComboBox<String> buildingComboBox;
-    @FXML private ComboBox<String> timeslotComboBox;
-    @FXML private ComboBox<String> roomTypeComboBox;
+    @FXML
+    private DatePicker datePicker;
+    private ComboBox<String> buildingComboBox;
+    private ComboBox<String> timeslotComboBox;
+    private ComboBox<String> roomTypeComboBox;
+    private VBox roomList;
+    private Text username;
 
-    @FXML private VBox roomList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -78,7 +82,7 @@ public class RoomReservationSceneController implements Initializable {
 
     @FXML
     public void backBtnHandler(MouseEvent mouseEvent) throws IOException {
-        MainSceneController.switchScene(mouseEvent, "/mainScene.fxml");
+        switchScene(mouseEvent, "/mainScene.fxml");
     }
 
     //TODO: show info in popup
