@@ -1,14 +1,10 @@
-package nl.tudelft.oopp.demo.config;
+package nl.tudelft.oopp.config;
 
 import javax.sql.DataSource;
 
-import nl.tudelft.oopp.demo.entities.Student;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration

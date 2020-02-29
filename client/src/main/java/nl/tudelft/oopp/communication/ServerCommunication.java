@@ -1,4 +1,4 @@
-package nl.tudelft.oopp.demo.communication;
+package nl.tudelft.oopp.communication;
 
 import java.net.URI;
 import java.net.URISyntaxException;

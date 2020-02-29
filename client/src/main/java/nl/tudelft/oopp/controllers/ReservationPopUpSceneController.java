@@ -1,4 +1,4 @@
-package nl.tudelft.oopp.demo.controllers;
+package nl.tudelft.oopp.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;

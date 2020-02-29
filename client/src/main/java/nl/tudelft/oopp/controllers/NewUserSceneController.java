@@ -1,4 +1,4 @@
-package nl.tudelft.oopp.demo.controllers;
+package nl.tudelft.oopp.controllers;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.communication.ServerCommunication;
 
 public class NewUserSceneController implements Initializable {
     @FXML private Text submitResponse;

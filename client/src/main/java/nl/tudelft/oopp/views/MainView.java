@@ -1,6 +1,4 @@
-package nl.tudelft.oopp.demo.views;
-
-import java.net.URL;
+package nl.tudelft.oopp.views;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

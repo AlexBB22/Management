@@ -1,9 +1,4 @@
-package nl.tudelft.oopp.demo.communication;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import org.junit.jupiter.api.Test;
-
+package nl.tudelft.oopp.communication;
 
 public class ServerCommunicationTest {
 

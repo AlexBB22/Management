@@ -1,7 +1,7 @@
-package nl.tudelft.oopp.demo.controllers;
+package nl.tudelft.oopp.controllers;
 
 
-import nl.tudelft.oopp.demo.entities.Pun;
+import nl.tudelft.oopp.entities.Pun;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

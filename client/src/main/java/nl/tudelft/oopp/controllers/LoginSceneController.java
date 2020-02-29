@@ -1,4 +1,4 @@
-package nl.tudelft.oopp.demo.controllers;
+package nl.tudelft.oopp.controllers;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -7,17 +7,12 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
-
-import static nl.tudelft.oopp.demo.MainApp.switchScene;
+import nl.tudelft.oopp.MainApp;
+import nl.tudelft.oopp.communication.ServerCommunication;
 
 public class LoginSceneController implements Initializable {
     @FXML private Text submitResponse;
@@ -45,7 +40,7 @@ public class LoginSceneController implements Initializable {
             submitResponse.setText("Please enter credentials again");
         } else {
             try {
-                switchScene(event, "/mainScene.fxml");
+                MainApp.switchScene(event, "/mainScene.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -58,7 +53,7 @@ public class LoginSceneController implements Initializable {
      */
     @FXML
     public void newUserButtonHandler(ActionEvent event) throws IOException {
-        switchScene(event, "/newUserScene.fxml", "Create an account");
+        MainApp.switchScene(event, "/newUserScene.fxml", "Create an account");
     }
 
 }

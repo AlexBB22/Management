@@ -1,6 +1,6 @@
-package nl.tudelft.oopp.demo.repositories;
+package nl.tudelft.oopp.repositories;
 
-import nl.tudelft.oopp.demo.entities.ClientEntity;
+import nl.tudelft.oopp.entities.ClientEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

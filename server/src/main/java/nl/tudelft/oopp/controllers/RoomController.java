@@ -1,7 +1,7 @@
-package nl.tudelft.oopp.demo.controllers;
+package nl.tudelft.oopp.controllers;
 
-import nl.tudelft.oopp.demo.entities.Room;
-import nl.tudelft.oopp.demo.repositories.RoomRepository;
+import nl.tudelft.oopp.entities.Room;
+import nl.tudelft.oopp.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.GetMapping;

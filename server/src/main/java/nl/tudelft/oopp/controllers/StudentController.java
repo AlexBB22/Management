@@ -1,8 +1,8 @@
-package nl.tudelft.oopp.demo.controllers;
+package nl.tudelft.oopp.controllers;
 import java.util.List;
 import java.util.Optional;
-import nl.tudelft.oopp.demo.entities.Student;
-import nl.tudelft.oopp.demo.repositories.StudentRepository;
+import nl.tudelft.oopp.entities.Student;
+import nl.tudelft.oopp.repositories.StudentRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

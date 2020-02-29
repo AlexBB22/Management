@@ -1,22 +1,16 @@
-package nl.tudelft.oopp.demo.controllers;
+package nl.tudelft.oopp.controllers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-import static nl.tudelft.oopp.demo.MainApp.switchScene;
+import static nl.tudelft.oopp.MainApp.switchScene;
 
 public class MainSceneController implements Initializable {
 
@@ -30,7 +24,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     public void reserveRoomButtonHandler(ActionEvent actionEvent) throws IOException {
-        switchScene(actionEvent, "/roomReservationScene.fxml");
+        switchScene(actionEvent, "/roomReservationScene.fxml", "Reserve a room");
     }
 
     @FXML
