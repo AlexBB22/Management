@@ -38,7 +38,7 @@ public class UserController {
         return userRepository.save(newuser);
     }
 
-    @GetMapping("test")
+    @GetMapping("getListOfUsers")
     @ResponseBody
     public List<User> getUsers() {
         return userRepository.findAll();

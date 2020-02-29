@@ -13,6 +13,6 @@ public interface BuildingRepository extends JpaRepository<Building, String>{
     @Query(value = "SELECT building.name FROM building", nativeQuery = true)
     List<String> getAllBuildingNames();
 
-//    @Query(value = "SELECT * FROM building b WHERE b.name=?1", nativeQuery = true)
-//    List<Building> findByBuildingName(String buildingName);
+    @Query(value = "SELECT * FROM building b WHERE b.building_name=?1", nativeQuery = true)
+    List<Building> findByBuildingName(String buildingName);
 }

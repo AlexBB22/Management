@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.demo.entities;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table (name = "roomreservation")
@@ -18,11 +19,12 @@ public class RoomReservation {
     @JoinColumn(name = "timeslot_id")
     private TimeSlot timeslot_fk;
 
-    @Column(name="day")
-    private String day;
+    @Column(name = "day")
+    private Date day;
 
     public RoomReservation() {}
-    public RoomReservation(String day) {
+
+    public RoomReservation(Date day) {
         this.day = day;
     }
 
@@ -50,11 +52,11 @@ public class RoomReservation {
         this.timeslot_fk = timeslot_fk;
     }
 
-    public String getDay() {
+    public Date getDay() {
         return day;
     }
 
-    public void setDay(String day) {
+    public void setDay(Date day) {
         this.day = day;
     }
 }

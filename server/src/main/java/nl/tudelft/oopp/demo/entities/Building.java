@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -96,6 +98,11 @@ public class Building {
         this.closing = closing;
     }
 
+
+    /*
+    Room related methods
+     */
+    @JsonIgnore
     public List<Room> getRooms() {
         return rooms;
     }
@@ -104,6 +111,15 @@ public class Building {
         this.rooms = rooms;
     }
 
+    public void addRoom(Room room) {
+        this.rooms.add(room);
+        room.setBuilding(this);
+    }
+
+    public void removeRoom(Room room) {
+        this.rooms.remove(room);
+        room.setBuilding(null);
+    }
 
 }
 

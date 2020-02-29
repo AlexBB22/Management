@@ -1,4 +1,6 @@
 package nl.tudelft.oopp.demo.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.ArrayList;
@@ -86,21 +88,29 @@ public class Type {
         this.clicker = clicker;
     }
 
+
+    /*
+    Room related methods
+     */
+    @JsonIgnore
     public List<Room> getListOfRooms() {
         return listOfRooms;
-    }
-
-    public void addRoom(Room room){
-        this.listOfRooms.add(room);
-    }
-
-    public void removeRoom(Room room) {
-        this.listOfRooms.remove(room);
     }
 
     public void setListOfRooms(List<Room> listOfRooms) {
         this.listOfRooms = listOfRooms;
     }
+
+    public void addRoom(Room room){
+        this.listOfRooms.add(room);
+        room.setType(this);
+    }
+
+    public void removeRoom(Room room) {
+        this.listOfRooms.remove(room);
+        room.setType(null);
+    }
+
 
     public String toString() {
         return "type_id: " + this.type_id + ", name: " + this.name + ", clicker: " + this.clicker + ", tv: " + this.tv

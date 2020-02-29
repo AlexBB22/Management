@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,37 +20,34 @@ public class Room {
     @Column(name = "room_name")
     private String room_name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="type_id")
     private Type type;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="building_name")
     private Building building;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<TimeSlot> timeslots = new ArrayList<TimeSlot>();
 
+    public Room() {}
+
+    public Room(int capacity, String room_name) {
+        this.capacity = capacity;
+        this.room_name = room_name;
+    }
+
+
     public int getRoom_id() {
         return room_id;
     }
-
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
-    }
-
-    public Room() {}
 
     public String getRoom_name() {
         return room_name;
     }
 
     public void setRoom_name(String room_name) {
-        this.room_name = room_name;
-    }
-
-    public Room(int capacity, String room_name) {
-        this.capacity = capacity;
         this.room_name = room_name;
     }
 
@@ -76,6 +75,7 @@ public class Room {
         this.building = building;
     }
 
+    @JsonIgnore
     public List<TimeSlot> getTimeslots() {
         return timeslots;
     }
@@ -87,8 +87,14 @@ public class Room {
     public void addTimeslots(TimeSlot timeSlot) {
         this.timeslots.add(timeSlot);
     }
+
     public void removeTimeslots(TimeSlot timeSlot) {
         this.timeslots.remove(timeSlot);
+    }
+
+    public String toString() {
+        return "room_id: " + this.room_id + ", room_name: " + this.room_name + ", capacity: " + this.capacity +
+                ", building_name: " + this.getBuilding().getBuilding_Name() + ", type_id: " + this.getType().getType_id();
     }
 
 
