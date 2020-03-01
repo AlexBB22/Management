@@ -1,0 +1,111 @@
+For: http://localhost:8080/buildings/All, gets all building names
+[
+    {
+        "non_reservable_space": true,
+        "car_parking_spaces": 50,
+        "description": "Aerospace faculty",
+        "opening": "04:45:00",
+        "closing": "23:45:00",
+        "building_Name": "AS"
+    },
+    {
+        "non_reservable_space": true,
+        "car_parking_spaces": 69,
+        "description": "Nice place",
+        "opening": "06:45:00",
+        "closing": "21:45:00",
+        "building_Name": "CSE"
+    },
+    {
+        "non_reservable_space": false,
+        "car_parking_spaces": 20,
+        "description": "Examination + work place",
+        "opening": "08:45:00",
+        "closing": "21:45:00",
+        "building_Name": "DW"
+    },
+    {
+        "non_reservable_space": true,
+        "car_parking_spaces": 35,
+        "description": "Mechanical Engineering",
+        "opening": "06:45:00",
+        "closing": "21:45:00",
+        "building_Name": "ME"
+    },
+    {
+        "non_reservable_space": true,
+        "car_parking_spaces": 30,
+        "description": "Natural Sciences",
+        "opening": "06:45:00",
+        "closing": "23:45:00",
+        "building_Name": "NS"
+    }
+]
+
+For http://localhost:8080/getAvailableRooms/DW/2020-03-01/08:45:00/10:45:00, gets all rooms available for given
+building name, date, and time range
+[
+    {
+        "room_id": 7,
+        "capacity": 30,
+        "room_name": "DW-IZ4",
+        "type": {
+            "type_id": 3,
+            "name": "StudyRoom",
+            "whiteBoard": true,
+            "tv": false,
+            "powerOutlets": true,
+            "clicker": false
+        },
+        "building": {
+            "non_reservable_space": false,
+            "car_parking_spaces": 20,
+            "description": "Examination + work place",
+            "opening": "08:45:00",
+            "closing": "21:45:00",
+            "building_Name": "DW"
+        }
+    },
+    {
+        "room_id": 8,
+        "capacity": 30,
+        "room_name": "P1",
+        "type": {
+            "type_id": 5,
+            "name": "ProjectRoom",
+            "whiteBoard": true,
+            "tv": true,
+            "powerOutlets": true,
+            "clicker": false
+        },
+        "building": {
+            "non_reservable_space": false,
+            "car_parking_spaces": 20,
+            "description": "Examination + work place",
+            "opening": "08:45:00",
+            "closing": "21:45:00",
+            "building_Name": "DW"
+        }
+    },
+    {
+        "room_id": 9,
+        "capacity": 30,
+        "room_name": "Hall1",
+        "type": {
+            "type_id": 6,
+            "name": "StudyHall",
+            "whiteBoard": true,
+            "tv": true,
+            "powerOutlets": true,
+            "clicker": true
+        },
+        "building": {
+            "non_reservable_space": false,
+            "car_parking_spaces": 20,
+            "description": "Examination + work place",
+            "opening": "08:45:00",
+            "closing": "21:45:00",
+            "building_Name": "DW"
+        }
+    }
+]
