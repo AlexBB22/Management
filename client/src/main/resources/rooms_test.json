@@ -1,0 +1,65 @@
+[
+  {
+    "room_id": 7,
+    "capacity": 30,
+    "room_name": "DW-IZ4",
+    "type": {
+      "type_id": 3,
+      "name": "StudyRoom",
+      "whiteBoard": true,
+      "tv": false,
+      "powerOutlets": true,
+      "clicker": false
+    },
+    "building": {
+      "non_reservable_space": false,
+      "car_parking_spaces": 20,
+      "description": "Examination + work place",
+      "opening": "08:45:00",
+      "closing": "21:45:00",
+      "building_Name": "DW"
+    }
+  },
+  {
+    "room_id": 8,
+    "capacity": 30,
+    "room_name": "P1",
+    "type": {
+      "type_id": 5,
+      "name": "ProjectRoom",
+      "whiteBoard": true,
+      "tv": true,
+      "powerOutlets": true,
+      "clicker": false
+    },
+    "building": {
+      "non_reservable_space": false,
+      "car_parking_spaces": 20,
+      "description": "Examination + work place",
+      "opening": "08:45:00",
+      "closing": "21:45:00",
+      "building_Name": "DW"
+    }
+  },
+  {
+    "room_id": 9,
+    "capacity": 30,
+    "room_name": "Hall1",
+    "type": {
+      "type_id": 6,
+      "name": "StudyHall",
+      "whiteBoard": true,
+      "tv": true,
+      "powerOutlets": true,
+      "clicker": true
+    },
+    "building": {
+      "non_reservable_space": false,
+      "car_parking_spaces": 20,
+      "description": "Examination + work place",
+      "opening": "08:45:00",
+      "closing": "21:45:00",
+      "building_Name": "DW"
+    }
+  }
+]
