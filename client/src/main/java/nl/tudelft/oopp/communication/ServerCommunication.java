@@ -1,11 +1,17 @@
 package nl.tudelft.oopp.communication;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ServerCommunication {
 
@@ -46,18 +52,39 @@ public class ServerCommunication {
      * Request the rooms available (with a certain query)
      * @param date
      * @param building
-     * @param timeslot
+     * @param timeFrom
+     * @param timeTo
      * @param roomType
      * @return
      * @throws URISyntaxException
      */
-    public static String[] getRooms(LocalDate date, String building,
-                                    String timeslot, String roomType)
-                                    throws URISyntaxException {
-        String url = "http://localhost:8080/getRooms/";
-        url += date.toString() + ":" + building + ":" + timeslot + ":" + roomType;
+    public static ArrayList<Room> getRooms(LocalDate date, String building,
+                                            String timeFrom, String timeTo, String roomType)
+            throws URISyntaxException, IOException {
 
-        return (String[]) request(url);
+        String url = "http://localhost:8080/getAvailableRooms/";
+        url += building + "/" + date.toString() + "/" + timeFrom + "/" + timeTo;
+
+        //String res = (String)request(url);
+
+        InputStream res = ServerCommunication.class.getResourceAsStream("/rooms_test.json");
+
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Room> rooms = mapper.readValue(res, new TypeReference<ArrayList<Room>>(){});
+
+        return rooms;
+    }
+
+    public static ArrayList<Building> getBuildings() throws URISyntaxException, IOException {
+        String url = "http://localhost:8080/buildings/All";
+
+        //String res = (String)request(url);
+        InputStream res = ServerCommunication.class.getResourceAsStream("/buildings_test.json");
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Building> buildings = mapper.readValue(res,
+                new TypeReference<ArrayList<Building>>(){});
+
+        return buildings;
     }
 
     /**
@@ -80,7 +107,7 @@ public class ServerCommunication {
         if (response.statusCode() != 200) {
             return false;
         }
-        return true;
+        return response;
     }
 
 }

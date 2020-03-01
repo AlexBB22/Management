@@ -3,8 +3,13 @@ package nl.tudelft.oopp.controllers;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.CompactNumberFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,23 +24,43 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import nl.tudelft.oopp.communication.Building;
+import nl.tudelft.oopp.communication.Room;
+import nl.tudelft.oopp.communication.ServerCommunication;
 
 import static nl.tudelft.oopp.MainApp.switchScene;
 
 public class RoomReservationSceneController implements Initializable {
 
-    @FXML
-    private DatePicker datePicker;
-    private ComboBox<String> buildingComboBox;
-    private ComboBox<String> timeslotComboBox;
-    private ComboBox<String> roomTypeComboBox;
-    private VBox roomList;
-    private Text username;
+    @FXML private DatePicker datePicker;
+    @FXML private ComboBox<String> buildingComboBox;
+    @FXML private ComboBox<String> timeFromComboBox;
+    @FXML private ComboBox<String> timeToComboBox;
+    @FXML private ComboBox<String> roomTypeComboBox;
+    @FXML private VBox roomList;
+    @FXML private Text username;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO: populate combo boxes and show available rooms
+        ObservableList<String> times = FXCollections.observableArrayList(
+                "08:45", "10:45", "12:45", "13:45", "15:45", "17:45"
+        );
+        timeFromComboBox.getItems().addAll(times);
+        timeToComboBox.getItems().addAll(times);
+
+        ArrayList<Building> buildings = null;
+        try {
+            buildings = ServerCommunication.getBuildings();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (Building b : buildings) {
+            buildingComboBox.getItems().add(b.getBuilding_Name());
+        }
     }
 
     /**
@@ -44,25 +69,27 @@ public class RoomReservationSceneController implements Initializable {
      * @throws URISyntaxException
      */
     @FXML
-    public void searchButtonHandler(ActionEvent actionEvent) throws URISyntaxException {
+    public void searchButtonHandler(ActionEvent actionEvent)
+            throws URISyntaxException, IOException {
+
         // Clear vbox before adding items
         roomList.getChildren().clear();
 
-        String[] rooms = {"rooms akdmkwadawdjlawjdjakwd", "wdawdawdawdwadawda", "awjdawjd"};
+        //String[] rooms = {"rooms akdmkwadawdjlawjdjakwd", "wdawdawdawdwadawda", "awjdawjd"};
 
-        /*String[] rooms = ServerCommunication.getRooms(datePicker.getValue(),
-                buildingComboBox.getValue(), timeslotComboBox.getValue(),
-                roomTypeComboBox.getValue());*/
+        ArrayList<Room> rooms = ServerCommunication.getRooms(datePicker.getValue(),
+                buildingComboBox.getValue(), timeFromComboBox.getValue(), timeToComboBox.getValue(),
+                roomTypeComboBox.getValue());
 
-        for (String room : rooms) {
-            Text roomName = new Text(room);
+        for (Room room : rooms) {
+            Text roomName = new Text(room.getRoom_name());
             Button reserveBtn = new Button("Reserve");
             reserveBtn.setOnAction(event -> {
                 try {
                     reservePopUp(buildingComboBox.getValue(),
-                            room,
+                            room.getRoom_name(),
                             "date", // TODO: datePicker.getValue().toString(),
-                            timeslotComboBox.getValue());
+                            timeFromComboBox.getValue()+" - "+timeToComboBox.getValue());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

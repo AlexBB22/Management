@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.RoomReservationSceneController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="519.2" minWidth="10.0" prefWidth="500.0" />
@@ -51,12 +51,33 @@
                </VBox.margin>
             </Label>
             <ComboBox fx:id="buildingComboBox" prefWidth="150.0" />
-            <Label layoutX="10.0" layoutY="10.0" text="Timeslot">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <ComboBox fx:id="timeslotComboBox" layoutX="10.0" layoutY="28.0" prefWidth="150.0" />
+            <HBox>
+               <children>
+                  <VBox>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label text="From">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="timeFromComboBox" prefWidth="100.0" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="To">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="timeToComboBox" prefWidth="100.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
             <Label layoutX="10.0" layoutY="53.0" text="Room type">
                <VBox.margin>
                   <Insets top="10.0" />
