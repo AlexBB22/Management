@@ -42,8 +42,8 @@ public class ServerCommunication {
      */
     public static boolean createUser(String username, String email, String password)
                                         throws URISyntaxException {
-        String url = "http://localhost:8080/createUser";
-        url += "/" + username + ":" + email + ":" + password;
+        String url = String.format("http://localhost:8080/createUser/%s/%s/%s",
+                username, email, password);
 
         return (boolean) request(url);
     }
@@ -62,8 +62,8 @@ public class ServerCommunication {
                                             String timeFrom, String timeTo, String roomType)
             throws URISyntaxException, IOException {
 
-        String url = "http://localhost:8080/getAvailableRooms/";
-        url += building + "/" + date.toString() + "/" + timeFrom + "/" + timeTo;
+        String url = String.format("http://localhost:8080/getAvailableRooms/%s/%s/%s:00/%s:00",
+                building, date.toString(), timeFrom, timeTo);
 
         //String res = (String)request(url);
 
@@ -75,6 +75,12 @@ public class ServerCommunication {
         return rooms;
     }
 
+    /**
+     * Get all buildings
+     * @return
+     * @throws URISyntaxException
+     * @throws IOException
+     */
     public static ArrayList<Building> getBuildings() throws URISyntaxException, IOException {
         String url = "http://localhost:8080/buildings/All";
 
