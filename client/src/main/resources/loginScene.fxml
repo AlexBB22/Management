@@ -1,49 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
 <?import javafx.geometry.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="nl.tudelft.oopp.demo.controllers.LoginSceneController"
-            prefHeight="400.0" prefWidth="600.0"
-            alignment="center" hgap="10" vgap="10">
-    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+<GridPane alignment="center" hgap="10" prefHeight="400.0" prefWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.LoginSceneController">
+    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
 
-    <!--This bit adds the welcome statement with the two input fields-->
-    <Text text="Welcome to this useless application"
-          GridPane.columnIndex="0" GridPane.rowIndex="0"
-          GridPane.columnSpan="2"/>
+    <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <Label text="User Name:"
-           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <TextField fx:id="usernameField"
-            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <Label text="Password:"
-           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-
-    <PasswordField fx:id="passwordfield"
-                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <PasswordField fx:id="passwordfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <!--This bit adds the button which triggers an event which is handled by the controller-->
-    <HBox spacing="10" alignment="bottom_right"
-          GridPane.columnIndex="1" GridPane.rowIndex="4">
-        <Button text="Sign In"
-                onAction="#submitButtonHandler"/>
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <Button onAction="#newUserButtonHandler" text="Create new user" />
+        <Button layoutX="106.0" layoutY="10.0" onAction="#submitButtonHandler" text="Sign In" />
     </HBox>
 
-        <!--Adding fx makes this id available and referencable from elsewhere, so we can set its value later-->
-    <Text fx:id="submitResponse"
-          GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-
-
+    <!--Adding fx makes this id available and referencable from elsewhere, so we can set its value later-->
+    <Text fx:id="submitResponse" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
 </GridPane>

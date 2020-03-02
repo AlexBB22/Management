@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="400.0" prefWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.NewUserSceneController">
+    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+
+    <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+    <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+    <!--This bit adds the button which triggers an event which is handled by the controller-->
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <Button onAction="#createNewUserButtonHandler" text="Create a new account" />
+    </HBox>
+
+    <!--Adding fx makes this id available and referencable from elsewhere, so we can set its value later-->
+    <Text fx:id="submitResponse" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+    </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+</GridPane>
