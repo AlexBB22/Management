@@ -37,7 +37,7 @@ public class RoomController {
     }
 
     /*
-    Method adds a new building to the table. It takes in the name of the building and the type id (to setup FK)
+    Method adds a new room to the table. It takes in the name of the building and the type id (to setup FK)
      */
     @PostMapping("/addRoomToDB/{buildingName}/{typeId}")
     @ResponseBody
