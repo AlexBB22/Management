@@ -60,7 +60,6 @@ public class RoomController {
         System.out.println("Added a new room to DB: " + newroom.toString());
         roomRepository.save(newroom);
     }
-
     @GetMapping("test2")
     @ResponseBody
     public int test2() {

@@ -60,6 +60,17 @@ public class TimeSlot {
         return roomReservations;
     }
 
+    @Override
+    public String toString() {
+        return "TimeSlot{" +
+                "timeslot_id=" + timeslot_id +
+                ", building_id=" + building.getBuilding_Name() +
+                ", room=" + room.getRoom_name() +
+                ", start_time=" + start_time +
+                ", end_time=" + end_time +
+                '}';
+    }
+
     public void setRoomReservations(List<RoomReservation> roomReservations) {
         this.roomReservations = roomReservations;
     }
