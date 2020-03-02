@@ -76,7 +76,7 @@ public class RoomReservationController {
 
 
 
-    @GetMapping("getAvailableRooms/{buildingName}/{Day}/{start_time}/{end_time}")
+    @GetMapping("getAvailableRooms/{buildingName}/{`Day`}/{start_time}/{end_time}")
     @ResponseBody
     public List<Room> getAvailableRooms(@PathVariable(value = "buildingName") String building_name,
                                            @PathVariable (value = "Day") Date day,

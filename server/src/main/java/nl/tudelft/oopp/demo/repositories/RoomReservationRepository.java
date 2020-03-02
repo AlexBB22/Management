@@ -35,3 +35,4 @@ public interface RoomReservationRepository extends JpaRepository<RoomReservation
 
 
 }
+//write pre-defined methods for SELECTS using distinct

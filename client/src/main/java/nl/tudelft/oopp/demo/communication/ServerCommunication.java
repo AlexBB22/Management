@@ -1,15 +1,15 @@
 package nl.tudelft.oopp.demo.communication;
 
-import javafx.fxml.FXML;
-
-import java.io.IOException;
 import java.net.MalformedURLException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import javafx.fxml.FXML;
+
 
 public class ServerCommunication {
 
@@ -34,6 +34,11 @@ public class ServerCommunication {
         }
         return response.body();
     }
+
+    /**
+     * THis method will be deleted
+     * @return
+     */
     public static String getPun() {
         HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/pun")).build();
         HttpResponse<String> response = null;
@@ -49,8 +54,14 @@ public class ServerCommunication {
         return response.body();
     }
 
-
-
+    /**
+     * Method to authorise a user
+     * @param userName
+     * @param password
+     * @return
+     * @throws MalformedURLException
+     * @throws URISyntaxException
+     */
     public static boolean identifyUser(String userName, String password) throws MalformedURLException, URISyntaxException {
         String requestUrl = "http://localhost:8080/identifyMe";
         requestUrl = requestUrl + "/" + userName + ":" + password;
@@ -71,22 +82,27 @@ public class ServerCommunication {
         return Boolean.parseBoolean(response.body());
     }
 
+    /**
+     * This is a method that gets Building Names
+     * @param BuildingName
+     * @return
+     */
     public static String getBuildingNames(String BuildingName){
         String requestUrl = "http://localhost:8080/buildings";
         requestUrl = requestUrl + "/" + BuildingName;
         System.out.println(requestUrl);
 
-    HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(requestUrl)).build();
-    HttpResponse<String> response = null;
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(requestUrl)).build();
+        HttpResponse<String> response = null;
         try {
-        response = client.send(request, HttpResponse.BodyHandlers.ofString());
-    } catch (Exception e) {
-        e.printStackTrace();
-        return "Communication with server failed";
-    }
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Communication with server failed";
+        }
         if (response.statusCode() != 200) {
-        System.out.println("Status: " + response.statusCode());
-    }
+            System.out.println("Status: " + response.statusCode());
+        }
         return response.body();
     }
 
