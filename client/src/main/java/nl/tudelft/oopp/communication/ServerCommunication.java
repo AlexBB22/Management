@@ -25,10 +25,8 @@ public class ServerCommunication {
      * @throws URISyntaxException
      */
     public static boolean identifyUser(String userName, String password) throws URISyntaxException {
-        String requestUrl = "";
-        requestUrl = requestUrl + "/" + userName + ":" + password;
-
-        return (boolean) request(requestUrl);
+        String url = String.format("http://localhost:8080/identifyMe/%s:%s", userName, password);
+        return authRequest(url);
     }
 
     /**
@@ -45,7 +43,7 @@ public class ServerCommunication {
         String url = String.format("http://localhost:8080/createUser/%s/%s/%s",
                 username, email, password);
 
-        return (boolean) request(url);
+        return authRequest(url);
     }
 
     /**
@@ -84,8 +82,8 @@ public class ServerCommunication {
     public static ArrayList<Building> getBuildings() throws URISyntaxException, IOException {
         String url = "http://localhost:8080/buildings/All";
 
-        //String res = (String)request(url);
-        InputStream res = ServerCommunication.class.getResourceAsStream("/buildings_test.json");
+        String res = request(url);
+        //InputStream res = ServerCommunication.class.getResourceAsStream("/buildings_test.json");
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<Building> buildings = mapper.readValue(res,
                 new TypeReference<ArrayList<Building>>(){});
@@ -100,7 +98,25 @@ public class ServerCommunication {
      * @return
      * @throws URISyntaxException
      */
-    public static Object request(String urlStr) throws URISyntaxException {
+    public static String request(String urlStr) throws URISyntaxException {
+        URI url = new URI(urlStr);
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(url).build();
+        HttpResponse<String> response = null;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response.toString();
+    }
+
+    /**
+     * Authentication request to server
+     * @param urlStr
+     * @return
+     * @throws URISyntaxException
+     */
+    public static boolean authRequest(String urlStr) throws URISyntaxException {
         URI url = new URI(urlStr);
         HttpRequest request = HttpRequest.newBuilder().GET().uri(url).build();
         HttpResponse<String> response;
@@ -113,7 +129,7 @@ public class ServerCommunication {
         if (response.statusCode() != 200) {
             return false;
         }
-        return response;
+        return true;
     }
 
 }
