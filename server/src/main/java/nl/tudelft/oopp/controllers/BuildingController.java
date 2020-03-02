@@ -22,6 +22,10 @@ public class BuildingController {
     @Autowired
     private BuildingRepository buildingRepository;
 
+    @GetMapping("buildings/")
+    @ResponseBody
+    public String emptyBuilding(){ return "Please put in a building";}
+
     @GetMapping("buildings/All")
     @ResponseBody
     public List<Building>  getAllBuildings(){
