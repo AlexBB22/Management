@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="bike")
+@Table(name = "bike")
 public class Bike {
 
     @Id
-    @Column(name="bike_id")
+    @Column(name = "bike_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     int bike_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="building_name")
+    @JoinColumn(name = "building_name")
     private Building building;
 
     @OneToMany(mappedBy = "bike_fk")
