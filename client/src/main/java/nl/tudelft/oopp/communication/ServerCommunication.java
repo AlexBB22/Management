@@ -63,9 +63,10 @@ public class ServerCommunication {
         String url = String.format("http://localhost:8080/getAvailableRooms/%s/%s/%s:00/%s:00",
                 building, date.toString(), timeFrom, timeTo);
 
-        //String res = (String)request(url);
+        String res = request(url);
+        System.out.println(res);
 
-        InputStream res = ServerCommunication.class.getResourceAsStream("/rooms_test.json");
+        //InputStream res = ServerCommunication.class.getResourceAsStream("/rooms_test.json");
 
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<Room> rooms = mapper.readValue(res, new TypeReference<ArrayList<Room>>(){});
@@ -83,10 +84,10 @@ public class ServerCommunication {
         String url = "http://localhost:8080/buildings/All";
 
         String res = request(url);
+        System.out.println(res);
         //InputStream res = ServerCommunication.class.getResourceAsStream("/buildings_test.json");
         ObjectMapper mapper = new ObjectMapper();
-        ArrayList<Building> buildings = mapper.readValue(res,
-                new TypeReference<ArrayList<Building>>(){});
+        ArrayList<Building> buildings = mapper.readValue(res, new TypeReference<ArrayList<Building>>(){});
 
         return buildings;
     }
@@ -107,7 +108,7 @@ public class ServerCommunication {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return response.toString();
+        return response.body();
     }
 
     /**

@@ -28,7 +28,7 @@ public class MainApp {
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
 
-        if (title != null) {
+        if (title.length > 0) {
             stage.setTitle(title[0]);
         }
     }
