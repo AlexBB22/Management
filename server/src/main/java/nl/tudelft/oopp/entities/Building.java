@@ -100,8 +100,17 @@ public class Building {
         return carParkingSpaces;
     }
 
+    /**.
+     *
+     * @param carParkingSpaces amount the car parking space to set to
+     * @Author Scott Jochems
+     */
     public void setCar_parking_spaces(int carParkingSpaces) {
-        this.carParkingSpaces = carParkingSpaces;
+        if (carParkingSpaces<0) {
+            this.carParkingSpaces = 0;
+        } else {
+            this.carParkingSpaces = carParkingSpaces;
+        }
     }
 
     public String getDescription() {
