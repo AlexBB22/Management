@@ -48,6 +48,16 @@ public class Building {
     public Building(){
     }
 
+    /**.
+     * constructor for building
+     * @param buildingName name of the building
+     * @param nonReservableSpace amount of nonReservableSpace
+     * @param carParkingSpaces amount of carParkingSpace
+     * @param description extra information about the building
+     * @param opening the time at which the building opens
+     * @param closing the time at which the building closes
+     * @Autor Scott Jochems
+     */
     public Building(String buildingName, boolean nonReservableSpace, int carParkingSpaces, String description,Time opening, Time closing) {
         this.buildingName = buildingName;
         this.nonReservableSpace = nonReservableSpace;

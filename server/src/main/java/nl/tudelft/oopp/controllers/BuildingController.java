@@ -35,6 +35,12 @@ public class BuildingController {
         return buildingRepository.findAll();
     }
 
+    /**.
+     * find a building by name
+     * @param buildingName name of building to search for
+     * @return building matching buildingName
+     * @Author Scott Jochems
+     */
     @GetMapping("buildings/{buildingName}")
     @ResponseBody
     public Building findByBuildingName(@PathVariable String buildingName) {
@@ -50,7 +56,7 @@ public class BuildingController {
             throw new IllegalArgumentException("this input does not exist");
         }
     }
-
+    
     @GetMapping("buildings/{buildingName}/{date}")
     @ResponseBody
     public List<Room> findRoomsInBuilding(@PathVariable String buildingName, Date date) {
