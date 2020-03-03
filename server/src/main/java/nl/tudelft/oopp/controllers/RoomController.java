@@ -9,9 +9,19 @@ import nl.tudelft.oopp.repositories.BuildingRepository;
 import nl.tudelft.oopp.repositories.RoomRepository;
 import nl.tudelft.oopp.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -40,7 +50,7 @@ public class RoomController {
      */
     @PostMapping("/addRoomToDB/{buildingName}/{typeId}")
     @ResponseBody
-    public void addRoomToDB(@PathVariable (value = "buildingName") String buildingName,
+    public void addRoomToDB(@PathVariable(value = "buildingName") String buildingName,
                             @PathVariable (value = "typeId") int typeId,
                             @RequestBody Room room) {
         //Room newroom = room;

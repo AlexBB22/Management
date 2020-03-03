@@ -5,12 +5,19 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import nl.tudelft.oopp.entities.*;
+
 import nl.tudelft.oopp.entities.Building;
 import nl.tudelft.oopp.entities.Room;
-import nl.tudelft.oopp.repositories.*;
+import nl.tudelft.oopp.entities.RoomReservation;
+import nl.tudelft.oopp.entities.TimeSlot;
+import nl.tudelft.oopp.entities.User;
+
 import nl.tudelft.oopp.repositories.BuildingRepository;
 import nl.tudelft.oopp.repositories.RoomRepository;
+import nl.tudelft.oopp.repositories.RoomReservationRepository;
+import nl.tudelft.oopp.repositories.TimeSlotRepository;
+import nl.tudelft.oopp.repositories.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
