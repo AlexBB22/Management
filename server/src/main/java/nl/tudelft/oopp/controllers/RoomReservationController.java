@@ -58,8 +58,9 @@ public class RoomReservationController {
      */
     @PostMapping(value = "/createNewReservation/{roomId}/{buildingName}/{Day}/{start_time}/{end_time}/{userId}")
     @ResponseBody
-    public RoomReservation addRoomReservation(@PathVariable (value = "roomId") int roomId, @PathVariable String buildingName, @PathVariable Date Day,
-                                              @PathVariable Time start_time, @PathVariable Time end_time, @PathVariable int userId) {
+    public RoomReservation addRoomReservation(@PathVariable (value = "roomId") int roomId, @PathVariable (value = "buildingName") String buildingName,
+                                              @PathVariable (value = "Day") Date Day, @PathVariable (value = "start_time") Time start_time,
+                                              @PathVariable (value = "end_time") Time end_time, @PathVariable (value = "userId") int userId) {
 
         //get the Building of a given name
         Optional<Building> b = buildingRepository.findById(buildingName);
@@ -94,7 +95,22 @@ public class RoomReservationController {
     }
 
 
-
+    /**
+     * A method which queries the database to find out which available rooms there are for a certain building at a certain
+     * timeslot and date and also checks whether a user can override an existing reservation using the
+     * findAllAvailableRoomsWithOverriding query
+     *
+     * @param building_name the name of the building in which we want to find all available rooms
+     * @param day the day for which we want to find available rooms
+     * @param start_time the start_time of the timeslot for which we want to find all available rooms day is of type sql.Date
+     * start_time is of type sql.Time
+     * @param end_time the end time of the timeslot for which we want to find all available rooms
+     * end_time is of type sql.Time
+     * @param user_id the primary key of the user who is trying to find all available rooms, this primary key will be used
+     * to determine the role of the user and thus find out if they can override some existing room reservations
+     * @return List<Room> the list of rooms which are available for reserving in a specific building at a specific date and timeslot
+     * for a certain user
+     */
 
     @GetMapping("getAvailableRooms/{buildingName}/{Day}/{start_time}/{end_time}/{user_id}")
     @ResponseBody
@@ -104,9 +120,11 @@ public class RoomReservationController {
                                            @PathVariable (value = "end_time") Time end_time,
                                            @PathVariable (value = "user_id") int user_id)
     {
+        //Initializes a user from the given user primary key
         Optional<User> u = userRepository.findById(user_id);
         User user = u.get();
 
+        //Queries the database using the role of the just initialized user
         List<Integer> objects = roomReservationRepository.findAllAvailableRoomsWithOverriding(building_name, day, start_time,
                 end_time, user.getRole().getRole_id());
 
