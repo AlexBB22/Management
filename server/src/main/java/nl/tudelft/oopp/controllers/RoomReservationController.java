@@ -40,6 +40,22 @@ public class RoomReservationController {
     @Autowired
     private BuildingRepository buildingRepository;
 
+
+    /**
+     * Adds a RoomReservation to the DB for a specific user at a specific timeslot.
+     * A new timeslot is initialized and is also saved in the DB
+     *
+     * @author Niels Tomassen
+     * @param roomId the primary key of the room we want to reserve a room for
+     * @param buildingName the primary key of the building we want to reserve a room in
+     * @param Day the Day for which we want to reserve a room is of type sql.Date
+     * @param start_time the start time of the timeslot for which we want to reserve a room
+     * start_time is of type sql.Time
+     * @param end_time the end time of the timeslot for which we want to reserve a room
+     * end_time is of type sql.Time
+     * @param userId the primary key referring to the user who wants to add a RoomReservation
+     * @return RoomReservation the RoomReservation which we are adding to the DB
+     */
     @PostMapping(value = "/createNewReservation/{roomId}/{buildingName}/{Day}/{start_time}/{end_time}/{userId}")
     @ResponseBody
     public RoomReservation addRoomReservation(@PathVariable (value = "roomId") int roomId, @PathVariable String buildingName, @PathVariable Date Day,
@@ -80,17 +96,23 @@ public class RoomReservationController {
 
 
 
-    @GetMapping("getAvailableRooms/{buildingName}/{Day}/{start_time}/{end_time}")
+    @GetMapping("getAvailableRooms/{buildingName}/{Day}/{start_time}/{end_time}/{user_id}")
     @ResponseBody
     public List<Room> getAvailableRooms(@PathVariable(value = "buildingName") String building_name,
                                            @PathVariable (value = "Day") Date day,
                                            @PathVariable (value = "start_time") Time start_time,
-                                           @PathVariable (value = "end_time") Time end_time)
+                                           @PathVariable (value = "end_time") Time end_time,
+                                           @PathVariable (value = "user_id") int user_id)
     {
-        List<Integer> objects = roomReservationRepository.findAllAvailableRooms(building_name, day, start_time, end_time);
+        Optional<User> u = userRepository.findById(user_id);
+        User user = u.get();
+
+        List<Integer> objects = roomReservationRepository.findAllAvailableRoomsWithOverriding(building_name, day, start_time,
+                end_time, user.getRole().getRole_id());
+
         List<Room> rooms = new ArrayList<>();
-        for (int i: objects) {
-            Optional<Room> r = roomRepository.findById(i);
+        for (int i = 0; i < objects.size(); i++) {
+            Optional<Room> r = roomRepository.findById(objects.get(i));
             Room room = r.get();
             rooms.add(room);
         }

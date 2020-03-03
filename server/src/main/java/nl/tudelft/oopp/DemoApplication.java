@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan("nl.tudelft.oopp.demo.entities")
+@EntityScan("nl.tudelft.oopp.entities")
 
 public class DemoApplication {
     public static void main(String[] args) {
