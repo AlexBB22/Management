@@ -110,4 +110,16 @@ public class User {
         return "user_id: " + this.user_id + " , email: " + this.email +
                 " , user_name: " + this.user_name + " , user_password: " + this.user_password + " , role_fk: " + this.getRole().getRole_id();
     }
+
+    public List<BikeReservation> getBikeReservations() {
+        return bikeReservations;
+    }
+
+    public void setBikeReservations(List<BikeReservation> bikeReservations) {
+        this.bikeReservations = bikeReservations;
+    }
+
+    public void addBikeReservation(BikeReservation bikeReservation) {
+        this.bikeReservations.add(bikeReservation);
+    }
 }

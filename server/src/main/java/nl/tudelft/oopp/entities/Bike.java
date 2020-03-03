@@ -1,5 +1,6 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import nl.tudelft.oopp.entities.Building;
 
 import javax.persistence.*;
@@ -24,14 +25,27 @@ public class Bike {
 
     public Bike(){}
 
+    /**
+     * Getter for the bike id.
+     * @return - the bike id
+     */
     public int getBike_id() {
         return bike_id;
     }
 
+    /**
+     * setter for the bike id.
+     * @param bike_id - Sets the value of the bike to this parameter
+     */
     public void setBike_id(int bike_id) {
         this.bike_id = bike_id;
     }
 
+    /**
+     * @author Sartori Kendra
+     * @return the building near which the bike is situated
+     */
+    @JsonIgnore
     public Building getBuilding() {
         return building;
     }

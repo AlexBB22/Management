@@ -9,9 +9,7 @@ import nl.tudelft.oopp.entities.Room;
 import nl.tudelft.oopp.repositories.BuildingRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
@@ -65,6 +63,26 @@ public class BuildingController {
         catch(Exception x){
             throw new IllegalArgumentException("This building does not exist");
         }
+    }
+
+    /**
+     * This method allows the admin to add a new building name.
+     * @param buildingName - the name/identifier of the building that needs to be added
+     * @param building - the building that needs to be added
+     *
+     * @author Sartori Kendra
+     */
+    @PostMapping("/addNewBuilding/{buildingName}")
+    @ResponseBody
+    public void addNewBuilding(@PathVariable (value = "buildingName") String buildingName,
+                                @RequestBody Building building) {
+
+        Building newBuilding = building;
+
+        newBuilding.setBuilding_name(buildingName);
+
+        System.out.println("Added a new building to the database");
+        buildingRepository.save(newBuilding);
     }
 }
 
