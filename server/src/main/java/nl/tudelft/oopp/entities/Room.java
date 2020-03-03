@@ -1,40 +1,42 @@
 package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import nl.tudelft.oopp.entities.TimeSlot;
-import nl.tudelft.oopp.entities.Type;
-import nl.tudelft.oopp.entities.Building;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
+import nl.tudelft.oopp.entities.Building;
+import nl.tudelft.oopp.entities.TimeSlot;
+import nl.tudelft.oopp.entities.Type;
+
+
 
 @Entity
-@Table(name="room")
+@Table(name = "room")
 
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int room_id;
 
-    @Column(name="capacity")
+    @Column(name = "capacity")
     private int capacity;
 
     @Column(name = "room_name")
     private String room_name;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="type_id")
+    @JoinColumn(name = "type_id")
     private Type type;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="building_name")
+    @JoinColumn(name = "building_name")
     private Building building;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<TimeSlot> timeslots = new ArrayList<TimeSlot>();
 
-    public Room() {}
+    public Room() {
+    }
 
     public Room(int capacity, String room_name) {
         this.capacity = capacity;
@@ -96,8 +98,8 @@ public class Room {
     }
 
     public String toString() {
-        return "room_id: " + this.room_id + ", room_name: " + this.room_name + ", capacity: " + this.capacity +
-                ", building_name: " + this.getBuilding().getBuilding_Name() + ", type_id: " + this.getType().getType_id();
+        return "room_id: " + this.room_id + ", room_name: " + this.room_name + ", capacity: " + this.capacity
+                + ", building_name: " + this.getBuilding().getBuilding_Name() + ", type_id: " + this.getType().getType_id();
     }
 
 

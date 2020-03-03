@@ -1,7 +1,7 @@
 package nl.tudelft.oopp.entities;
-import nl.tudelft.oopp.entities.Building;
 
 import javax.persistence.*;
+import nl.tudelft.oopp.entities.Building;
 
 @Entity
 @Table(name = "restaurant")
@@ -17,7 +17,9 @@ public class Restaurant {
     @JoinColumn(name = "building_fk")
     private Building building;
 
-    public Restaurant() {}
+    public Restaurant() {
+    }
+
     public Restaurant(int res_id) {
         this.res_id = res_id;
     }

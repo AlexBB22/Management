@@ -1,12 +1,12 @@
 package nl.tudelft.oopp.entities;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Food {
@@ -15,7 +15,9 @@ public class Food {
     private String food_id;
     private int price;
 
-    public Food() {}
+    public Food() {
+    }
+
     public Food(String food_id, int price) {
         this.food_id = food_id;
         this.price = price;

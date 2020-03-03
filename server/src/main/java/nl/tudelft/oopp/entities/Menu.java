@@ -1,8 +1,10 @@
 package nl.tudelft.oopp.entities;
-import javax.persistence.*;
-import javax.validation.constraints.*;
+
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
 
 @Entity
 @Table(name = "menu")
@@ -19,7 +21,9 @@ public class Menu {
     @OneToOne(mappedBy = "menu")
     private Restaurant restaurant;
 
-    public Menu() {}
+    public Menu() {
+    }
+
     public Menu(int id) {
         this.menu_id = id;
     }

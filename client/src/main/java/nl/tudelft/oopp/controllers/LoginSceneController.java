@@ -23,10 +23,10 @@ public class LoginSceneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    /**
+    /**.
      * Handle submit button
-     * @param event
-     * @throws URISyntaxException
+     * @param event the event that happens
+     * @throws URISyntaxException exception thrown when syntax is incorrect
      */
     @FXML
     public void submitButtonHandler(ActionEvent event) throws URISyntaxException {
@@ -47,9 +47,10 @@ public class LoginSceneController implements Initializable {
         }
     }
 
-    /**
+    /**.
      * Handle new user button
-     * @throws IOException
+     * @param event the event that happens
+     * @throws IOException throws an exception if something is wrong with the input or output
      */
     @FXML
     public void newUserButtonHandler(ActionEvent event) throws IOException {

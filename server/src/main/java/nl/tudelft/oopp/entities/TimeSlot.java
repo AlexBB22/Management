@@ -1,13 +1,16 @@
 package nl.tudelft.oopp.entities;
 
-import nl.tudelft.oopp.entities.Building;
-import nl.tudelft.oopp.entities.Room;
-
-import javax.persistence.*;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.*;
+
+import nl.tudelft.oopp.entities.Building;
+import nl.tudelft.oopp.entities.Room;
+
+
+
 
 @Entity
 @Table(name = "timeslot")
@@ -17,23 +20,25 @@ public class TimeSlot {
     private int timeslot_id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name= "building_name")
+    @JoinColumn(name = "building_name")
     private Building building;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name= "room_id")
+    @JoinColumn(name = "room_id")
     private Room room;
 
-    @Column(name="start_time")
+    @Column(name = "start_time")
     private Time start_time;
 
-    @Column(name="end_time")
+    @Column(name = "end_time")
     private Time end_time;
 
     @OneToMany(mappedBy = "timeslot_fk", cascade = CascadeType.ALL)
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
-    public TimeSlot() {}
+    public TimeSlot() {
+    }
+
     public TimeSlot(Time start_time, Time end_time) {
         this.start_time = start_time;
         this.end_time = end_time;
@@ -65,13 +70,13 @@ public class TimeSlot {
 
     @Override
     public String toString() {
-        return "TimeSlot{" +
-                "timeslot_id=" + timeslot_id +
-                ", building_id=" + building.getBuilding_Name() +
-                ", room=" + room.getRoom_name() +
-                ", start_time=" + start_time +
-                ", end_time=" + end_time +
-                '}';
+        return "TimeSlot{"
+                + "timeslot_id=" + timeslot_id
+                + ", building_id=" + building.getBuilding_Name()
+                + ", room=" + room.getRoom_name()
+                + ", start_time=" + start_time
+                + ", end_time=" + end_time
+                + '}';
     }
 
     public void setRoomReservations(List<RoomReservation> roomReservations) {
@@ -81,6 +86,7 @@ public class TimeSlot {
     public void addRoomReservation(RoomReservation roomReservation) {
         this.roomReservations.add(roomReservation);
     }
+
     public void removeRoomReservation(RoomReservation roomReservation) {
         this.roomReservations.remove(roomReservation);
     }
@@ -107,7 +113,10 @@ public class TimeSlot {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {return true;}
+        if (this == o) {
+            return true;
+        }
+
         if (o instanceof TimeSlot) {
             TimeSlot that = (TimeSlot) o;
             if (this.end_time.equals(that.end_time) && this.start_time.equals(that.start_time)) {

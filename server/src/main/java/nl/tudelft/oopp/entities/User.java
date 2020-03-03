@@ -2,10 +2,10 @@ package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "user")
@@ -40,7 +40,9 @@ public class User {
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     //Constructors + Getters/Setters
-    public User() {}
+    public User() {
+    }
+
     public User(int user_id, String email, String user_name, String user_password) {
         this.user_id = user_id;
         this.email = email;
@@ -107,7 +109,7 @@ public class User {
         this.roomReservations.remove(roomReservation);
     }
     public String toString() {
-        return "user_id: " + this.user_id + " , email: " + this.email +
-                " , user_name: " + this.user_name + " , user_password: " + this.user_password + " , role_fk: " + this.getRole().getRole_id();
+        return "user_id: " + this.user_id + " , email: " + this.email
+                + " , user_name: " + this.user_name + " , user_password: " + this.user_password + " , role_fk: " + this.getRole().getRole_id();
     }
 }

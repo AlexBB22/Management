@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.controllers;
 
+import java.util.List;
+import java.util.Optional;
 import nl.tudelft.oopp.entities.Building;
 import nl.tudelft.oopp.entities.Room;
 import nl.tudelft.oopp.entities.Type;
@@ -10,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -44,7 +43,7 @@ public class RoomController {
     public void addRoomToDB(@PathVariable (value = "buildingName") String buildingName,
                             @PathVariable (value = "typeId") int typeId,
                             @RequestBody Room room) {
-        Room newroom = room;
+        //Room newroom = room;
         //get the Building of given name
         Optional<Building> b = buildingRepository.findById(buildingName);
         Building building = b.get();
@@ -54,28 +53,17 @@ public class RoomController {
         Type type = t.get();
 
         //use helper methods to make sure both sides of relationship have updated their attributes
-        building.addRoom(newroom);
-        type.addRoom(newroom);
+        building.addRoom(room);
+        type.addRoom(room);
 
-        System.out.println("Added a new room to DB: " + newroom.toString());
-        roomRepository.save(newroom);
+        System.out.println("Added a new room to DB: " + room.toString());
+        roomRepository.save(room);
     }
+
     @GetMapping("test2")
     @ResponseBody
     public int test2() {
         List<Room> rooms = roomRepository.testing("DW");
         return rooms.size();
     }
-
-//    @GetMapping("test1")
-//    public void test() {
-//        Optional<Building> b = buildingRepository.findById("DW");
-//        Optional<Type> t = typeRepository.findById(3);
-//        Building building = b.get();
-//        Type type = t.get();
-//        List<Room> bRooms = building.getRooms();
-//        List<Room> tRooms = type.getListOfRooms();
-//        System.out.println(bRooms.size());
-//        System.out.println(tRooms.size());
-//    }
 }

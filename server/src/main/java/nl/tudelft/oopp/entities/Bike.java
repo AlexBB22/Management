@@ -1,10 +1,11 @@
 package nl.tudelft.oopp.entities;
 
-import nl.tudelft.oopp.entities.Building;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.*;
+
+import nl.tudelft.oopp.entities.Building;
 
 @Entity
 @Table(name = "bike")
@@ -22,7 +23,8 @@ public class Bike {
     @OneToMany(mappedBy = "bike_fk")
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
-    public Bike(){}
+    public Bike(){
+    }
 
     public int getBike_id() {
         return bike_id;

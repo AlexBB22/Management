@@ -17,12 +17,12 @@ public class ServerCommunication {
 
     private static HttpClient client = HttpClient.newBuilder().build();
 
-    /**
+    /**.
      * Check login credentials with server
-     * @param userName
-     * @param password
-     * @return
-     * @throws URISyntaxException
+     * @param userName username of user
+     * @param password password of user
+     * @return true if username and password match
+     * @throws URISyntaxException exception if syntax is wrong
      */
     public static boolean identifyUser(String userName, String password) throws URISyntaxException {
         String requestUrl = "";
@@ -31,14 +31,14 @@ public class ServerCommunication {
         return (boolean) request(requestUrl);
     }
 
-    /**
+    /**.
      * Create a new user in the database
      * TODO: check if email and username are not already in use
-     * @param username
-     * @param email
-     * @param password
-     * @return
-     * @throws URISyntaxException
+     * @param username username of user
+     * @param email email of the user
+     * @param password password of the user
+     * @return true if user is saved successful
+     * @throws URISyntaxException exception is syntax is wrong
      */
     public static boolean createUser(String username, String email, String password)
                                         throws URISyntaxException {
@@ -48,15 +48,15 @@ public class ServerCommunication {
         return (boolean) request(url);
     }
 
-    /**
+    /**.
      * Request the rooms available (with a certain query)
-     * @param date
-     * @param building
-     * @param timeFrom
-     * @param timeTo
-     * @param roomType
-     * @return
-     * @throws URISyntaxException
+     * @param date the date at the time of calling function
+     * @param building building to get rooms from
+     * @param timeFrom the starting time for the room
+     * @param timeTo the end time for the room
+     * @param roomType the type of room
+     * @return a list of rooms matching the description
+     * @throws URISyntaxException exception if syntax is incorrect
      */
     public static ArrayList<Room> getRooms(LocalDate date, String building,
                                             String timeFrom, String timeTo, String roomType)
@@ -70,16 +70,14 @@ public class ServerCommunication {
         InputStream res = ServerCommunication.class.getResourceAsStream("/rooms_test.json");
 
         ObjectMapper mapper = new ObjectMapper();
-        ArrayList<Room> rooms = mapper.readValue(res, new TypeReference<ArrayList<Room>>(){});
-
-        return rooms;
+        return mapper.readValue(res, new TypeReference<ArrayList<Room>>(){});
     }
 
-    /**
+    /**.
      * Get all buildings
-     * @return
-     * @throws URISyntaxException
-     * @throws IOException
+     * @return a list of all buildings stored in the database
+     * @throws URISyntaxException exception if syntax is incorrect
+     * @throws IOException exception if input or output is incorrect
      */
     public static ArrayList<Building> getBuildings() throws URISyntaxException, IOException {
         String url = "http://localhost:8080/buildings/All";
@@ -93,12 +91,12 @@ public class ServerCommunication {
         return buildings;
     }
 
-    /**
+    /**.
      * Request function template
      * TODO: Test that this function works for all cases
-     * @param urlStr
-     * @return
-     * @throws URISyntaxException
+     * @param urlStr the url that has to be turned into a request
+     * @return object that is retrieved through the request
+     * @throws URISyntaxException exception if syntax is incorrect
      */
     public static Object request(String urlStr) throws URISyntaxException {
         URI url = new URI(urlStr);

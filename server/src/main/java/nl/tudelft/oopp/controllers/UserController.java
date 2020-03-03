@@ -1,5 +1,6 @@
 package nl.tudelft.oopp.controllers;
 
+import java.util.List;
 import nl.tudelft.oopp.entities.Role;
 import nl.tudelft.oopp.entities.User;
 import nl.tudelft.oopp.repositories.RoleRepository;
@@ -9,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 

@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.controllers;
 
+import static nl.tudelft.oopp.MainApp.switchScene;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -28,7 +30,7 @@ import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.Room;
 import nl.tudelft.oopp.communication.ServerCommunication;
 
-import static nl.tudelft.oopp.MainApp.switchScene;
+
 
 public class RoomReservationSceneController implements Initializable {
 
@@ -63,10 +65,10 @@ public class RoomReservationSceneController implements Initializable {
         }
     }
 
-    /**
+    /**.
      * Search button handler
-     * @param actionEvent
-     * @throws URISyntaxException
+     * @param actionEvent the event that happens
+     * @throws URISyntaxException throws exception when wrong syntax is given
      */
     @FXML
     public void searchButtonHandler(ActionEvent actionEvent)
@@ -89,7 +91,7 @@ public class RoomReservationSceneController implements Initializable {
                     reservePopUp(buildingComboBox.getValue(),
                             room.getRoom_name(),
                             "date", // TODO: datePicker.getValue().toString(),
-                            timeFromComboBox.getValue()+" - "+timeToComboBox.getValue());
+                            timeFromComboBox.getValue() + " - " + timeToComboBox.getValue());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

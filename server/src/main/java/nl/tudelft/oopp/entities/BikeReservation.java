@@ -1,14 +1,14 @@
 package nl.tudelft.oopp.entities;
 
-
+import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="bike_reservation")
+@Table(name = "bike_reservation")
 public class BikeReservation {
 
     @Id
-    @Column(name="bike_reservation_id")
+    @Column(name = "bike_reservation_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 
@@ -16,11 +16,15 @@ public class BikeReservation {
     @JoinColumn(name = "user_id")
     private User bike_user_fk;
 
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name="bike_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "bike_id")
     private Bike bike_fk;
 
-    public BikeReservation() {}
+    @Column( name = "day")
+    private Date day;
+
+    public BikeReservation() {
+    }
 
     public int getId() {
         return id;

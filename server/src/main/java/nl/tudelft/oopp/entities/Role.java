@@ -1,10 +1,10 @@
 package nl.tudelft.oopp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "role")
@@ -20,12 +20,13 @@ public class Role {
     @Column(name = "role_name")
     private String role_name;
 
-//    @OneToMany(mappedBy = "role")
-//    private List<User> users = new ArrayList<User>();
-//    //Constructors + Getters/Setters
-//    public Role() {}
+    //    @OneToMany(mappedBy = "role")
+    //    private List<User> users = new ArrayList<User>();
+    //    //Constructors + Getters/Setters
+    //    public Role() {}
 
-    public Role() {}
+    public Role() {
+    }
 
     public Role(int role_id, String role_name) {
         this.role_id = role_id;

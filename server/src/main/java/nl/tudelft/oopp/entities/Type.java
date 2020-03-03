@@ -1,11 +1,11 @@
 package nl.tudelft.oopp.entities;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import nl.tudelft.oopp.entities.Room;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import nl.tudelft.oopp.entities.Room;
 
 @Entity
 @Table(name = "type")
@@ -36,9 +36,10 @@ public class Type {
     @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
     private List<Room> listOfRooms = new ArrayList<>();
 
-    public Type() {}
+    public Type() {
+    }
 
-    public Type(String name, boolean whiteBoard, boolean powerOutlets, boolean clicker){
+    public Type(String name, boolean whiteBoard, boolean powerOutlets, boolean clicker) {
         this.name = name;
         this.whiteBoard = whiteBoard;
         this.powerOutlets = powerOutlets;
@@ -102,7 +103,7 @@ public class Type {
         this.listOfRooms = listOfRooms;
     }
 
-    public void addRoom(Room room){
+    public void addRoom(Room room) {
         this.listOfRooms.add(room);
         room.setType(this);
     }

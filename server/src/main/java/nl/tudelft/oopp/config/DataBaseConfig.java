@@ -15,20 +15,19 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 public class DataBaseConfig {
 
-//    @Bean
-//    public DataSource getDataSource() {
-//        DriverManagerDataSource ds = new DriverManagerDataSource();
-//        ds.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-//        ds.setUrl("jdbc:mysql://projects-db.ewi.tudelft.nl:3306/projects_OOPPGroup4");
-//        ds.setUsername("pu_OOPPGroup4");
-//        ds.setPassword("cg5EQkKNHN08");
-//        return ds;
-//    }
+    //    @Bean
+    //    public DataSource getDataSource() {
+    //        DriverManagerDataSource ds = new DriverManagerDataSource();
+    //        ds.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
+    //        ds.setUrl("jdbc:mysql://projects-db.ewi.tudelft.nl:3306/projects_OOPPGroup4");
+    //        ds.setUsername("pu_OOPPGroup4");
+    //        ds.setPassword("cg5EQkKNHN08");
+    //        return ds;
+    //    }
 
     @Bean(name = "mySqlDataSource")
     @Primary
-    public DataSource mySqlDataSource()
-    {
+    public DataSource mySqlDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
         //or projects_OOPPGroup4Test for Test DB        projects_OOPPGroup4 for Real DB

@@ -1,5 +1,6 @@
 package nl.tudelft.oopp;
 
+import java.io.IOException;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,18 +9,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.views.MainView;
 
-import java.io.IOException;
+
 
 public class MainApp {
     public static void main(String[] args) {
         MainView.main((new String[0]));
     }
 
-    /**
+    /**.
      * Function that can switch scene
-     * @param actionEvent
-     * @param source
-     * @throws IOException
+     * @param actionEvent the event that happens when the Scene switches
+     * @param source the source of the event
+     * @throws IOException throws an exception if there is something wrong with the input or output
      */
     public static void switchScene(Event actionEvent, String source, String... title)
                                     throws IOException {

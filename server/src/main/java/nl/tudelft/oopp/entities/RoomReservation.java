@@ -1,7 +1,8 @@
 package nl.tudelft.oopp.entities;
 
-import javax.persistence.*;
 import java.sql.Date;
+import javax.persistence.*;
+
 
 @Entity
 @Table (name = "roomreservation")
@@ -22,7 +23,8 @@ public class RoomReservation {
     @Column(name = "day")
     private Date day;
 
-    public RoomReservation() {}
+    public RoomReservation() {
+    }
 
     public RoomReservation(Date day) {
         this.day = day;

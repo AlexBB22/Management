@@ -1,35 +1,39 @@
 package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import nl.tudelft.oopp.entities.Bike;
-import nl.tudelft.oopp.entities.Restaurant;
 
-import javax.persistence.*;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+import nl.tudelft.oopp.entities.Bike;
+import nl.tudelft.oopp.entities.Restaurant;
+
+
+
 @Entity
-@Table(name="building")
+@Table(name = "building")
 public class Building {
 
     @Id
-    @Column(name="building_name")
+    @Column(name = "building_name")
     private String building_name;
 
-    @Column(name="non_reservable_space")
+    @Column(name = "non_reservable_space")
     private boolean non_reservable_space;
 
-    @Column(name="car_parking_spaces")
+    @Column(name = "car_parking_spaces")
     private int car_parking_spaces;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name="opening_time")
+    @Column(name = "opening_time")
     private Time opening;
 
-    @Column (name="closing_time")
+    @Column (name = "closing_time")
     private Time closing;
 
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
@@ -41,23 +45,24 @@ public class Building {
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
     private List<Bike> bikes = new ArrayList<Bike>();
 
-    public Building(){}
+    public Building(){
+    }
 
-    public Building(String building_name, boolean non_reservable_space, int car_parking_spaces, String description,Time opening, Time closing){
-        this.building_name=building_name;
-        this.non_reservable_space=non_reservable_space;
-        this.car_parking_spaces=car_parking_spaces;
-        this.description=description;
-        this.opening=opening;
-        this.closing=closing;
+    public Building(String building_name, boolean non_reservable_space, int car_parking_spaces, String description,Time opening, Time closing) {
+        this.building_name = building_name;
+        this.non_reservable_space = non_reservable_space;
+        this.car_parking_spaces = car_parking_spaces;
+        this.description = description;
+        this.opening = opening;
+        this.closing = closing;
     }
 
     public String getBuilding_Name() {
         return building_name;
     }
 
-    public void setBuilding_name(String building_name){
-        this.building_name=building_name;
+    public void setBuilding_name(String building_name) {
+        this.building_name = building_name;
     }
 
     public boolean isNon_reservable_space() {
