@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BuildingTest {
 
     @Test
-    public void constructorTest(){
+    public void buildingConstructorTest(){
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0 );
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -19,7 +19,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void emptyConstructorTest(){
+    public void emptyBuildingConstructorTest(){
         Building building = new Building();
         assertNotNull(building);
     }

@@ -106,7 +106,7 @@ public class Building {
      * @Author Scott Jochems
      */
     public void setCar_parking_spaces(int carParkingSpaces) {
-        if (carParkingSpaces<0) {
+        if (carParkingSpaces < 0) {
             this.carParkingSpaces = 0;
         } else {
             this.carParkingSpaces = carParkingSpaces;
