@@ -6,14 +6,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import nl.tudelft.oopp.communication.User;
 import nl.tudelft.oopp.views.MainView;
 
 import java.io.IOException;
 
 public class MainApp {
-    public static void main(String[] args) {
-        MainView.main((new String[0]));
-    }
+
+    /**
+     * This static global variable user represents the user that is currently using the application
+     */
+    public static User user;
 
     /**
      * Function that can switch scene
@@ -32,5 +35,10 @@ public class MainApp {
             stage.setTitle(title[0]);
         }
     }
+
+    public static void main(String[] args) {
+        MainView.main((new String[0]));
+    }
+
 
 }

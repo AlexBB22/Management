@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
+import nl.tudelft.oopp.communication.User;
 
 public class LoginSceneController implements Initializable {
     @FXML private Text submitResponse;
@@ -29,23 +30,27 @@ public class LoginSceneController implements Initializable {
      * @throws URISyntaxException
      */
     @FXML
-    public void submitButtonHandler(ActionEvent event) throws URISyntaxException {
+    public void signInButtonHandler(ActionEvent event) throws URISyntaxException {
         String username = usernameField.getText();
         String password = passwordfield.getText();
 
-        //Now communicating with server to see if user exists in database
-        boolean isUser = ServerCommunication.identifyUser(username, password);
+        //Now communicating with server to see if user exists in database. If all went well, we will get back the
+        //user object from the DB that represents the user that has just logged in
+        User loggedInUser = ServerCommunication.identifyUser(username, password);
 
-        if (isUser == false) {
+        if (loggedInUser == null) {
             submitResponse.setText("Please enter credentials again");
         } else {
             try {
+                //Setting the global user variable to the newUser that just logged in
+                MainApp.user = loggedInUser;
                 MainApp.switchScene(event, "/mainScene.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
 
     /**
      * Handle new user button

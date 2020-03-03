@@ -12,4 +12,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT * FROM user u WHERE u.user_name=?1 AND u.user_password=?2", nativeQuery = true)
     List<User> findByUserNameAndUserPassword(String user_name, String user_password);
+
+    @Query(value = "SELECT * FROM user u WHERE u.user_name = ?1", nativeQuery = true)
+    List<User> findByUser_name(String username);
 }

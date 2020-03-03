@@ -44,12 +44,12 @@ public class Building {
     public Building(){}
 
     public Building(String building_name, boolean non_reservable_space, int car_parking_spaces, String description,Time opening, Time closing){
-        this.building_name=building_name;
-        this.non_reservable_space=non_reservable_space;
-        this.car_parking_spaces=car_parking_spaces;
-        this.description=description;
-        this.opening=opening;
-        this.closing=closing;
+        this.building_name = building_name;
+        this.non_reservable_space = non_reservable_space;
+        this.car_parking_spaces = car_parking_spaces;
+        this.description = description;
+        this.opening = opening;
+        this.closing = closing;
     }
 
     public String getBuilding_Name() {
