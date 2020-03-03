@@ -22,7 +22,7 @@ public interface RoomReservationRepository extends JpaRepository<RoomReservation
     @Query(value = "SELECT room_id FROM room WHERE room_id NOT IN "
             + "(SELECT room_id FROM roomreservation NATURAL JOIN timeslot NATURAL JOIN room"
             + " WHERE building_name = ?1 AND day = ?2 AND (start_time = ?3 AND end_time = ?4))", nativeQuery = true)
-    List<Integer> findAllAvailableRooms(String building_name, Date day, Time start_time, Time end_time);
+    List<Integer> findAllAvailableRooms(String buildingName, Date day, Time startTime, Time endTime);
     /*
     I needed to get a list of the room_ids and not the room itself as nativeQuery returns a list of Objects.
     Thus, we need to figure out a way to convert that Objects into Rooms. So instead, I got it to return a list of integers

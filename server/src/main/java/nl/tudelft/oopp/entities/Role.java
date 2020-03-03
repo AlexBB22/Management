@@ -13,12 +13,12 @@ public class Role {
     @GeneratedValue
     //for tests, not doing auto generation
     //Admin = 3 Teacher = 2, Staff = 1, Student = 0
-    private int role_id;
+    private int roleId;
 
     @NotNull
     @Size(max = 255)
     @Column(name = "role_name")
-    private String role_name;
+    private String roleName;
 
     //    @OneToMany(mappedBy = "role")
     //    private List<User> users = new ArrayList<User>();
@@ -28,28 +28,28 @@ public class Role {
     public Role() {
     }
 
-    public Role(int role_id, String role_name) {
-        this.role_id = role_id;
-        this.role_name = role_name;
+    public Role(int roleId, String roleName) {
+        this.roleId = roleId;
+        this.roleName = roleName;
     }
 
     public int getRole_id() {
-        return role_id;
+        return roleId;
     }
 
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRole_id(int roleId) {
+        this.roleId = roleId;
     }
 
     public String getRole_name() {
-        return role_name;
+        return roleName;
     }
 
-    public void setRole_name(String role_name) {
-        this.role_name = role_name;
+    public void setRole_name(String roleName) {
+        this.roleName = roleName;
     }
 
     public String toString() {
-        return "Role id is: " + this.role_id + " Role name is: " + this.role_name;
+        return "Role id is: " + this.roleId + " Role name is: " + this.roleName;
     }
 }

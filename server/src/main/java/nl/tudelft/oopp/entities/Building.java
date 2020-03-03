@@ -19,13 +19,13 @@ public class Building {
 
     @Id
     @Column(name = "building_name")
-    private String building_name;
+    private String buildingName;
 
     @Column(name = "non_reservable_space")
-    private boolean non_reservable_space;
+    private boolean nonReservableSpace;
 
     @Column(name = "car_parking_spaces")
-    private int car_parking_spaces;
+    private int carParkingSpaces;
 
     @Column(name = "description")
     private String description;
@@ -48,37 +48,37 @@ public class Building {
     public Building(){
     }
 
-    public Building(String building_name, boolean non_reservable_space, int car_parking_spaces, String description,Time opening, Time closing) {
-        this.building_name = building_name;
-        this.non_reservable_space = non_reservable_space;
-        this.car_parking_spaces = car_parking_spaces;
+    public Building(String buildingName, boolean nonReservableSpace, int carParkingSpaces, String description,Time opening, Time closing) {
+        this.buildingName = buildingName;
+        this.nonReservableSpace = nonReservableSpace;
+        this.carParkingSpaces = carParkingSpaces;
         this.description = description;
         this.opening = opening;
         this.closing = closing;
     }
 
     public String getBuilding_Name() {
-        return building_name;
+        return buildingName;
     }
 
-    public void setBuilding_name(String building_name) {
-        this.building_name = building_name;
+    public void setBuilding_name(String buildingName) {
+        this.buildingName = buildingName;
     }
 
     public boolean isNon_reservable_space() {
-        return non_reservable_space;
+        return nonReservableSpace;
     }
 
-    public void setNon_reservable_space(boolean non_reservable_space) {
-        this.non_reservable_space = non_reservable_space;
+    public void setNon_reservable_space(boolean nonReservableSpace) {
+        this.nonReservableSpace = nonReservableSpace;
     }
 
     public int getCar_parking_spaces() {
-        return car_parking_spaces;
+        return carParkingSpaces;
     }
 
-    public void setCar_parking_spaces(int car_parking_spaces) {
-        this.car_parking_spaces = car_parking_spaces;
+    public void setCar_parking_spaces(int carParkingSpaces) {
+        this.carParkingSpaces = carParkingSpaces;
     }
 
     public String getDescription() {

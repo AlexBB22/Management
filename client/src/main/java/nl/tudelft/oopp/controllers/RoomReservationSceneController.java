@@ -2,6 +2,8 @@ package nl.tudelft.oopp.controllers;
 
 import static nl.tudelft.oopp.MainApp.switchScene;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -9,7 +11,6 @@ import java.text.CompactNumberFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

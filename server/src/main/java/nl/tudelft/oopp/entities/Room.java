@@ -16,13 +16,13 @@ import nl.tudelft.oopp.entities.Type;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int room_id;
+    private int roomId;
 
     @Column(name = "capacity")
     private int capacity;
 
     @Column(name = "room_name")
-    private String room_name;
+    private String roomName;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "type_id")
@@ -38,22 +38,22 @@ public class Room {
     public Room() {
     }
 
-    public Room(int capacity, String room_name) {
+    public Room(int capacity, String roomName) {
         this.capacity = capacity;
-        this.room_name = room_name;
+        this.roomName = roomName;
     }
 
 
     public int getRoom_id() {
-        return room_id;
+        return roomId;
     }
 
     public String getRoom_name() {
-        return room_name;
+        return roomName;
     }
 
-    public void setRoom_name(String room_name) {
-        this.room_name = room_name;
+    public void setRoom_name(String roomName) {
+        this.roomName = roomName;
     }
 
     public Type getType() {
@@ -98,7 +98,7 @@ public class Room {
     }
 
     public String toString() {
-        return "room_id: " + this.room_id + ", room_name: " + this.room_name + ", capacity: " + this.capacity
+        return "room_id: " + this.roomId + ", room_name: " + this.roomName + ", capacity: " + this.capacity
                 + ", building_name: " + this.getBuilding().getBuilding_Name() + ", type_id: " + this.getType().getType_id();
     }
 

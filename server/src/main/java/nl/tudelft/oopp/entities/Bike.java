@@ -14,7 +14,7 @@ public class Bike {
     @Id
     @Column(name = "bike_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int bike_id;
+    int bikeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "building_name")
@@ -27,11 +27,11 @@ public class Bike {
     }
 
     public int getBike_id() {
-        return bike_id;
+        return bikeId;
     }
 
-    public void setBike_id(int bike_id) {
-        this.bike_id = bike_id;
+    public void setBike_id(int bikeId) {
+        this.bikeId = bikeId;
     }
 
     public Building getBuilding() {

@@ -10,15 +10,15 @@ public class RoomReservation {
     //getting the composite PK that uses two FK's to form the PK
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int reservation_id;
+    private int reservationId;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User user_fk;
+    private User userFk;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "timeslot_id")
-    private TimeSlot timeslot_fk;
+    private TimeSlot timeslotFk;
 
     @Column(name = "day")
     private Date day;
@@ -31,27 +31,27 @@ public class RoomReservation {
     }
 
     public int getReservation_id() {
-        return reservation_id;
+        return reservationId;
     }
 
-    public void setReservation_id(int reservation_id) {
-        this.reservation_id = reservation_id;
+    public void setReservation_id(int reservationId) {
+        this.reservationId = reservationId;
     }
 
     public User getUser_fk() {
-        return user_fk;
+        return userFk;
     }
 
-    public void setUser_fk(User user_fk) {
-        this.user_fk = user_fk;
+    public void setUser_fk(User userFk) {
+        this.userFk = userFk;
     }
 
     public TimeSlot getTimeslot_fk() {
-        return timeslot_fk;
+        return timeslotFk;
     }
 
-    public void setTimeslot_fk(TimeSlot timeslot_fk) {
-        this.timeslot_fk = timeslot_fk;
+    public void setTimeslot_fk(TimeSlot timeslotFk) {
+        this.timeslotFk = timeslotFk;
     }
 
     public Date getDay() {

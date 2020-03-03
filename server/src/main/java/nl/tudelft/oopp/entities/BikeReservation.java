@@ -14,13 +14,13 @@ public class BikeReservation {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User bike_user_fk;
+    private User bikeUserFk;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "bike_id")
-    private Bike bike_fk;
+    private Bike bikeFk;
 
-    @Column( name = "day")
+    @Column(name = "day")
     private Date day;
 
     public BikeReservation() {
@@ -31,18 +31,18 @@ public class BikeReservation {
     }
 
     public User getBike_user_fk() {
-        return bike_user_fk;
+        return bikeUserFk;
     }
 
-    public void setBike_user_fk(User bike_user_fk) {
-        this.bike_user_fk = bike_user_fk;
+    public void setBike_user_fk(User bikeUserFk) {
+        this.bikeUserFk = bikeUserFk;
     }
 
     public Bike getBike_fk() {
-        return bike_fk;
+        return bikeFk;
     }
 
-    public void setBike_fk(Bike bike_fk) {
-        this.bike_fk = bike_fk;
+    public void setBike_fk(Bike bikeFk) {
+        this.bikeFk = bikeFk;
     }
 }

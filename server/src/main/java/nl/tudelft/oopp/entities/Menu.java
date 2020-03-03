@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 
 public class Menu {
     @Id
-    private int menu_id;
+    private int menuId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "menu_food", joinColumns = @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id"),
@@ -25,11 +25,11 @@ public class Menu {
     }
 
     public Menu(int id) {
-        this.menu_id = id;
+        this.menuId = id;
     }
 
     public int getMenu_id() {
-        return menu_id;
+        return menuId;
     }
 
     public List<Food> getFoods() {

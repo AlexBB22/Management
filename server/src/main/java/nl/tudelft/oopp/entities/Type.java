@@ -12,7 +12,7 @@ import nl.tudelft.oopp.entities.Room;
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int type_id;
+    private int typeId;
 
     @Column(name = "name")
     private String name;
@@ -55,7 +55,7 @@ public class Type {
     }
 
     public int getType_id() {
-        return type_id;
+        return typeId;
     }
 
     public boolean isWhiteBoard() {
@@ -115,7 +115,7 @@ public class Type {
 
 
     public String toString() {
-        return "type_id: " + this.type_id + ", name: " + this.name + ", clicker: " + this.clicker + ", tv: " + this.tv
+        return "type_id: " + this.typeId + ", name: " + this.name + ", clicker: " + this.clicker + ", tv: " + this.tv
                 + ", power_outlets: " + this.powerOutlets + ", whiteboard: " + this.whiteBoard;
     }
 }

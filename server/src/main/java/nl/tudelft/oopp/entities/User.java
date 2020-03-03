@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int user_id;
+    private int userId;
 
     @Size(max = 255)
     @Column(name = "email")
@@ -21,12 +21,12 @@ public class User {
     @NotNull
     @Size(max = 255)
     @Column(name = "user_name")
-    private String user_name;
+    private String userName;
 
     @NotNull
     @Size(max = 255)
     @Column(name = "user_password")
-    private String user_password;
+    private String userPassword;
 
     //Mapping to a role, creating a FK here to point to Role table PK
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
@@ -43,19 +43,19 @@ public class User {
     public User() {
     }
 
-    public User(int user_id, String email, String user_name, String user_password) {
-        this.user_id = user_id;
+    public User(int userId, String email, String userName, String userPassword) {
+        this.userId = userId;
         this.email = email;
-        this.user_name = user_name;
-        this.user_password = user_password;
+        this.userName = userName;
+        this.userPassword = userPassword;
     }
 
     public int getUser_id() {
-        return user_id;
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser_id(int userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -67,19 +67,19 @@ public class User {
     }
 
     public String getUser_name() {
-        return user_name;
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUser_name(String userName) {
+        this.userName = userName;
     }
 
     public String getUser_password() {
-        return user_password;
+        return userPassword;
     }
 
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setUser_password(String userPassword) {
+        this.userPassword = userPassword;
     }
 
 
@@ -108,8 +108,9 @@ public class User {
     public void removeRoomReservation(RoomReservation roomReservation) {
         this.roomReservations.remove(roomReservation);
     }
+
     public String toString() {
-        return "user_id: " + this.user_id + " , email: " + this.email
-                + " , user_name: " + this.user_name + " , user_password: " + this.user_password + " , role_fk: " + this.getRole().getRole_id();
+        return "user_id: " + this.userId + " , email: " + this.email
+                + " , user_name: " + this.userName + " , user_password: " + this.userPassword + " , role_fk: " + this.getRole().getRole_id();
     }
 }

@@ -7,7 +7,7 @@ import nl.tudelft.oopp.entities.Building;
 @Table(name = "restaurant")
 public class Restaurant {
     @Id
-    private int res_id;
+    private int resId;
 
     @OneToOne
     @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id")
@@ -20,12 +20,12 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(int res_id) {
-        this.res_id = res_id;
+    public Restaurant(int resId) {
+        this.resId = resId;
     }
 
     public int getRes_id() {
-        return res_id;
+        return resId;
     }
 
     public Menu getMenu() {

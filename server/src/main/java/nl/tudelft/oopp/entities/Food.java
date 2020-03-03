@@ -12,19 +12,19 @@ import javax.persistence.ManyToMany;
 public class Food {
     @Id
     //food_id is representing the name of the food
-    private String food_id;
+    private String foodId;
     private int price;
 
     public Food() {
     }
 
-    public Food(String food_id, int price) {
-        this.food_id = food_id;
+    public Food(String foodId, int price) {
+        this.foodId = foodId;
         this.price = price;
     }
 
     public String getFood_id() {
-        return food_id;
+        return foodId;
     }
 
     public int getPrice() {

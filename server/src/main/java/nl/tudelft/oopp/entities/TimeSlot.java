@@ -17,7 +17,7 @@ import nl.tudelft.oopp.entities.Room;
 public class TimeSlot {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int timeslot_id;
+    private int timeslotId;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "building_name")
@@ -28,10 +28,10 @@ public class TimeSlot {
     private Room room;
 
     @Column(name = "start_time")
-    private Time start_time;
+    private Time startTime;
 
     @Column(name = "end_time")
-    private Time end_time;
+    private Time endTime;
 
     @OneToMany(mappedBy = "timeslot_fk", cascade = CascadeType.ALL)
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
@@ -39,17 +39,17 @@ public class TimeSlot {
     public TimeSlot() {
     }
 
-    public TimeSlot(Time start_time, Time end_time) {
-        this.start_time = start_time;
-        this.end_time = end_time;
+    public TimeSlot(Time startTime, Time endTime) {
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public int getTimeslot_id() {
-        return timeslot_id;
+        return timeslotId;
     }
 
-    public void setTimeslot_id(int timeslot_id) {
-        this.timeslot_id = timeslot_id;
+    public void setTimeslot_id(int timeslotId) {
+        this.timeslotId = timeslotId;
     }
 
     public Building getBuilding() {
@@ -71,11 +71,11 @@ public class TimeSlot {
     @Override
     public String toString() {
         return "TimeSlot{"
-                + "timeslot_id=" + timeslot_id
+                + "timeslot_id=" + timeslotId
                 + ", building_id=" + building.getBuilding_Name()
                 + ", room=" + room.getRoom_name()
-                + ", start_time=" + start_time
-                + ", end_time=" + end_time
+                + ", start_time=" + startTime
+                + ", end_time=" + endTime
                 + '}';
     }
 
@@ -96,19 +96,19 @@ public class TimeSlot {
     }
 
     public Time getStart_time() {
-        return start_time;
+        return startTime;
     }
 
-    public void setStart_time(Time start_time) {
-        this.start_time = start_time;
+    public void setStart_time(Time startTime) {
+        this.startTime = startTime;
     }
 
     public Time getEnd_time() {
-        return end_time;
+        return endTime;
     }
 
-    public void setEnd_time(Time end_time) {
-        this.end_time = end_time;
+    public void setEnd_time(Time endTime) {
+        this.endTime = endTime;
     }
 
     @Override
@@ -119,7 +119,7 @@ public class TimeSlot {
 
         if (o instanceof TimeSlot) {
             TimeSlot that = (TimeSlot) o;
-            if (this.end_time.equals(that.end_time) && this.start_time.equals(that.start_time)) {
+            if (this.endTime.equals(that.endTime) && this.startTime.equals(that.startTime)) {
                 return true;
             }
         }
