@@ -2,6 +2,7 @@ package nl.tudelft.oopp.entities;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="bike_reservation")
@@ -19,6 +20,10 @@ public class BikeReservation {
     @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn(name="bike_id")
     private Bike bike_fk;
+
+    @Column( name = "day" )
+    private Date day;
+
 
     public BikeReservation() {}
 

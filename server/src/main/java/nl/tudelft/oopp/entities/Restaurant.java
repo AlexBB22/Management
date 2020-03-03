@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Table(name = "restaurant")
 public class Restaurant {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int res_id;
 
     @OneToOne
@@ -33,4 +34,14 @@ public class Restaurant {
     public Building getBuilding() {
         return building;
     }
+
+    public void setBuilding(Building building) {
+
+        this.building = building;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu=menu;
+    }
+
 }
