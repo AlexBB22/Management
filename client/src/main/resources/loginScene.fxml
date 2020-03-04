@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -30,6 +32,11 @@
 
     <!--Adding fx makes this id available and referencable from elsewhere, so we can set its value later-->
     <Text fx:id="submitResponse" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   <ImageView fitHeight="42.0" fitWidth="54.0" onMouseClicked="#backToWelcome" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+      <image>
+         <Image url="@images/backBtn.png" />
+      </image>
+   </ImageView>
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />

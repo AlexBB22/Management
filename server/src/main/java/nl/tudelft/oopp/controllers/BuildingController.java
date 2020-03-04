@@ -24,7 +24,9 @@ public class BuildingController {
 
     @GetMapping("buildings/")
     @ResponseBody
-    public String emptyBuilding(){ return "Please put in a building";}
+    public String emptyBuilding() {
+        return "Please put in a building";
+    }
 
     @GetMapping("buildings/All")
     @ResponseBody

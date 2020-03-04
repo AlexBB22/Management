@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,26 +17,31 @@
 <GridPane alignment="center" hgap="10" prefHeight="720.0" prefWidth="1280.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.NewUserSceneController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
 
-    <Label text="Username:" GridPane.rowIndex="1" />
+    <Label text="Username:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="usernameField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-    <Label text="Email:" GridPane.rowIndex="2" />
+    <Label text="Email:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="emailField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
-    <Label text="Password:" GridPane.rowIndex="3" />
+    <Label text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
     <!--This bit adds the button which triggers an event which is handled by the controller-->
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="2" GridPane.rowIndex="5" />
 
     <!--Adding fx makes this id available and referencable from elsewhere, so we can set its value later-->
-    <Text fx:id="submitResponse" wrappingWidth="162.68280029296875" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-     <Button alignment="CENTER_RIGHT" onAction="#createNewUserButtonHandler" prefHeight="27.0" prefWidth="151.0" text="Create a new account" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-   <Label text="Role" GridPane.rowIndex="7" />
-   <ComboBox fx:id="roleComboBox" prefWidth="150.0" promptText="Select Role" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <Text fx:id="submitResponse" wrappingWidth="162.68280029296875" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+     <Button alignment="CENTER_RIGHT" onAction="#createNewUserButtonHandler" prefHeight="27.0" prefWidth="151.0" text="Create a new account" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+   <Label text="Role" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+   <ComboBox fx:id="roleComboBox" prefWidth="150.0" promptText="Select Role" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+   <ImageView fitHeight="46.0" fitWidth="53.0" onMouseClicked="#backToLogin" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
+      <image>
+         <Image url="@images/backBtn.png" />
+      </image>
+   </ImageView>
 
     <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" />
@@ -50,6 +57,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
     </rowConstraints>
    <columnConstraints>
+      <ColumnConstraints />
       <ColumnConstraints />
       <ColumnConstraints />
    </columnConstraints>

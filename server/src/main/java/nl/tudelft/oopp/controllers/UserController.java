@@ -1,5 +1,9 @@
 package nl.tudelft.oopp.controllers;
 
+import java.util.List;
+
+import java.util.Optional;
+
 import nl.tudelft.oopp.entities.Role;
 import nl.tudelft.oopp.entities.User;
 import nl.tudelft.oopp.repositories.RoleRepository;
@@ -9,10 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-import java.util.Optional;
+
+
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -25,10 +34,15 @@ public class UserController {
     @Autowired
     private RoleRepository roleRepository;
 
-    //@PostMapping("addUser/{roleId}")
+    /**
+     * This end point creates a new user using the entity POJO objects using information received from HTTP Request body.
+     * @param roleId - The id of the Role this user will be assigned to (eg. id = 4, aka new user is Admin)
+     * @param user - The user which is to be added to the database
+     * @return - int. If -1, the userName already exists in the database, else returns the ID of the new user.
+     */
     @RequestMapping(value = "addUser/{roleId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public int addUser(@PathVariable (value = "roleId") int roleId, @RequestBody User user) {
+    public int addUser(@PathVariable(value = "roleId") int roleId, @RequestBody User user) {
         User newuser = user;
         Optional<Role> r = roleRepository.findById(roleId);
         Role userRole = r.get();
@@ -57,6 +71,12 @@ public class UserController {
         return userRepository.findAll();
     }
 
+    /**
+     * This endPoint authorises a user based on the credentials given in the HTTP Request URL.
+     * @param userName - the userName that the user has given when trying to log in
+     * @param hashedPassword - the password that the user has given when trying to log in
+     * @return - The User entity that is stored in the Database is returned if it exists with the given username and password, else null
+     */
     @GetMapping("identifyMe/{userName}/{hashedPassword}")
     @ResponseBody
     public User authenticate(@PathVariable (value = "userName") String userName, @PathVariable (value = "hashedPassword") String hashedPassword) {

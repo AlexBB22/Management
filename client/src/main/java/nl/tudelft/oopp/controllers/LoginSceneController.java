@@ -1,5 +1,6 @@
 package nl.tudelft.oopp.controllers;
 
+import com.sun.tools.javac.Main;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -9,11 +10,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.User;
+
 
 public class LoginSceneController implements Initializable {
     @FXML private Text submitResponse;
@@ -25,9 +28,10 @@ public class LoginSceneController implements Initializable {
     }
 
     /**
-     * Handle submit button
-     * @param event
-     * @throws URISyntaxException
+     * Handle submit button. It peforms the action of extracting user name and password from the input fields
+     * then sends those to the Server to verify.
+     * @param event - The event object that contains information about fired event.
+     * @throws URISyntaxException - Exception thrown if server communication failed with given username and password
      */
     @FXML
     public void signInButtonHandler(ActionEvent event) throws URISyntaxException {
@@ -53,12 +57,21 @@ public class LoginSceneController implements Initializable {
 
 
     /**
-     * Handle new user button
-     * @throws IOException
+     * Handle new user button. Switches scene to allow user to create a new account.
+     * @throws IOException - Exception thrown when switch fails (eg. wrong fxml file name)
      */
     @FXML
     public void newUserButtonHandler(ActionEvent event) throws IOException {
         MainApp.switchScene(event, "/newUserScene.fxml", "Create an account");
+    }
+
+    /**
+     * Handle back button. Switches scene to allow user to go back to the welcome scene.
+     * @throws IOException - Exception thrown when switch fails (eg. wrong fxml file name)
+     */
+    @FXML
+    public void backToWelcome(MouseEvent event) throws IOException {
+        MainApp.switchScene(event, "/Welcome.fxml", "Welcome to the application");
     }
 
 }

@@ -1,24 +1,29 @@
 package nl.tudelft.oopp.controllers;
 
-
-import org.apache.commons.codec.binary.Hex;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+
+import org.apache.commons.codec.binary.Hex;
+
 
 public class Hasher {
 
-    public static void main(String args[]) {
+    /**
+     * Main method made to simply test the password hashing.
+     * @param args - arguments that can be given during runtime to the main method.
+     */
+    public static void main(String[] args) {
         String password = "password";
         //just a test
         System.out.println(Hasher.hashPassword(password));
     }
 
     /**
-     * The method that hashes the given password using PBKDF2 hasing algorithm
+     * The method that hashes the given password using PBKDF2 hasing algorithm.
      * @param password - The password that needs to be hashed (as an array of char)
      * @return String - The hashed password represented as a string
      */

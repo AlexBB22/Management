@@ -5,9 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.tudelft.oopp.MainApp;
-import nl.tudelft.oopp.controllers.Hasher;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -17,19 +14,23 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import nl.tudelft.oopp.MainApp;
+import nl.tudelft.oopp.controllers.Hasher;
 
 public class ServerCommunication {
 
     private static HttpClient client = HttpClient.newBuilder().build();
 
     /**
-     * Check login credentials with server
-     * @param userName
-     * @param password
-     * @return
-     * @throws URISyntaxException
+     * Check login credentials with server.
+     * @param userName - the username given from the user
+     * @param password - the password given from the user
+     * @return - Null if the user was not verified. The actual user entity from the DB if the user is verified
+     * @throws URISyntaxException - If the request URL is invalid
      */
     public static User identifyUser(String userName, String password) throws URISyntaxException {
         String hashedPassword = Hasher.hashPassword(password);
@@ -77,13 +78,13 @@ public class ServerCommunication {
     }
 
     /**
-     * Create a new user in the database
+     * Create a new user in the database.
      * TODO: check if email and username are not already in use
-     * @param username
-     * @param email
-     * @param password
-     * @return
-     * @throws URISyntaxException
+     * @param username - the userName of the new user which is to be added
+     * @param email - the email of the new user which is to be added
+     * @param password - the password of the new user which is to be added
+     * @return int. if int = -1, then userName already exists, if int != -1, user was created successfully
+     * @throws URISyntaxException - Error thrown when request URL is invalid
      */
     public static int createUser(String username, String email, String password, int roleId)
             throws URISyntaxException, IOException {
@@ -91,10 +92,11 @@ public class ServerCommunication {
         String hashedPassword = Hasher.hashPassword(password);
         //Setting up requestBody (JSON strings)
         HashMap<String, String> jsonValues = new HashMap<String, String>() {{
-            put("email", email);
-            put("user_name", username);
-            put("user_password", hashedPassword);
-        }};
+                put("email", email);
+                put("user_name", username);
+                put("user_password", hashedPassword);
+            }
+        };
         ObjectMapper objectMapper = new ObjectMapper();
         String requestBody = objectMapper.writeValueAsString(jsonValues);
 
@@ -131,14 +133,14 @@ public class ServerCommunication {
     }
 
     /**
-     * Request the rooms available (with a certain query)
-     * @param date
-     * @param building
-     * @param timeFrom
-     * @param timeTo
-     * @param roomType
-     * @return
-     * @throws URISyntaxException
+     * Request the rooms available (with a certain query).
+     * @param date - the day at which the user wants to reserve a room
+     * @param building - the building at which the user wants to reserve a room
+     * @param timeFrom - the startTime at which the user wants to reserve a room
+     * @param timeTo - the endTime at which the user wants to reserve a room
+     * @param roomType - the roomType at which the user wants to reserve a room
+     * @return List of Rooms that are available for the given specifications
+     * @throws URISyntaxException - Exception thrown when request URL made is invalid.
      */
     public static ArrayList<Room> getRooms(LocalDate date, String building,
                                             String timeFrom, String timeTo, String roomType)
@@ -158,10 +160,10 @@ public class ServerCommunication {
     }
 
     /**
-     * Get all buildings
-     * @return
-     * @throws URISyntaxException
-     * @throws IOException
+     * Get all buildings.
+     * @return List of buildings that are available to be selected from.
+     * @throws URISyntaxException - Exception thrown when request URL is invalid
+     * @throws IOException - Exception thrown when JSON mapping is unsuccessful
      */
     public static ArrayList<Building> getBuildings() throws URISyntaxException, IOException {
         String url = "http://localhost:8080/buildings/All";

@@ -1,5 +1,6 @@
 package nl.tudelft.oopp;
 
+import java.io.IOException;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,20 +10,19 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.communication.User;
 import nl.tudelft.oopp.views.MainView;
 
-import java.io.IOException;
 
 public class MainApp {
 
     /**
-     * This static global variable user represents the user that is currently using the application
+     * This static global variable user represents the user that is currently using the application.
      */
     public static User user;
 
     /**
-     * Function that can switch scene
-     * @param actionEvent
-     * @param source
-     * @throws IOException
+     * Function that can performs a switch to the source fxml file url.
+     * @param actionEvent - The event object that is fired.
+     * @param source - The fxml file's url to which the switch is performed to.
+     * @throws IOException - Exception thrown when file not found.
      */
     public static void switchScene(Event actionEvent, String source, String... title)
                                     throws IOException {
