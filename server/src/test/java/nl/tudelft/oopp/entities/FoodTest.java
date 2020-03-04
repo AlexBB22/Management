@@ -14,7 +14,7 @@ public class FoodTest {
     @Test
     public void getFoodId(){
         Food burger = new Food("Burger", 10);
-        assertEquals(0, burger.getFood_id());
+        assertEquals("Burger", burger.getFood_id());
     }
 
     @Test

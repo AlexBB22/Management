@@ -56,8 +56,12 @@ public class UserTest {
     @Test
     public void toStringTest(){
         User user = new User(2, "email", "username", "password");
+        Role role = new Role(1, "admin");
+        user.setRole(role);
         String toString = "user_id: " + user.getUser_id() + " , email: " + user.getEmail()
                 + " , user_name: " + user.getUser_name() + " , user_password: " + user.getUser_password() + " , role_fk: " + user.getRole().getRole_id();
+        System.out.println(toString);
+        System.out.println(user.toString());
         assertEquals(toString, user.toString());
     }
 
