@@ -31,7 +31,7 @@ public class ServerCommunication {
      * @param password - the password given from the user
      * @return - Null if the user was not verified. The actual user entity from the DB if the user is verified
      * @throws URISyntaxException - If the request URL is invalid
-     */
+     **/
     public static User identifyUser(String userName, String password) throws URISyntaxException {
         String hashedPassword = Hasher.hashPassword(password);
 
@@ -154,9 +154,7 @@ public class ServerCommunication {
         InputStream res = ServerCommunication.class.getResourceAsStream("/rooms_test.json");
 
         ObjectMapper mapper = new ObjectMapper();
-        ArrayList<Room> rooms = mapper.readValue(res, new TypeReference<ArrayList<Room>>(){});
-
-        return rooms;
+        return mapper.readValue(res, new TypeReference<ArrayList<Room>>(){});
     }
 
     /**
@@ -177,4 +175,26 @@ public class ServerCommunication {
         return buildings;
     }
 
+    /**.
+     * Request function template
+     * TODO: Test that this function works for all cases
+     * @param urlStr the url that has to be turned into a request
+     * @return object that is retrieved through the request
+     * @throws URISyntaxException exception if syntax is incorrect
+     */
+    public static Object request(String urlStr) throws URISyntaxException {
+        URI url = new URI(urlStr);
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(url).build();
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        if (response.statusCode() != 200) {
+            return false;
+        }
+        return response;
+    }
 }

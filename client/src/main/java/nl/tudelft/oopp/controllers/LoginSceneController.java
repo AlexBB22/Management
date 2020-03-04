@@ -55,7 +55,6 @@ public class LoginSceneController implements Initializable {
         }
     }
 
-
     /**
      * Handle new user button. Switches scene to allow user to create a new account.
      * @throws IOException - Exception thrown when switch fails (eg. wrong fxml file name)

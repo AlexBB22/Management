@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.communication.User;
 import nl.tudelft.oopp.views.MainView;
 
-
 public class MainApp {
 
     /**

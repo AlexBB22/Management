@@ -1,7 +1,6 @@
 package nl.tudelft.oopp.controllers;
 
 import java.util.List;
-
 import java.util.Optional;
 
 import nl.tudelft.oopp.entities.Role;
@@ -10,6 +9,11 @@ import nl.tudelft.oopp.repositories.RoleRepository;
 import nl.tudelft.oopp.repositories.UserRepository;
 import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -19,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 
 
 

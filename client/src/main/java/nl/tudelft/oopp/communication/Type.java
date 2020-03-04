@@ -1,7 +1,7 @@
 package nl.tudelft.oopp.communication;
 
 public class Type {
-    private int type_id;
+    private int typeId;
     private String name;
     private boolean whiteBoard;
     private boolean tv;
@@ -9,7 +9,7 @@ public class Type {
     private boolean clicker;
 
     public int getType_id() {
-        return type_id;
+        return typeId;
     }
 
     public String getName() {
@@ -32,8 +32,8 @@ public class Type {
         return clicker;
     }
 
-    public void setType_id(int type_id) {
-        this.type_id = type_id;
+    public void setType_id(int typeId) {
+        this.typeId = typeId;
     }
 
     public void setName(String name) {

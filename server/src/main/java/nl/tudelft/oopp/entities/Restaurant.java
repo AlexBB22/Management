@@ -1,13 +1,14 @@
 package nl.tudelft.oopp.entities;
-import nl.tudelft.oopp.entities.Building;
 
 import javax.persistence.*;
+
+import nl.tudelft.oopp.entities.Building;
 
 @Entity
 @Table(name = "restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = {"menu_fk"})})
 public class Restaurant {
     @Id
-    private int res_id;
+    private int resId;
 
     @OneToOne
     @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id", unique = true)
@@ -17,13 +18,15 @@ public class Restaurant {
     @JoinColumn(name = "building_fk")
     private Building building;
 
-    public Restaurant() {}
-    public Restaurant(int res_id) {
-        this.res_id = res_id;
+    public Restaurant() {
+    }
+
+    public Restaurant(int resId) {
+        this.resId = resId;
     }
 
     public int getRes_id() {
-        return res_id;
+        return resId;
     }
 
     public Menu getMenu() {

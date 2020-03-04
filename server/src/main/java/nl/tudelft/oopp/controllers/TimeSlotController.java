@@ -1,5 +1,6 @@
 package nl.tudelft.oopp.controllers;
 
+import java.util.Optional;
 import nl.tudelft.oopp.entities.Building;
 import nl.tudelft.oopp.entities.Room;
 import nl.tudelft.oopp.entities.TimeSlot;
@@ -14,12 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Optional;
-
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 @Controller
 public class TimeSlotController {
-    /**
+    /**.
      * timeslot_id
      * room_fk
      * start_time
@@ -36,23 +35,23 @@ public class TimeSlotController {
 
     @PostMapping("/reserveTimeSlot/{room_id}/{building_id}")
     @ResponseBody
-    public void reserveTimeSlot(@PathVariable (value= "room_id") Integer room_id,
-                                @PathVariable (value= "building_id") String building_id,
+    public void reserveTimeSlot(@PathVariable (value = "room_id") Integer roomId,
+                                @PathVariable (value = "building_id") String buildingId,
                                 @RequestBody TimeSlot timeslot) {
-        TimeSlot newtimeslot=timeslot;
-        Optional<Room> r=roomRepository.findById(room_id);
-        Room room=r.get();
+
+        Optional<Room> r = roomRepository.findById(roomId);
+        Room room = r.get();
 
 
-        Optional<Building> b=buildingRepository.findById(building_id);
-        Building building=b.get();
+        Optional<Building> b = buildingRepository.findById(buildingId);
+        Building building = b.get();
 
-        newtimeslot.setBuilding(building);
-        newtimeslot.setRoom(room);
+        timeslot.setBuilding(building);
+        timeslot.setRoom(room);
 
-        room.addTimeslots(newtimeslot);
-        System.out.println(newtimeslot.toString());
-        timeSlotRepository.save(newtimeslot);
+        room.addTimeslots(timeslot);
+        System.out.println(timeslot.toString());
+        timeSlotRepository.save(timeslot);
     }
 
 }
