@@ -196,5 +196,6 @@ public class ServerCommunication {
             return false;
         }
         return response;
+        //or response.body();
     }
 }

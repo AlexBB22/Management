@@ -58,7 +58,7 @@ public class RoomReservationController {
      * @param userId - the user which has reserved the room
      * @return
      */
-    @PostMapping(value = "/createNewReservation/{roomId}/{buildingName}/{Day}/{start_time}/{end_time}/{userId}")
+    @PostMapping(value = "createNewReservation/{roomId}/{buildingName}/{day}/{startTime}/{endTime}/{userId}")
     @ResponseBody
     public RoomReservation addRoomReservation(@PathVariable (value = "roomId") int roomId, @PathVariable String buildingName, @PathVariable Date day,
                                               @PathVariable Time startTime, @PathVariable Time endTime, @PathVariable int userId) {
