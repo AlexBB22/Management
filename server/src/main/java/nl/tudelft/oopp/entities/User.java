@@ -135,4 +135,16 @@ public class User {
         return "user_id: " + this.userId + " , email: " + this.email
                 + " , user_name: " + this.userName + " , user_password: " + this.userPassword + " , role_fk: " + this.getRole().getRole_id();
     }
+
+    public List<BikeReservation> getBikeReservations() {
+        return bikeReservations;
+    }
+
+    public void setBikeReservations(List<BikeReservation> bikeReservations) {
+        this.bikeReservations = bikeReservations;
+    }
+
+    public void addBikeReservation(BikeReservation bikeReservation) {
+        this.bikeReservations.add(bikeReservation);
+    }
 }

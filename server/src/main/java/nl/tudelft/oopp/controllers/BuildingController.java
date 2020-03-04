@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.controllers;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,7 @@ import nl.tudelft.oopp.repositories.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.*;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -78,6 +76,30 @@ public class BuildingController {
         } catch (Exception x) {
             throw new IllegalArgumentException("This building does not exist");
         }
+    }
+
+    /**
+     * This method allows the admin to add a new building name.
+     * @param buildingName - the name/identifier of the building that needs to be added
+     * @param building - the building that needs to be added
+     *
+     * @author Sartori Kendra
+     */
+    @PostMapping("/addNewBuilding/{buildingName}/{closingTime}/{openingTime}")
+    @ResponseBody
+    public void addNewBuilding(@PathVariable (value = "buildingName") String buildingName,
+                                @PathVariable (value = "closingTime") Time closingTime,
+                                @PathVariable (value = "openingTime") Time openingTime,
+                                @RequestBody Building building) {
+
+        Building newBuilding = building;
+
+        newBuilding.setBuilding_name(buildingName);
+        newBuilding.setOpening(openingTime);
+        newBuilding.setClosing(closingTime);
+
+        System.out.println("Added a new building to the database");
+        buildingRepository.save(newBuilding);
     }
 }
 
