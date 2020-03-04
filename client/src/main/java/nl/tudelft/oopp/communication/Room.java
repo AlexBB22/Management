@@ -1,14 +1,14 @@
 package nl.tudelft.oopp.communication;
 
 public class Room {
-    private int room_id;
+    private int roomId;
     private int capacity;
-    private String room_name;
+    private String roomName;
     private Type type;
     private Building building;
 
     public int getRoom_id() {
-        return room_id;
+        return roomId;
     }
 
     public int getCapacity() {
@@ -16,7 +16,7 @@ public class Room {
     }
 
     public String getRoom_name() {
-        return room_name;
+        return roomName;
     }
 
     public Type getType() {
@@ -27,16 +27,16 @@ public class Room {
         return building;
     }
 
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
+    public void setRoom_id(int roomId) {
+        this.roomId = roomId;
     }
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
-    public void setRoom_name(String room_name) {
-        this.room_name = room_name;
+    public void setRoom_name(String roomName) {
+        this.roomName = roomName;
     }
 
     public void setType(Type type) {

@@ -1,18 +1,32 @@
 package nl.tudelft.oopp.entities;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import nl.tudelft.oopp.entities.Room;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import nl.tudelft.oopp.entities.Room;
 
 @Entity
 @Table(name = "type")
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int type_id;
+    private int typeId;
 
     @Column(name = "name")
     private String name;
@@ -36,9 +50,17 @@ public class Type {
     @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
     private List<Room> listOfRooms = new ArrayList<>();
 
-    public Type() {}
+    public Type() {
+    }
 
-    public Type(String name, boolean whiteBoard, boolean powerOutlets, boolean clicker){
+    /**
+     * Constructor to add a new Type.
+     * @param name - of the type
+     * @param whiteBoard - if it contains a whiteboard
+     * @param powerOutlets - if it contains a poweroutlet
+     * @param clicker - if it contains a clicker
+     */
+    public Type(String name, boolean whiteBoard, boolean powerOutlets, boolean clicker) {
         this.name = name;
         this.whiteBoard = whiteBoard;
         this.powerOutlets = powerOutlets;
@@ -54,7 +76,7 @@ public class Type {
     }
 
     public int getType_id() {
-        return type_id;
+        return typeId;
     }
 
     public boolean isWhiteBoard() {
@@ -102,7 +124,7 @@ public class Type {
         this.listOfRooms = listOfRooms;
     }
 
-    public void addRoom(Room room){
+    public void addRoom(Room room) {
         this.listOfRooms.add(room);
         room.setType(this);
     }
@@ -114,7 +136,7 @@ public class Type {
 
 
     public String toString() {
-        return "type_id: " + this.type_id + ", name: " + this.name + ", clicker: " + this.clicker + ", tv: " + this.tv
+        return "type_id: " + this.typeId + ", name: " + this.name + ", clicker: " + this.clicker + ", tv: " + this.tv
                 + ", power_outlets: " + this.powerOutlets + ", whiteboard: " + this.whiteBoard;
     }
 }
