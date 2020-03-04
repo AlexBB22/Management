@@ -37,12 +37,4 @@ public class TypeTest {
         assertEquals(true, type.isTv());
     }
 
-    @Test
-    public void toStringTest(){
-        Type type = new Type("someRoom", true, true, true);
-        String toString = "type_id: " + type.getType_id() + ", name: " + type.getName() + ", clicker: " + type.isClicker() + ", tv: " + type.isTv()
-                + ", power_outlets: " + type.isPowerOutlets() + ", whiteboard: " + type.isWhiteBoard();
-        assertEquals(toString, type.toString());
-    }
-
 }
