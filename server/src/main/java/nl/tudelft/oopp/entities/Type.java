@@ -53,6 +53,14 @@ public class Type {
     public Type() {
     }
 
+    /**
+     * constructor for type class
+     * @param name name of the room type
+     * @param whiteBoard availability of whiteboard
+     * @param powerOutlets availability of poweroutlets
+     * @param clicker availability of clicker
+     * @Author Eli
+     */
     public Type(String name, boolean whiteBoard, boolean powerOutlets, boolean clicker) {
         this.name = name;
         this.whiteBoard = whiteBoard;
