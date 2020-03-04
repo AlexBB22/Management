@@ -1,23 +1,27 @@
 package nl.tudelft.oopp.entities;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class UserTest {
 
     @Test
-    public void constructorUser(){
+    public void constructorUser() {
         User user = new User(2, "email", "username", "password");
         assertNotNull(user);
     }
 
     @Test
-    public void getSetAttributes(){
+    public void getSetAttributes() {
         User user = new User(2, "email", "username", "password");
         Role role = new Role(1, "admin");
         user.setEmail("notEmail");
@@ -33,7 +37,7 @@ public class UserTest {
     }
 
     @Test
-    public void getSetRoomReservations(){
+    public void getSetRoomReservations() {
         User user = new User(2, "email", "username", "password");
         List<RoomReservation> roomReservList = new ArrayList<RoomReservation>();
         user.setRoomReservations(roomReservList);
@@ -41,7 +45,7 @@ public class UserTest {
     }
 
     @Test
-    public void addRemoveRoomReservations(){
+    public void addRemoveRoomReservations() {
         User user = new User(2, "email", "username", "password");
         List<RoomReservation> roomReservList = new ArrayList<RoomReservation>();
         Date date = new Date(2020, 3, 10);
@@ -54,7 +58,7 @@ public class UserTest {
     }
 
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
         User user = new User(2, "email", "username", "password");
         Role role = new Role(1, "admin");
         user.setRole(role);

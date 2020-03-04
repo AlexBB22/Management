@@ -1,33 +1,38 @@
 package nl.tudelft.oopp.entities;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class BuildingTest {
 
     @Test
-    public void buildingConstructorTest(){
+    public void buildingConstructorTest() {
         Time time = new Time(6, 45, 0);
-        Time time2 = new Time(21, 0, 0 );
+        Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
         assertNotNull(building);
     }
 
     @Test
-    public void emptyBuildingConstructorTest(){
+    public void emptyBuildingConstructorTest() {
         Building building = new Building();
         assertNotNull(building);
     }
 
     @Test
-    public void getNameTest(){
+    public void getNameTest() {
         Time time = new Time(6, 45, 0);
-        Time time2 = new Time(21, 0, 0 );
+        Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
         assertEquals("EWI", building.getBuilding_Name());
     }
@@ -49,7 +54,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void getCarParkingSpacesTest(){
+    public void getCarParkingSpacesTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -57,7 +62,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void getDescriptionTest(){
+    public void getDescriptionTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -65,7 +70,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void getOpeningTest(){
+    public void getOpeningTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -73,7 +78,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void getClosingTest(){
+    public void getClosingTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -81,7 +86,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void setNameTest(){
+    public void setNameTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -91,7 +96,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void setNonResSpaceTest(){
+    public void setNonResSpaceTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -100,7 +105,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void setCarParkingSpacesTest(){
+    public void setCarParkingSpacesTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -109,7 +114,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void setCarParkingSpacesNegativeTest(){
+    public void setCarParkingSpacesNegativeTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -118,7 +123,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void setDescriptionTest(){
+    public void setDescriptionTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -128,7 +133,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void setOpeningTest(){
+    public void setOpeningTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -138,7 +143,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void setClosingTest(){
+    public void setClosingTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -148,7 +153,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void RoomTest(){
+    public void roomTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);
@@ -164,7 +169,7 @@ public class BuildingTest {
     }
 
     @Test
-    public void setRoomTest(){
+    public void setRoomTest() {
         Time time = new Time(6, 45, 0);
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300, "Tallest building on campus, has an elevator", time, time2);

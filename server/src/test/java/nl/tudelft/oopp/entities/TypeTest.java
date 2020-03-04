@@ -1,26 +1,32 @@
 package nl.tudelft.oopp.entities;
-import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class TypeTest {
 
     @Test
-    public void typeConstructor(){
+    public void typeConstructor() {
         assertNotNull(new Type("someRoom", true, true, true));
     }
 
     @Test
-    public void getTypeId(){
+    public void getTypeId() {
         Type type = new Type("someRoom", true, true, true);
         assertEquals(0, type.getType_id());
     }
 
     @Test
-    public void getSetAttributes(){
+    public void getSetAttributes() {
         Type type = new Type("someRoom", true, true, true);
         type.setName("someOtherRoom");
         type.setClicker(false);
@@ -36,7 +42,7 @@ public class TypeTest {
     }
 
     @Test
-    public void getSetListRooms(){
+    public void getSetListRooms() {
         Type type = new Type("someRoom", true, true, true);
         List<Room> roomList = new ArrayList<Room>();
         type.setListOfRooms(roomList);
@@ -44,7 +50,7 @@ public class TypeTest {
     }
 
     @Test
-    public void addRemoveRoom(){
+    public void addRemoveRoom() {
         Type type = new Type("someRoom", true, true, true);
         List<Room> roomList = new ArrayList<Room>();
         type.setListOfRooms(roomList);
@@ -56,7 +62,7 @@ public class TypeTest {
     }
 
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
         Type type = new Type("someRoom", true, true, true);
         String toString = "type_id: " + type.getType_id() + ", name: " + type.getName() + ", clicker: " + type.isClicker() + ", tv: " + type.isTv()
                 + ", power_outlets: " + type.isPowerOutlets() + ", whiteboard: " + type.isWhiteBoard();

@@ -1,18 +1,21 @@
 package nl.tudelft.oopp.entities;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class TimeSlotTest {
 
     @Test
-    public void timeSlotConstructor(){
+    public void timeSlotConstructor() {
         Time time = new Time(10, 20, 30);
         Time time2 = new Time(20, 30, 40);
         TimeSlot ts = new TimeSlot(time, time2);
@@ -20,7 +23,7 @@ public class TimeSlotTest {
     }
 
     @Test
-    public void getTimeSlotId(){
+    public void getTimeSlotId() {
         Time time = new Time(10, 20, 30);
         Time time2 = new Time(20, 30, 40);
         TimeSlot ts = new TimeSlot(time, time2);
@@ -28,17 +31,16 @@ public class TimeSlotTest {
     }
 
     @Test
-    public void setTimeSlotId(){
+    public void setTimeSlotId() {
         Time time = new Time(10, 20, 30);
         Time time2 = new Time(20, 30, 40);
         TimeSlot ts = new TimeSlot(time, time2);
         ts.setTimeslot_id(10);
         assertEquals(10, ts.getTimeslot_id());
-        assertNotEquals(0, ts.getTimeslot_id());
     }
 
     @Test
-    public void getSetBuilding(){
+    public void getSetBuilding() {
         Time time = new Time(10, 20, 30);
         Time time2 = new Time(20, 30, 40);
         Building building = new Building("EWI", true, 2, "creepy people with glasses walking around", time, time2);
@@ -48,7 +50,7 @@ public class TimeSlotTest {
     }
 
     @Test
-    public void getSetRoom(){
+    public void getSetRoom() {
         Time time = new Time(10, 20, 30);
         Time time2 = new Time(20, 30, 40);
         TimeSlot ts = new TimeSlot(time, time2);
@@ -58,7 +60,7 @@ public class TimeSlotTest {
     }
 
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
         Date date = new Date(2020, 3, 10);
         RoomReservation rs = new RoomReservation(date);
         Room room = new Room(10, "smexy");
@@ -79,7 +81,7 @@ public class TimeSlotTest {
     }
 
     @Test
-    public void getSetRoomReservation(){
+    public void getSetRoomReservation() {
         Date date = new Date(2020, 3, 10);
         RoomReservation rs = new RoomReservation(date);
         Room room = new Room(10, "smexy");
@@ -96,7 +98,7 @@ public class TimeSlotTest {
     }
 
     @Test
-    public void equalsMethod(){
+    public void equalsMethod() {
         Date date = new Date(2020, 3, 10);
         RoomReservation rs = new RoomReservation(date);
         Time time = new Time(10, 20, 30);
@@ -107,7 +109,7 @@ public class TimeSlotTest {
     }
 
     @Test
-    public void getSetStartTimeEndTime(){
+    public void getSetStartTimeEndTime() {
         Date date = new Date(2020, 3, 10);
         RoomReservation rs = new RoomReservation(date);
         Room room = new Room(10, "smexy");

@@ -1,28 +1,33 @@
 package nl.tudelft.oopp.communication;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
 
 public class TypeTest {
 
     @Test
-    public void typeConstructor(){
+    public void typeConstructor() {
         assertNotNull(new Type("someRoom", true, true, true));
     }
 
     @Test
-    public void getTypeId(){
+    public void getTypeId() {
         Type type = new Type("someRoom", true, true, true);
         assertEquals(0, type.getType_id());
     }
 
     @Test
-    public void getSetAttributes(){
+    public void getSetAttributes() {
         Type type = new Type("someRoom", true, true, true);
         type.setName("someOtherRoom");
         type.setClicker(false);
