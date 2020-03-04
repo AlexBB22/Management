@@ -53,6 +53,13 @@ public class Type {
     public Type() {
     }
 
+    /**
+     * Constructor to add a new Type.
+     * @param name - of the type
+     * @param whiteBoard - if it contains a whiteboard
+     * @param powerOutlets - if it contains a poweroutlet
+     * @param clicker - if it contains a clicker
+     */
     public Type(String name, boolean whiteBoard, boolean powerOutlets, boolean clicker) {
         this.name = name;
         this.whiteBoard = whiteBoard;

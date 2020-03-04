@@ -24,11 +24,12 @@ import javax.persistence.Table;
 
 public class Menu {
     @Id
+    @Column(name = "menu_id")
     private int menuId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "menu_food", joinColumns = @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id"),
-            inverseJoinColumns = @JoinColumn(name = "food_fk", referencedColumnName = "food_id"))
+            inverseJoinColumns = @JoinColumn(name = "food_fk", referencedColumnName = "food_Id"))
     List<Food> foods = new ArrayList<Food>();
 
     @OneToOne(mappedBy = "menu")

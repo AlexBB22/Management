@@ -48,6 +48,16 @@ public class RoomReservationController {
     @Autowired
     private BuildingRepository buildingRepository;
 
+    /**
+     * Method to add a new room reservation into the database.
+     * @param roomId - the room which is to be reserved.
+     * @param buildingName - the building in which the room is in.
+     * @param day - the date of reservation.
+     * @param startTime - the starttime
+     * @param endTime - the endtime
+     * @param userId - the user which has reserved the room
+     * @return
+     */
     @PostMapping(value = "/createNewReservation/{roomId}/{buildingName}/{Day}/{start_time}/{end_time}/{userId}")
     @ResponseBody
     public RoomReservation addRoomReservation(@PathVariable (value = "roomId") int roomId, @PathVariable String buildingName, @PathVariable Date day,
@@ -86,8 +96,14 @@ public class RoomReservationController {
     }
 
 
-
-
+    /**
+     * Method to get all available rooms.
+     * @param buildingName - the building name where the room is
+     * @param day - the date
+     * @param startTime - the starttime
+     * @param endTime - the endtime
+     * @return
+     */
     @GetMapping("getAvailableRooms/{buildingName}/{Day}/{start_time}/{end_time}")
     @ResponseBody
     public List<Room> getAvailableRooms(@PathVariable(value = "buildingName") String buildingName,

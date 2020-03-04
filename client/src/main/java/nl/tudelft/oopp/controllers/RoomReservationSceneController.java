@@ -27,6 +27,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.Room;
 import nl.tudelft.oopp.communication.ServerCommunication;
@@ -46,6 +47,7 @@ public class RoomReservationSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        username.setText(MainApp.user.getUserName());
         // TODO: populate combo boxes and show available rooms
         ObservableList<String> times = FXCollections.observableArrayList(
                 "08:45", "10:45", "12:45", "13:45", "15:45", "17:45"
@@ -104,15 +106,25 @@ public class RoomReservationSceneController implements Initializable {
     }
 
     @FXML
-    public void accountButtonHandler(MouseEvent mouseEvent) {
+    public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/accountScene.fxml", "Account settings");
     }
 
     @FXML
     public void backBtnHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/mainScene.fxml");
+        switchScene(mouseEvent, "/mainScene.fxml", "TuDelft Reservation Application");
     }
 
     //TODO: show info in popup
+
+    /**
+     * A method to create a popup for a new room reservation.
+     * @param building - the name of the building
+     * @param room - the rooms to be shown
+     * @param date - the dates
+     * @param time - the time
+     * @throws IOException - exception thrown when file not found
+     */
     public void reservePopUp(String building, String room, String date, String time)
                                 throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/reservationPopUpScene.fxml"));

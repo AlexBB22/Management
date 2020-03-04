@@ -48,16 +48,23 @@ public class User {
     @JoinColumn(name = "role_fk", referencedColumnName = "role_id", nullable = false)
     private Role role;
 
-    @OneToMany(mappedBy = "user_fk", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userFk", cascade = CascadeType.ALL)
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
-    @OneToMany(mappedBy = "bike_user_fk")
+    @OneToMany(mappedBy = "bikeUserFk")
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     //Constructors + Getters/Setters
     public User() {
     }
 
+    /**
+     * Constructor for a user entity.
+     * @param userId - the users id
+     * @param email - the users email
+     * @param userName - the users username
+     * @param userPassword - the users password
+     */
     public User(int userId, String email, String userName, String userPassword) {
         this.userId = userId;
         this.email = email;

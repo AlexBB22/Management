@@ -56,7 +56,13 @@ public class BuildingController {
             throw new IllegalArgumentException("this input does not exist");
         }
     }
-    
+
+    /**
+     * End point method that gets all building.
+     * @param buildingName - name of the building to find
+     * @param date - the date at which we want to get buildings
+     * @return A list of rooms that are available for a certain building at a date
+     */
     @GetMapping("buildings/{buildingName}/{date}")
     @ResponseBody
     public List<Room> findRoomsInBuilding(@PathVariable String buildingName, Date date) {

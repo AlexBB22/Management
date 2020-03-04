@@ -9,9 +9,10 @@ import javafx.stage.Stage;
 public class MainView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/mainScene.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("/mainScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Welcome.fxml"));
 
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("Welcome to the application");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }

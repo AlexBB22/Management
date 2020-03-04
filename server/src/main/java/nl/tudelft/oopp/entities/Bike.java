@@ -32,7 +32,7 @@ public class Bike {
     @JoinColumn(name = "building_name")
     private Building building;
 
-    @OneToMany(mappedBy = "bike_fk")
+    @OneToMany(mappedBy = "bikeFk")
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     public Bike(){
