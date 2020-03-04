@@ -218,5 +218,24 @@ public class Building {
         bike.setBuilding(null);
     }
 
+    public void addRestaurant(Restaurant restaurant){
+        this.restaurants.add(restaurant);
+        restaurant.setBuilding(this);
+    }
+    @JsonIgnore
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public void removeRestaurant(Restaurant restaurant) {
+        this.restaurants.remove(restaurant);
+        restaurant.setBuilding(null);
+
+    }
+
 }
 

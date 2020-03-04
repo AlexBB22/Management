@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.sql.Date;
 
+
 @Entity
 @Table(name="bike_reservation")
 public class BikeReservation {
@@ -23,6 +24,7 @@ public class BikeReservation {
     @JoinColumn(name="bike_id")
     private Bike bike_fk;
 
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "day")
     private Date day;
@@ -34,6 +36,8 @@ public class BikeReservation {
     public BikeReservation(Date day) {
         this.day = day;
     }
+
+
 
     /**
      * Retrieves the id of the bike reservation.
