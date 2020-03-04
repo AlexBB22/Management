@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -23,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.Room;
@@ -84,9 +87,10 @@ public class RoomReservationSceneController implements Initializable {
         for (Room room : rooms) {
             Text roomName = new Text(room.getRoom_name());
             Button reserveBtn = new Button("Reserve");
+            reserveBtn.setAlignment(Pos.TOP_RIGHT);
             reserveBtn.setOnAction(event -> {
                 try {
-                    reservePopUp(buildingComboBox.getValue(),
+                    reservePopUp(room.getBuilding().getBuilding_Name(),
                             room.getRoom_name(),
                             "date", // TODO: datePicker.getValue().toString(),
                             timeFromComboBox.getValue()+" - "+timeToComboBox.getValue());
@@ -96,6 +100,7 @@ public class RoomReservationSceneController implements Initializable {
             });
 
             HBox container = new HBox(roomName, reserveBtn);
+            container.setPadding(new Insets(0,0,5,0));
             roomList.getChildren().add(container);
         }
     }
