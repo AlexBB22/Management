@@ -11,6 +11,14 @@ public class User {
 
     private Role role;
 
+    /**
+     * The constructor of a User.
+     * @param userId - the users id
+     * @param email - the users email
+     * @param userName - the users username
+     * @param userPassword - the users passowrd
+     * @param role - the role of the user
+     */
     public User(int userId, String email, String userName, String userPassword, Role role) {
         this.userId = userId;
         this.email = email;

@@ -33,6 +33,12 @@ public class TimeSlotController {
     @Autowired
     private TimeSlotRepository timeSlotRepository;
 
+    /**
+     * Method to add a new a new timeslot to the database.
+     * @param roomId - the room for which the timeslot is for
+     * @param buildingId - the building name
+     * @param timeslot - the JSON timeslot object
+     */
     @PostMapping("/reserveTimeSlot/{room_id}/{building_id}")
     @ResponseBody
     public void reserveTimeSlot(@PathVariable (value = "room_id") Integer roomId,

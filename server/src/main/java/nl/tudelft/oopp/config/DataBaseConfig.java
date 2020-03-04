@@ -31,6 +31,10 @@ public class DataBaseConfig {
     //        return ds;
     //    }
 
+    /**
+     * Method to setUp datasource with MySQL database.
+     * @return a datasource that can be used by Hibernate.
+     */
     @Bean(name = "mySqlDataSource")
     @Primary
     public DataSource mySqlDataSource() {

@@ -1,9 +1,10 @@
 package nl.tudelft.oopp.entities;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Food {

@@ -116,6 +116,15 @@ public class RoomReservationSceneController implements Initializable {
     }
 
     //TODO: show info in popup
+
+    /**
+     * A method to create a popup for a new room reservation.
+     * @param building - the name of the building
+     * @param room - the rooms to be shown
+     * @param date - the dates
+     * @param time - the time
+     * @throws IOException - exception thrown when file not found
+     */
     public void reservePopUp(String building, String room, String date, String time)
                                 throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/reservationPopUpScene.fxml"));

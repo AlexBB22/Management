@@ -58,6 +58,13 @@ public class User {
     public User() {
     }
 
+    /**
+     * Constructor for a user entity.
+     * @param userId - the users id
+     * @param email - the users email
+     * @param userName - the users username
+     * @param userPassword - the users password
+     */
     public User(int userId, String email, String userName, String userPassword) {
         this.userId = userId;
         this.email = email;
