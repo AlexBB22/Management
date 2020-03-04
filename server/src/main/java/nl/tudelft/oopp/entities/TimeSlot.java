@@ -46,7 +46,7 @@ public class TimeSlot {
     @Column(name = "end_time")
     private Time endTime;
 
-    @OneToMany(mappedBy = "timeslot_fk", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "timeslotFk", cascade = CascadeType.ALL)
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
     public TimeSlot() {

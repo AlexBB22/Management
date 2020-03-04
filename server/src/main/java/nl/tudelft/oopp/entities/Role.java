@@ -23,6 +23,7 @@ import javax.validation.constraints.Size;
 @Table(name = "role")
 public class Role {
     @Id
+    @Column (name = "role_id")
     @GeneratedValue
     //for tests, not doing auto generation
     //Admin = 3 Teacher = 2, Staff = 1, Student = 0

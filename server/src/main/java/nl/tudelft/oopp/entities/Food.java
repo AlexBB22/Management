@@ -1,17 +1,16 @@
 package nl.tudelft.oopp.entities;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Food {
     @Id
     //food_id is representing the name of the food
+    @Column(name = "food_id")
     private String foodId;
     private int price;
 

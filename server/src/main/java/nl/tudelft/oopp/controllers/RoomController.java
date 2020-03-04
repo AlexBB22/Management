@@ -48,6 +48,13 @@ public class RoomController {
     /*
     Method adds a new room to the table. It takes in the name of the building and the type id (to setup FK)
      */
+
+    /**
+     * End point to add a new room to the database.
+     * @param buildingName - the building in which the room is in
+     * @param typeId - the type of the room
+     * @param room - the room name
+     */
     @PostMapping("/addRoomToDB/{buildingName}/{typeId}")
     @ResponseBody
     public void addRoomToDB(@PathVariable(value = "buildingName") String buildingName,

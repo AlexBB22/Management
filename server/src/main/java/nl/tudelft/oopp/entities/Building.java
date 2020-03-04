@@ -1,5 +1,6 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Time;
@@ -101,7 +102,7 @@ public class Building {
     }
 
     /**.
-     *
+     *sets the amount of car parking space to given integer, 0 if given integer is below 0
      * @param carParkingSpaces amount the car parking space to set to
      * @Author Scott Jochems
      */
@@ -158,6 +159,49 @@ public class Building {
     public void removeRoom(Room room) {
         this.rooms.remove(room);
         room.setBuilding(null);
+    }
+
+    public List<Bike> getBikes() {
+        return bikes;
+    }
+
+    public void setBikes(List<Bike> bikes) {
+        this.bikes = bikes;
+    }
+
+    public void addBike(Bike bike) {
+        this.bikes.add(bike);
+        bike.setBuilding(this);
+    }
+
+    public void removeBike(Bike bike) {
+        this.bikes.remove(bike);
+        bike.setBuilding(null);
+    }
+
+    public void addRestaurant(Restaurant restaurant) {
+        this.restaurants.add(restaurant);
+        restaurant.setBuilding(this);
+    }
+
+    @JsonIgnore
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    /**.
+     * remove a restaurant from the building
+     * @param restaurant restaurant to be deleted
+     * @Author Scott Jochems
+     */
+    public void removeRestaurant(Restaurant restaurant) {
+        this.restaurants.remove(restaurant);
+        restaurant.setBuilding(null);
+
     }
 
 }

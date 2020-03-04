@@ -25,3 +25,9 @@ http://localhost:8080/addRoomToDB/DW/3
   "room_name": "DW-IZ3"
 }
           This adds a new Room with the given Building and Type (given in URL as parameters) and with the given attributes in the JSON body
+
+http://localhost:8080/reserveTimeSlot/8/AS
+{
+"start_time": "08:45:00",
+"end_time": "10:45:00"
+}
