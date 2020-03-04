@@ -53,7 +53,7 @@ public class Type {
     public Type() {
     }
 
-    /**
+    /**.
      * constructor for type class
      * @param name name of the room type
      * @param whiteBoard availability of whiteboard

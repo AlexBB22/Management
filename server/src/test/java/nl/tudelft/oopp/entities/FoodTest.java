@@ -31,6 +31,13 @@ public class FoodTest {
     }
 
     @Test
+    public void setPriceNegative(){
+        Food grillSandwich = new Food("grillSandwich", 100);
+        grillSandwich.setPrice(-10);
+        assertEquals(0, grillSandwich.getPrice());
+    }
+
+    @Test
     public void setPriceNotEquals(){
         Food fishSandwich = new Food("fishSandwich", 20);
         assertNotEquals(30, fishSandwich.getPrice());

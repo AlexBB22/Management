@@ -1,4 +1,4 @@
-package nl.tudelft.oopp.entities;
+package nl.tudelft.oopp.communication;
 
 import org.junit.jupiter.api.Test;
 
@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoomTest {
-
     @Test
     public void roomConstructorTest(){
         Room room = new Room(8, "DW-01");
@@ -101,25 +101,5 @@ public class RoomTest {
         Building building = new Building();
         room.setBuilding(building);
         assertEquals(building, room.getBuilding());
-    }
-
-    @Test
-    public void TimeslotTests(){
-        Room room = new Room(8, "DW-01");
-        assertEquals(0, room.getTimeslots().size());
-        TimeSlot timeslot = new TimeSlot();
-        room.addTimeslots(timeslot);
-        assertEquals(1, room.getTimeslots().size());
-        room.removeTimeslots(timeslot);
-        assertEquals(0, room.getTimeslots().size());
-        List<TimeSlot> list = new ArrayList<TimeSlot>();
-        TimeSlot timeslot2 = new TimeSlot();
-        TimeSlot timeslot3 = new TimeSlot();
-        TimeSlot timeslot4 = new TimeSlot();
-        list.add(timeslot2);
-        list.add(timeslot3);
-        list.add(timeslot4);
-        room.setTimeslots(list);
-        assertEquals(3, room.getTimeslots().size());
     }
 }
