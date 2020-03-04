@@ -52,7 +52,7 @@ public class TypeTest {
         type.addRoom(room);
         assertEquals(room, type.getListOfRooms().get(0));
         type.removeRoom(room);
-        assertNotEquals(room, type.getListOfRooms().get(0));
+        assertEquals(0, type.getListOfRooms().size());
     }
 
     @Test

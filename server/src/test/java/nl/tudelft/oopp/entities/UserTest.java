@@ -50,13 +50,13 @@ public class UserTest {
         user.addRoomReservation(rs);
         assertEquals(rs, user.getRoomReservations().get(0));
         user.removeRoomReservation(rs);
-        assertNotEquals(rs, user.getRoomReservations().get(0));
+        assertEquals(0, user.getRoomReservations().size());
     }
 
     @Test
     public void toStringTest(){
         User user = new User(2, "email", "username", "password");
-        String toString =  "user_id: " + user.getUser_id() + " , email: " + user.getEmail()
+        String toString = "user_id: " + user.getUser_id() + " , email: " + user.getEmail()
                 + " , user_name: " + user.getUser_name() + " , user_password: " + user.getUser_password() + " , role_fk: " + user.getRole().getRole_id();
         assertEquals(toString, user.toString());
     }

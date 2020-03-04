@@ -99,12 +99,10 @@ public class TimeSlotTest {
     public void equalsMethod(){
         Date date = new Date(2020, 3, 10);
         RoomReservation rs = new RoomReservation(date);
-        Room room = new Room(10, "smexy");
         Time time = new Time(10, 20, 30);
         Time time2 = new Time(20, 30, 40);
-        Time time3 = new Time(5, 30, 40);
         TimeSlot ts = new TimeSlot(time, time2);
-        TimeSlot ts1 = new TimeSlot(time, time3);
+        TimeSlot ts1 = new TimeSlot(time, time2);
         assertEquals(ts1, ts);
     }
 
