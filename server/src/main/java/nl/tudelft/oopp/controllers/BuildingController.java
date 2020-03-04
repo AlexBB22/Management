@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.controllers;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,14 +73,18 @@ public class BuildingController {
      *
      * @author Sartori Kendra
      */
-    @PostMapping("/addNewBuilding/{buildingName}")
+    @PostMapping("/addNewBuilding/{buildingName}/{closingTime}/{openingTime}")
     @ResponseBody
     public void addNewBuilding(@PathVariable (value = "buildingName") String buildingName,
+                                @PathVariable (value = "closingTime") Time closingTime,
+                                @PathVariable (value = "openingTime") Time openingTime,
                                 @RequestBody Building building) {
 
         Building newBuilding = building;
 
         newBuilding.setBuilding_name(buildingName);
+        newBuilding.setOpening(openingTime);
+        newBuilding.setClosing(closingTime);
 
         System.out.println("Added a new building to the database");
         buildingRepository.save(newBuilding);
