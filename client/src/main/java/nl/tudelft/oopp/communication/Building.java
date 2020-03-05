@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.communication;
 
 import java.sql.Time;
+import java.util.List;
 
 public class Building {
     private boolean nonReservableSpace;
@@ -9,6 +10,9 @@ public class Building {
     private Time opening;
     private Time closing;
     private String buildingName;
+    private List<Room> rooms;
+    private List<Restaurant> restaurants;
+    private List<Bike> bikes;
 
     public Building(){
     }
@@ -87,5 +91,29 @@ public class Building {
 
     public void setBuilding_Name(String buildingName) {
         this.buildingName = buildingName;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public List<Bike> getBikes() {
+        return bikes;
+    }
+
+    public void setBikes(List<Bike> bikes) {
+        this.bikes = bikes;
     }
 }

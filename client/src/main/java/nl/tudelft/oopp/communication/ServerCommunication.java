@@ -91,7 +91,8 @@ public class ServerCommunication {
         //hashing password
         String hashedPassword = Hasher.hashPassword(password);
         //Setting up requestBody (JSON strings)
-        HashMap<String, String> jsonValues = new HashMap<String, String>() {{
+        HashMap<String, String> jsonValues = new HashMap<String, String>() {
+            {
                 put("email", email);
                 put("user_name", username);
                 put("user_password", hashedPassword);
@@ -128,10 +129,6 @@ public class ServerCommunication {
         return userId;
     }
 
-    public static User getUserInformation() {
-        return null;
-    }
-
     /**
      * Request the rooms available (with a certain query).
      * @param date - the day at which the user wants to reserve a room
@@ -149,9 +146,10 @@ public class ServerCommunication {
         String url = String.format("http://localhost:8080/getAvailableRooms/%s/%s/%s:00/%s:00",
                 building, date.toString(), timeFrom, timeTo);
 
-        //String res = (String)request(url);
+        String res = request(url);
+        System.out.println(res);
 
-        InputStream res = ServerCommunication.class.getResourceAsStream("/rooms_test.json");
+        //InputStream res = ServerCommunication.class.getResourceAsStream("/rooms_test.json");
 
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(res, new TypeReference<ArrayList<Room>>(){});
@@ -166,36 +164,32 @@ public class ServerCommunication {
     public static ArrayList<Building> getBuildings() throws URISyntaxException, IOException {
         String url = "http://localhost:8080/buildings/All";
 
-        //String res = (String)request(url);
-        InputStream res = ServerCommunication.class.getResourceAsStream("/buildings_test.json");
+        String res = request(url);
+        System.out.println(res);
+        //InputStream res = ServerCommunication.class.getResourceAsStream("/buildings_test.json");
         ObjectMapper mapper = new ObjectMapper();
-        ArrayList<Building> buildings = mapper.readValue(res,
-                new TypeReference<ArrayList<Building>>(){});
+        ArrayList<Building> buildings = mapper.readValue(res, new TypeReference<ArrayList<Building>>(){});
 
         return buildings;
     }
 
-    /**.
-     * Request function template
+    /**
+     * Get request function template.
      * TODO: Test that this function works for all cases
      * @param urlStr the url that has to be turned into a request
      * @return object that is retrieved through the request
      * @throws URISyntaxException exception if syntax is incorrect
      */
-    public static Object request(String urlStr) throws URISyntaxException {
+    public static String request(String urlStr) throws URISyntaxException {
         URI url = new URI(urlStr);
         HttpRequest request = HttpRequest.newBuilder().GET().uri(url).build();
-        HttpResponse<String> response;
+        HttpResponse<String> response = null;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
-        if (response.statusCode() != 200) {
-            return false;
-        }
-        return response;
-        //or response.body();
+
+        return response.body();
     }
 }

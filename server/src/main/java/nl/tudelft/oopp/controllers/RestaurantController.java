@@ -32,8 +32,8 @@ public class RestaurantController {
     @Autowired
     private MenuRepository menuRepository;
 
-    /**.
-     * finds all restaurants in a building searched by name
+    /**
+     * finds all restaurants in a building searched by name.
      * @param buildingName the name of the buildign to search
      * @return a list of restaurants in the given building
      * @Author Alex

@@ -8,12 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-
-
 @Repository
 public interface RoomReservationRepository extends JpaRepository<RoomReservation, Integer> {
-
-
     /*
     SELECT room_id FROM room
     WHERE room_id NOT IN (SELECT room_id FROM roomreservation NATURAL JOIN timeslot NATURAL JOIN room
@@ -29,7 +25,6 @@ public interface RoomReservationRepository extends JpaRepository<RoomReservation
     that represents room_ids of the Rooms that are available. Then in the controller, I query the DB and get each coressponding
     room for the list of ids. And return that list to the user (see RoomReservationController). s
      */
-
 
 }
 //write pre-defined methods for SELECTS using distinct

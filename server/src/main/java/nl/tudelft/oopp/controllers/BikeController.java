@@ -3,11 +3,11 @@ package nl.tudelft.oopp.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import nl.tudelft.oopp.entities.Bike;
 import nl.tudelft.oopp.entities.Building;
 import nl.tudelft.oopp.repositories.BikeRepository;
 import nl.tudelft.oopp.repositories.BuildingRepository;
-import org.h2.store.FileLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
-
 
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")

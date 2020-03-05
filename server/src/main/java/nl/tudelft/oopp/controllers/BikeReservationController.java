@@ -2,6 +2,7 @@ package nl.tudelft.oopp.controllers;
 
 import java.sql.Date;
 import java.util.Optional;
+
 import nl.tudelft.oopp.entities.Bike;
 import nl.tudelft.oopp.entities.BikeReservation;
 import nl.tudelft.oopp.entities.Building;
@@ -14,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
 
 @Controller
 public class BikeReservationController {

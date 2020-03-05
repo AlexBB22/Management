@@ -1,31 +1,16 @@
 package nl.tudelft.oopp.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import nl.tudelft.oopp.entities.Bike;
-import nl.tudelft.oopp.entities.Restaurant;
-
-
 
 @Entity
 @Table(name = "building")
@@ -81,18 +66,34 @@ public class Building {
         this.closing = closing;
     }
 
+    /**
+     * Building name getter.
+     * @return the name of the building
+     */
     public String getBuilding_Name() {
         return buildingName;
     }
 
+    /**
+     * Sets the name of a building to a given value.
+     * @param buildingName - the value to which the name has to be set to
+     */
     public void setBuilding_name(String buildingName) {
         this.buildingName = buildingName;
     }
 
+    /**
+     * IsNon_reservable_space getter.
+     * @return whether or not the building has non reservable space
+     */
     public boolean isNon_reservable_space() {
         return nonReservableSpace;
     }
 
+    /**
+     * Sets the non reservable space to a given value.
+     * @param nonReservableSpace - the value the non reservable space needs to be changed into
+     */
     public void setNon_reservable_space(boolean nonReservableSpace) {
         this.nonReservableSpace = nonReservableSpace;
     }
@@ -139,8 +140,9 @@ public class Building {
     }
 
 
-    /*
-    Room related methods
+    /**
+     * Rooms getter.
+     * @return
      */
     @JsonIgnore
     public List<Room> getRooms() {
@@ -193,15 +195,14 @@ public class Building {
         this.restaurants = restaurants;
     }
 
-    /**.
-     * remove a restaurant from the building
+    /**
+     * remove a restaurant from the building.
      * @param restaurant restaurant to be deleted
      * @Author Scott Jochems
      */
     public void removeRestaurant(Restaurant restaurant) {
         this.restaurants.remove(restaurant);
         restaurant.setBuilding(null);
-
     }
 
 }
