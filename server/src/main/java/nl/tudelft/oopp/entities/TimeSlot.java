@@ -1,7 +1,6 @@
 package nl.tudelft.oopp.entities;
 
-import nl.tudelft.oopp.entities.Building;
-import nl.tudelft.oopp.entities.Room;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -59,6 +58,7 @@ public class TimeSlot {
         return room;
     }
 
+    @JsonManagedReference
     public List<RoomReservation> getRoomReservations() {
         return roomReservations;
     }

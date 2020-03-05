@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -36,6 +38,7 @@ public class RoomReservation {
         this.reservation_id = reservation_id;
     }
 
+    @JsonBackReference
     public User getUser_fk() {
         return user_fk;
     }
@@ -44,6 +47,7 @@ public class RoomReservation {
         this.user_fk = user_fk;
     }
 
+    @JsonBackReference
     public TimeSlot getTimeslot_fk() {
         return timeslot_fk;
     }

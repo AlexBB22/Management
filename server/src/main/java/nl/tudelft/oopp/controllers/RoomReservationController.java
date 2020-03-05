@@ -97,13 +97,13 @@ public class RoomReservationController {
      * timeslot and date and also checks whether a user can override an existing reservation using the
      * findAllAvailableRoomsWithOverriding query.
      *
+     * @author Kanish Dwivedim, Niels Tomassen
      * @param buildingName the name of the building in which we want to find all available rooms
      * @param day the day for which we want to find available rooms day is of type sql.Date
      * @param startTime the start_time of the timeslot for which we want to find all available rooms
      *                  startTime is of type sql.Time
      * @param endTime the end time of the timeslot for which we want to find all available rooms
      *                 endTime is of type sql.Time
-
      * @param userId the primary key of the user who is trying to find all available rooms, this primary key will be used
      *               to determine the role of the user and thus find out if they can override some existing room reservations
      * @return List of rooms the list of rooms which are available for reserving in a specific building at a specific date and timeslot
@@ -134,6 +134,23 @@ public class RoomReservationController {
         return rooms;
         //return objects;
     }
+
+    /**
+     * A method which queries all overridable roomreservations for a specific timeslot in a specific
+     * building depending on the rank of the user.
+     *
+     * @author Niels Tomassen
+     * @param buildingName a string containing the name of the building
+     * @param day the day for which a user wants to override a room is of type sql.Date
+     * @param startTime the start time of the timeslot for which the user wants to override a room
+     *                  startTime is of type sql.Time
+     * @param endTime the end time of the timeslot for which the user wants to override a room
+     *                  endTime is of type sql.Time
+     * @param userId an int containing the userId which will be used to determine his/her role and thus
+     *               determine what rooms can be overridden
+     * @return a List of RoomReservations that can be overridden
+     */
+
     @GetMapping("getOverridableRoomReservations/{buildingName}/{Day}/{start_time}/{end_time}/{user_id}")
     @ResponseBody
     public List<RoomReservation> getOverridableRoomReservations(@PathVariable(value = "buildingName") String buildingName,
@@ -155,9 +172,16 @@ public class RoomReservationController {
             roomReservations.add(roomReservation);
         }
         return roomReservations;
-
     }
 
+    /**
+     * A method which updates the user of a roomreservation.
+     *
+     * @author Niels Tomassen
+     * @param reservationId an int which is the id of the roomreservation that is to be updated
+     * @param userId an int which is the id of the new user
+     * @return a room reservation which has been updated
+     */
     @PutMapping("overrideRoomReservation/{reservation_id}/{user_id}")
     @ResponseBody
     public RoomReservation overrideRoomReservation(@PathVariable (value = "reservation_id") int reservationId,
