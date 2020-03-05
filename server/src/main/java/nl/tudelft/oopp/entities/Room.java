@@ -81,8 +81,17 @@ public class Room {
         return capacity;
     }
 
+    /**.
+     * set capacity to given capacity if capacity is lower then zero then it is set to 0
+     * @param capacity the capacity to set to
+     * @Author Scott Jochems
+     */
     public void setCapacity(int capacity) {
-        this.capacity = capacity;
+        if (capacity < 0) {
+            this.capacity = 0;
+        } else {
+            this.capacity = capacity;
+        }
     }
 
     public Building getBuilding() {

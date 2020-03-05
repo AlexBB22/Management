@@ -7,6 +7,14 @@ public class Room {
     private Type type;
     private Building building;
 
+    public Room() {
+    }
+
+    public Room(int capacity, String roomName) {
+        this.capacity = capacity;
+        this.roomName = roomName;
+    }
+
     public int getRoom_id() {
         return roomId;
     }
@@ -31,8 +39,17 @@ public class Room {
         this.roomId = roomId;
     }
 
+    /**.
+     * set the capacity to given integer, set to 0 if given integer below 0
+     * @param capacity the capacity to set to
+     * @Author Scott Jochems
+     */
     public void setCapacity(int capacity) {
-        this.capacity = capacity;
+        if (capacity < 0) {
+            this.capacity = 0;
+        } else {
+            this.capacity = capacity;
+        }
     }
 
     public void setRoom_name(String roomName) {

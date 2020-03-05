@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
 @Controller
@@ -34,8 +33,10 @@ public class RestaurantController {
     private MenuRepository menuRepository;
 
     /**
-     * This method finds all the restaurants in a given building.
-     * @author Alexandru Bobe
+     * finds all restaurants in a building searched by name.
+     * @param buildingName the name of the buildign to search
+     * @return a list of restaurants in the given building
+     * @Author Alex
      */
     @GetMapping("/ListRestaurants/{buildingName}")
     @ResponseBody
@@ -67,7 +68,6 @@ public class RestaurantController {
 
         Optional<Menu> m = menuRepository.findMenuById(menuId);
         Menu menuObj = m.get();
-
 
         newRestaurant.setBuilding(building);
         newRestaurant.setMenu(menuObj);

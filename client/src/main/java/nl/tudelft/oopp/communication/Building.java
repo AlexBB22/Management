@@ -1,17 +1,40 @@
 package nl.tudelft.oopp.communication;
 
 import java.util.List;
+import java.sql.Time;
 
 public class Building {
     private boolean nonReservableSpace;
     private int carParkingSpaces;
     private String description;
-    private String opening;
-    private String closing;
+    private Time opening;
+    private Time closing;
     private String buildingName;
     private List<Room> rooms;
     private List<Restaurant> restaurants;
     private List<Bike> bikes;
+
+    public Building(){
+    }
+
+    /**.
+     * constructor for building
+     * @param buildingName name of the building
+     * @param nonReservableSpace amount of nonReservableSpace
+     * @param carParkingSpaces amount of carParkingSpace
+     * @param description extra information about the building
+     * @param opening the time at which the building opens
+     * @param closing the time at which the building closes
+     * @Autor Scott Jochems
+     */
+    public Building(String buildingName, boolean nonReservableSpace, int carParkingSpaces, String description, Time opening, Time closing) {
+        this.buildingName = buildingName;
+        this.nonReservableSpace = nonReservableSpace;
+        this.carParkingSpaces = carParkingSpaces;
+        this.description = description;
+        this.opening = opening;
+        this.closing = closing;
+    }
 
     public boolean isNon_reservable_space() {
         return nonReservableSpace;
@@ -25,11 +48,11 @@ public class Building {
         return description;
     }
 
-    public String getOpening() {
+    public Time getOpening() {
         return opening;
     }
 
-    public String getClosing() {
+    public  Time getClosing() {
         return closing;
     }
 
@@ -41,19 +64,28 @@ public class Building {
         this.nonReservableSpace = nonReservableSpace;
     }
 
+    /**.
+     * sets the amount of carparking amount to the amount given 0 if amount is smaller than 1
+     * @param carParkingSpaces amount of spaces
+     * @Author Scott Jochems
+     */
     public void setCar_parking_spaces(int carParkingSpaces) {
-        this.carParkingSpaces = carParkingSpaces;
+        if (carParkingSpaces < 0) {
+            this.carParkingSpaces = 0;
+        } else {
+            this.carParkingSpaces = carParkingSpaces;
+        }
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setOpening(String opening) {
+    public void setOpening(Time opening) {
         this.opening = opening;
     }
 
-    public void setClosing(String closing) {
+    public void setClosing(Time closing) {
         this.closing = closing;
     }
 

@@ -30,7 +30,16 @@ public class Food {
         return price;
     }
 
+    /**.
+     * set price of food if given price below 0 then price will be 0
+     * @param price an integer indicating the price to be set
+     * @Author Scott Jochems
+     */
     public void setPrice(int price) {
-        this.price = price;
+        if (price < 0) {
+            this.price = 0;
+        } else {
+            this.price = price;
+        }
     }
 }
