@@ -1,7 +1,7 @@
 package nl.tudelft.oopp.communication;
 
-import java.util.List;
 import java.sql.Time;
+import java.util.List;
 
 public class Building {
     private boolean nonReservableSpace;
