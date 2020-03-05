@@ -97,7 +97,7 @@ public class RoomReservationController {
      * timeslot and date and also checks whether a user can override an existing reservation using the
      * findAllAvailableRoomsWithOverriding query.
      *
-     * @author Kanish Dwivedim, Niels Tomassen
+     * @author Kanish Dwivedi, Niels Tomassen
      * @param buildingName the name of the building in which we want to find all available rooms
      * @param day the day for which we want to find available rooms day is of type sql.Date
      * @param startTime the start_time of the timeslot for which we want to find all available rooms
