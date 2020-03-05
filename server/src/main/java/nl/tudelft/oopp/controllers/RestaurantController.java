@@ -12,8 +12,11 @@ import nl.tudelft.oopp.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -29,9 +32,11 @@ public class RestaurantController {
     @Autowired
     private MenuRepository menuRepository;
 
-    /**
-     * @author Alexandru Bobe
-     This method finds all the restaurants in a given building.
+    /**.
+     * finds all restaurants in a building searched by name
+     * @param buildingName the name of the buildign to search
+     * @return a list of restaurants in the given building
+     * @Author Alex
      */
     @GetMapping("/ListRestaurants/{buildingName}")
     @ResponseBody
@@ -62,8 +67,7 @@ public class RestaurantController {
         Building building = b.get();
 
         Optional<Menu> m = menuRepository.findMenuById(menuId);
-            Menu menuObj = m.get();
-
+        Menu menuObj = m.get();
 
         newRestaurant.setBuilding(building);
         newRestaurant.setMenu(menuObj);

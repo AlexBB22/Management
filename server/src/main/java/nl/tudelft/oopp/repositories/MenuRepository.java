@@ -8,11 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-    /**
-    * @author Alex
-    * This gets everything from the table menu with the given menu_id.
-    */
-
 @Repository
 public interface MenuRepository  extends JpaRepository<Menu, Integer> {
     @Query(value = "SELECT * FROM menu WHERE menu_id = ?1", nativeQuery = true)

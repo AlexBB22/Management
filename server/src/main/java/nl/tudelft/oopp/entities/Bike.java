@@ -55,7 +55,7 @@ public class Bike {
         this.bikeId = bikeId;
     }
 
-    /**
+    /**.
      * @author Sartori Kendra
      * @return the building near which the bike is situated
      */
