@@ -1,6 +1,6 @@
 package nl.tudelft.oopp.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,10 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")
 public class User {
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 
@@ -115,6 +117,8 @@ public class User {
         this.role = role;
     }
 
+
+    @JsonManagedReference
     public List<RoomReservation> getRoomReservations() {
         return roomReservations;
     }

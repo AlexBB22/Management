@@ -16,7 +16,7 @@ public class Hasher {
      * @param args - arguments that can be given during runtime to the main method.
      */
     public static void main(String[] args) {
-        String password = "password";
+        String password = "kanish";
         //just a test
         System.out.println(Hasher.hashPassword(password));
     }

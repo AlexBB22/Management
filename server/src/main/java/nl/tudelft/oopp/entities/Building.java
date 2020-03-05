@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import nl.tudelft.oopp.entities.Bike;
+import nl.tudelft.oopp.entities.Restaurant;
+
 @Entity
 @Table(name = "building")
 public class Building {

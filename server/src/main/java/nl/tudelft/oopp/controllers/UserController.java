@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import nl.tudelft.oopp.entities.Role;
+import nl.tudelft.oopp.entities.RoomReservation;
 import nl.tudelft.oopp.entities.User;
 import nl.tudelft.oopp.repositories.RoleRepository;
 import nl.tudelft.oopp.repositories.UserRepository;
@@ -36,6 +37,16 @@ public class UserController {
 
     @Autowired
     private RoleRepository roleRepository;
+
+
+    @GetMapping("testingstuff2")
+    @ResponseBody
+    public List<User> testingstuff() {
+        return userRepository.findAll();
+    }
+
+
+
 
     /**
      * This end point creates a new user using the entity POJO objects using information received from HTTP Request body.

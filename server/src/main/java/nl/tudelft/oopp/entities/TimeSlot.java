@@ -19,6 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import nl.tudelft.oopp.entities.Building;
 import nl.tudelft.oopp.entities.Room;
 
@@ -65,6 +68,7 @@ public class TimeSlot {
         this.timeslotId = timeslotId;
     }
 
+    @JsonBackReference
     public Building getBuilding() {
         return building;
     }
@@ -73,10 +77,12 @@ public class TimeSlot {
         this.building = building;
     }
 
+    @JsonBackReference
     public Room getRoom() {
         return room;
     }
 
+    @JsonManagedReference
     public List<RoomReservation> getRoomReservations() {
         return roomReservations;
     }

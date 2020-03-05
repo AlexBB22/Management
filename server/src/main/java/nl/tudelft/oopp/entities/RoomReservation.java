@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.sql.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,9 +17,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "roomreservation")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "reservation_id")
 public class RoomReservation {
     //getting the composite PK that uses two FK's to form the PK
     @Id
+    @Column(name = "reservation_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int reservationId;
 
@@ -47,6 +51,7 @@ public class RoomReservation {
         this.reservationId = reservationId;
     }
 
+    @JsonBackReference
     public User getUser_fk() {
         return userFk;
     }
@@ -55,6 +60,7 @@ public class RoomReservation {
         this.userFk = userFk;
     }
 
+    @JsonBackReference
     public TimeSlot getTimeslot_fk() {
         return timeslotFk;
     }
