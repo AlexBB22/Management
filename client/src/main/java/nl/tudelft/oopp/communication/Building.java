@@ -1,19 +1,24 @@
 package nl.tudelft.oopp.communication;
 
+import java.util.List;
+
 public class Building {
-    private boolean non_reservable_space;
-    private int car_parking_spaces;
+    private boolean nonReservableSpace;
+    private int carParkingSpaces;
     private String description;
     private String opening;
     private String closing;
-    private String building_Name;
+    private String buildingName;
+    private List<Room> rooms;
+    private List<Restaurant> restaurants;
+    private List<Bike> bikes;
 
     public boolean isNon_reservable_space() {
-        return non_reservable_space;
+        return nonReservableSpace;
     }
 
     public int getCar_parking_spaces() {
-        return car_parking_spaces;
+        return carParkingSpaces;
     }
 
     public String getDescription() {
@@ -29,15 +34,15 @@ public class Building {
     }
 
     public String getBuilding_Name() {
-        return building_Name;
+        return buildingName;
     }
 
-    public void setNon_reservable_space(boolean non_reservable_space) {
-        this.non_reservable_space = non_reservable_space;
+    public void setNon_reservable_space(boolean nonReservableSpace) {
+        this.nonReservableSpace = nonReservableSpace;
     }
 
-    public void setCar_parking_spaces(int car_parking_spaces) {
-        this.car_parking_spaces = car_parking_spaces;
+    public void setCar_parking_spaces(int carParkingSpaces) {
+        this.carParkingSpaces = carParkingSpaces;
     }
 
     public void setDescription(String description) {
@@ -52,7 +57,31 @@ public class Building {
         this.closing = closing;
     }
 
-    public void setBuilding_Name(String building_Name) {
-        this.building_Name = building_Name;
+    public void setBuilding_Name(String buildingName) {
+        this.buildingName = buildingName;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public List<Bike> getBikes() {
+        return bikes;
+    }
+
+    public void setBikes(List<Bike> bikes) {
+        this.bikes = bikes;
     }
 }
