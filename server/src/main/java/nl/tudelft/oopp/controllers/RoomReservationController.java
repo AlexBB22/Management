@@ -9,10 +9,7 @@ import nl.tudelft.oopp.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -137,5 +134,47 @@ public class RoomReservationController {
         return rooms;
         //return objects;
     }
+    @GetMapping("getOverridableRoomReservations/{buildingName}/{Day}/{start_time}/{end_time}/{user_id}")
+    @ResponseBody
+    public List<RoomReservation> getOverridableRoomReservations(@PathVariable(value = "buildingName") String buildingName,
+                                        @PathVariable (value = "Day") Date day,
+                                        @PathVariable (value = "start_time") Time startTime,
+                                        @PathVariable (value = "end_time") Time endTime,
+                                        @PathVariable (value = "user_id") int userId) {
+        //Initializes a user from the given user primary key
+        Optional<User> u = userRepository.findById(userId);
+        User user = u.get();
 
+        //Queries the database using the role of the just initialized user
+        List<Integer> objects = roomReservationRepository.findAllOverridableRoomReservations(buildingName, day, startTime,
+                endTime, user.getRole().getRole_id());
+        List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
+        for (int i = 0; i < objects.size(); i++) {
+            Optional<RoomReservation> r = roomReservationRepository.findById(objects.get(i));
+            RoomReservation roomReservation = r.get();
+            roomReservations.add(roomReservation);
+        }
+        return roomReservations;
+
+    }
+
+    @PutMapping("overrideRoomReservation/{reservation_id}/{user_id}")
+    @ResponseBody
+    public RoomReservation overrideRoomReservation(@PathVariable (value = "reservation_id") int reservationId,
+                                        @PathVariable (value = "user_id") int userId) {
+
+        //Initializes a roomreservation from the given primary key
+        Optional<RoomReservation> r = roomReservationRepository.findById(reservationId);
+        RoomReservation roomReservation = r.get();
+
+        //Initializes a user from the given user primary key
+        Optional<User> u = userRepository.findById(userId);
+        User user = u.get();
+
+        //Update the user field of the room reservation
+        roomReservation.setUser_fk(user);
+
+        System.out.println("Overridden a room reservation, new reservation is: " + roomReservation.toString());
+        return roomReservationRepository.save(roomReservation);
+    }
 }
