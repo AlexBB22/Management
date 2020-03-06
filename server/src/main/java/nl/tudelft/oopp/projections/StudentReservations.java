@@ -5,6 +5,8 @@ public interface StudentReservations {
 
     String getrole_name();
 
+    String getuser_name();
+
     String getbuilding_name();
 
     String getroom_name();
