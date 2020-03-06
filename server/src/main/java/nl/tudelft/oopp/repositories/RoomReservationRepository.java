@@ -65,9 +65,9 @@ public interface RoomReservationRepository extends JpaRepository<RoomReservation
     List<Integer> findAllOverridableRoomReservations(String buildingName, Date day, Time startTime, Time endTime, int roleFk);
 
 
-    @Query(value = "SELECT role_id, role_name, user_name, building_name, room_name, name, room_id, capacity, clicker, power_outlets, tv, whiteboard, reservation_id, timeslot_id FROM roomreservation NATURAL JOIN timeslot NATURAL JOIN room NATURAL JOIN type NATURAL JOIN user JOIN role on (role_fk = role.role_id)"
+    @Query(value = "SELECT role_id, role_name, user_name, building_name, room_name, name, room_id, capacity, clicker, power_outlets, tv, whiteboard, reservation_id, timeslot_id "
+            + " FROM roomreservation NATURAL JOIN timeslot NATURAL JOIN room NATURAL JOIN type NATURAL JOIN user JOIN role on (role_fk = role.role_id)"
             + " WHERE building_name = ?1 AND day = ?2 AND (start_time = ?3 AND end_time = ?4) AND role_id = ?5", nativeQuery = true)
-    List<StudentReservations> findAllStudentReservations(String buildingName, Date day, Time startTime, Time endTime, Integer role_id);
+    List<StudentReservations> findAllStudentReservations(String buildingName, Date day, Time startTime, Time endTime, Integer roleID);
 
-//role_id, role_name, user_name, building_name, room_name, name, room_id, capacity, clicker, power_outlets, tv, whiteboard, reservation_id, timeslot_id
 }

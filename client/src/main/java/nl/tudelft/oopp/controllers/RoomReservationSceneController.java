@@ -52,7 +52,7 @@ public class RoomReservationSceneController implements Initializable {
         username.setText(MainApp.user.getUserName());
         // TODO: populate combo boxes and show available rooms
         ObservableList<String> times = FXCollections.observableArrayList(
-                "08:45", "10:45", "12:45", "13:45", "15:45", "17:45"
+                "08:45-10:45", "10:45-12:45", "13:45-15:45", "15:45-17:45"
         );
         timeFromComboBox.getItems().addAll(times);
         //timeToComboBox.getItems().addAll(times);
