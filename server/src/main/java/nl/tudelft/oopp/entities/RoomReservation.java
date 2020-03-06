@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -62,6 +63,7 @@ public class RoomReservation implements Serializable {
     public void setUser_fk(User userFk) {
         this.userFk = userFk;
     }
+
 
     @JsonBackReference(value = "timeslotRoomReservations")
     public TimeSlot getTimeslot_fk() {
