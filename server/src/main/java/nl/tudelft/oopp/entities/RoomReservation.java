@@ -1,6 +1,6 @@
 package nl.tudelft.oopp.entities;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.sql.Date;
 import javax.persistence.CascadeType;

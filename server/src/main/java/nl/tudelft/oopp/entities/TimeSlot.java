@@ -1,5 +1,8 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +22,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import nl.tudelft.oopp.entities.Building;
 import nl.tudelft.oopp.entities.Room;
-
-
-
 
 @Entity
 @Table(name = "timeslot")
