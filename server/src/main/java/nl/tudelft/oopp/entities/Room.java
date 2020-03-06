@@ -1,57 +1,72 @@
 package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import nl.tudelft.oopp.entities.TimeSlot;
-import nl.tudelft.oopp.entities.Type;
-import nl.tudelft.oopp.entities.Building;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import nl.tudelft.oopp.entities.Building;
+import nl.tudelft.oopp.entities.TimeSlot;
+import nl.tudelft.oopp.entities.Type;
+
+
 
 @Entity
-@Table(name="room")
+@Table(name = "room")
 
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int room_id;
+    private int roomId;
 
-    @Column(name="capacity")
+    @Column(name = "capacity")
     private int capacity;
 
     @Column(name = "room_name")
-    private String room_name;
+    private String roomName;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="type_id")
+    @JoinColumn(name = "type_id")
     private Type type;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="building_name")
+    @JoinColumn(name = "building_name")
     private Building building;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<TimeSlot> timeslots = new ArrayList<TimeSlot>();
 
-    public Room() {}
+    public Room() {
+    }
 
-    public Room(int capacity, String room_name) {
+    public Room(int capacity, String roomName) {
         this.capacity = capacity;
-        this.room_name = room_name;
+        this.roomName = roomName;
     }
 
 
     public int getRoom_id() {
-        return room_id;
+        return roomId;
     }
 
     public String getRoom_name() {
-        return room_name;
+        return roomName;
     }
 
-    public void setRoom_name(String room_name) {
-        this.room_name = room_name;
+    public void setRoom_name(String roomName) {
+        this.roomName = roomName;
     }
 
     public Type getType() {
@@ -66,8 +81,17 @@ public class Room {
         return capacity;
     }
 
+    /**.
+     * set capacity to given capacity if capacity is lower then zero then it is set to 0
+     * @param capacity the capacity to set to
+     * @Author Scott Jochems
+     */
     public void setCapacity(int capacity) {
-        this.capacity = capacity;
+        if (capacity < 0) {
+            this.capacity = 0;
+        } else {
+            this.capacity = capacity;
+        }
     }
 
     public Building getBuilding() {
@@ -96,8 +120,8 @@ public class Room {
     }
 
     public String toString() {
-        return "room_id: " + this.room_id + ", room_name: " + this.room_name + ", capacity: " + this.capacity +
-                ", building_name: " + this.getBuilding().getBuilding_Name() + ", type_id: " + this.getType().getType_id();
+        return "room_id: " + this.roomId + ", room_name: " + this.roomName + ", capacity: " + this.capacity
+                + ", building_name: " + this.getBuilding().getBuilding_Name() + ", type_id: " + this.getType().getType_id();
     }
 
 

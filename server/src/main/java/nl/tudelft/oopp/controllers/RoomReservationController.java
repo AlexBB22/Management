@@ -1,21 +1,32 @@
 package nl.tudelft.oopp.controllers;
 
-import nl.tudelft.oopp.entities.*;
-import nl.tudelft.oopp.repositories.*;
-import nl.tudelft.oopp.entities.Building;
-import nl.tudelft.oopp.entities.Room;
-import nl.tudelft.oopp.repositories.BuildingRepository;
-import nl.tudelft.oopp.repositories.RoomRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import nl.tudelft.oopp.entities.Building;
+import nl.tudelft.oopp.entities.Room;
+import nl.tudelft.oopp.entities.RoomReservation;
+import nl.tudelft.oopp.entities.TimeSlot;
+import nl.tudelft.oopp.entities.User;
+
+import nl.tudelft.oopp.repositories.BuildingRepository;
+import nl.tudelft.oopp.repositories.RoomRepository;
+import nl.tudelft.oopp.repositories.RoomReservationRepository;
+import nl.tudelft.oopp.repositories.TimeSlotRepository;
+import nl.tudelft.oopp.repositories.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -36,7 +47,6 @@ public class RoomReservationController {
 
     @Autowired
     private BuildingRepository buildingRepository;
-
 
     /**
      * Adds a RoomReservation to the DB for a specific user at a specific timeslot.
@@ -67,30 +77,29 @@ public class RoomReservationController {
         Optional<Room> r = roomRepository.findById(roomId);
         Room room = r.get();
 
-        //get the user of a given id
-        Optional<User> u = userRepository.findById(userId);
-        User user = u.get();
-
         //Initialize a timeslot and set up FK entity relationships with Room and Building
         TimeSlot timeslot = new TimeSlot(startTime, endTime);
         room.addTimeslots(timeslot);
         timeslot.setRoom(room);
         timeslot.setBuilding(building);
 
-        TimeSlot DBtimeslot = timeSlotRepository.save(timeslot);
+        TimeSlot dbTimeslot = timeSlotRepository.save(timeslot);
+
+        //get the user of a given id
+        Optional<User> u = userRepository.findById(userId);
+        User user = u.get();
 
         //Making a new RoomReservation entity and setting up its FK entity relationships with TimeSlot and User
         RoomReservation roomReservation = new RoomReservation(day);
         roomReservation.setUser_fk(user);
-        roomReservation.setTimeslot_fk(DBtimeslot);
+        roomReservation.setTimeslot_fk(dbTimeslot);
         user.addRoomReservation(roomReservation);
-        DBtimeslot.addRoomReservation(roomReservation);
+        dbTimeslot.addRoomReservation(roomReservation);
 
 
         System.out.println("Added a new room reservation to DB: " + roomReservation.toString());
         return roomReservationRepository.save(roomReservation);
     }
-
 
     /**
      * A method which queries the database to find out which available rooms there are for a certain building at a certain

@@ -1,29 +1,41 @@
 package nl.tudelft.oopp.entities;
-import nl.tudelft.oopp.entities.Building;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "restaurant")
+@Table(name = "restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = {"menu_fk"})})
 public class Restaurant {
     @Id
-    private int res_id;
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int resId;
 
     @OneToOne
-    @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id")
+    @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id", unique = true)
     private Menu menu;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "building_fk")
     private Building building;
 
-    public Restaurant() {}
-    public Restaurant(int res_id) {
-        this.res_id = res_id;
+    public Restaurant() {
+    }
+
+    public Restaurant(int resId) {
+        this.resId = resId;
     }
 
     public int getRes_id() {
-        return res_id;
+        return resId;
     }
 
     public Menu getMenu() {
@@ -33,4 +45,14 @@ public class Restaurant {
     public Building getBuilding() {
         return building;
     }
+
+    public void setBuilding(Building building) {
+
+        this.building = building;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
 }
