@@ -1,7 +1,10 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -24,8 +27,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")
-public class User {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")
+public class User implements Serializable {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -106,9 +109,6 @@ public class User {
         this.userPassword = userPassword;
     }
 
-
-    //Understand why this was neccessary to do, even though it shouldnt be.
-    //@JsonIgnore
     public Role getRole() {
         return this.role;
     }
@@ -118,7 +118,7 @@ public class User {
     }
 
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "userRoomReservations")
     public List<RoomReservation> getRoomReservations() {
         return roomReservations;
     }
