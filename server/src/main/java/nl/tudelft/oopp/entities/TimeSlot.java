@@ -65,7 +65,7 @@ public class TimeSlot {
         this.timeslotId = timeslotId;
     }
 
-    @JsonBackReference
+    @JsonBackReference(value = "timeslotBuilding")
     public Building getBuilding() {
         return building;
     }
@@ -74,12 +74,12 @@ public class TimeSlot {
         this.building = building;
     }
 
-    @JsonBackReference
+    @JsonBackReference(value = "timeslotRoom")
     public Room getRoom() {
         return room;
     }
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "timeslotRoomReservations")
     public List<RoomReservation> getRoomReservations() {
         return roomReservations;
     }

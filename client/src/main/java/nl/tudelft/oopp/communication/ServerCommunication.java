@@ -110,6 +110,7 @@ public class ServerCommunication {
         HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").POST(HttpRequest.BodyPublishers.ofString(requestBody)).build();
         //Sending HTTP Request and getting response
         HttpResponse<String> response;
+        System.out.println(request.bodyPublisher());
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
