@@ -212,15 +212,17 @@ public class RoomReservationController {
     }
 
     /**
-     * gets available rooms for staff members.
-     * @param buildingName the building the rooms are in
-     * @param day the day of the reservation
-     * @param startTime the start of the timeslot
-     * @param endTime the end of the timeslot
-     * @param roleId the role of the person using the app
-     * @return list of all reservations that students made
+     * This endpoint returns information about reserved rooms. This is called when a staff wants to also see the rooms
+     * that a student as reserved.
+     * @param buildingName - the name of the building where a staff has selected
+     * @param day - the date the staff member wants to reserve a room
+     * @param startTime - the start time of the reservation
+     * @param endTime - the end time of the reservation
+     * @param roleId - the id corresponding to the role for whom the reservations want to be retrieved (in this case 1 as
+     *               we want to see the reservations a student has made)
+     * @return
      */
-    @GetMapping("staffGetAvailableRooms/{buildingName}/{Day}/{startTime}/{endTime}/{roleId}")
+    @GetMapping("staffGetAvailableRooms/{buildingName}/{day}/{startTime}/{endTime}/{roleId}")
     @ResponseBody
     public List<StudentReservations> staffGetAvailableRooms(@PathVariable String buildingName, @PathVariable Date day, @PathVariable Time startTime,
                                                 @PathVariable Time endTime, @PathVariable Integer roleId) {
