@@ -47,7 +47,6 @@ public class RoomReservationSceneController implements Initializable {
     @FXML private VBox roomList;
     @FXML private Text username;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText(MainApp.user.getUserName());
@@ -56,7 +55,7 @@ public class RoomReservationSceneController implements Initializable {
                 "08:45", "10:45", "12:45", "13:45", "15:45", "17:45"
         );
         timeFromComboBox.getItems().addAll(times);
-        timeToComboBox.getItems().addAll(times);
+        //timeToComboBox.getItems().addAll(times);
 
         ArrayList<Building> buildings = null;
         try {

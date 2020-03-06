@@ -12,6 +12,7 @@ import nl.tudelft.oopp.entities.RoomReservation;
 import nl.tudelft.oopp.entities.TimeSlot;
 import nl.tudelft.oopp.entities.User;
 
+import nl.tudelft.oopp.projections.StudentReservations;
 import nl.tudelft.oopp.repositories.BuildingRepository;
 import nl.tudelft.oopp.repositories.RoomRepository;
 import nl.tudelft.oopp.repositories.RoomReservationRepository;
@@ -159,7 +160,6 @@ public class RoomReservationController {
      *               determine what rooms can be overridden
      * @return a List of RoomReservations that can be overridden
      */
-
     @GetMapping("getOverridableRoomReservations/{buildingName}/{Day}/{start_time}/{end_time}/{user_id}")
     @ResponseBody
     public List<RoomReservation> getOverridableRoomReservations(@PathVariable(value = "buildingName") String buildingName,
@@ -210,4 +210,15 @@ public class RoomReservationController {
         System.out.println("Overridden a room reservation, new reservation is: " + roomReservation.toString());
         return roomReservationRepository.save(roomReservation);
     }
+
+    @GetMapping("staffGetAvailableRooms/{buildingName}/{Day}/{startTime}/{endTime}/{roleId}")
+    @ResponseBody
+    public List<StudentReservations> staffGetAvailableRooms(@PathVariable String buildingName, @PathVariable Date Day, @PathVariable Time startTime,
+                                                @PathVariable Time endTime, @PathVariable Integer roleId) {
+
+        List<StudentReservations> objects = roomReservationRepository.findAllStudentReservations(buildingName, Day, startTime, endTime, roleId);
+
+        return objects;
+    }
+
 }
