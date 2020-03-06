@@ -41,6 +41,10 @@ public class Building {
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
     private List<Room> rooms = new ArrayList<Room>();
 
+    @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
+    private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
+
+
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
     private List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
@@ -208,5 +212,22 @@ public class Building {
         restaurant.setBuilding(null);
     }
 
+    public List<BikeReservation> getBikeReservations() {
+        return bikeReservations;
+    }
+
+    public void setBikeReservations(List<BikeReservation> bikeReservations) {
+        this.bikeReservations = bikeReservations;
+    }
+
+    public void addBikeReservation(BikeReservation reservation) {
+        this.bikeReservations.add(reservation);
+        reservation.setBuilding(this);
+    }
+
+    public void removeBikeReservation(BikeReservation reservation) {
+        this.bikeReservations.remove(reservation);
+        reservation.setBuilding(null);
+    }
 }
 

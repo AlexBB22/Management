@@ -35,6 +35,10 @@ public class BikeReservation {
     @Column(name = "day")
     private Date day;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "building_name")
+    private Building building;
+
     public BikeReservation() {
 
     }
@@ -82,4 +86,21 @@ public class BikeReservation {
     public void setBike_fk(Bike bikeFk) {
         this.bikeFk = bikeFk;
     }
+
+    public Date getDay() {
+        return day;
+    }
+
+    public void setDay(Date day) {
+        this.day = day;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
+
 }
