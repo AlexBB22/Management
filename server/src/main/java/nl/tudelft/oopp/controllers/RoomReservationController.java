@@ -211,12 +211,21 @@ public class RoomReservationController {
         return roomReservationRepository.save(roomReservation);
     }
 
+    /**
+     * gets available rooms for staff members.
+     * @param buildingName the building the rooms are in
+     * @param day the day of the reservation
+     * @param startTime the start of the timeslot
+     * @param endTime the end of the timeslot
+     * @param roleId the role of the person using the app
+     * @return list of all reservations that students made
+     */
     @GetMapping("staffGetAvailableRooms/{buildingName}/{Day}/{startTime}/{endTime}/{roleId}")
     @ResponseBody
-    public List<StudentReservations> staffGetAvailableRooms(@PathVariable String buildingName, @PathVariable Date Day, @PathVariable Time startTime,
+    public List<StudentReservations> staffGetAvailableRooms(@PathVariable String buildingName, @PathVariable Date day, @PathVariable Time startTime,
                                                 @PathVariable Time endTime, @PathVariable Integer roleId) {
 
-        List<StudentReservations> objects = roomReservationRepository.findAllStudentReservations(buildingName, Day, startTime, endTime, roleId);
+        List<StudentReservations> objects = roomReservationRepository.findAllStudentReservations(buildingName, day, startTime, endTime, roleId);
 
         return objects;
     }

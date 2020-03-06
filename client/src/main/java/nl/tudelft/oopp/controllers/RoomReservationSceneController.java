@@ -41,8 +41,7 @@ public class RoomReservationSceneController implements Initializable {
 
     @FXML private DatePicker datePicker;
     @FXML private ComboBox<String> buildingComboBox;
-    @FXML private ComboBox<String> timeFromComboBox;
-    @FXML private ComboBox<String> timeToComboBox;
+    @FXML private ComboBox<String> timeSlotComboBox;
     @FXML private ComboBox<String> roomTypeComboBox;
     @FXML private VBox roomList;
     @FXML private Text username;
@@ -52,10 +51,9 @@ public class RoomReservationSceneController implements Initializable {
         username.setText(MainApp.user.getUserName());
         // TODO: populate combo boxes and show available rooms
         ObservableList<String> times = FXCollections.observableArrayList(
-                "08:45", "10:45", "12:45", "13:45", "15:45", "17:45"
+                "08:45-10:45", "10:45-12:45", "12:45-13:45", "13:45-15:45", "15:45-17:45"
         );
-        timeFromComboBox.getItems().addAll(times);
-        //timeToComboBox.getItems().addAll(times);
+        timeSlotComboBox.getItems().addAll(times);
 
         ArrayList<Building> buildings = null;
         try {
@@ -83,9 +81,13 @@ public class RoomReservationSceneController implements Initializable {
         roomList.getChildren().clear();
 
         //String[] rooms = {"rooms akdmkwadawdjlawjdjakwd", "wdawdawdawdwadawda", "awjdawjd"};
+        String[] timeSlot = timeSlotComboBox.getValue().split("-");
+
+        String starttime = timeSlot[0];
+        String endtime = timeSlot[1];
 
         ArrayList<Room> rooms = ServerCommunication.getRooms(datePicker.getValue(),
-                buildingComboBox.getValue(), timeFromComboBox.getValue(), timeToComboBox.getValue(),
+                buildingComboBox.getValue(), starttime, endtime,
                 roomTypeComboBox.getValue());
 
         for (Room room : rooms) {
@@ -97,7 +99,7 @@ public class RoomReservationSceneController implements Initializable {
                     reservePopUp(room.getBuilding().getBuilding_Name(),
                             room.getRoom_name(),
                             "date", // TODO: datePicker.getValue().toString(),
-                            timeFromComboBox.getValue() + " - " + timeToComboBox.getValue());
+                            timeSlotComboBox.getValue());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
