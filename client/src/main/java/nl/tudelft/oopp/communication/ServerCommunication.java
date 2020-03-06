@@ -144,8 +144,8 @@ public class ServerCommunication {
                                             String timeFrom, String timeTo, String roomType)
             throws URISyntaxException, IOException {
 
-        String url = String.format("http://localhost:8080/getAvailableRooms/%s/%s/%s:00/%s:00",
-                building, date.toString(), timeFrom, timeTo);
+        String url = String.format("http://localhost:8080/getAvailableRooms/%s/%s/%s:00/%s:00/%s",
+                building, date.toString(), timeFrom, timeTo, MainApp.user.getUserId());
 
         String res = request(url);
         System.out.println(res);
