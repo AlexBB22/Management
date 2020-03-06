@@ -36,7 +36,6 @@ public class BikeReservation {
     private Date day;
 
     public BikeReservation() {
-
     }
 
     public BikeReservation(Date day) {
