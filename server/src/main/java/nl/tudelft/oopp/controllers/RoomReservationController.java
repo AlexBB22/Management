@@ -228,7 +228,6 @@ public class RoomReservationController {
                                                 @PathVariable Time endTime, @PathVariable Integer roleId) {
 
         List<StudentReservations> objects = roomReservationRepository.findAllStudentReservations(buildingName, day, startTime, endTime, roleId);
-
         return objects;
     }
 

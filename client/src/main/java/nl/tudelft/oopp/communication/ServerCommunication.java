@@ -7,12 +7,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.sql.Date;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
@@ -59,7 +61,6 @@ public class ServerCommunication {
         //of the user that the server sent back and save them
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        System.out.println(jsonUser);
         User authenticatedUser = null;
         try {
             JsonNode jsonNode = objectMapper.readTree(jsonUser);
@@ -110,7 +111,6 @@ public class ServerCommunication {
         HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").POST(HttpRequest.BodyPublishers.ofString(requestBody)).build();
         //Sending HTTP Request and getting response
         HttpResponse<String> response;
-        System.out.println(request.bodyPublisher());
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
@@ -129,6 +129,24 @@ public class ServerCommunication {
         }
         return userId;
     }
+
+
+    public static ArrayList<OverridableRoom> getOverridableRooms(String buildingName, LocalDate day, String startTime, String endTime,
+                                                             int roleId) throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/staffGetAvailableRooms/%s/%s/%s/%s/%s",
+                buildingName, day.toString(), startTime, endTime, roleId);
+        String res = request(url);
+        System.out.println(res);
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(res, new TypeReference<ArrayList<OverridableRoom>>(){});
+    }
+
+    public static ArrayList<AvailableRoom> getAvailableRooms() {
+        return null;
+    }
+
+
 
     /**
      * Request the rooms available (with a certain query).

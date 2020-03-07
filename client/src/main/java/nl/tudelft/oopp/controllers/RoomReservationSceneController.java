@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Array;
 import java.sql.Time;
 import java.text.CompactNumberFormat;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.Building;
+import nl.tudelft.oopp.communication.OverridableRoom;
 import nl.tudelft.oopp.communication.Room;
 import nl.tudelft.oopp.communication.ServerCommunication;
 
@@ -101,7 +103,7 @@ public class RoomReservationSceneController implements Initializable {
         //add regular times
         String t2 = "08:45:00-10:45:00";
         String t3 = "10:45:00-12:45:00";
-        String t4 = "12:45:00-13:45:00";
+        String t4 = "13:45:00-15:45:00";
         String t5 = "15:45:00-17:45:00";
         times.addAll(t2, t3, t4, t5);
 
@@ -118,6 +120,7 @@ public class RoomReservationSceneController implements Initializable {
         selectBuildingMessage.setText("");
     }
 
+
     /**.
      * Search button handler.
      * @param actionEvent the event that happens
@@ -130,35 +133,33 @@ public class RoomReservationSceneController implements Initializable {
         // Clear vbox before adding items
         roomList.getChildren().clear();
 
-        //String[] rooms = {"rooms akdmkwadawdjlawjdjakwd", "wdawdawdawdwadawda", "awjdawjd"};
+        //Getting the start and end time the user selected
         String[] timeSlot = timeSlotComboBox.getValue().split("-");
-
         String starttime = timeSlot[0];
         String endtime = timeSlot[1];
 
-        ArrayList<Room> rooms = ServerCommunication.getRooms(datePicker.getValue(),
-                buildingComboBox.getValue(), starttime, endtime,
-                roomTypeComboBox.getValue());
+        ArrayList<OverridableRoom> overridableRooms = ServerCommunication.getOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime, 1);
 
-        for (Room room : rooms) {
-            Text roomName = new Text(room.getRoom_name());
-            Button reserveBtn = new Button("Reserve");
+        for (OverridableRoom or: overridableRooms) {
+            Text roomName = new Text(or.getRoomName());
+            Button reserveBtn = new Button("Override This Reservation");
             reserveBtn.setAlignment(Pos.TOP_RIGHT);
             reserveBtn.setOnAction(event -> {
                 try {
-                    reservePopUp(room.getBuilding().getBuilding_Name(),
-                            room.getRoom_name(),
+                    reservePopUp(or.getBuildingName(),
+                            or.getRoomName(),
                             "date", // TODO: datePicker.getValue().toString(),
                             timeSlotComboBox.getValue());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-
             HBox container = new HBox(roomName, reserveBtn);
             container.setPadding(new Insets(0,0,5,0));
             roomList.getChildren().add(container);
         }
+
     }
 
     @FXML

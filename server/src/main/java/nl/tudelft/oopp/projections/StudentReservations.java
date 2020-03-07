@@ -1,32 +1,32 @@
 package nl.tudelft.oopp.projections;
 
 public interface StudentReservations {
-    int getRole_id();
+    int getroleID();
 
-    String getrole_name();
+    String getroleName();
 
-    String getuser_name();
+    String getuserName();
 
-    String getbuilding_name();
+    String getbuildingName();
 
-    String getroom_name();
+    String getroomName();
 
     String getname();
 
-    int getroom_id();
+    int getroomID();
 
     int getcapacity();
 
     boolean getclicker();
 
-    boolean getpower_outlets();
+    boolean getpowerOutlets();
 
     boolean gettv();
 
     boolean getwhiteboard();
 
-    int getreservation_id();
+    int getreservationID();
 
-    int gettimeslot_id();
+    int gettimeslotID();
 }
 
