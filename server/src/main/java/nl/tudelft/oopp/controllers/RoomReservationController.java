@@ -12,7 +12,8 @@ import nl.tudelft.oopp.entities.RoomReservation;
 import nl.tudelft.oopp.entities.TimeSlot;
 import nl.tudelft.oopp.entities.User;
 
-import nl.tudelft.oopp.projections.StudentReservations;
+import nl.tudelft.oopp.projections.AvailableRoomProjection;
+import nl.tudelft.oopp.projections.OverridableRoomProjection;
 import nl.tudelft.oopp.repositories.BuildingRepository;
 import nl.tudelft.oopp.repositories.RoomRepository;
 import nl.tudelft.oopp.repositories.RoomReservationRepository;
@@ -212,23 +213,45 @@ public class RoomReservationController {
     }
 
     /**
-     * This endpoint returns information about reserved rooms. This is called when a staff wants to also see the rooms
-     * that a student as reserved.
-     * @param buildingName - the name of the building where a staff has selected
-     * @param day - the date the staff member wants to reserve a room
+     * This endpoint is responsible for querying the DB to find and return a list of Overridable rooms based on the
+     * given parameters.
+     * @author Kanish Dwivedi
+     * @param buildingName - the name of the building in which the reserved rooms are
+     * @param day - the date at which which the rooms are reserved
      * @param startTime - the start time of the reservation
      * @param endTime - the end time of the reservation
-     * @param roleId - the id corresponding to the role for whom the reservations want to be retrieved (in this case 1 as
-     *               we want to see the reservations a student has made)
-     * @return
+     * @param roleId - the id corresponding to the role for whom the reservations want to be retrieved. For example,
+     *               if roleID = 1 then it will retrieve a list of all rooms reserved by Students.
+     * @return List<OverridableRoomProjection></OverridableRoomProjection> - returns a list of OverridableRoomProjection
+     *                    objects. These objects contain all information from the query about the reserved room.
      */
-    @GetMapping("staffGetAvailableRooms/{buildingName}/{day}/{startTime}/{endTime}/{roleId}")
+    @GetMapping("getOnlyOverridableRooms/{buildingName}/{day}/{startTime}/{endTime}/{roleId}")
     @ResponseBody
-    public List<StudentReservations> staffGetAvailableRooms(@PathVariable String buildingName, @PathVariable Date day, @PathVariable Time startTime,
-                                                @PathVariable Time endTime, @PathVariable Integer roleId) {
-
-        List<StudentReservations> objects = roomReservationRepository.findAllStudentReservations(buildingName, day, startTime, endTime, roleId);
-        return objects;
+    public List<OverridableRoomProjection> getOnlyOverridableRooms(@PathVariable String buildingName, @PathVariable Date day, @PathVariable Time startTime,
+                                                                  @PathVariable Time endTime, @PathVariable Integer roleId) {
+        List<OverridableRoomProjection> overridableRooms = roomReservationRepository.findOnlyOverridableRooms(buildingName, day, startTime, endTime, roleId);
+        return overridableRooms;
     }
+
+    /**
+     * This endpoint is responsible for querying the DB to find and return a list of available rooms based on the
+     * given parameters.
+     * @author Kanish Dwivedi
+     * @param buildingName - the name of the building in which the user wants to get the available rooms
+     * @param day - the date at which the the user wants the rooms are available at
+     * @param startTime - the startTime at which the room should be available from
+     * @param endTime - the endTime at which the room should be available till
+     * @return List<AvailableRoomProjection></AvailableRoomProjection> - returns a list of AvailableRoomProjection
+     *                      objects. These objects contain all information regarding the rooms and their details.
+     */
+    @GetMapping("getOnlyAvailableRooms/{buildingName}/{day}/{startTime}/{endTime}")
+    @ResponseBody
+    public List<AvailableRoomProjection> getOnlyAvailableRooms(@PathVariable String buildingName, @PathVariable Date day, @PathVariable Time startTime,
+                                                               @PathVariable Time endTime) {
+        List<AvailableRoomProjection>  availableRooms = roomReservationRepository.findOnlyAvailableRooms(buildingName, day, startTime, endTime);
+        return availableRooms;
+    }
+
+
 
 }

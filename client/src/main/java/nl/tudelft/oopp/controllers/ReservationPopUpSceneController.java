@@ -20,6 +20,22 @@ public class ReservationPopUpSceneController {
     @FXML private Text resConfirmed;
     @FXML private Button cancelButton;
 
+    public void setBuilding(Text building) {
+        this.building = building;
+    }
+
+    public void setRoom(Text room) {
+        this.room = room;
+    }
+
+    public void setDate(Text date) {
+        this.date = date;
+    }
+
+    public void setTime(Text time) {
+        this.time = time;
+    }
+
     @FXML
     void backBtnHandler() {
         Stage stage = (Stage) cancelButton.getScene().getWindow();

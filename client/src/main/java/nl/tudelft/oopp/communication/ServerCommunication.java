@@ -29,6 +29,7 @@ public class ServerCommunication {
 
     /**
      * Check login credentials with server.
+     * @author Kanish Dwivedi
      * @param userName - the username given from the user
      * @param password - the password given from the user
      * @return - Null if the user was not verified. The actual user entity from the DB if the user is verified
@@ -81,6 +82,7 @@ public class ServerCommunication {
     /**
      * Create a new user in the database.
      * TODO: check if email and username are not already in use
+     * @author Kanish Dwivedi
      * @param username - the userName of the new user which is to be added
      * @param email - the email of the new user which is to be added
      * @param password - the password of the new user which is to be added
@@ -131,21 +133,52 @@ public class ServerCommunication {
     }
 
 
-    public static ArrayList<OverridableRoom> getOverridableRooms(String buildingName, LocalDate day, String startTime, String endTime,
+    /**
+     * This method is responsible to communicate with the database to retrieve a list of overrideable rooms based
+     * on the roleID. It then also using JackSon to map the resulting JSON string to OverridableRoom objects.
+     * @author Kanish Dwivedi
+     * @param buildingName - the name of the building in which the room exists
+     * @param day - the day at which the rooms are reserved
+     * @param startTime - the startime at which the rooms are reserved
+     * @param endTime - the endtime at which the rooms are reserved upto
+     * @param roleId - the roleID represents which rooms we want to get. If roleID = 1, we want to get
+     *               all rooms that have already been reserved by Students.
+     * @return OverridableRoom - returns a list of rooms that this user can override.
+     * @throws URISyntaxException - The error returned if the URL has invalid syntax.
+     * @throws IOException - The error returned if the communication fails, or Object mapping fails by JackSon.
+     */
+    public static ArrayList<OverridableRoom> getOnlyOverridableRooms(String buildingName, LocalDate day, String startTime, String endTime,
                                                              int roleId) throws URISyntaxException, IOException {
-        String url = String.format("http://localhost:8080/staffGetAvailableRooms/%s/%s/%s/%s/%s",
+        String url = String.format("http://localhost:8080/getOnlyOverridableRooms/%s/%s/%s/%s/%s",
                 buildingName, day.toString(), startTime, endTime, roleId);
         String res = request(url);
-        System.out.println(res);
-
+        System.out.println("These are overridable rooms:" + res);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(res, new TypeReference<ArrayList<OverridableRoom>>(){});
     }
 
-    public static ArrayList<AvailableRoom> getAvailableRooms() {
-        return null;
-    }
+    /**
+     * This method is responsible to communicate with the database to retrieve a list of available rooms based
+     * on the roleID. It then also using JackSon to map the resulting JSON string to OverridableRoom objects.
+     * @author Kanish Dwivedi
+     * @param buildingName - the name of the building in which the room exists
+     * @param day - the day at which we want to find available rooms
+     * @param startTime - the startime at which the rooms are available from
+     * @param endTime - the endtime at which the rooms are available upto
+     * @return AvailableRoom - returns a list of available rooms that this user can reserve
+     * @throws URISyntaxException - The error returned if the URL has invalid syntax.
+     * @throws IOException - The error returned if the communication fails, or Object mapping fails by JackSon.
+     */
+    public static ArrayList<AvailableRoom> getOnlyAvailableRooms(String buildingName, LocalDate day, String startTime, String endTime)
+            throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/getOnlyAvailableRooms/%s/%s/%s/%s",
+                buildingName, day.toString(), startTime, endTime);
+        String jsonRes = request(url);
+        System.out.println("These are available rooms: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
 
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<AvailableRoom>>(){});
+    }
 
 
     /**

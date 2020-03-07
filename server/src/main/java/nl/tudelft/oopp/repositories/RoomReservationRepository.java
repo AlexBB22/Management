@@ -4,7 +4,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import nl.tudelft.oopp.entities.RoomReservation;
-import nl.tudelft.oopp.projections.StudentReservations;
+import nl.tudelft.oopp.projections.AvailableRoomProjection;
+import nl.tudelft.oopp.projections.OverridableRoomProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -65,10 +66,38 @@ public interface RoomReservationRepository extends JpaRepository<RoomReservation
     List<Integer> findAllOverridableRoomReservations(String buildingName, Date day, Time startTime, Time endTime, int roleFk);
 
 
+    /**
+     * A query that returns a list of all overridable rooms based on the given parameters.
+     * It selects all important information such as the rooms properties, and by whom the room is reserved.
+     * @author Kanish Dwivedi
+     * @param buildingName - the name of the building in which the reserved rooms are
+     * @param day - the date at which which the rooms are reserved
+     * @param startTime - the start time of the reservation
+     * @param endTime - the end time of the reservation
+     * @param roleID - the id corresponding to the role for whom the reservations want to be retrieved. For example,
+     *               if roleID = 1 then it will retrieve a list of all rooms reserved by Students.
+     * @return List of overridable room objects.
+     */
     @Query(value = "SELECT role_id AS roleID, role_name AS roleName, user_name AS userName, building_name AS buildingName, room_name AS roomName, name, "
             + " room_id AS roomID, capacity, clicker, power_outlets AS powerOutlets, tv, whiteboard, reservation_id AS reservationID, timeslot_id AS timeslotID"
             + " FROM roomreservation NATURAL JOIN timeslot NATURAL JOIN room NATURAL JOIN type NATURAL JOIN user JOIN role on (role_fk = role.role_id)"
             + " WHERE building_name = ?1 AND day = ?2 AND (start_time = ?3 AND end_time = ?4) AND role_id = ?5", nativeQuery = true)
-    List<StudentReservations> findAllStudentReservations(String buildingName, Date day, Time startTime, Time endTime, Integer roleID);
+    List<OverridableRoomProjection> findOnlyOverridableRooms(String buildingName, Date day, Time startTime, Time endTime, Integer roleID);
+
+    /**
+     * A query that returns a list of all available rooms based on the given parameters.
+     * It selects all important information such as the rooms properties
+     * @author Kanish Dwivedi
+     * @param buildingName - the name of the building in which the user wants to get the available rooms
+     * @param day - the date at which the the user wants the rooms are available at
+     * @param startTime - the startTime at which the room should be available from
+     * @param endTime - the endTime at which the room should be available till
+     * @return List of available room objects
+     */
+    @Query(value = "SELECT room_id AS roomID, room_name AS roomName, name, capacity, building_name as buildingName, clicker, power_outlets AS powerOutlets, "
+            + " tv, whiteboard FROM room NATURAL JOIN type WHERE room_id NOT IN "
+            + "(SELECT room_id FROM roomreservation NATURAL JOIN timeslot NATURAL JOIN room"
+            + " WHERE building_name = ?1 AND day = ?2 AND (start_time = ?3 AND end_time = ?4)) AND building_name = ?1", nativeQuery = true)
+    List<AvailableRoomProjection> findOnlyAvailableRooms(String buildingName, Date day, Time startTime, Time endTime);
 
 }

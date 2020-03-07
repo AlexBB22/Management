@@ -20,6 +20,24 @@ public class OverridableRoom {
 
     }
 
+    /**
+     * Constructor for an OverridableRoom.
+     * @author Kanish Dwivedi
+     * @param roleID - the id representing the role of the person that has currently reserved this room
+     * @param roleName - the name of the role of the person that has currently reserved this room
+     * @param userName - the name of the person who has currently reserved this room
+     * @param buildingName -the name of the building where the room is
+     * @param roomName - the name of the room
+     * @param name - the name of the type of the room
+     * @param roomID - the id of the room
+     * @param capacity - the capacity of the room
+     * @param clicker - if the room has a clicker or not
+     * @param powerOutlets - if the room has a power outlet or not
+     * @param tv - if the room has a tv or not
+     * @param whiteboard - if the room has a whiteboard or not
+     * @param reservationID - the id of the reservation
+     * @param timeslotID - the id of the timeslot
+     */
     public OverridableRoom(int roleID, String roleName, String userName, String buildingName, String roomName,
                            String name, int roomID, int capacity, boolean clicker, boolean powerOutlets,
                            boolean tv, boolean whiteboard, int reservationID, int timeslotID) {
@@ -153,21 +171,16 @@ public class OverridableRoom {
 
     @Override
     public String toString() {
-        return "OverridableRoom{" +
-                "roleID=" + roleID +
-                ", roleName='" + roleName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", buildingName='" + buildingName + '\'' +
-                ", roomName='" + roomName + '\'' +
-                ", name='" + name + '\'' +
-                ", roomID=" + roomID +
-                ", capacity=" + capacity +
-                ", clicker=" + clicker +
-                ", powerOutlets=" + powerOutlets +
-                ", tv=" + tv +
-                ", whiteboard=" + whiteboard +
-                ", reservationID=" + reservationID +
-                ", timeslotID=" + timeslotID +
-                '}';
+        return "OverridableRoom{"
+                + "roleID=" + roleID
+                + ", roleName='" + roleName + '\''
+                + ", userName='" + userName + '\''
+                + ", buildingName='" + buildingName + '\''
+                + ", roomName='" + roomName + '\''
+                + ", name='" + name + '\''
+                + ", roomID=" + roomID + ", capacity=" + capacity
+                + ", clicker=" + clicker + ", powerOutlets=" + powerOutlets
+                + ", tv=" + tv + ", whiteboard=" + whiteboard
+                + ", reservationID=" + reservationID + ", timeslotID=" + timeslotID + '}';
     }
 }
