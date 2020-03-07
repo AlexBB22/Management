@@ -59,7 +59,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <ComboBox fx:id="buildingComboBox" prefWidth="150.0" />
+            <ComboBox fx:id="buildingComboBox" onAction="#getBuildingTimes" prefWidth="150.0" />
             <HBox>
                <children>
                   <VBox>
@@ -76,6 +76,11 @@
                      </children>
                   </VBox>
                   <VBox />
+                  <Text fx:id="selectBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="129.0">
+                     <HBox.margin>
+                        <Insets left="10.0" top="35.0" />
+                     </HBox.margin>
+                  </Text>
                </children>
             </HBox>
             <Label layoutX="10.0" layoutY="53.0" text="Room type">

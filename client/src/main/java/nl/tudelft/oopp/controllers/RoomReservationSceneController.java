@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Time;
 import java.text.CompactNumberFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -45,19 +46,18 @@ public class RoomReservationSceneController implements Initializable {
     @FXML private ComboBox<String> roomTypeComboBox;
     @FXML private VBox roomList;
     @FXML private Text username;
+    @FXML private Text selectBuildingMessage;
+
+    private ArrayList<Building> buildingList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText(MainApp.user.getUserName());
         // TODO: populate combo boxes and show available rooms
-        ObservableList<String> times = FXCollections.observableArrayList(
-                "08:45-10:45", "10:45-12:45", "12:45-13:45", "13:45-15:45", "15:45-17:45"
-        );
-        timeSlotComboBox.getItems().addAll(times);
-
         ArrayList<Building> buildings = null;
         try {
             buildings = ServerCommunication.getBuildings();
+            buildingList = buildings;
         } catch (URISyntaxException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -66,10 +66,60 @@ public class RoomReservationSceneController implements Initializable {
         for (Building b : buildings) {
             buildingComboBox.getItems().add(b.getBuilding_Name());
         }
+        //hide timeslot combobox
+        timeSlotComboBox.setDisable(true);
+        selectBuildingMessage.setText("Select a building first please");
+    }
+
+    /**
+     * Whenever a building is selected from the dropdown menu
+     * depending on the building, we give different start and end times.
+     * @param actionEvent - event that describes a selection of a value from the buildingComboBox
+     */
+    @FXML
+    public void getBuildingTimes(ActionEvent actionEvent) {
+        //Setting timSlotComboBox to have correct values
+        String buildingName = buildingComboBox.getValue();
+        Time startTime = null;
+        Time endTime = null;
+        for (Building b: buildingList) {
+            String buName = b.getBuilding_Name();
+            if (buName.equals(buildingName)) {
+                startTime = b.getOpening();
+                endTime = b.getClosing();
+            }
+        }
+        startTime.toString();
+        endTime.toString();
+
+        ObservableList<String> times = FXCollections.observableArrayList();
+        //add specific start time if its not the regular one
+        if (startTime.equals("08:45:00") == false) {
+            String t1 = startTime + "-" + "08:45:00";
+            times.add(t1);
+        }
+        //add regular times
+        String t2 = "08:45:00-10:45:00";
+        String t3 = "10:45:00-12:45:00";
+        String t4 = "12:45:00-13:45:00";
+        String t5 = "15:45:00-17:45:00";
+        times.addAll(t2, t3, t4, t5);
+
+        //add specific end time if its not the regular one
+        if (endTime.equals("17:45:00") == false) {
+            String t6 = "17:45:00" + "-" + endTime;
+            times.add(t6);
+        }
+        //first clear out items in combobox then add new set
+        timeSlotComboBox.getItems().clear();
+        timeSlotComboBox.getItems().addAll(times);
+
+        timeSlotComboBox.setDisable(false);
+        selectBuildingMessage.setText("");
     }
 
     /**.
-     * Search button handler
+     * Search button handler.
      * @param actionEvent the event that happens
      * @throws URISyntaxException throws exception when wrong syntax is given
      */
