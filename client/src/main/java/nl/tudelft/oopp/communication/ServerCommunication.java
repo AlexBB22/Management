@@ -264,4 +264,21 @@ public class ServerCommunication {
         }
         return 1;
     }
+
+    /**
+     * ...
+     * @author Hidde Agterberg
+     * @param day
+     * @param startTime
+     * @param endTime
+     * @return
+     * @throws URISyntaxException
+     */
+    public static boolean hasReservation(Date day, Time startTime, Time endTime) throws URISyntaxException {
+        String url = String.format("http://localhost:8080/hasReservation/%s/%s/%s/%s", MainApp.user.getUserId(),
+                day, startTime, endTime);
+        String res = request(url);
+        return Boolean.valueOf(res);
+    }
+
 }

@@ -189,6 +189,7 @@ public class RoomReservationSceneController implements Initializable {
         //Depending on the role of the user, we call its respective function handler
 
         if (MainApp.user.getRole().getRoleName().equals("Student")) {
+            
             getRoomsForStudent();
         }
         if (MainApp.user.getRole().getRoleName().equals("Staff")) {

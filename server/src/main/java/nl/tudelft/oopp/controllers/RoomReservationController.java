@@ -238,6 +238,19 @@ public class RoomReservationController {
         return availableRooms;
     }
 
-
+    /**
+     * Returns true if user has a reservation.
+     * @author Hidde Agterberg
+     * @param user
+     * @param date
+     * @param start
+     * @param end
+     * @return
+     */
+    @GetMapping("hasReservation/{user}/{date}/{start}/{end}")
+    @ResponseBody
+    public boolean hasReservation(@PathVariable int user, @PathVariable Date date, @PathVariable Time start, @PathVariable Time end) {
+        return roomReservationRepository.hasReservation(user, date, start, end);
+    }
 
 }
