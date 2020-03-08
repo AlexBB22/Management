@@ -1,21 +1,5 @@
 package nl.tudelft.oopp.controllers;
 
-import static nl.tudelft.oopp.MainApp.switchScene;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.sql.Array;
-import java.sql.Date;
-import java.sql.Time;
-import java.text.CompactNumberFormat;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,14 +25,22 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.AvailableRoom;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.OverridableRoom;
-import nl.tudelft.oopp.communication.Room;
 import nl.tudelft.oopp.communication.ServerCommunication;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import static nl.tudelft.oopp.MainApp.switchScene;
 
 
 public class RoomReservationSceneController implements Initializable {
@@ -268,8 +260,48 @@ public class RoomReservationSceneController implements Initializable {
         }
     }
 
-    public void getRoomsForTeacher() {
-        //add code here Niels
+    public void getRoomsForTeacher() throws IOException, URISyntaxException {
+        // Clear vbox before adding all the room items into it
+        roomList.getChildren().clear();
+
+        //Making the title "Available rooms" and adding it to the main Vbox
+        Text availableRoomTitle = new Text("Available Rooms");
+        availableRoomTitle.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        availableRoomTitle.setFill(Color.BLUE);
+        roomList.getChildren().add(availableRoomTitle);
+
+        //Getting the start and end time the user selected to make query to DB
+        String[] timeSlot = timeSlotComboBox.getValue().split("-");
+        String starttime = timeSlot[0];
+        String endtime = timeSlot[1];
+
+        //Get List of available rooms
+        ArrayList<AvailableRoom> availableRooms = ServerCommunication.getOnlyAvailableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime);
+
+        //Calling method createAvailableView with each room so that its shown to the user and added into the vbox
+        for (AvailableRoom ar: availableRooms) {
+            createAvailableRoomView(ar);
+        }
+
+        //Making the title "Overridable rooms" and adding it after all the Available rooms have been added to the VBox
+        Text overridableRoomTitle = new Text("Overridable Rooms");
+        overridableRoomTitle.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        overridableRoomTitle.setFill(Color.BLUE);
+        roomList.getChildren().add(overridableRoomTitle);
+
+        //Get List of overridable rooms
+        //Call with roleId = 1 and roleId = 2, as Staff wants overridable rooms of Students (which are role 1) and staff (which are role 2)
+        ArrayList<OverridableRoom> overridableRooms = ServerCommunication.getOnlyOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime, 1);
+        ArrayList<OverridableRoom> overridableRooms2 = ServerCommunication.getOnlyOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime, 2);
+        overridableRooms.addAll(overridableRooms2);
+
+        //Calling method creatOverridableView with each room so that its shown to the user and added into the vbox
+        for (OverridableRoom or: overridableRooms) {
+            createOverridableRoomView(or);
+        }
     }
 
 

@@ -1,27 +1,23 @@
 package nl.tudelft.oopp.communication;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.tudelft.oopp.MainApp;
+import nl.tudelft.oopp.controllers.Hasher;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import nl.tudelft.oopp.MainApp;
-import nl.tudelft.oopp.controllers.Hasher;
 
 public class ServerCommunication {
 
@@ -244,4 +240,15 @@ public class ServerCommunication {
 
         return response.body();
     }
+
+    public void createRoomReservation(int roomId, String buildingName, Date day, Time startTime, Time endTime) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080/createNewReservation/%s/%s/%s/%s:00/%s:00/%s", roomId,
+                buildingName, day, startTime, endTime, MainApp.user.getUserId());
+        URI url = new URI(urlString);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        //Where next?
+    }
+
 }
