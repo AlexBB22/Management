@@ -36,6 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -71,6 +72,7 @@ public class RoomReservationSceneController implements Initializable {
     private static String reservedBy;
     private static String reservedByRole;
 
+    private boolean hasReserved;
 
     public static int getReservationId() {
         return reservationId;
@@ -110,6 +112,8 @@ public class RoomReservationSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        hasReserved = false;
+
         username.setText(MainApp.user.getUserName());
         // TODO: populate combo boxes and show available rooms
         ArrayList<Building> buildings = null;
@@ -190,6 +194,12 @@ public class RoomReservationSceneController implements Initializable {
         //Depending on the role of the user, we call its respective function handler
 
         if (MainApp.user.getRole().getRoleName().equals("Student")) {
+            String[] timeSlot = timeSlotComboBox.getValue().split("-");
+            if (ServerCommunication.hasReservation(Date.valueOf(datePicker.getValue()),
+                                                    Time.valueOf(timeSlot[0]), Time.valueOf(timeSlot[1]))) {
+                // TODO: do something
+                hasReserved = true;
+            }
             getRoomsForStudent();
         }
         if (MainApp.user.getRole().getRoleName().equals("Staff")) {
@@ -209,8 +219,35 @@ public class RoomReservationSceneController implements Initializable {
         RoomReservationSceneController.buildingName = buildingComboBox.getValue();
     }
 
-    public void getRoomsForStudent() {
-        //add code here Hidde
+    /**
+     * Get all the available rooms for students.
+     * @author Hidde Agterberg
+     * @throws IOException - Exception thrown if I/O fails
+     * @throws URISyntaxException - Exception thrown if the URl which is used to communicate with DB is invalid
+     */
+    public void getRoomsForStudent() throws IOException, URISyntaxException {
+        // Clear vbox before adding all the room items into it
+        roomList.getChildren().clear();
+
+        //Making the title "Available rooms" and adding it to the main Vbox
+        Text availableRoomTitle = new Text("Available Rooms");
+        availableRoomTitle.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        availableRoomTitle.setFill(Color.BLUE);
+        roomList.getChildren().add(availableRoomTitle);
+
+        //Getting the start and end time the user selected to make query to DB
+        String[] timeSlot = timeSlotComboBox.getValue().split("-");
+        String starttime = timeSlot[0];
+        String endtime = timeSlot[1];
+
+        //Get List of available rooms
+        ArrayList<AvailableRoom> availableRooms = ServerCommunication.getOnlyAvailableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime);
+
+        //Calling method createAvailableView with each room so that its shown to the user and added into the vbox
+        for (AvailableRoom ar: availableRooms) {
+            createAvailableRoomView(ar);
+        }
     }
 
     /**
@@ -444,6 +481,10 @@ public class RoomReservationSceneController implements Initializable {
      * @throws IOException - exception thrown when file not found
      */
     public void reservePopUp(String roomName, int roomID) throws IOException {
+        if (hasReserved) {
+            // TODO: maybe tell the user that they cant reserve a room
+            return;
+        }
         //Setting static variables to properties given so that these can be accessed in the other controller class
         RoomReservationSceneController.roomName = roomName;
         RoomReservationSceneController.roomID = roomID;
