@@ -53,6 +53,7 @@ public class RoomReservationSceneController implements Initializable {
     @FXML private Text username;
     @FXML private Text selectBuildingMessage;
     @FXML private ScrollPane scrollPane;
+    @FXML private static Button searchButton;
 
     //This arrayList just saves all the buildings from the query made during initialisation
     private ArrayList<Building> buildingList;
@@ -483,4 +484,7 @@ public class RoomReservationSceneController implements Initializable {
         switchScene(mouseEvent, "/mainScene.fxml", "TuDelft Reservation Application");
     }
 
+    public static Stage getStage() {
+        return (Stage) searchButton.getScene().getWindow();
+    }
 }

@@ -1,21 +1,19 @@
 package nl.tudelft.oopp.controllers;
 
-import com.sun.tools.javac.Main;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.User;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 public class LoginSceneController implements Initializable {
@@ -49,6 +47,7 @@ public class LoginSceneController implements Initializable {
                 //Setting the global user variable to the newUser that just logged in
                 MainApp.user = loggedInUser;
                 MainApp.switchScene(event, "/mainScene.fxml");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
