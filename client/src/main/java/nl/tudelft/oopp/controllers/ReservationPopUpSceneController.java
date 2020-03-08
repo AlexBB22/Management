@@ -48,6 +48,7 @@ public class ReservationPopUpSceneController implements Initializable {
 
     @FXML
     public void makeNewReservation() throws URISyntaxException {
+        System.out.println(this.startTime + "    " + this.endTime);
         System.out.println(roomID + " - " + date.getText() + " - " + startTime);
         System.out.flush();
         int okCode = ServerCommunication.createRoomReservation(roomID, building.getText(), Date.valueOf(date.getText()),

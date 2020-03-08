@@ -242,7 +242,7 @@ public class ServerCommunication {
     }
 
     public static int createRoomReservation(int roomId, String buildingName, Date day, Time startTime, Time endTime) throws URISyntaxException {
-        String urlString = String.format("http://localhost:8080/createNewReservation/%s/%s/%s/%s:00/%s:00/%s", roomId,
+        String urlString = String.format("http://localhost:8080/createNewReservation/%s/%s/%s/%s/%s/%s", roomId,
                 buildingName, day, startTime, endTime, MainApp.user.getUserId());
         URI url = new URI(urlString);
 
