@@ -100,4 +100,20 @@ public interface RoomReservationRepository extends JpaRepository<RoomReservation
             + " WHERE building_name = ?1 AND day = ?2 AND (start_time = ?3 AND end_time = ?4)) AND building_name = ?1", nativeQuery = true)
     List<AvailableRoomProjection> findOnlyAvailableRooms(String buildingName, Date day, Time startTime, Time endTime);
 
+    /**
+     * A query to check if a user has made a reservation at a certain date and time.
+     * @author Hidde Agterberg
+     * @param userID - user that is checked on reservations
+     * @param date - the date of the reservation
+     * @param startTime - the start time of the reservation
+     * @param endTime - the end time of the reservation
+     * @return TRUE if user has reservation else FALSE
+     */
+    @Query(value = "SELECT "
+            + "CASE WHEN COUNT(*) = 0 THEN 'False' ELSE 'TRUE' END AS hasReservation FROM roomreservation "
+            + "JOIN timeslot t on roomreservation.timeslot_id = t.timeslot_id "
+            + "WHERE user_id = ?1 AND day = ?2 "
+            + "AND t.start_time = ?3 AND t.end_time = ?4", nativeQuery = true)
+    boolean hasReservation(int userID, Date date, Time startTime, Time endTime);
+
 }
