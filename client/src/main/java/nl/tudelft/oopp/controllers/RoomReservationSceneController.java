@@ -36,6 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -70,6 +71,7 @@ public class RoomReservationSceneController implements Initializable {
     private static String reservedBy;
     private static String reservedByRole;
 
+    private boolean hasReserved;
 
     public static int getReservationId() {
         return reservationId;
@@ -109,6 +111,8 @@ public class RoomReservationSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        hasReserved = false;
+
         username.setText(MainApp.user.getUserName());
         // TODO: populate combo boxes and show available rooms
         ArrayList<Building> buildings = null;
@@ -189,7 +193,12 @@ public class RoomReservationSceneController implements Initializable {
         //Depending on the role of the user, we call its respective function handler
 
         if (MainApp.user.getRole().getRoleName().equals("Student")) {
-            
+            String[] timeSlot = timeSlotComboBox.getValue().split("-");
+            if (ServerCommunication.hasReservation(Date.valueOf(datePicker.getValue()),
+                                                    Time.valueOf(timeSlot[0]), Time.valueOf(timeSlot[1]))) {
+                // TODO: do something
+                hasReserved = true;
+            }
             getRoomsForStudent();
         }
         if (MainApp.user.getRole().getRoleName().equals("Staff")) {
@@ -471,6 +480,10 @@ public class RoomReservationSceneController implements Initializable {
      * @throws IOException - exception thrown when file not found
      */
     public void reservePopUp(String roomName, int roomID) throws IOException {
+        if (hasReserved) {
+            // TODO: maybe tell the user that they cant reserve a room
+            return;
+        }
         //Setting static variables to properties given so that these can be accessed in the other controller class
         RoomReservationSceneController.roomName = roomName;
         RoomReservationSceneController.roomID = roomID;

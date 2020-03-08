@@ -241,6 +241,16 @@ public class ServerCommunication {
         return response.body();
     }
 
+    /**
+     * ???
+     * @param roomId
+     * @param buildingName
+     * @param day
+     * @param startTime
+     * @param endTime
+     * @return
+     * @throws URISyntaxException
+     */
     public static int createRoomReservation(int roomId, String buildingName, Date day, Time startTime, Time endTime) throws URISyntaxException {
         String urlString = String.format("http://localhost:8080/createNewReservation/%s/%s/%s/%s/%s/%s", roomId,
                 buildingName, day, startTime, endTime, MainApp.user.getUserId());
@@ -266,12 +276,12 @@ public class ServerCommunication {
     }
 
     /**
-     * ...
+     * Request from the server whether the user has already reserved a room.
      * @author Hidde Agterberg
-     * @param day
-     * @param startTime
-     * @param endTime
-     * @return
+     * @param day - the day of the reservation
+     * @param startTime - the starting time of the reservation
+     * @param endTime - the end time of the reservation
+     * @return shows if the user has already resereved a room at that time and day
      * @throws URISyntaxException
      */
     public static boolean hasReservation(Date day, Time startTime, Time endTime) throws URISyntaxException {
