@@ -13,8 +13,6 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -241,7 +239,7 @@ public class ServerCommunication {
         return response.body();
     }
 
-    public void createRoomReservation(int roomId, String buildingName, Date day, Time startTime, Time endTime) throws URISyntaxException {
+   /* public void createRoomReservation(int roomId, String buildingName, Date day, Time startTime, Time endTime) throws URISyntaxException {
         String urlString = String.format("http://localhost:8080/createNewReservation/%s/%s/%s/%s:00/%s:00/%s", roomId,
                 buildingName, day, startTime, endTime, MainApp.user.getUserId());
         URI url = new URI(urlString);
@@ -250,5 +248,6 @@ public class ServerCommunication {
 
         //Where next?
     }
+    */
 
 }

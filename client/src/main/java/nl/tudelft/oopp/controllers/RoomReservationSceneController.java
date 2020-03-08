@@ -260,6 +260,14 @@ public class RoomReservationSceneController implements Initializable {
         }
     }
 
+    /**
+     * This method initiates the communication with the database to first get a list of all available rooms
+     * and then also get a list of all overridable rooms (ie. rooms reserved by students and staff)
+     *
+     * @author - Niels Tomassen
+     * @throws IOException - Exception thrown if I/O fails
+     * @throws URISyntaxException - Exception thrown if the URl which is used to communicate with DB is invalid
+     */
     public void getRoomsForTeacher() throws IOException, URISyntaxException {
         // Clear vbox before adding all the room items into it
         roomList.getChildren().clear();
