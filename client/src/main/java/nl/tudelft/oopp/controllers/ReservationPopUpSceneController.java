@@ -1,22 +1,18 @@
 package nl.tudelft.oopp.controllers;
 
-import static nl.tudelft.oopp.MainApp.main;
-import static nl.tudelft.oopp.MainApp.switchScene;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
-import nl.tudelft.oopp.communication.Room;
+import nl.tudelft.oopp.communication.ServerCommunication;
+
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.ResourceBundle;
 
 public class ReservationPopUpSceneController implements Initializable {
     @FXML private Text reservationUserName;
@@ -51,8 +47,16 @@ public class ReservationPopUpSceneController implements Initializable {
     }
 
     @FXML
-    public void makeNewReservation() {
-        System.out.println("its working 1");
+    public void makeNewReservation() throws URISyntaxException {
+        System.out.println(this.startTime + "    " + this.endTime);
+        System.out.println(roomID + " - " + date.getText() + " - " + startTime);
+        System.out.flush();
+        int okCode = ServerCommunication.createRoomReservation(roomID, building.getText(), Date.valueOf(date.getText()),
+               Time.valueOf(startTime), Time.valueOf(endTime));
+        if(okCode == -1) {
+            System.out.println("Looks like something went wrong! Try again!");
+            return;
+        } System.out.println("its working 1");
         /**
          * TODO: Make a method in ServerCommunication.java that makes a url to the DB to make a new reservation
          * TODO: Call that method here, and then if successful, inform the user it was (resConfirmed.setText("...."))
