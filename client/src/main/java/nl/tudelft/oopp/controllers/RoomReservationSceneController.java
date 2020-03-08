@@ -208,8 +208,35 @@ public class RoomReservationSceneController implements Initializable {
         RoomReservationSceneController.buildingName = buildingComboBox.getValue();
     }
 
-    public void getRoomsForStudent() {
-        //add code here Hidde
+    /**
+     * Get all the available rooms for students.
+     * @author Hidde Agterberg
+     * @throws IOException - Exception thrown if I/O fails
+     * @throws URISyntaxException - Exception thrown if the URl which is used to communicate with DB is invalid
+     */
+    public void getRoomsForStudent() throws IOException, URISyntaxException {
+        // Clear vbox before adding all the room items into it
+        roomList.getChildren().clear();
+
+        //Making the title "Available rooms" and adding it to the main Vbox
+        Text availableRoomTitle = new Text("Available Rooms");
+        availableRoomTitle.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        availableRoomTitle.setFill(Color.BLUE);
+        roomList.getChildren().add(availableRoomTitle);
+
+        //Getting the start and end time the user selected to make query to DB
+        String[] timeSlot = timeSlotComboBox.getValue().split("-");
+        String starttime = timeSlot[0];
+        String endtime = timeSlot[1];
+
+        //Get List of available rooms
+        ArrayList<AvailableRoom> availableRooms = ServerCommunication.getOnlyAvailableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime);
+
+        //Calling method createAvailableView with each room so that its shown to the user and added into the vbox
+        for (AvailableRoom ar: availableRooms) {
+            createAvailableRoomView(ar);
+        }
     }
 
     /**
