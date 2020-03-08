@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Array;
+import java.sql.Date;
 import java.sql.Time;
 import java.text.CompactNumberFormat;
 import java.util.ArrayList;
@@ -61,7 +62,58 @@ public class RoomReservationSceneController implements Initializable {
     @FXML private Text selectBuildingMessage;
     @FXML private ScrollPane scrollPane;
 
+    //This arrayList just saves all the buildings from the query made during initialisation
     private ArrayList<Building> buildingList;
+
+    //These attributes are used to save information about the last reservation made
+    //the getters of these methods are called in ReservationPopUpSceneController.java
+    private static int reservationId;
+    private static int roomID;
+    private static String roomName;
+    private static String buildingName;
+    private static String startTime;
+    private static String endTime;
+    private static String day;
+    //reservedBy is the username of the person who has reserved the overridable room
+    private static String reservedBy;
+    private static String reservedByRole;
+
+
+    public static int getReservationId() {
+        return reservationId;
+    }
+
+    public static int getRoomID() {
+        return roomID;
+    }
+
+    public static String getBuildingName() {
+        return buildingName;
+    }
+
+    public static String getStartTime() {
+        return startTime;
+    }
+
+    public static String getEndTime() {
+        return endTime;
+    }
+
+    public static String getRoomName() {
+        return roomName;
+    }
+
+    public static String getDay() {
+        return day;
+    }
+
+    public static String getReservedBy() {
+        return reservedBy;
+    }
+
+    public static String getReservedByRole() {
+        return reservedByRole;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -107,7 +159,7 @@ public class RoomReservationSceneController implements Initializable {
 
         ObservableList<String> times = FXCollections.observableArrayList();
         //add specific start time if its not the regular one
-        if (startTime.equals("08:45:00") == false) {
+        if (!startTime.equals("08:45:00")) {
             String t1 = startTime + "-" + "08:45:00";
             times.add(t1);
         }
@@ -119,7 +171,7 @@ public class RoomReservationSceneController implements Initializable {
         times.addAll(t2, t3, t4, t5);
 
         //add specific end time if its not the regular one
-        if (endTime.equals("17:45:00") == false) {
+        if (!endTime.equals("17:45:00")) {
             String t6 = "17:45:00" + "-" + endTime;
             times.add(t6);
         }
@@ -134,7 +186,7 @@ public class RoomReservationSceneController implements Initializable {
 
     /**.
      * Search button handler. This method calls three other methods to get the appropriate rooms depending on the
-     * users role.
+     * users role when the "search" button is clicked.
      * @author Kanish Dwivedi, Hidde, Niels
      * @param actionEvent the click event that happens
      * @throws URISyntaxException throws exception when wrong syntax is given
@@ -153,6 +205,15 @@ public class RoomReservationSceneController implements Initializable {
         if (MainApp.user.getRole().getRoleName().equals("Teacher")) {
             getRoomsForTeacher();
         }
+
+        //Set up the static variables attribute
+        //I set them up here, and not later as because if set later, then its possible for the user to change the
+        //time slot in the UI, and not click search. Thus, the incorrect timeslot value will be saved.
+        String[] timeslot = timeSlotComboBox.getValue().split("-");
+        RoomReservationSceneController.startTime = timeslot[0];
+        RoomReservationSceneController.endTime = timeslot[1];
+        RoomReservationSceneController.day = datePicker.getValue().toString();
+        RoomReservationSceneController.buildingName = buildingComboBox.getValue();
     }
 
     public void getRoomsForStudent() {
@@ -231,10 +292,7 @@ public class RoomReservationSceneController implements Initializable {
         reserveBtn.setAlignment(Pos.CENTER_LEFT);
         reserveBtn.setOnAction(event -> {
             try {
-                reservePopUp(or.getBuildingName(),
-                        or.getRoomName(),
-                        "date", // TODO: datePicker.getValue().toString(),
-                        timeSlotComboBox.getValue());
+                overridePopUp(or.getRoomName(), or.getUserName(), or.getRoleName(), or.getReservationID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -267,7 +325,7 @@ public class RoomReservationSceneController implements Initializable {
     /**
      * This method simply creates the HBox entity that will show all important information and contain functionality
      * for the user to see the room and reserve it.
-     * @autho Kanish Dwivedi
+     * @author Kanish Dwivedi
      * @param ar - the Available room which is to be shown and added to the main VBox
      */
     public void createAvailableRoomView(AvailableRoom ar) {
@@ -284,10 +342,7 @@ public class RoomReservationSceneController implements Initializable {
         reserveBtn.setAlignment(Pos.CENTER_LEFT);
         reserveBtn.setOnAction(event -> {
             try {
-                reservePopUp(ar.getBuildingName(),
-                        ar.getRoomName(),
-                        "date", // TODO: datePicker.getValue().toString(),
-                        timeSlotComboBox.getValue());
+                reservePopUp(ar.getRoomName(), ar.getRoomID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -344,20 +399,39 @@ public class RoomReservationSceneController implements Initializable {
 
     /**
      * A method to create a popup for a new room reservation.
-     * @param building - the name of the building
-     * @param room - the rooms to be shown
-     * @param date - the dates
-     * @param time - the time
+     * @author Scott
      * @throws IOException - exception thrown when file not found
      */
-    public void reservePopUp(String building, String room, String date, String time)
-                                throws IOException {
+    public void reservePopUp(String roomName, int roomID) throws IOException {
+        //Setting static variables to properties given so that these can be accessed in the other controller class
+        RoomReservationSceneController.roomName = roomName;
+        RoomReservationSceneController.roomID = roomID;
+
         Parent root = FXMLLoader.load(getClass().getResource("/reservationPopUpScene.fxml"));
         Stage st = new Stage();
         Scene sc = new Scene(root, 300, 400);
         st.setScene(sc);
         st.show();
     }
+
+    /**
+     * A method to create a popup for a new override.
+     * @author Kanish Dwivedi
+     * @throws IOException - exception thrown when file is not found
+     */
+    public void overridePopUp(String roomName, String reservedBy, String reservedByRole, int reservationId) throws IOException {
+        RoomReservationSceneController.roomName = roomName;
+        RoomReservationSceneController.reservedBy = reservedBy;
+        RoomReservationSceneController.reservedByRole = reservedByRole;
+        RoomReservationSceneController.reservationId = reservationId;
+
+        Parent root = FXMLLoader.load(getClass().getResource("/overrideReservationPopUpScene.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 300, 400);
+        st.setScene(sc);
+        st.show();
+    }
+
 
     @FXML
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
