@@ -1,17 +1,14 @@
 package nl.tudelft.oopp.controllers;
 
+import java.awt.event.ActionEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
-
-import java.awt.event.ActionEvent;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-
 
 public class OverrideReservationPopUpSceneController implements Initializable {
     @FXML private Text yourUserName;
@@ -49,9 +46,7 @@ public class OverrideReservationPopUpSceneController implements Initializable {
     @FXML
     public void overrideReservation() {
         System.out.println("its working 2");
-        /**
-         * TODO: Make a method in ServerCommunication.java that makes a url to the DB to override a reservation
-         * TODO: Call that method here, and then if successful, inform the user it was (resConfirmed.setText("...."))
-         */
+        // TODO: Make a method in ServerCommunication.java that makes a url to the DB to override a reservation
+        //TODO: Call that method here, and then if successful, inform the user it was (resConfirmed.setText("...."))
     }
 }

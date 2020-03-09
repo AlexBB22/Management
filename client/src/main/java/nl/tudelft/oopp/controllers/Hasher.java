@@ -12,8 +12,8 @@ import org.apache.commons.codec.binary.Hex;
 public class Hasher {
 
     /**
-     * @author Kanish Dwivedi
      * Main method made to simply test the password hashing.
+     * @author Kanish Dwivedi
      * @param args - arguments that can be given during runtime to the main method.
      */
     public static void main(String[] args) {

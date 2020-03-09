@@ -1,5 +1,15 @@
 package nl.tudelft.oopp.controllers;
 
+import static nl.tudelft.oopp.MainApp.switchScene;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,18 +41,6 @@ import nl.tudelft.oopp.communication.AvailableRoom;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.OverridableRoom;
 import nl.tudelft.oopp.communication.ServerCommunication;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.sql.Date;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import static nl.tudelft.oopp.MainApp.switchScene;
-
 
 public class RoomReservationSceneController implements Initializable {
 

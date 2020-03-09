@@ -4,9 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.tudelft.oopp.MainApp;
-import nl.tudelft.oopp.controllers.Hasher;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,6 +15,8 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import nl.tudelft.oopp.MainApp;
+import nl.tudelft.oopp.controllers.Hasher;
 
 public class ServerCommunication {
 
@@ -242,7 +241,7 @@ public class ServerCommunication {
     }
 
     /**
-     * ???
+     * .
      * @param roomId
      * @param buildingName
      * @param day

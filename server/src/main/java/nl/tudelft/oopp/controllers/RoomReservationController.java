@@ -1,19 +1,32 @@
 package nl.tudelft.oopp.controllers;
 
-import nl.tudelft.oopp.entities.*;
-import nl.tudelft.oopp.projections.AvailableRoomProjection;
-import nl.tudelft.oopp.projections.OverridableRoomProjection;
-import nl.tudelft.oopp.repositories.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import nl.tudelft.oopp.entities.Building;
+import nl.tudelft.oopp.entities.Room;
+import nl.tudelft.oopp.entities.RoomReservation;
+import nl.tudelft.oopp.entities.TimeSlot;
+import nl.tudelft.oopp.entities.User;
+import nl.tudelft.oopp.projections.AvailableRoomProjection;
+import nl.tudelft.oopp.projections.OverridableRoomProjection;
+import nl.tudelft.oopp.repositories.BuildingRepository;
+import nl.tudelft.oopp.repositories.RoomRepository;
+import nl.tudelft.oopp.repositories.RoomReservationRepository;
+import nl.tudelft.oopp.repositories.TimeSlotRepository;
+import nl.tudelft.oopp.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
 
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
