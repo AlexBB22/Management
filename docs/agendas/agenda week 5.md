@@ -10,13 +10,13 @@ Note taker:     Scott
 
 
 # Opening
-Alexandru
-Eli
+Alexandru x
+Eli x
 Hidde
-Kanish
-Kendra
-Niels
-Scott
+Kanish x
+Kendra x
+Niels x
+Scott x
 
 # Points of action
     registration:       added UI and working registration. We are able to make new accounts and post them to the database and
@@ -31,12 +31,13 @@ Scott
 # Action points for next week (Scrum board)
     role actions:       admin should get there own window and stuff(Scott UI, server/client admin stuff)
     bike reservation:   finish UI and connect UI to the code, add capacity stuff (Eli UI) (Kendra and alex code)
-    room reservation:   Back button at top, select timeslot after picking room possible she liked blue (kanish)
+    room reservation:   Back button at top, select timeslot after picking room possible she liked blue (kanish) block reservation for dates in the past.
     main screen:        Reservation on the main panel, with agenda, calendar. buttons change car parking space into building info. add admin button. (Kanish)
     food:               create and connect database table allow users to reserve, create UI for those screens (Hidde database, Niels UI)
     tests:              write tests for your code if possible (Everyone (Kanish))
     javadoc:            write javadoc for your code(Everyone (Niels))
 
 # Notes of the meeting
-
+define tasks correctly on gitlab give description
+make sure checkstyle is fully green when merging and only leave comments if there is something wrong also if you talked about this in person so david can see
 
