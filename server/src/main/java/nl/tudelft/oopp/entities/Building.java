@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,7 +44,6 @@ public class Building {
 
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
-
 
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
     private List<Restaurant> restaurants = new ArrayList<Restaurant>();
@@ -229,5 +229,15 @@ public class Building {
         this.bikeReservations.remove(reservation);
         reservation.setBuilding(null);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Building building = (Building) o;
+        return Objects.equals(buildingName, building.buildingName);
+    }
+
+
 }
 

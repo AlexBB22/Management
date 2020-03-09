@@ -36,7 +36,7 @@ public class BikeReservation {
     private Date day;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "building_name")
+    @JoinColumn(name = "buildingName")
     private Building building;
 
     public BikeReservation() {

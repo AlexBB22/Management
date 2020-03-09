@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -50,38 +51,44 @@ public class BikeReservationController {
                                    @PathVariable(value = "day") Date day,
                                    @PathVariable(value = "userId") int userId) {
 
-        int reservationsPerBuilding = 0;
-
-        List<BikeReservation> reservationList = bikeReservationRepository.findAll();
-
-        for (BikeReservation r : reservationList) {
-            String bName = r.getBuilding().getBuilding_Name();
-            Date date = r.getDay();
-            if (bName.equals(buildingName) && date.compareTo(day)==0) {
-                reservationsPerBuilding++;
-            }
-        }
+        int reservationsInBuilding = 0;
 
         Optional<Building> b = buildingRepository.findById(buildingName);
         Building building = b.get();
 
-        int bikesNearBuilding = building.getBikes().size();
-        System.out.println(bikesNearBuilding);
-        try {
-            if (bikesNearBuilding > reservationsPerBuilding) {
-                Optional<User> u = userRepository.findById(userId);
-                User user = u.get();
+        List<Bike> listOfBikesNearBuilding = building.getBikes();
+        int numberOfBikesNearBuilding = listOfBikesNearBuilding.size();
 
-                BikeReservation bikeReservation = new BikeReservation(day);
-                bikeReservation.setBike_user_fk(user);
-                bikeReservation.setBuilding(building);
-                user.addBikeReservation(bikeReservation);
+        List<BikeReservation> bikeReservationsAll = bikeReservationRepository.findAll();
 
-                System.out.println("Added a new bike reservation");
-                bikeReservationRepository.save(bikeReservation);
+        for(BikeReservation r : bikeReservationsAll){
+            Date date = r.getDay();
+            Building b2 = r.getBuilding();
+            if(day.compareTo(date)==0 && b2.equals(building)){
+                reservationsInBuilding++;
             }
-        } catch (NullPointerException e) {
-            System.out.println("There are no bikes available");
         }
+
+        Optional<User> u = userRepository.findById(userId);
+        User user = u.get();
+
+        if(reservationsInBuilding < numberOfBikesNearBuilding){
+            BikeReservation bikeReservation = new BikeReservation(day);
+            bikeReservation.setBike_user_fk(user);
+            bikeReservation.setBuilding(building);
+            user.addBikeReservation(bikeReservation);
+            building.addBikeReservation(bikeReservation);
+
+            System.out.println("Added a new bike reservation");
+            bikeReservationRepository.save(bikeReservation);
+        }
+        else{
+            System.out.println("There are no available bikes to reserve");
+        }
+
+
+
+
+
     }
 }
