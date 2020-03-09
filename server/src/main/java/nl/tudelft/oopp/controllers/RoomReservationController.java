@@ -12,6 +12,7 @@ import nl.tudelft.oopp.entities.TimeSlot;
 import nl.tudelft.oopp.entities.User;
 import nl.tudelft.oopp.projections.AvailableRoomProjection;
 import nl.tudelft.oopp.projections.OverridableRoomProjection;
+import nl.tudelft.oopp.projections.UserReservationInfoProjection;
 import nl.tudelft.oopp.repositories.BuildingRepository;
 import nl.tudelft.oopp.repositories.RoomRepository;
 import nl.tudelft.oopp.repositories.RoomReservationRepository;
@@ -265,5 +266,19 @@ public class RoomReservationController {
     public boolean hasReservation(@PathVariable int user, @PathVariable Date date, @PathVariable Time start, @PathVariable Time end) {
         return roomReservationRepository.hasReservation(user, date, start, end);
     }
+
+
+    /**
+     * Returns a list of all reservations a user has made.
+     * @param userID - the id of the user for which the reservations are to be retrieved
+     * @return - a list of UserReservationInfo projection objects.
+     */
+    @GetMapping("getUserReservationInfo/{userID}")
+    @ResponseBody
+    public List<UserReservationInfoProjection> getUserReservationInfo(@PathVariable int userID) {
+        List<UserReservationInfoProjection> userReservedRooms = roomReservationRepository.getUserReservationInfo(userID);
+        return userReservedRooms;
+    }
+
 
 }

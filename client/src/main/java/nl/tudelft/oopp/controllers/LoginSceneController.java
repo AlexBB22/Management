@@ -14,9 +14,6 @@ import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.User;
 
-
-
-
 public class LoginSceneController implements Initializable {
     @FXML private Text submitResponse;
     @FXML private TextField passwordfield;

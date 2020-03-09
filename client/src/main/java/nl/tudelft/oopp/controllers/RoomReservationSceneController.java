@@ -2,6 +2,7 @@ package nl.tudelft.oopp.controllers;
 
 import static nl.tudelft.oopp.MainApp.switchScene;
 
+import com.sun.tools.javac.Main;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -21,6 +22,7 @@ import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -190,18 +192,27 @@ public class RoomReservationSceneController implements Initializable {
     public void searchButtonHandler(ActionEvent actionEvent)
             throws URISyntaxException, IOException {
         //Depending on the role of the user, we call its respective function handler
+        String role = MainApp.user.getRole().getRoleName();
 
-        if (MainApp.user.getRole().getRoleName().equals("Student")) {
+        if (role.equals("Student") || role.equals("Staff")) {
             String[] timeSlot = timeSlotComboBox.getValue().split("-");
             if (ServerCommunication.hasReservation(Date.valueOf(datePicker.getValue()),
-                                                    Time.valueOf(timeSlot[0]), Time.valueOf(timeSlot[1]))) {
-                // TODO: do something
+                    Time.valueOf(timeSlot[0]), Time.valueOf(timeSlot[1]))) {
                 hasReserved = true;
+                Alert warning = new Alert(Alert.AlertType.WARNING);
+                warning.setContentText("You have already reserved a room for the given timeslot and date. "
+                        + "You are not authorized to reserve another room for the given criteria.");
+                warning.show();
+                //set hasReserved to false now
+                hasReserved = false;
+                return;
             }
-            getRoomsForStudent();
-        }
-        if (MainApp.user.getRole().getRoleName().equals("Staff")) {
-            getRoomsForStaff();
+            if (role.equals("Student")) {
+                getRoomsForStudent();
+            }
+            if (role.equals("Staff")) {
+                getRoomsForStaff();
+            }
         }
         if (MainApp.user.getRole().getRoleName().equals("Teacher")) {
             getRoomsForTeacher();
@@ -480,7 +491,10 @@ public class RoomReservationSceneController implements Initializable {
      */
     public void reservePopUp(String roomName, int roomID) throws IOException {
         if (hasReserved) {
-            // TODO: maybe tell the user that they cant reserve a room
+            Alert warning = new Alert(Alert.AlertType.WARNING);
+            warning.setContentText("You have already reserved a room for the given timeslot and date. "
+                    + "You are not authorized to reserve another room for the given criteria.");
+            warning.show();
             return;
         }
         //Setting static variables to properties given so that these can be accessed in the other controller class

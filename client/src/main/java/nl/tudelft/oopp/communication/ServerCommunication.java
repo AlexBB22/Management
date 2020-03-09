@@ -275,6 +275,38 @@ public class ServerCommunication {
     }
 
     /**
+     * This method communicates with the server and overrides a reservation.
+     * @author Kanish Dwivedi
+     * @param reservationID - the id of the reservation which is to be overriden
+     * @param userID - the id of the user who will now be "owner" of this reservation
+     * @return int. -1 if fail, 1 if success
+     * @throws URISyntaxException - thrown if URL is invalid.
+     */
+    public static int overrideRoomReservation(int reservationID, int userID) throws URISyntaxException {
+        String stringURL = String.format("http://localhost:8080/overrideRoomReservation/%s/%s", reservationID, userID);
+        URI url = new URI(stringURL);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(url).PUT(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+    }
+
+
+
+    /**
      * Request from the server whether the user has already reserved a room.
      * @author Hidde Agterberg
      * @param day - the day of the reservation
@@ -288,6 +320,23 @@ public class ServerCommunication {
                 day, startTime, endTime);
         String res = request(url);
         return Boolean.valueOf(res);
+    }
+
+
+    /**
+     * This method requests the server to retrieve a list of all reservations made by a user.
+     * @author Kanish Dwivedi
+     * @param userID - the id of the user for which the reservations are to be retrieved from
+     * @return - a list of UserReservationInfo objects that contain information on each reservation a user has made
+     * @throws IOException - exception thrown if jackson mapping fails
+     * @throws URISyntaxException - exception thrown if URL to interact with DB is invalid.
+     */
+    public static ArrayList<UserReservationInfo> getUserReserationInfo(int userID) throws IOException, URISyntaxException {
+        String url = String.format("http://localhost:8080/getUserReservationInfo/%s", userID);
+        String jsonRes = request(url);
+        System.out.println("These are all the users reservations: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserReservationInfo>>(){});
     }
 
 }
