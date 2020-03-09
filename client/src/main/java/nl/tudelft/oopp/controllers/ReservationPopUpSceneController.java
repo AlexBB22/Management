@@ -55,6 +55,12 @@ public class ReservationPopUpSceneController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Button handler for making the reservation in the pop-up.
+     * @param event - ActionEvent
+     * @throws URISyntaxException - url exception
+     * @throws IOException - Input/output exception
+     */
     @FXML
     public void makeNewReservation(ActionEvent event) throws URISyntaxException, IOException {
         /*if (ServerCommunication.hasReservation(Date.valueOf(this.date.getText()),

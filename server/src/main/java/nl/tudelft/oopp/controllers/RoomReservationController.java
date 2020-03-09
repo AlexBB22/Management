@@ -255,11 +255,11 @@ public class RoomReservationController {
     /**
      * Returns true if user has a reservation.
      * @author Hidde Agterberg
-     * @param user
-     * @param date
-     * @param start
-     * @param end
-     * @return
+     * @param user - the user that is checked
+     * @param date - the date
+     * @param start - the starting time
+     * @param end - the end time
+     * @return boolean whether the user has a reservation at that time and date
      */
     @GetMapping("hasReservation/{user}/{date}/{start}/{end}")
     @ResponseBody
