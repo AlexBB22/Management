@@ -3,6 +3,7 @@ package nl.tudelft.oopp.controllers;
 import nl.tudelft.oopp.entities.*;
 import nl.tudelft.oopp.projections.AvailableRoomProjection;
 import nl.tudelft.oopp.projections.OverridableRoomProjection;
+import nl.tudelft.oopp.projections.UserReservationInfoProjection;
 import nl.tudelft.oopp.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -252,5 +253,19 @@ public class RoomReservationController {
     public boolean hasReservation(@PathVariable int user, @PathVariable Date date, @PathVariable Time start, @PathVariable Time end) {
         return roomReservationRepository.hasReservation(user, date, start, end);
     }
+
+
+    /**
+     * Returns a list of all reservations a user has made.
+     * @param userID - the id of the user for which the reservations are to be retrieved
+     * @return - a list of UserReservationInfo projection objects.
+     */
+    @GetMapping("getUserReservationInfo/{userID}")
+    @ResponseBody
+    public List<UserReservationInfoProjection> getUserReservationInfo(@PathVariable int userID) {
+        List<UserReservationInfoProjection> userReservedRooms = roomReservationRepository.getUserReservationInfo(userID);
+        return userReservedRooms;
+    }
+
 
 }

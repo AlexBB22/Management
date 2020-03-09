@@ -6,6 +6,7 @@ import java.util.List;
 import nl.tudelft.oopp.entities.RoomReservation;
 import nl.tudelft.oopp.projections.AvailableRoomProjection;
 import nl.tudelft.oopp.projections.OverridableRoomProjection;
+import nl.tudelft.oopp.projections.UserReservationInfoProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -115,5 +116,18 @@ public interface RoomReservationRepository extends JpaRepository<RoomReservation
             + "WHERE user_id = ?1 AND day = ?2 "
             + "AND t.start_time = ?3 AND t.end_time = ?4", nativeQuery = true)
     boolean hasReservation(int userID, Date date, Time startTime, Time endTime);
+
+
+    /**
+     * A query to get all reservations a user has made (returns selected information not all).
+     * @author Kanish Dwivedi
+     * @param userID - the id of the user, whose list of reservations is to be returned
+     * @return list of UserReservationInfo projection objects (contain all selected information from the JOIN query)
+     */
+    @Query(value = "SELECT reservation_id as reservationID, day, start_time as startTime, end_time as endTime,"
+            + " building_name as buildingName, room_name as roomName, name"
+            + " FROM roomreservation NATURAL JOIN timeslot NATURAL JOIN user NATURAL JOIN room NATURAL JOIN type"
+            + " WHERE user_id = ?1", nativeQuery = true)
+    List<UserReservationInfoProjection> getUserReservationInfo(int userID);
 
 }

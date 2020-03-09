@@ -27,6 +27,8 @@ public class ReservationPopUpSceneController implements Initializable {
     @FXML private Text date;
     @FXML private Text time;
 
+    @FXML private Text resConfirmed;
+
     @FXML private Button cancelButton;
 
     private int roomID;
@@ -66,20 +68,14 @@ public class ReservationPopUpSceneController implements Initializable {
         int okCode = ServerCommunication.createRoomReservation(roomID, building.getText(), Date.valueOf(date.getText()),
                Time.valueOf(startTime), Time.valueOf(endTime));
         if(okCode == -1) {
-            System.out.println("Looks like something went wrong! Try again!");
+            resConfirmed.setText("Looks like something went wrong! Try again!");
             return;
-        } System.out.println("its working 1");
+        }
+        resConfirmed.setText("Reservation set.");
        backBtnHandler();
        MainSceneController.setStatus(1);
        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/mainScene.fxml"));
        Parent root = loader.load();
        MainView.getPrimaryStage().setScene(new Scene(root));
-
-
-
-        /**
-         * TODO: Make a method in ServerCommunication.java that makes a url to the DB to make a new reservation
-         * TODO: Call that method here, and then if successful, inform the user it was (resConfirmed.setText("...."))
-         */
     }
 }
