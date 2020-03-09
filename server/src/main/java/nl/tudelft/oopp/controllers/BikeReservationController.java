@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.controllers;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import nl.tudelft.oopp.entities.Bike;
@@ -15,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller
 public class BikeReservationController {
@@ -34,36 +38,57 @@ public class BikeReservationController {
 
     /**
      * This method makes it possible to reserve a bike.
-     * @param bikeId - the bike that is being reserved
+     *
      * @param buildingName - the name of the building where the bike is located
-     * @param day - time when the bike will be reserved
-     * @param userId - information about the person who is doing the reservation
-     * @return a new BikeReservation
+     * @param day          - time when the bike will be reserved
+     * @param userId       - information about the person who is doing the reservation
      *
      * @author Sartori Kendra
      */
-    @PostMapping("/addBikeReservation/{bikeId}/{buildingName}/{day}/{userId}")
+    @PostMapping("/addBikeReservation/{buildingName}/{day}/{userId}")
     @ResponseBody
-    public BikeReservation addBikeReservation(@PathVariable (value = "bikeId") int bikeId,
-                                              @PathVariable (value = "buildingName") String buildingName,
-                                              @PathVariable (value = "day") Date day,
-                                              @PathVariable (value = "userId") int userId) {
+    public void addBikeReservation(@PathVariable(value = "buildingName") String buildingName,
+                                   @PathVariable(value = "day") Date day,
+                                   @PathVariable(value = "userId") int userId) {
+
+        int reservationsInBuilding = 0;
 
         Optional<Building> b = buildingRepository.findById(buildingName);
         Building building = b.get();
 
-        Optional<Bike> b1 = bikeRepository.findById(bikeId);
-        Bike bike = b1.get();
+        List<Bike> listOfBikesNearBuilding = building.getBikes();
+        int numberOfBikesNearBuilding = listOfBikesNearBuilding.size();
+
+        List<BikeReservation> bikeReservationsAll = bikeReservationRepository.findAll();
+
+        for(BikeReservation r : bikeReservationsAll){
+            Date date = r.getDay();
+            Building b2 = r.getBuilding();
+            if(day.compareTo(date)==0 && b2.equals(building)){
+                reservationsInBuilding++;
+            }
+        }
 
         Optional<User> u = userRepository.findById(userId);
         User user = u.get();
 
-        BikeReservation bikeReservation = new BikeReservation(day);
-        bikeReservation.setBike_user_fk(user);
-        bikeReservation.setBike_fk(bike);
-        user.addBikeReservation(bikeReservation);
+        if(reservationsInBuilding < numberOfBikesNearBuilding){
+            BikeReservation bikeReservation = new BikeReservation(day);
+            bikeReservation.setBike_user_fk(user);
+            bikeReservation.setBuilding(building);
+            user.addBikeReservation(bikeReservation);
+            building.addBikeReservation(bikeReservation);
 
-        System.out.println("Added a new bike reservation");
-        return bikeReservationRepository.save(bikeReservation);
+            System.out.println("Added a new bike reservation");
+            bikeReservationRepository.save(bikeReservation);
+        }
+        else{
+            System.out.println("There are no available bikes to reserve");
+        }
+
+
+
+
+
     }
 }
