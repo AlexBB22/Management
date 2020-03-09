@@ -148,15 +148,14 @@ public class RoomReservationSceneController implements Initializable {
             String buName = b.getBuilding_Name();
             if (buName.equals(buildingName)) {
                 startTime = b.getOpening();
+                System.out.println(b.getBuilding_Name() + " " + startTime);
                 endTime = b.getClosing();
             }
         }
-        startTime.toString();
-        endTime.toString();
 
         ObservableList<String> times = FXCollections.observableArrayList();
         //add specific start time if its not the regular one
-        if (!startTime.equals("08:45:00")) {
+        if (!startTime.toString().equals("08:45:00")) {
             String t1 = startTime + "-" + "08:45:00";
             times.add(t1);
         }
@@ -168,7 +167,7 @@ public class RoomReservationSceneController implements Initializable {
         times.addAll(t2, t3, t4, t5);
 
         //add specific end time if its not the regular one
-        if (!endTime.equals("17:45:00")) {
+        if (!endTime.toString().equals("17:45:00")) {
             String t6 = "17:45:00" + "-" + endTime;
             times.add(t6);
         }
