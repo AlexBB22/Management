@@ -55,7 +55,7 @@ public class OverrideReservationPopUpSceneController implements Initializable {
     @FXML
     public void overrideReservation() throws URISyntaxException, IOException {
         int okCode = ServerCommunication.overrideRoomReservation(this.reservationID, MainApp.user.getUserId());
-        if(okCode == -1) {
+        if (okCode == -1) {
             resConfirmed.setText("Looks like something went wrong! Try again!");
             return;
         }
@@ -66,7 +66,7 @@ public class OverrideReservationPopUpSceneController implements Initializable {
         Parent root = loader.load();
         MainView.getPrimaryStage().setScene(new Scene(root));
 
-        /**
+        /*
          * TODO: Make a method in ServerCommunication.java that makes a url to the DB to override a reservation
          * TODO: Call that method here, and then if successful, inform the user it was (resConfirmed.setText("...."))
          */

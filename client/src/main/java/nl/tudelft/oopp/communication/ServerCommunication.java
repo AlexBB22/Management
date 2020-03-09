@@ -241,14 +241,14 @@ public class ServerCommunication {
     }
 
     /**
-     * .
-     * @param roomId
-     * @param buildingName
-     * @param day
-     * @param startTime
-     * @param endTime
-     * @return
-     * @throws URISyntaxException
+     * Function requesting a room reservation from the server.
+     * @param roomId - room ID
+     * @param buildingName - name of the building
+     * @param day - date
+     * @param startTime - starting time
+     * @param endTime - ending time
+     * @return int 1/-1 based on whether the request was succesful
+     * @throws URISyntaxException - url exception
      */
     public static int createRoomReservation(int roomId, String buildingName, Date day, Time startTime, Time endTime) throws URISyntaxException {
         String urlString = String.format("http://localhost:8080/createNewReservation/%s/%s/%s/%s/%s/%s", roomId,
@@ -283,11 +283,11 @@ public class ServerCommunication {
      * @throws URISyntaxException - thrown if URL is invalid.
      */
     public static int overrideRoomReservation(int reservationID, int userID) throws URISyntaxException {
-        String stringURL = String.format("http://localhost:8080/overrideRoomReservation/%s/%s", reservationID, userID);
-        URI url = new URI(stringURL);
+        String url = String.format("http://localhost:8080/overrideRoomReservation/%s/%s", reservationID, userID);
+        URI uri = new URI(url);
 
         HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(url).PUT(HttpRequest.BodyPublishers.ofString("")).build();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).PUT(HttpRequest.BodyPublishers.ofString("")).build();
 
         //Sending HTTP Request and getting response
         HttpResponse<String> response;
@@ -313,7 +313,7 @@ public class ServerCommunication {
      * @param startTime - the starting time of the reservation
      * @param endTime - the end time of the reservation
      * @return shows if the user has already resereved a room at that time and day
-     * @throws URISyntaxException
+     * @throws URISyntaxException - url exception
      */
     public static boolean hasReservation(Date day, Time startTime, Time endTime) throws URISyntaxException {
         String url = String.format("http://localhost:8080/hasReservation/%s/%s/%s/%s", MainApp.user.getUserId(),
