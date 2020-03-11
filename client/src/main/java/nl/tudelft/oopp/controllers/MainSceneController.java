@@ -56,6 +56,14 @@ public class MainSceneController implements Initializable {
         switchScene(mouseEvent, "/accountScene.fxml", "Account Settings");
     }
 
+    @FXML
+    public void adminButtonHandler(MouseEvent mouseEvent) throws IOException {
+        String role = MainApp.user.getRole().getRoleName();
+        if (role.equals("Admin")) {
+            switchScene(mouseEvent, "/adminMainScene.fxml", "Admin Window");
+        }
+    }
+
     public void changeResConfirmed() {
         res.setText("The room has been successfully reserved!");
     }
