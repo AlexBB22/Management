@@ -339,4 +339,36 @@ public class ServerCommunication {
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserReservationInfo>>(){});
     }
 
+    /**
+     * creates a new building in the database.
+     * @param buildingName the name of the building.
+     * @param nonReservableSpace boolean indicating if building has non reservable space
+     * @param carParkingSpaces the amount of car parking space
+     * @param description a String giving the description of the building
+     * @param opening the time the building opens
+     * @param closing the time the building closes
+     * @return int. -1 if fail, 1 if success
+     * @throws URISyntaxException url exception
+     */
+    public static int createBuilding(String buildingName, boolean nonReservableSpace, int carParkingSpaces, String description, Time opening, Time closing) throws URISyntaxException {
+        String url = String.format("http://localhost:8080/addNewBuilding/%s/%s/%s/%s/%s/%s", buildingName, nonReservableSpace, carParkingSpaces, description, opening, closing);
+        URI uri = new URI(url);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).PUT(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+    }
 }

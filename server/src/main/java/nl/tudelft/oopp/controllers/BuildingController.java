@@ -83,24 +83,25 @@ public class BuildingController {
     }
 
     /**
-     * This method allows the admin to add a new building name.
-     * @param buildingName - the name/identifier of the building that needs to be added
-     * @param building - the building that needs to be added
-     *
-     * @author Sartori Kendra
+     * adds a new building to the database only an admin can do this.
+     * @param buildingName the name of the building.
+     * @param nonReservableSpace a boolean saying if the the building has non reservable space.
+     * @param carParkingSpaces the amount of car parking spaces
+     * @param description a String description of the building
+     * @param openingTime the time the building opens
+     * @param closingTime the time the building closes
+     * @author Kendra/Scott.
      */
-    @PostMapping("/addNewBuilding/{buildingName}/{closingTime}/{openingTime}")
+    @PostMapping("addNewBuilding/{buildingName}/{nonReservableSpace}/{carParkingSpaces}/{description}/{openingTime}/{closingTime}")
     @ResponseBody
     public void addNewBuilding(@PathVariable (value = "buildingName") String buildingName,
-                                @PathVariable (value = "closingTime") Time closingTime,
-                                @PathVariable (value = "openingTime") Time openingTime,
-                                @RequestBody Building building) {
+                               @PathVariable (value = "nonReservableSpace") boolean nonReservableSpace,
+                               @PathVariable (value = "carParkingSpaces") int carParkingSpaces,
+                               @PathVariable (value = "description") String description,
+                               @PathVariable (value = "openingTime") Time openingTime,
+                                @PathVariable (value = "closingTime") Time closingTime) {
 
-        Building newBuilding = building;
-
-        newBuilding.setBuilding_name(buildingName);
-        newBuilding.setOpening(openingTime);
-        newBuilding.setClosing(closingTime);
+        Building newBuilding = new Building(buildingName, nonReservableSpace, carParkingSpaces, description, openingTime, closingTime);
 
         System.out.println("Added a new building to the database");
         buildingRepository.save(newBuilding);

@@ -56,6 +56,11 @@ public class MainSceneController implements Initializable {
         switchScene(mouseEvent, "/accountScene.fxml", "Account Settings");
     }
 
+    /**
+     * handler for if someone wants to acces the admin menu.
+     * @param mouseEvent the clicking on the button.
+     * @throws IOException if the input is wrong throws an exception.
+     */
     @FXML
     public void adminButtonHandler(MouseEvent mouseEvent) throws IOException {
         String role = MainApp.user.getRole().getRoleName();
