@@ -30,7 +30,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     public void rentBikeButtonHandler(ActionEvent actionEvent) throws IOException {
-        switchScene(actionEvent, "/?.fxml");
+        switchScene(actionEvent, "/bikeReservation.fxml");
     }
 
     @FXML

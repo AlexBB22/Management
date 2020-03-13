@@ -86,9 +86,5 @@ public class BikeReservationController {
             System.out.println("There are no available bikes to reserve");
         }
 
-
-
-
-
     }
 }
