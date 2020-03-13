@@ -4,13 +4,29 @@ import static nl.tudelft.oopp.MainApp.switchScene;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
+
+import com.calendarfx.view.page.DayPage;
+import eu.hansolo.tilesfx.Tile;
+import eu.hansolo.tilesfx.TileBuilder;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import nl.tudelft.oopp.MainApp;
+
 
 public class MainSceneController implements Initializable {
 
@@ -22,33 +38,48 @@ public class MainSceneController implements Initializable {
 
     private static int status = 0;
 
+    @FXML
+    private DayPage dayPage;
+
+    @FXML
+    private GridPane mainGrid;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //adding clock
+        Tile clockTile = TileBuilder.create().skinType(Tile.SkinType.CLOCK)
+                .prefSize(200, 200).locale(Locale.ENGLISH).dateVisible(false).running(true).build();
+        mainGrid.add(clockTile, 1, 1);
+
+        Tile dateTile = TileBuilder.create().skinType(Tile.SkinType.DATE).backgroundColor(Color.BLUE).build();
+        mainGrid.add(dateTile, 2, 1);
         username.setText(MainApp.user.getUserName());
         if (status == 1) {
             changeResConfirmed();
             setStatus(0);
         }
+
     }
 
     @FXML
-    public void reserveRoomButtonHandler(ActionEvent actionEvent) throws IOException {
-        switchScene(actionEvent, "/roomReservationScene.fxml", "Reserve a room");
+    public void reserveRoomButtonHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/roomReservationScene.fxml", "Reserve a room");
     }
 
     @FXML
-    public void rentBikeButtonHandler(ActionEvent actionEvent) throws IOException {
-        switchScene(actionEvent, "/?.fxml");
+    public void rentBikeButtonHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/?.fxml");
     }
 
     @FXML
-    public void carParkButtonHandler(ActionEvent actionEvent) throws IOException {
-        switchScene(actionEvent, "/?.fxml");
+    public void carParkButtonHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/?.fxml");
     }
 
     @FXML
-    public void restaurantButtonHandler(ActionEvent actionEvent) throws IOException {
-        switchScene(actionEvent, "/?.fxml");
+    public void restaurantButtonHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/?.fxml");
     }
 
     @FXML
@@ -63,4 +94,7 @@ public class MainSceneController implements Initializable {
     public static void setStatus(int newStatus) {
         status = newStatus;
     }
+
+
+
 }

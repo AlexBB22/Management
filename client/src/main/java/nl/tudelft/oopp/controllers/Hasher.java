@@ -2,6 +2,9 @@ package nl.tudelft.oopp.controllers;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -20,6 +23,20 @@ public class Hasher {
         String password = "kanish";
         //just a test
         System.out.println(Hasher.hashPassword(password));
+
+        SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Calendar cal = Calendar.getInstance();
+        for(int i = Calendar.MONDAY; i <= Calendar.FRIDAY; i++) {
+            cal.set(Calendar.DAY_OF_WEEK, i);
+            System.out.println(cal.getTime().toString());//Returns Date
+            Date date = cal.getTime();
+
+            String dayString = dayFormat.format(date);
+            System.out.println("getDates - dayString=" + dayString);
+
+
+        }
     }
 
     /**
