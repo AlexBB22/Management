@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox prefHeight="345.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BikeReservationView">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="478.0" prefWidth="560.0" VBox.vgrow="ALWAYS">
+      <children>
+            <DatePicker layoutX="360.0" layoutY="73.0" onAction="#getBuildings" />
+            <Text layoutX="280.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Date" />
+            <Text layoutX="222.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Reservations">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="110.0" fitWidth="173.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../build/resources/main/images/tudelftLogo.png" />
+               </image>
+            </ImageView>
+            <ScrollPane layoutX="22.0" layoutY="105.0" prefHeight="200.0" prefWidth="200.0">
+               <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </ScrollPane>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text layoutX="22.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: Reservations are valid for one calendar day" />
+            <ImageView fitHeight="109.0" fitWidth="112.0" layoutX="437.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Desktop/c1cc62b4ca6715339282669d423fdc43_trendy-bike-clipart-transparent-png-stickpng_400-400.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="503.0" layoutY="4.0" onMouseClicked="#backToLogin" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/backBtn.png" />
+               </image>
+            </ImageView>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
