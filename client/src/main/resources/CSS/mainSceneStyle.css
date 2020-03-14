@@ -1,31 +1,113 @@
 .grid {
-   #-fx-background-color: linear-gradient(to right, #f2673d, #fa37a2, transparent 80%);
+   /*-fx-background-color: linear-gradient(to right, #f26612, #fa82d5, transparent 85%);*/
+    -fx-background-color: linear-gradient(to right, #ff9966, #ff5e62, transparent 95%);
 
 }
 
 .sidebar {
-    #-fx-background-color: #333645;
-    -fx-background-color: linear-gradient(#f2673d, #fa37a2, transparent 97%);
-    -fx-background-color: linear-gradient(#f2673d, #fa37a2, transparent 97%);
 
 }
 .logo {
-    -fx-background-radius: 55px;
-    -fx-border-radius: 50px;
+    -fx-background-color: #eee3e7;
 }
 
+.topBar {
+    -fx-background-color: #eee3e7;
+}
+
+.topBarButton {
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: #f5e3e7;
+}
+
+
 .buttons {
-    -fx-background-color: #ff8da8;
+    -fx-background-color: #eee3e7;
     -fx-background-radius: 30px;
     -fx-border-radius: 30px;
     -fx-border-width: 5px;
-    -fx-border-color: #ff1f8d;
+    -fx-border-color: #ff3f17;
 }
 
 .buttonText {
     -fx-background-color: grey;
-    -fx-font: 20px Tahoma;
+    -fx-font: 15px Tahoma;
     -fx-fill: white;
     -fx-stroke: black;
     -fx-stroke-width: 1.5;
+}
+
+.todayDateBox {
+    -fx-background-color: #fef3ff;
+    -fx-background-radius: 55px;
+    -fx-border-radius: 55px;
+}
+
+#todayDay {
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 25px;
+    -fx-fill: black;
+}
+
+#todayDateNumber {
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 110px;
+    -fx-fill: black;
+}
+
+#todayMonthYear {
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 25px;    -fx-fill: black;
+}
+
+.weekItemBox {
+    -fx-background-color: white;
+    /*-fx-background-color: #fef3ff;*/
+    -fx-background-radius: 50px;
+    -fx-border-radius: 45px;
+    -fx-border-width: 7px;
+    -fx-border-color: #ff5e62;
+}
+
+.weekItemDateText {
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 22px;
+    -fx-text-fill: black;
+}
+
+.weekItemHeadersText {
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 18px;
+    -fx-text-fill: black;
+}
+
+.weekItemReservationPane {
+    -fx-background-color:transparent;
+}
+.weekItemAgendaPane {
+    -fx-background-color:transparent;
+}
+.scroll-pane .viewport {
+    -fx-background-color: white;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
 }
