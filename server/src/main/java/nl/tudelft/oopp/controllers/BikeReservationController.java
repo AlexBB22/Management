@@ -86,6 +86,13 @@ public class BikeReservationController {
 
     }
 
+    /**
+     * This method returns the number of available bikes near a building.
+     *
+     * @param buildingName building name.
+     * @param day date
+     * @return the available bikes.
+     */
     @GetMapping("/availableBikesNumber/{buildingName}/{day}")
     @ResponseBody
     public int availableBikesNumber(@PathVariable(value = "buildingName") String buildingName,
@@ -103,7 +110,7 @@ public class BikeReservationController {
         for (BikeReservation r : bikeReservationsAll) {
             Date date = r.getDay();
             Building b2 = r.getBuilding();
-            if (day.compareTo(date)==0 && b2.equals(building)) {
+            if (day.compareTo(date) == 0 && b2.equals(building)) {
                 reservationsInBuilding++;
             }
         }
