@@ -220,4 +220,19 @@ public class ServerCommunication {
         return 1;
     }
 
+    /**
+     *This method gets the number of bikes available.
+     * @param buildingName the name of the building where the bike is.
+     * @param day the day when the user wants to select a bike.
+     * @return the number of bikes available near that building at that specific day.
+     */
+    public static int getNumberOfAvailableBikes(String buildingName, LocalDate day) throws URISyntaxException, IOException  {
+        String url = String.format("http://localhost:8080/availableBikesNumber/%s/%s",buildingName, day.toString());
+
+        String res = request(url);
+        System.out.println(res);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(res, new TypeReference<Integer>(){});
+    }
+
 }

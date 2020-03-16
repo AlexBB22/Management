@@ -9,7 +9,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="478.0" prefWidth="560.0" VBox.vgrow="ALWAYS">
       <children>
-            <DatePicker layoutX="360.0" layoutY="73.0" onAction="#getBuildings" />
+            <DatePicker fx:id="datePickerBike" layoutX="360.0" layoutY="73.0" onAction="#getBuildings" />
             <Text layoutX="280.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Date" />
             <Text layoutX="222.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Reservations">
                <font>
