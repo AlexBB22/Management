@@ -24,8 +24,10 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	//added this
-	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+	//compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.19'
 	runtimeOnly 'mysql:mysql-connector-java'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
 
 
 	// Local test database (in-memory)

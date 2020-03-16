@@ -1,0 +1,33 @@
+#Adding a new User entity (see the UserController PostMapping) example:
+http://localhost:8080/addUser/Student
+{
+  "email": "kanish@tudelft.nl",
+  "user_name": "kanish",
+  "user_password": "dwivedi"
+}
+        This adds a new Student (given in URL as a paramenter) with the given attribute values in the JSON body
+
+#Adding a new Type entity (see TypeController PostMapping) example:
+http://localhost:8080/addType
+{
+  "name": "StudyRoom",
+  "whiteBoard": true,
+  "tv": false,
+  "powerOutlets": true,
+  "clicker":false
+}
+          This adds a new Type with the given attributes in the JSON body
+
+#Adding a new Room entity (see RoomController PostMapping) example:
+http://localhost:8080/addRoomToDB/DW/3
+{
+  "capacity": 25,
+  "room_name": "DW-IZ3"
+}
+          This adds a new Room with the given Building and Type (given in URL as parameters) and with the given attributes in the JSON body
+
+http://localhost:8080/reserveTimeSlot/8/AS
+{
+"start_time": "08:45:00",
+"end_time": "10:45:00"
+}
