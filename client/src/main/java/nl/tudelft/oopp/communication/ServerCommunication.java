@@ -195,7 +195,15 @@ public class ServerCommunication {
         return response.body();
     }
 
-    public static int createBikeReservation (String buildingName, Date day) throws URISyntaxException {
+    /**
+     * Creates a new bike reservation.
+     * @author Sartori Kendra
+     * @param buildingName - the name of the building from which a bike needs to be reserved
+     * @param day - the date on which the bike will be reserved
+     * @return -1 if the creating a reservation has failed and 1 otherwise
+     * @throws URISyntaxException - thrown is URL is invalid
+     */
+    public static int createBikeReservation(String buildingName, Date day) throws URISyntaxException {
         String urlString = String.format("http://localhost:8080/addBikeReservation/%s/%s/%s",
                 buildingName, day,  MainApp.user.getUserId());
 

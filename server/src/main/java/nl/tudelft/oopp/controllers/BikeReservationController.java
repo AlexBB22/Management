@@ -61,10 +61,10 @@ public class BikeReservationController {
 
         List<BikeReservation> bikeReservationsAll = bikeReservationRepository.findAll();
 
-        for(BikeReservation r : bikeReservationsAll){
+        for (BikeReservation r : bikeReservationsAll) {
             Date date = r.getDay();
             Building b2 = r.getBuilding();
-            if(day.compareTo(date)==0 && b2.equals(building)){
+            if (day.compareTo(date) == 0 && b2.equals(building)) {
                 reservationsInBuilding++;
             }
         }
@@ -72,7 +72,7 @@ public class BikeReservationController {
         Optional<User> u = userRepository.findById(userId);
         User user = u.get();
 
-        if(reservationsInBuilding < numberOfBikesNearBuilding){
+        if (reservationsInBuilding < numberOfBikesNearBuilding) {
             BikeReservation bikeReservation = new BikeReservation(day);
             bikeReservation.setBike_user_fk(user);
             bikeReservation.setBuilding(building);
@@ -81,8 +81,7 @@ public class BikeReservationController {
 
             System.out.println("Added a new bike reservation");
             bikeReservationRepository.save(bikeReservation);
-        }
-        else{
+        } else {
             System.out.println("There are no available bikes to reserve");
         }
 
