@@ -82,13 +82,10 @@ public class BikeReservationController {
             System.out.println("Added a new bike reservation");
             bikeReservationRepository.save(bikeReservation);
         }
-        else{
+
+        else {
             System.out.println("There are no available bikes to reserve");
         }
-
-
-
-
 
     }
 }
