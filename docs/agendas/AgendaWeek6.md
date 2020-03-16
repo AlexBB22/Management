@@ -18,7 +18,7 @@ Eli x
 Hidde x
 Kanish x
 Kendra x
-Niels 
+Niels x
 Scott x
 
 # Approval of the agenda
@@ -53,10 +53,21 @@ Scott x
         - IntelliJ
 
 # Action points for next week (Scrum board)
- - Finish the main UI layout
- - Add admin functionalities
- - Write more tests
- - Make working bike and food reservations (connected to UI)
+Kanish   - for friday room reservation scenes (UI)
+         - for sunday add todo on main menu
+
+Eli      - enhance bike reservation ui > thursday
+         - refactor testing > thursday
+
+Niels    - Link up food reservation serverside to UI > thursday
+
+Scott    - add/delete buildings and rooms (incl. UI) > thursday
+
+Alex+Kendra 
+         - pop up scene working
+         - proper request to server
+
+Hidde    - Finish food reservation back-end
 
 
 # Any other business
@@ -70,3 +81,9 @@ Scott x
 
 # Closing
 *Now you can start working on the project. Good luck!*
+
+Feedback:
++ The task definitions are much better, keep it up the coming weeks (and avoid definition such as ‘don't fully know waht you guys wanted to do so please edit this description appropiatly’)!
++ You seem to be making good progress on testing, but don’t fall behind. Also, some tests have as many as 15 asserts (!!!), maybe reactor this into less?
+- Hidde is the only one who made a pull request. Where is your code review process, how are you merging?
+- The master branch has not been merged/updated with the development branch in 3 weeks, this is too long and is costing you points.
