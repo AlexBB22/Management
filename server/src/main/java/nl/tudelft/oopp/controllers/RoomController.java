@@ -17,11 +17,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -50,33 +46,50 @@ public class RoomController {
      */
 
     /**
-     * End point to add a new room to the database.
-     * @param buildingName - the building in which the room is in
-     * @param typeId - the type of the room
-     * @param room - the room name
+     * add a room to the database.
+     * @param capacity the capacity of the room.
+     * @param roomName the name of the room.
+     * @param buildingName the name of the building in which this room is placed.
+     * @param typeId the type of the room.
+     * @author Scott.
      */
-    @PostMapping("/addRoomToDB/{buildingName}/{typeId}")
+    @PostMapping("addRoomToDB/{capacity}/{roomName}/{buildingName}/{typeId}")
     @ResponseBody
-    public void addRoomToDB(@PathVariable(value = "buildingName") String buildingName,
-                            @PathVariable (value = "typeId") int typeId,
-                            @RequestBody Room room) {
-        //Room newroom = room;
-        //get the Building of given name
+    public void addRoom(@PathVariable (value = "capacity") int capacity,
+                            @PathVariable (value = "roomName") String roomName,
+                            @PathVariable (value = "buildingName") String buildingName,
+                            @PathVariable (value = "typeId") int typeId) {
+        Room room = new Room(capacity, roomName);
+
         Optional<Building> b = buildingRepository.findById(buildingName);
         Building building = b.get();
+        room.setBuilding(building);
 
-        //get the Type of given id
         Optional<Type> t = typeRepository.findById(typeId);
         Type type = t.get();
+        room.setType(type);
 
-        //use helper methods to make sure both sides of relationship have updated their attributes
-        building.addRoom(room);
-        type.addRoom(room);
-
-        System.out.println("Added a new room to DB: " + room.toString());
         roomRepository.save(room);
+        System.out.println("room added successfully");
     }
 
+    /**
+     * delete a room from the database.
+     * @param roomId the id of the room to delete
+     * @author Scott.
+     */
+    @DeleteMapping("deleteRoom/{roomId}")
+    @ResponseBody
+    public void deleteRoom(@PathVariable (value = "roomId") int roomId) {
+        try {
+            Optional<Room> r = roomRepository.findById(roomId);
+            Room room = r.get();
+            roomRepository.delete(room);
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException("this input does not exist");
+        }
+    }
     @GetMapping("test2")
     @ResponseBody
     public int test2() {

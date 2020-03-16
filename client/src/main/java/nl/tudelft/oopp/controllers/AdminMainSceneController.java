@@ -42,20 +42,6 @@ public class AdminMainSceneController implements Initializable {
         switchScene(mouseEvent, "/?.fxml", "Create Room");
     }
 
-    @FXML
-    public void updateBuildingButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/?.fxml", "Update Building");
-    }
-
-    @FXML
-    public void updateRoomButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/?.fxml", "Update Room");
-    }
-
-    @FXML
-    public void viewReservationButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/?.fxml", "View Reservations");
-    }
 
     @FXML
     public void deleteBuildingButtonHandler(MouseEvent mouseEvent) throws IOException {

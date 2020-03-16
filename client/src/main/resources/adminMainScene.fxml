@@ -44,26 +44,24 @@
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
             <Button fx:id="createBuildingbutton" mnemonicParsing="false" onMouseClicked="#createBuildingButtonHandler" text="create new Building" />
-            <Button fx:id="createRoomButton" mnemonicParsing="false" onMouseClicked="#createRoomButtonHandler" prefHeight="26.0" prefWidth="121.0" text="create new Room" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="viewReservationButton" mnemonicParsing="false" onMouseClicked="#viewReservationButtonHandler" text="view Reservations" />
+            <Button fx:id="deleteBuildingButton" mnemonicParsing="false" onMouseClicked="#deleteBuildingButtonHandler" text="delete Building" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Warning: deleting is permanent and can not be reverted" wrappingWidth="293.336669921875" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Warning: when deleting a building the rooms, the restaurants and bikes of that building will be deleted to" wrappingWidth="294.21636962890625" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
          <children>
-            <Button fx:id="updateBuildingButton" mnemonicParsing="false" onMouseClicked="#updateBuildingButtonHandler" text="update existing Building information" />
-            <Button fx:id="updateRoomButton" mnemonicParsing="false" onMouseClicked="#updateRoomButtonHandler" prefHeight="26.0" prefWidth="209.0" text="update existing Room information" />
+            <Button fx:id="createRoomButton" mnemonicParsing="false" onMouseClicked="#createRoomButtonHandler" prefHeight="26.0" prefWidth="121.0" text="create new Room" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Button fx:id="deleteBuildingButton" mnemonicParsing="false" onMouseClicked="#deleteBuildingButtonHandler" text="delete Building" />
             <Button fx:id="deleteRoomButton" mnemonicParsing="false" onMouseClicked="#deleteRoomButtonHandler" prefHeight="26.0" prefWidth="96.0" text="delete Room" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Warning: deleting is permanent and can not be reverted" wrappingWidth="293.336669921875" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Warning: when deleting a building the rooms, the restaurants and bikes of that building will be deleted to" wrappingWidth="294.21636962890625" />
          </children>
       </VBox>
       <ImageView fx:id="profile" fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">

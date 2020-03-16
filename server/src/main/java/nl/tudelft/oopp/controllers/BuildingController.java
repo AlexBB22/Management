@@ -4,18 +4,14 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import nl.tudelft.oopp.entities.Building;
-import nl.tudelft.oopp.entities.Room;
-import nl.tudelft.oopp.repositories.BuildingRepository;
+import nl.tudelft.oopp.entities.*;
+import nl.tudelft.oopp.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -24,6 +20,24 @@ public class BuildingController {
 
     @Autowired
     private BuildingRepository buildingRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
+
+    @Autowired
+    private TimeSlotRepository timeSlotRepository;
+
+    @Autowired
+    private RoomReservationRepository roomReservationRepository;
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private BikeRepository bikeRepository;
+
+    @Autowired
+    private BikeReservationRepository bikeReservationRepository;
 
     @GetMapping("buildings/")
     @ResponseBody
@@ -105,6 +119,24 @@ public class BuildingController {
 
         System.out.println("Added a new building to the database");
         buildingRepository.save(newBuilding);
+    }
+
+    /**
+     * deletes building from the database.
+     * @param buildingName the building to be deleted
+     */
+    @DeleteMapping("deleteBuilding/{buildingName}")
+    @ResponseBody
+    public void deleteBuilding(@PathVariable (value = "buildingName") String buildingName) {
+        try {
+            Optional<Building> b = buildingRepository.findById(buildingName);
+            Building building = b.get();
+            buildingRepository.delete(building);
+            System.out.println("building deleted successfully");
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException("this input does not exist");
+        }
     }
 }
 
