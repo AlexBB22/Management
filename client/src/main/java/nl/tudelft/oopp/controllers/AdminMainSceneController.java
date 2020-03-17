@@ -34,12 +34,12 @@ public class AdminMainSceneController implements Initializable {
 
     @FXML
     public void createBuildingButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/?.fxml", "Create Building");
+        switchScene(mouseEvent, "/addBuildingScene.fxml", "Create Building");
     }
 
     @FXML
     public void createRoomButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/?.fxml", "Create Room");
+        switchScene(mouseEvent, "/addRoomScene.fxml", "Create Room");
     }
 
 
