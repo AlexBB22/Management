@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -31,7 +32,7 @@ public class Menu {
     @JoinTable(name = "menu_food", joinColumns = @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "food_fk", referencedColumnName = "food_Id"))
     List<Food> foods = new ArrayList<Food>();
-
+    
     @OneToOne(mappedBy = "menu")
     private Restaurant restaurant;
 
@@ -48,5 +49,25 @@ public class Menu {
 
     public List<Food> getFoods() {
         return foods;
+    }
+
+    public int getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(int menuId) {
+        this.menuId = menuId;
+    }
+
+    public void setFoods(List<Food> foods) {
+        this.foods = foods;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }
