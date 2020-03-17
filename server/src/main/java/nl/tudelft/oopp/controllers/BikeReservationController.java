@@ -15,7 +15,10 @@ import nl.tudelft.oopp.repositories.BuildingRepository;
 import nl.tudelft.oopp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -87,11 +90,10 @@ public class BikeReservationController {
     }
 
     /**
-     * This method returns the number of available bikes near a building.
-     *
-     * @param buildingName building name.
-     * @param day date
-     * @return the available bikes.
+     * This is a get method which returns the available bikes near a building.
+     * @param buildingName This is the building name.
+     * @param day This is the day the user selects.
+     * @return The method returns a integer, the number of available bikes.
      */
     @GetMapping("/availableBikesNumber/{buildingName}/{day}")
     @ResponseBody

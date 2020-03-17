@@ -23,7 +23,7 @@
             </ImageView>
             <ScrollPane layoutX="22.0" layoutY="105.0" prefHeight="200.0" prefWidth="200.0">
                <content>
-                  <VBox fx:id="BuildingList" prefHeight="200.0" prefWidth="161.0" />
+                  <VBox fx:id="buildingList" prefHeight="200.0" prefWidth="161.0" />
                </content>
             </ScrollPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />

@@ -31,7 +31,7 @@ import nl.tudelft.oopp.communication.ServerCommunication;
 public class BikeReservationSceneController implements Initializable {
 
     @FXML
-    private VBox BuildingList;
+    private VBox buildingList;
     @FXML
     private DatePicker datePickerBike;
 
@@ -71,7 +71,7 @@ public class BikeReservationSceneController implements Initializable {
      */
     public void getBuildings(ActionEvent actionEvent) throws IOException, URISyntaxException {
         List<Building> listOfBuildings = ServerCommunication.getBuildings();
-        BuildingList.getChildren().clear();
+        buildingList.getChildren().clear();
         for (Building building : listOfBuildings) {
             if (ServerCommunication.getNumberOfAvailableBikes(building.getBuilding_Name(), datePickerBike.getValue()) > 0) {
                 Text buildingName = new Text(building.getBuilding_Name());
@@ -85,7 +85,7 @@ public class BikeReservationSceneController implements Initializable {
                     }
                 });
                 HBox container = new HBox(buildingName, reserveButton);
-                BuildingList.getChildren().add(container);
+                buildingList.getChildren().add(container);
             }
 
         }
