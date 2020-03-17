@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.controllers;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 import nl.tudelft.oopp.entities.Food;
@@ -13,6 +14,8 @@ import nl.tudelft.oopp.repositories.RestaurantRepository;
 import nl.tudelft.oopp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -66,6 +69,41 @@ public class FoodReservationController {
         System.out.println("Added a new bike reservation");
         return foodReservationRepository.save(foodReservation);
 
+    }
+
+    /**
+     * Get function that gets all food reservation in the DB.
+     * @author Hidde Agterberg
+     * @return all food reservations
+     */
+    @GetMapping("/getAllFoodReservations")
+    @ResponseBody
+    public List<FoodReservation> getAllFoodReservations() {
+        return foodReservationRepository.getAllFoodReservations();
+    }
+
+    /**
+     * Get function that gets a food reservation by id.
+     * @param id - the id of the reservation
+     * @author Hidde Agterberg
+     * @return the food reservation
+     */
+    @GetMapping("/getFoodReservationById/{reservation_id}")
+    @ResponseBody
+    public List<FoodReservation> getFoodReservationById(@PathVariable(value = "reservation_id") int id) {
+        return foodReservationRepository.getFoodReservationById(id);
+    }
+
+    /**
+     * Get function that gets all food reservation by userId.
+     * @param userId - the id of the user
+     * @author Hidde Agterberg
+     * @return all the food reservations of a user
+     */
+    @GetMapping("/getUsersFoodReservations/{userId}")
+    @ResponseBody
+    public List<FoodReservation> getUsersFoodReservations(@PathVariable(value = "userId") int userId) {
+        return foodReservationRepository.getUsersFoodReservations(userId);
     }
 
 }
