@@ -12,15 +12,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import nl.tudelft.oopp.MainApp;
 
-
 public class MainSceneController implements Initializable {
 
     @FXML
     private Text username;
 
+    @FXML
+    private Text res;
+
+    private static int status = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText(MainApp.user.getUserName());
+        if (status == 1) {
+            changeResConfirmed();
+            setStatus(0);
+        }
     }
 
     @FXML
@@ -48,4 +56,11 @@ public class MainSceneController implements Initializable {
         switchScene(mouseEvent, "/accountScene.fxml", "Account Settings");
     }
 
+    public void changeResConfirmed() {
+        res.setText("The room has been successfully reserved!");
+    }
+
+    public static void setStatus(int newStatus) {
+        status = newStatus;
+    }
 }

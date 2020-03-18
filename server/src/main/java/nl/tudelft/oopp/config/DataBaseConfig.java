@@ -19,16 +19,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 public class DataBaseConfig {
 
-    //    @Bean
-    //    public DataSource getDataSource() {
-    //        DriverManagerDataSource ds = new DriverManagerDataSource();
-    //        ds.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-    //        ds.setUrl("jdbc:mysql://projects-db.ewi.tudelft.nl:3306/projects_OOPPGroup4");
-    //        ds.setUsername("pu_OOPPGroup4");
-    //        ds.setPassword("cg5EQkKNHN08");
-    //        return ds;
-    //    }
-
     /**
      * Method to setUp datasource with MySQL database.
      * @return a datasource that can be used by Hibernate.
@@ -38,6 +28,9 @@ public class DataBaseConfig {
     public DataSource mySqlDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
+
+        //projects-db.ewi.tudelft.nl is host for real DB
+
         //or projects_OOPPGroup4Test for Test DB        projects_OOPPGroup4 for Real DB
         dataSourceBuilder.url("jdbc:mysql://projects-db.ewi.tudelft.nl:3306/projects_OOPPGroup4Test");
 

@@ -1,24 +1,20 @@
 package nl.tudelft.oopp.communication;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.controllers.Hasher;
 
@@ -28,6 +24,7 @@ public class ServerCommunication {
 
     /**
      * Check login credentials with server.
+     * @author Kanish Dwivedi
      * @param userName - the username given from the user
      * @param password - the password given from the user
      * @return - Null if the user was not verified. The actual user entity from the DB if the user is verified
@@ -60,7 +57,6 @@ public class ServerCommunication {
         //of the user that the server sent back and save them
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        System.out.println(jsonUser);
         User authenticatedUser = null;
         try {
             JsonNode jsonNode = objectMapper.readTree(jsonUser);
@@ -81,6 +77,7 @@ public class ServerCommunication {
     /**
      * Create a new user in the database.
      * TODO: check if email and username are not already in use
+     * @author Kanish Dwivedi
      * @param username - the userName of the new user which is to be added
      * @param email - the email of the new user which is to be added
      * @param password - the password of the new user which is to be added
@@ -111,7 +108,6 @@ public class ServerCommunication {
         HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").POST(HttpRequest.BodyPublishers.ofString(requestBody)).build();
         //Sending HTTP Request and getting response
         HttpResponse<String> response;
-        System.out.println(request.bodyPublisher());
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
@@ -131,6 +127,55 @@ public class ServerCommunication {
         return userId;
     }
 
+
+    /**
+     * This method is responsible to communicate with the database to retrieve a list of overrideable rooms based
+     * on the roleID. It then also using JackSon to map the resulting JSON string to OverridableRoom objects.
+     * @author Kanish Dwivedi
+     * @param buildingName - the name of the building in which the room exists
+     * @param day - the day at which the rooms are reserved
+     * @param startTime - the startime at which the rooms are reserved
+     * @param endTime - the endtime at which the rooms are reserved upto
+     * @param roleId - the roleID represents which rooms we want to get. If roleID = 1, we want to get
+     *               all rooms that have already been reserved by Students.
+     * @return OverridableRoom - returns a list of rooms that this user can override.
+     * @throws URISyntaxException - The error returned if the URL has invalid syntax.
+     * @throws IOException - The error returned if the communication fails, or Object mapping fails by JackSon.
+     */
+    public static ArrayList<OverridableRoom> getOnlyOverridableRooms(String buildingName, LocalDate day, String startTime, String endTime,
+                                                             int roleId) throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/getOnlyOverridableRooms/%s/%s/%s/%s/%s",
+                buildingName, day.toString(), startTime, endTime, roleId);
+        String res = request(url);
+        System.out.println("These are overridable rooms:" + res);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(res, new TypeReference<ArrayList<OverridableRoom>>(){});
+    }
+
+    /**
+     * This method is responsible to communicate with the database to retrieve a list of available rooms based
+     * on the roleID. It then also using JackSon to map the resulting JSON string to OverridableRoom objects.
+     * @author Kanish Dwivedi
+     * @param buildingName - the name of the building in which the room exists
+     * @param day - the day at which we want to find available rooms
+     * @param startTime - the startime at which the rooms are available from
+     * @param endTime - the endtime at which the rooms are available upto
+     * @return AvailableRoom - returns a list of available rooms that this user can reserve
+     * @throws URISyntaxException - The error returned if the URL has invalid syntax.
+     * @throws IOException - The error returned if the communication fails, or Object mapping fails by JackSon.
+     */
+    public static ArrayList<AvailableRoom> getOnlyAvailableRooms(String buildingName, LocalDate day, String startTime, String endTime)
+            throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/getOnlyAvailableRooms/%s/%s/%s/%s",
+                buildingName, day.toString(), startTime, endTime);
+        String jsonRes = request(url);
+        System.out.println("These are available rooms: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<AvailableRoom>>(){});
+    }
+
+
     /**
      * Request the rooms available (with a certain query).
      * @param date - the day at which the user wants to reserve a room
@@ -145,8 +190,8 @@ public class ServerCommunication {
                                             String timeFrom, String timeTo, String roomType)
             throws URISyntaxException, IOException {
 
-        String url = String.format("http://localhost:8080/getAvailableRooms/%s/%s/%s:00/%s:00",
-                building, date.toString(), timeFrom, timeTo);
+        String url = String.format("http://localhost:8080/getAvailableRooms/%s/%s/%s:00/%s:00/%s",
+                building, date.toString(), timeFrom, timeTo, MainApp.user.getUserId());
 
         String res = request(url);
         System.out.println(res);
@@ -205,8 +250,41 @@ public class ServerCommunication {
      */
     public static int createBikeReservation(String buildingName, Date day) throws URISyntaxException {
         String urlString = String.format("http://localhost:8080/addBikeReservation/%s/%s/%s",
-                buildingName, day,  MainApp.user.getUserId());
+                buildingName, day, MainApp.user.getUserId());
+        URI url = new URI(urlString);
 
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").POST(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+    }
+
+     /**
+     * Function requesting a room reservation from the server.
+     * @param roomId - room ID
+     * @param buildingName - name of the building
+     * @param day - date
+     * @param startTime - starting time
+     * @param endTime - ending time
+     * @return int 1/-1 based on whether the request was succesful
+     * @throws URISyntaxException - url exception
+     */
+    public static int createRoomReservation(int roomId, String buildingName, Date day, Time startTime, Time endTime) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080/createNewReservation/%s/%s/%s/%s/%s/%s", roomId,
+                buildingName, day, startTime, endTime, MainApp.user.getUserId());
         URI url = new URI(urlString);
 
         HttpClient client = HttpClient.newHttpClient();
@@ -234,13 +312,79 @@ public class ServerCommunication {
      * @param day the day when the user wants to select a bike.
      * @return the number of bikes available near that building at that specific day.
      */
-    public static int getNumberOfAvailableBikes(String buildingName, LocalDate day) throws URISyntaxException, IOException  {
-        String url = String.format("http://localhost:8080/availableBikesNumber/%s/%s",buildingName, day.toString());
+    public static int getNumberOfAvailableBikes(String buildingName, LocalDate day) throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/availableBikesNumber/%s/%s", buildingName, day.toString());
 
         String res = request(url);
         System.out.println(res);
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(res, new TypeReference<Integer>(){});
+        return mapper.readValue(res, new TypeReference<Integer>() {});
+    }
+
+    /**
+     * This method communicates with the server and overrides a reservation.
+     * @author Kanish Dwivedi
+     * @param reservationID - the id of the reservation which is to be overriden
+     * @param userID - the id of the user who will now be "owner" of this reservation
+     * @return int. -1 if fail, 1 if success
+     * @throws URISyntaxException - thrown if URL is invalid.
+     */
+    public static int overrideRoomReservation(int reservationID, int userID) throws URISyntaxException {
+        String url = String.format("http://localhost:8080/overrideRoomReservation/%s/%s", reservationID, userID);
+        URI uri = new URI(url);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).PUT(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+    }
+
+
+
+    /**
+     * Request from the server whether the user has already reserved a room.
+     * @author Hidde Agterberg
+     * @param day - the day of the reservation
+     * @param startTime - the starting time of the reservation
+     * @param endTime - the end time of the reservation
+     * @return shows if the user has already resereved a room at that time and day
+     * @throws URISyntaxException - url exception
+     */
+    public static boolean hasReservation(Date day, Time startTime, Time endTime) throws URISyntaxException {
+        String url = String.format("http://localhost:8080/hasReservation/%s/%s/%s/%s", MainApp.user.getUserId(),
+                day, startTime, endTime);
+        String res = request(url);
+        return Boolean.valueOf(res);
+    }
+
+
+    /**
+     * This method requests the server to retrieve a list of all reservations made by a user.
+     * @author Kanish Dwivedi
+     * @param userID - the id of the user for which the reservations are to be retrieved from
+     * @return - a list of UserReservationInfo objects that contain information on each reservation a user has made
+     * @throws IOException - exception thrown if jackson mapping fails
+     * @throws URISyntaxException - exception thrown if URL to interact with DB is invalid.
+     */
+    public static ArrayList<UserReservationInfo> getUserReserationInfo(int userID) throws IOException, URISyntaxException {
+        String url = String.format("http://localhost:8080/getUserReservationInfo/%s", userID);
+        String jsonRes = request(url);
+        System.out.println("These are all the users reservations: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserReservationInfo>>(){});
+
     }
 
 }

@@ -40,7 +40,6 @@ public class BikeReservation {
     private Building building;
 
     public BikeReservation() {
-
     }
 
     public BikeReservation(Date day) {
