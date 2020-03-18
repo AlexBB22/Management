@@ -272,7 +272,7 @@ public class ServerCommunication {
         return 1;
     }
 
-     /**
+    /**
      * Function requesting a room reservation from the server.
      * @param roomId - room ID
      * @param buildingName - name of the building
