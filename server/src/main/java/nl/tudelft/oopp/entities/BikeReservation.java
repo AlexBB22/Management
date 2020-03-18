@@ -102,4 +102,8 @@ public class BikeReservation {
         this.building = building;
     }
 
+   public String toString() {
+        return "Bike reservation unique ID: " + this.id + ", day: " + this.day + ", location: " + this.building.getBuilding_Name();
+   }
+
 }

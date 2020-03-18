@@ -15,6 +15,8 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.controllers.Hasher;
 
@@ -385,6 +387,13 @@ public class ServerCommunication {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserReservationInfo>>(){});
 
+    }
+
+    public static List<String> bikeReservationList() throws IOException, URISyntaxException {
+        String url = String.format("http://localhost:8080/bikeReservationsForUser/%s", MainApp.user.getUserId());
+        String res = request(url);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(res, new TypeReference<List<String>>() {});
     }
 
 }

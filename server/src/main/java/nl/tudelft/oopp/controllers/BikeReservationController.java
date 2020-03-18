@@ -119,4 +119,20 @@ public class BikeReservationController {
         return numberOfBikesNearBuilding - reservationsInBuilding;
     }
 
+    @GetMapping("/bikeReservationsForUser/{userID}")
+    @ResponseBody
+    public List<String> getBikeReservationsPerUser(@PathVariable (value = "userID") int userID) {
+
+        List<BikeReservation> bikeReservationsAll = bikeReservationRepository.findAll();
+        List<String> reservationsForUser = new ArrayList<>();
+
+        for(BikeReservation r : bikeReservationsAll) {
+            if(r.getBike_user_fk().getUser_id() == (userID)) {
+                reservationsForUser.add(r.toString());
+            }
+        }
+        return reservationsForUser;
+
+    }
+
 }
