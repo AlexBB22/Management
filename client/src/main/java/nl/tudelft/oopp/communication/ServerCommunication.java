@@ -378,7 +378,7 @@ public class ServerCommunication {
      * @throws IOException - exception thrown if jackson mapping fails
      * @throws URISyntaxException - exception thrown if URL to interact with DB is invalid.
      */
-    public static ArrayList<UserReservationInfo> getUserReserationInfo(int userID) throws IOException, URISyntaxException {
+    public static ArrayList<UserReservationInfo> getUserReservationInfo(int userID) throws IOException, URISyntaxException {
         String url = String.format("http://localhost:8080/getUserReservationInfo/%s", userID);
         String jsonRes = request(url);
         System.out.println("These are all the users reservations: " + jsonRes);

@@ -1,63 +1,605 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.MainSceneController">
+<GridPane fx:id="mainGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/mainSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.MainSceneController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="358.8150634765625" minWidth="10.0" prefWidth="213.1251983642578" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="532.7065200805664" minWidth="10.0" prefWidth="358.8748016357422" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.2325439453125" minWidth="10.0" prefWidth="362.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.621337890625" minWidth="10.0" prefWidth="346.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="200" minHeight="10.0" prefHeight="120" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="350" minHeight="10.0" prefHeight="280" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="103.55260467529297" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="300.44739532470703" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="315.44598388671875" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Button mnemonicParsing="false" onAction="#reserveRoomButtonHandler" prefHeight="40.0" prefWidth="150.0" text="Reserve a Room" />
-            <Button mnemonicParsing="false" onAction="#rentBikeButtonHandler" prefHeight="40.0" prefWidth="150.0" text="Rent a Bike">
+            <HBox alignment="CENTER" layoutX="43.0" layoutY="34.0" prefHeight="250.0" prefWidth="250.0" styleClass="todayDateBox">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="250.0" prefWidth="183.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="49.0" prefWidth="183.0">
+                           <children>
+                              <Text fx:id="todayDay" strokeType="OUTSIDE" strokeWidth="0.0" text="Mon">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="134.0" prefWidth="166.0">
+                           <children>
+                              <Text fx:id="todayDateNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="6">
+                                 <font>
+                                    <Font name="Chalkboard SE Light" size="64.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="58.0" prefWidth="183.0">
+                           <children>
+                              <Text fx:id="todayMonthYear" strokeType="OUTSIDE" strokeWidth="0.0" text="Mar 2020" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <HBox alignment="CENTER" layoutX="8.0" layoutY="36.0" prefHeight="250.0" prefWidth="340.0" styleClass="weekItemBox">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="236.0" prefWidth="297.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="306.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="Monday " />
+                              <Text fx:id="thisWeekMondayDate" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="date" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="20.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Room Reservations">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="297.0" styleClass="weekItemReservationPane">
+                           <content>
+                              <VBox fx:id="mondayRoomReservationBox" prefHeight="42.0" prefWidth="290.0" style="-fx-background-color: transparent;" />
+                           </content>
+                        </ScrollPane>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="22.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Bike Reserved: ">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="34.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Agenda: ">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="91.0" text="Add To-do">
+                                 <HBox.margin>
+                                    <Insets left="140.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
+                           <content>
+                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <HBox fx:id="topBar" prefHeight="101.0" prefWidth="226.0" styleClass="logo" stylesheets="@CSS/sidebar.css" GridPane.columnSpan="4">
+         <children>
+            <Text fx:id="res" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="restext" />
+            <ImageView fitHeight="72.0" fitWidth="161.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/tudelftLogo.png" />
+               </image>
+            </ImageView>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="104.0" prefWidth="169.0">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+               <children>
+                  <Text stroke="#f2dcdc" strokeType="OUTSIDE" strokeWidth="0.0" text="Main Menu">
+                     <font>
+                        <Font name="Chalkboard" size="35.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="104.0" prefWidth="262.0">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" styleClass="topBarButton" text="See All Room Reservations">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="2.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="104.0" prefWidth="240.0">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+               <children>
+                  <Button mnemonicParsing="false" styleClass="topBarButton" text="See all Bike Reservations">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="2.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <VBox fx:id="sideMenu" prefHeight="616.0" prefWidth="215.0" styleClass="sidebar" GridPane.rowIndex="1" GridPane.rowSpan="2">
+         <stylesheets>
+            <URL value="@CSS/sidebar.css" />
+            <URL value="@CSS/mainSceneStyle.css" />
+         </stylesheets>
+         <children>
+            <VBox alignment="CENTER" prefHeight="187.0" prefWidth="256.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <ImageView fitHeight="110.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/roomIcon.png" />
+                     </image>
+                  </ImageView>
+                  <HBox fx:id="reserveRoomButton" alignment="CENTER" onMouseClicked="#reserveRoomButtonHandler" prefHeight="50.0" prefWidth="196.0" styleClass="buttons">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="buttonText" text="Reserve a Room" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets left="10.0" right="10.0" />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+               </children>
                <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#carParkButtonHandler" prefHeight="40.0" prefWidth="150.0" text="Car Park Spaces">
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="174.0" prefWidth="256.0">
+               <children>
+                  <ImageView fitHeight="110.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bikeIcon.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER" onMouseClicked="#rentBikeButtonHandler" prefHeight="50.0" prefWidth="196.0" styleClass="buttons">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="buttonText" text="Rent a Bike" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+               </children>
                <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#restaurantButtonHandler" prefHeight="40.0" prefWidth="150.0" text="Restaurants">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></Button>
-            <Button fx:id="adminbutton" mnemonicParsing="false" prefHeight="46.0" prefWidth="154.0" text="admin features" />
-            <Text fx:id="res" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateY="10.0" />
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="189.0" prefWidth="256.0">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="110.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/foodIcon.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER" onMouseClicked="#restaurantButtonHandler" prefHeight="48.0" prefWidth="196.0" styleClass="buttons">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="buttonText" text="Order Food" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </VBox>
-       <ImageView fx:id="profile" fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+       <ImageView fx:id="profile" fitHeight="40.0" fitWidth="54.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
            <Image url="@images/userIcon.png" />
          <GridPane.margin>
             <Insets right="50.0" top="50.0" />
          </GridPane.margin>
        </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
-         <image>
-            <Image url="@images/tudelftLogo.png" />
-         </image>
-         <GridPane.margin>
-            <Insets left="20.0" top="10.0" />
-         </GridPane.margin>
-      </ImageView>
-      <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="105.0" top="74.0" />
          </GridPane.margin>
       </Text>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <children>
+            <HBox alignment="CENTER" layoutX="8.0" layoutY="36.0" prefHeight="250.0" prefWidth="340.0" styleClass="weekItemBox">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="236.0" prefWidth="297.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="306.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="Tuesday " />
+                              <Text fx:id="thisWeekTuesdayDate" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="date" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="20.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Room Reservations">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="297.0" styleClass="weekItemReservationPane">
+                           <content>
+                              <VBox fx:id="tuesdayRoomReservationBox" prefHeight="42.0" prefWidth="290.0" style="-fx-background-color: transparent;" />
+                           </content>
+                        </ScrollPane>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="22.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Bike Reserved: ">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="34.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Agenda: ">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Button mnemonicParsing="false" text="Add Todo">
+                                 <HBox.margin>
+                                    <Insets left="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
+                           <content>
+                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <HBox alignment="CENTER" layoutX="8.0" layoutY="36.0" prefHeight="250.0" prefWidth="340.0" styleClass="weekItemBox">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="236.0" prefWidth="297.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="306.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="Wednesday " />
+                              <Text fx:id="thisWeekWednesdayDate" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="date" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="20.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Room Reservations">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="297.0" styleClass="weekItemReservationPane">
+                           <content>
+                              <VBox fx:id="wednesdayRoomReservationBox" prefHeight="42.0" prefWidth="290.0" style="-fx-background-color: transparent;" />
+                           </content>
+                        </ScrollPane>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="22.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Bike Reserved: ">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="34.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Agenda: ">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Button mnemonicParsing="false" text="Add Todo">
+                                 <HBox.margin>
+                                    <Insets left="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
+                           <content>
+                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <children>
+            <HBox alignment="CENTER" layoutX="8.0" layoutY="36.0" prefHeight="250.0" prefWidth="340.0" styleClass="weekItemBox">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="236.0" prefWidth="297.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="306.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="Thursday " />
+                              <Text fx:id="thisWeekThursdayDate" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="date" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="20.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Room Reservations">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="297.0" styleClass="weekItemReservationPane">
+                           <content>
+                              <VBox fx:id="thursdayRoomReservationBox" prefHeight="42.0" prefWidth="290.0" style="-fx-background-color: transparent;" />
+                           </content>
+                        </ScrollPane>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="22.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Bike Reserved: ">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="34.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Agenda: ">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Button mnemonicParsing="false" text="Add Todo">
+                                 <HBox.margin>
+                                    <Insets left="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
+                           <content>
+                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <children>
+            <HBox alignment="CENTER" layoutX="8.0" layoutY="36.0" prefHeight="250.0" prefWidth="340.0" styleClass="weekItemBox">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="236.0" prefWidth="297.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="306.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="Friday " />
+                              <Text fx:id="thisWeekFridayDate" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemDateText" text="date" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="20.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Room Reservations">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="297.0" styleClass="weekItemReservationPane">
+                           <content>
+                              <VBox fx:id="fridayRoomReservationBox" prefHeight="42.0" prefWidth="290.0" style="-fx-background-color: transparent;" />
+                           </content>
+                        </ScrollPane>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="22.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Bike Reserved: ">
+                                 <font>
+                                    <Font name="System Italic" size="15.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                                 <HBox.margin>
+                                    <Insets left="15.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="BASELINE_LEFT" prefHeight="34.0" prefWidth="297.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Agenda: ">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <Button mnemonicParsing="false" text="Add Todo">
+                                 <HBox.margin>
+                                    <Insets left="150.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
+                           <content>
+                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
    </children>
 </GridPane>
