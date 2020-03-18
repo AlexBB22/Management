@@ -241,6 +241,38 @@ public class ServerCommunication {
     }
 
     /**
+     * Creates a new bike reservation.
+     * @author Sartori Kendra
+     * @param buildingName - the name of the building from which a bike needs to be reserved
+     * @param day - the date on which the bike will be reserved
+     * @return -1 if the creating a reservation has failed and 1 otherwise
+     * @throws URISyntaxException - thrown is URL is invalid
+     */
+    public static int createBikeReservation(String buildingName, Date day) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080/addBikeReservation/%s/%s/%s",
+                buildingName, day, MainApp.user.getUserId());
+        URI url = new URI(urlString);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").POST(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+    }
+
+    /**
      * Function requesting a room reservation from the server.
      * @param roomId - room ID
      * @param buildingName - name of the building
@@ -272,6 +304,21 @@ public class ServerCommunication {
             return -1;
         }
         return 1;
+    }
+
+    /**
+     *This method gets the number of bikes available.
+     * @param buildingName the name of the building where the bike is.
+     * @param day the day when the user wants to select a bike.
+     * @return the number of bikes available near that building at that specific day.
+     */
+    public static int getNumberOfAvailableBikes(String buildingName, LocalDate day) throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/availableBikesNumber/%s/%s", buildingName, day.toString());
+
+        String res = request(url);
+        System.out.println(res);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(res, new TypeReference<Integer>() {});
     }
 
     /**
@@ -337,6 +384,7 @@ public class ServerCommunication {
         System.out.println("These are all the users reservations: " + jsonRes);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserReservationInfo>>(){});
+
     }
 
 }
