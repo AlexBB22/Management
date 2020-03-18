@@ -20,6 +20,9 @@ public class MainSceneController implements Initializable {
     @FXML
     private Text res;
 
+    @FXML
+    private Text result;
+
     private static int status = 0;
 
     @Override
@@ -27,6 +30,10 @@ public class MainSceneController implements Initializable {
         username.setText(MainApp.user.getUserName());
         if (status == 1) {
             changeResConfirmed();
+            setStatus(0);
+        }
+        if(status == 2){
+            BikeReservationConfirmed();
             setStatus(0);
         }
     }
@@ -58,6 +65,10 @@ public class MainSceneController implements Initializable {
 
     public void changeResConfirmed() {
         res.setText("The room has been successfully reserved!");
+    }
+
+    public void BikeReservationConfirmed() {
+        result.setText("You have successfully reserved a bike");
     }
 
     public static void setStatus(int newStatus) {

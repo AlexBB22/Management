@@ -24,6 +24,5 @@
           <Text fx:id="day" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       </HBox>
       <Button mnemonicParsing="false" onAction="#makeNewBikeReservation" text="Reserve" />
-       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Even if the window is not closing, the reservation is made. Please change this" />
    </children>
 </VBox>

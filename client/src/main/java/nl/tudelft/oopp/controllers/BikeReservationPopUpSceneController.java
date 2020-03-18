@@ -7,10 +7,15 @@ import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.text.Text;
 
+import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
+import nl.tudelft.oopp.views.MainView;
 
 public class BikeReservationPopUpSceneController implements Initializable {
     @FXML
@@ -39,6 +44,11 @@ public class BikeReservationPopUpSceneController implements Initializable {
             System.out.println("Something went wrong!");
             return;
         }
+
+        MainSceneController.setStatus(2);
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/mainScene.fxml"));
+        Parent root = loader.load();
+        MainView.getPrimaryStage().setScene(new Scene(root));
 
     }
 }
