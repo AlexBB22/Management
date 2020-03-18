@@ -1,0 +1,81 @@
+* {
+    /*Blue set*/
+    -linearBackground1:#57b0f2;
+    -linearBackground2:#4cf2fa;
+    -barColor: #97ecee;
+    -menuButtonColor: #8581ff;
+    -weekItemBoxOutline: #5385ff;
+
+    /*!*Orange set*!*/
+    /*-linearBackground1:#ff9966;*/
+    /*-linearBackground2:#ff5e62;*/
+    /*-barColor: #eee3e7;*/
+    /*-menuButtonColor: #ff3f17;*/
+    /*-weekItemBoxOutline: #ff5e62;*/
+
+}
+
+
+.grid {
+    -fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 53%);
+
+}
+
+.topBar {
+    -fx-background-color: linear-gradient(to right, -barColor, white);
+}
+
+.roomViewOuterVBOX {
+    -fx-background-color: white;
+    /*-fx-background-color: #fef3ff;*/
+    -fx-background-radius: 40px;
+    -fx-border-radius: 35px;
+    -fx-border-width: 7px;
+    -fx-border-color: -weekItemBoxOutline
+}
+
+.roomReservationPane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: white;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 5em;
+}
+
+.criteriaHeader {
+    -fx-font-family: "Arial";
+    -fx-font-size: 20px;    -fx-fill: black;
+}
+
+.combo-box {
+    -fx-border-width: 1px;
+    -fx-border-color: #2f93ff;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-font-size: 15px;
+}
+
+.combo-box:hover {
+    -fx-text-fill: white;
+}
+
+.combo-box-base:hover {
+    -fx-border-color: green;
+}
+
+.combo-box

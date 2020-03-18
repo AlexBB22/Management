@@ -15,98 +15,139 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.RoomReservationSceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/roomReservationSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.RoomReservationSceneController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="519.2" minWidth="10.0" prefWidth="500.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.00000000000006" minWidth="10.0" prefWidth="300.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="896.0" minWidth="10.0" prefWidth="211.46661376953125" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="641.0677490234375" minWidth="0.0" prefWidth="565.7679443359375" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="641.0677490234375" minWidth="10.0" prefWidth="526.2320556640625" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="200" minHeight="10.0" prefHeight="120" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="350" minHeight="10.0" prefHeight="280" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="398.42584228515625" minHeight="10.0" prefHeight="126.50409698486328" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="398.42584228515625" minHeight="10.0" prefHeight="267.9959030151367" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="402.91355895996094" minHeight="10.0" prefHeight="326.58831787109375" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="402.91355895996094" minHeight="10.0" prefHeight="38.91168212890625" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <ImageView accessibleRole="BUTTON" fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+
+      <VBox prefHeight="494.0" prefWidth="429.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+         <GridPane.margin>
+            <Insets left="30.0" right="30.0" top="30.0" />
+         </GridPane.margin>
+         <children>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="432.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select criteria for your room reservation" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="95.0" prefWidth="451.0">
+               <children>
+                  <VBox prefHeight="121.0" prefWidth="461.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="criteriaHeader" text="Select a Date" />
+                        <DatePicker fx:id="datePicker" prefHeight="27.0" prefWidth="225.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="459.0">
+               <children>
+                  <VBox prefHeight="61.0" prefWidth="464.0">
+                     <children>
+                        <Label styleClass="criteriaHeader" text="Select a Building" />
+                        <ComboBox fx:id="buildingComboBox" onAction="#getBuildingTimes" prefHeight="27.0" prefWidth="225.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="95.0" prefWidth="460.0">
+               <children>
+                  <VBox prefHeight="100.0" prefWidth="464.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="150.0" styleClass="criteriaHeader" text="Select time slot:" />
+                        <ComboBox fx:id="timeSlotComboBox" prefHeight="27.0" prefWidth="225.0" />
+                        <Text fx:id="selectBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="selectingText" wrappingWidth="129.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="95.0" prefWidth="450.0">
+               <children>
+                  <VBox prefHeight="109.0" prefWidth="457.0">
+                     <children>
+                        <Label styleClass="criteriaHeader" text="Select Room Type" />
+                        <ComboBox fx:id="roomTypeComboBox" prefWidth="225.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="109.0" prefWidth="414.0">
+               <children>
+                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonHandler" prefHeight="27.0" prefWidth="65.0" text="Search" />
+                  <ImageView fitHeight="112.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="270.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@images/icons8-room-80.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox fx:id="topBar" prefHeight="116.0" prefWidth="756.0" styleClass="topBar" GridPane.columnSpan="3">
+         <children>
+              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@images/tudelftLogo.png" />
+                  </image>
+              </ImageView>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="roomViewOuterVBOX" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+         <children>
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="478.0" prefWidth="565.0" styleClass="roomReservationPane">
+               <content>
+                  <VBox fx:id="roomList" prefHeight="473.0" prefWidth="476.0" />
+               </content>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
+            </ScrollPane>
+         </children>
+         <GridPane.margin>
+            <Insets left="35.0" top="30.0" />
+         </GridPane.margin>
+      </VBox>
+        <ImageView accessibleRole="BUTTON" fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
             <Image url="@images/userIcon.png" />
             <GridPane.margin>
                 <Insets right="50.0" top="50.0" />
             </GridPane.margin>
         </ImageView>
-        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
-            <image>
-                <Image url="@images/tudelftLogo.png" />
-            </image>
+        <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
             <GridPane.margin>
-                <Insets left="20.0" top="10.0" />
+                <Insets right="105.0" top="74.0" />
             </GridPane.margin>
-        </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="50.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-         <image>
-            <Image url="@images/backBtn.png" />
-         </image>
-         <GridPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </GridPane.margin></ImageView>
-
-      <VBox prefHeight="280.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        </Text>
+      <VBox fx:id="sideMenu" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <children>
-            <DatePicker fx:id="datePicker">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </DatePicker>
-            <Label text="Building">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <ComboBox fx:id="buildingComboBox" onAction="#getBuildingTimes" prefWidth="150.0" />
+            <ImageView fitHeight="150.0" fitWidth="50.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/backBtn.png" />
+               </image>
+            </ImageView>
             <HBox>
                <children>
                   <VBox>
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
-                     <children>
-                        <Label prefHeight="18.0" prefWidth="150.0" text="Select time slot:">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <ComboBox fx:id="timeSlotComboBox" prefHeight="26.0" prefWidth="150.0" />
-                     </children>
                   </VBox>
                   <VBox />
-                  <Text fx:id="selectBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="129.0">
-                     <HBox.margin>
-                        <Insets left="10.0" top="35.0" />
-                     </HBox.margin>
-                  </Text>
                </children>
             </HBox>
-            <Label layoutX="10.0" layoutY="53.0" text="Room type">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <ComboBox fx:id="roomTypeComboBox" layoutX="10.0" layoutY="71.0" prefWidth="150.0" />
-            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonHandler" text="Search">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
          </children>
       </VBox>
-      <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets bottom="20.0" left="80.0" right="40.0" />
-         </GridPane.margin>
-         <content>
-            <VBox fx:id="roomList" prefHeight="308.0" prefWidth="364.0" />
-         </content></ScrollPane>
-        <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-            <GridPane.margin>
-                <Insets right="105.0" top="74.0" />
-            </GridPane.margin>
-        </Text>
     </children>
 </GridPane>

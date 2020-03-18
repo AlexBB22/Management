@@ -30,6 +30,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -55,6 +60,8 @@ public class RoomReservationSceneController implements Initializable {
     @FXML private Text selectBuildingMessage;
     @FXML private ScrollPane scrollPane;
     @FXML private static Button searchButton;
+    @FXML private VBox sideMenu;
+    @FXML private HBox topBar;
 
     //This arrayList just saves all the buildings from the query made during initialisation
     private ArrayList<Building> buildingList;
@@ -112,6 +119,14 @@ public class RoomReservationSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        topBar.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.rgb(65, 165, 212), Color.BLACK,
+                BorderStrokeStyle.NONE, BorderStrokeStyle.NONE, BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
+                CornerRadii.EMPTY, new BorderWidths(5), Insets.EMPTY)));
+
+//        sideMenu.setBorder((new Border(new BorderStroke(Color.BLACK, Color.rgb(31, 125, 240), Color.BLACK, Color.BLACK,
+//                BorderStrokeStyle.NONE, BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE, BorderStrokeStyle.NONE,
+//                CornerRadii.EMPTY, new BorderWidths(5), Insets.EMPTY))));
+
         hasReserved = false;
 
         username.setText(MainApp.user.getUserName());
