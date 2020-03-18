@@ -61,7 +61,6 @@ public class BikeController {
     @ResponseBody
     public List<Bike> getBikeList(@PathVariable String buildingName) {
         List<Bike> bikeInBuilding = new ArrayList<>();
-
         List<Building> b = buildingRepository.findByBuildingName(buildingName);
         Building building = b.get(0);
 

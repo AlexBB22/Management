@@ -168,7 +168,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     public void rentBikeButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/?.fxml");
+        switchScene(mouseEvent, "/bikeReservation.fxml");
     }
 
     @FXML
