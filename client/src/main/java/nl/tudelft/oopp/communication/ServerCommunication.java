@@ -220,6 +220,17 @@ public class ServerCommunication {
         return buildings;
     }
 
+    public static ArrayList<Room> getAllRooms() throws URISyntaxException, IOException {
+        String url = "http://localhost:8080/getListOfRooms";
+
+        String res = request(url);
+        System.out.println(res);
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Room> rooms = mapper.readValue(res, new TypeReference<ArrayList<Room>>(){});
+
+        return rooms;
+    }
+
     /**
      * Get request function template.
      * TODO: Test that this function works for all cases
@@ -350,12 +361,12 @@ public class ServerCommunication {
      * @return int. -1 if fail, 1 if success
      * @throws URISyntaxException url exception
      */
-    public static int createBuilding(String buildingName, boolean nonReservableSpace, int carParkingSpaces, String description, Time opening, Time closing) throws URISyntaxException {
+    public static void createBuilding(String buildingName, boolean nonReservableSpace, int carParkingSpaces, String description, Time opening, Time closing) throws URISyntaxException {
         String url = String.format("http://localhost:8080/addNewBuilding/%s/%s/%s/%s/%s/%s", buildingName, nonReservableSpace, carParkingSpaces, description, opening, closing);
         URI uri = new URI(url);
 
         HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(uri).PUT(HttpRequest.BodyPublishers.ofString("")).build();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).POST(HttpRequest.BodyPublishers.ofString("")).build();
 
         //Sending HTTP Request and getting response
         HttpResponse<String> response;
@@ -363,12 +374,11 @@ public class ServerCommunication {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
             e.printStackTrace();
-            return -1;
+            return;
         }
         if (response.statusCode() != 200) {
             System.out.println("Error code = " + response.statusCode());
-            return -1;
         }
-        return 1;
     }
+
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="backBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#backBtnHandler" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AddBuildingSceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AddBuildingSceneController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -24,9 +25,10 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
-            <ScrollPane prefHeight="360.0" prefWidth="640.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current buildings: " />
+            <ScrollPane fx:id="buildingScrollPane" prefHeight="360.0" prefWidth="640.0">
                <content>
-                  <VBox prefHeight="187.0" prefWidth="286.0" />
+                  <VBox fx:id="VBoxInScrollPane" prefHeight="333.0" prefWidth="614.0" />
                </content>
             </ScrollPane>
          </children>
@@ -34,23 +36,24 @@
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building name: " />
-            <TextField fx:id="buildingName" prefHeight="26.0" prefWidth="218.0" />
+            <TextField fx:id="buildingNameTextField" prefHeight="26.0" prefWidth="218.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <CheckBox fx:id="nonResSpace" mnemonicParsing="false" text="has non reservable space." />
+            <CheckBox fx:id="nonResSpaceCheckBox" mnemonicParsing="false" text="has non reservable space." />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Amount of car parking spaces:" />
-            <TextField fx:id="carParkingSpace" />
+            <TextField fx:id="carParkingSpaceTextField" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Give a description of the building:" />
-            <TextField fx:id="description" />
+            <TextField fx:id="descriptionTextField" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="At what time does the building open and close? (please use this format XX:XX:XX)" wrappingWidth="299.089111328125" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Open:" />
-            <TextField fx:id="openTime" />
+            <TextField fx:id="openTimeTextField" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Close:" />
-            <TextField fx:id="closeTime" />
+            <TextField fx:id="closeTimeTextField" />
+            <Button fx:id="addBuildingButton" mnemonicParsing="false" onMouseClicked="#addBuildingButtonHandler" text="Add" />
          </children>
       </VBox>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
@@ -69,10 +72,16 @@
             <Image url="@images/userIcon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="82.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+      <ImageView fx:id="backBtn" fitHeight="82.0" fitWidth="72.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
          <image>
             <Image url="@images/backBtn.png" />
          </image>
       </ImageView>
+      <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="username" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="105.0" top="74.0" />
+         </GridPane.margin>
+      </Text>
+      <Text fx:id="confirmationText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>

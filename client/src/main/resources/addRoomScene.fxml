@@ -22,9 +22,9 @@
     <RowConstraints maxHeight="278.79999389648435" minHeight="10.0" prefHeight="278.79999389648435" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <VBox fx:id="VboxInSP" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
-            <ScrollPane prefHeight="257.0" prefWidth="640.0">
+            <ScrollPane fx:id="roomScrollPane" prefHeight="257.0" prefWidth="640.0">
                <content>
                   <VBox prefHeight="188.0" prefWidth="282.0" />
                </content>
@@ -34,16 +34,16 @@
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity:" />
-            <TextField />
+            <TextField fx:id="capacityTextField" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room name:" />
-            <TextField prefHeight="26.0" prefWidth="50.0" />
+            <TextField fx:id="roomNameTextField" prefHeight="26.0" prefWidth="50.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building:" />
-            <ComboBox prefWidth="150.0" />
+            <ComboBox fx:id="buidlingComboBox" prefWidth="150.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
-            <ComboBox prefWidth="150.0" />
+            <ComboBox fx:id="typeNameComboBox" prefWidth="150.0" />
          </children>
       </VBox>
       <ImageView fitHeight="121.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
@@ -67,5 +67,10 @@
             <Image url="@images/backBtn.png" />
          </image>
       </ImageView>
+      <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="username" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="105.0" top="74.0" />
+         </GridPane.margin>
+      </Text>
    </children>
 </GridPane>
