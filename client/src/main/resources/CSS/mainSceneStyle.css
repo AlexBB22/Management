@@ -1,6 +1,23 @@
+* {
+    /*Blue set*/
+    /*-linearBackground1:#57b0f2;*/
+    /*-linearBackground2:#4cf2fa;*/
+    /*-barColor: #97ecee;*/
+    /*-menuButtonColor: #8581ff;*/
+    /*-weekItemBoxOutline: #5385ff;*/
+
+    /*Orange set*/
+    -linearBackground1:#ff9966;
+    -linearBackground2:#ff5e62;
+    -barColor: #eee3e7;
+    -menuButtonColor: #ff3f17;
+    -weekItemBoxOutline: #ff5e62;
+
+}
+
+
 .grid {
-   /*-fx-background-color: linear-gradient(to right, #f26612, #fa82d5, transparent 85%);*/
-    -fx-background-color: linear-gradient(to right, #ff9966, #ff5e62, transparent 95%);
+   -fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 85%);
 
 }
 
@@ -8,11 +25,11 @@
 
 }
 .logo {
-    -fx-background-color: #eee3e7;
+    -fx-background-color: -barColor;
 }
 
 .topBar {
-    -fx-background-color: #eee3e7;
+    -fx-background-color: -barColor;
 }
 
 .topBarButton {
@@ -32,7 +49,7 @@
     -fx-background-radius: 30px;
     -fx-border-radius: 30px;
     -fx-border-width: 5px;
-    -fx-border-color: #ff3f17;
+    -fx-border-color: -menuButtonColor;
 }
 
 .buttonText {
@@ -72,7 +89,7 @@
     -fx-background-radius: 50px;
     -fx-border-radius: 45px;
     -fx-border-width: 7px;
-    -fx-border-color: #ff5e62;
+    -fx-border-color: -weekItemBoxOutline;
 }
 
 .weekItemDateText {

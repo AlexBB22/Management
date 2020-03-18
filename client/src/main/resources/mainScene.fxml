@@ -123,9 +123,9 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button mnemonicParsing="false" text="Add Todo">
+                              <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="91.0" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets left="150.0" />
+                                    <Insets left="140.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
