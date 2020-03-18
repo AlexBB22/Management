@@ -13,9 +13,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.calendarfx.view.page.DayPage;
-import eu.hansolo.tilesfx.Tile;
-import eu.hansolo.tilesfx.TileBuilder;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -127,11 +124,18 @@ public class MainSceneController implements Initializable {
     }
 
 
+    /**
+     * This method is used to show the user all room reservations it has made. It adds all room reservations the user
+     * has into the correct day of the week "box" in the GUI.
+     * @author Kanish Dwivedi
+     * @throws IOException - exception thrown when there are errors in JackSon parsing of JSON sent from server side
+     * @throws URISyntaxException - exception thrown when the request URL is invalid.
+     */
     @FXML
     public void addUserReservations() throws IOException, URISyntaxException {
         ArrayList<UserReservationInfo> userReservations = ServerCommunication.getUserReservationInfo(MainApp.user.getUserId());
         for (UserReservationInfo uri: userReservations) {
-            String rrStr = "\t \u2023 " + uri.getBuildingName() + " " + uri.getRoomName() + " " + uri.getStartTime() + "-" + uri.getEndTime();
+            String rrStr = "\t" + uri.getBuildingName() + " " + uri.getRoomName() + " " + uri.getStartTime() + "-" + uri.getEndTime();
             Text rr = new Text(rrStr);
             rr.setFont(Font.font("Chalkboard SE", 15));
             rr.setBoundsType(TextBoundsType.LOGICAL);
