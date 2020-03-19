@@ -119,6 +119,12 @@ public class BikeReservationController {
         return numberOfBikesNearBuilding - reservationsInBuilding;
     }
 
+    /**
+     * This method gives a list of all bike reservations for a specific user.
+     * @author - Sartori Kendra
+     * @param userID - the id of the user whose reservations we want to obtain
+     * @return - a list of all reservations
+     */
     @GetMapping("/bikeReservationsForUser/{userID}")
     @ResponseBody
     public List<String> getBikeReservationsPerUser(@PathVariable (value = "userID") int userID) {
@@ -126,8 +132,8 @@ public class BikeReservationController {
         List<BikeReservation> bikeReservationsAll = bikeReservationRepository.findAll();
         List<String> reservationsForUser = new ArrayList<>();
 
-        for(BikeReservation r : bikeReservationsAll) {
-            if(r.getBike_user_fk().getUser_id() == (userID)) {
+        for (BikeReservation r : bikeReservationsAll) {
+            if (r.getBike_user_fk().getUser_id() == (userID)) {
                 reservationsForUser.add(r.toString());
             }
         }

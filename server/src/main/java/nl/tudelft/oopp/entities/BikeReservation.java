@@ -102,8 +102,16 @@ public class BikeReservation {
         this.building = building;
     }
 
-   public String toString() {
-        return "Bike reservation unique ID: " + this.id + ", day: " + this.day + ", location: " + this.building.getBuilding_Name();
-   }
+    /**
+     * The representation of a bike reservation as a string.
+     * @author - Sartori Kendra
+     * @return - a string containing information about a bike reservation
+     */
+    public String toString() {
+        return "Bike reservation unique ID: "
+             + this.id + ", day: "
+             + this.day + ", location: "
+             + this.building.getBuilding_Name();
+    }
 
 }

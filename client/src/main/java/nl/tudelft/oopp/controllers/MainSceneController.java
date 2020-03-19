@@ -32,8 +32,8 @@ public class MainSceneController implements Initializable {
             changeResConfirmed();
             setStatus(0);
         }
-        if(status == 2){
-            BikeReservationConfirmed();
+        if (status == 2) {
+            bikeReservationConfirmed();
             setStatus(0);
         }
     }
@@ -67,7 +67,7 @@ public class MainSceneController implements Initializable {
         res.setText("The room has been successfully reserved!");
     }
 
-    public void BikeReservationConfirmed() {
+    public void bikeReservationConfirmed() {
         result.setText("You have successfully reserved a bike");
     }
 

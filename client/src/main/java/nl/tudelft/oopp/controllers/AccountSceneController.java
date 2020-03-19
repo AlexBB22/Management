@@ -74,9 +74,15 @@ public class AccountSceneController implements Initializable {
         userReservationInfoList.getChildren().add(reservationinfo);
     }
 
-    public void displayBikeReservationInfo() throws IOException, URISyntaxException {
+    /**
+     * This method adds the list of all bike reservations to the Vbox.
+     * @author - Sartori Kendra
+     * @throws IOException - exception thrown if the file is not found
+     * @throws URISyntaxException - exception thrown when url is not correct
+     */
+    public void displayBikeReservationInfo() throws  IOException, URISyntaxException {
         List<String> reservations = ServerCommunication.bikeReservationList();
-        for(String s : reservations) {
+        for (String s : reservations) {
             Text t = new Text(s);
             HBox reservationinfo = new HBox(t);
             reservationinfo.setPadding(new Insets(10, 0, 10, 0));

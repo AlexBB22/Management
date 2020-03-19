@@ -389,6 +389,13 @@ public class ServerCommunication {
 
     }
 
+    /**
+     * This method gives a list of strings containing the bike reservations for a specific user.
+     * @author Sartori Kendra
+     * @return a list of reservations for a specific user
+     * @throws IOException - thrown if mapping fails
+     * @throws URISyntaxException - thrown if url is invalid
+     */
     public static List<String> bikeReservationList() throws IOException, URISyntaxException {
         String url = String.format("http://localhost:8080/bikeReservationsForUser/%s", MainApp.user.getUserId());
         String res = request(url);
