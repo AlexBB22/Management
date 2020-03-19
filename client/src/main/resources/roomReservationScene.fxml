@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -13,12 +14,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/roomReservationSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.RoomReservationSceneController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="896.0" minWidth="10.0" prefWidth="211.46661376953125" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="641.0677490234375" minWidth="0.0" prefWidth="565.7679443359375" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="896.0" minWidth="10.0" prefWidth="116.36854553222656" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="645.7650375366211" minWidth="0.0" prefWidth="638.1314544677734" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="641.0677490234375" minWidth="10.0" prefWidth="526.2320556640625" />
     </columnConstraints>
     <rowConstraints>
@@ -36,56 +38,72 @@
          <children>
             <HBox alignment="CENTER" prefHeight="56.0" prefWidth="432.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select criteria for your room reservation" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select criteria for your room reservation" wrappingWidth="459.70526123046875">
+                     <font>
+                        <Font name="Avenir Book" size="25.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="15.0" />
+                     </HBox.margin>
+                  </Text>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="95.0" prefWidth="451.0">
                <children>
-                  <VBox prefHeight="121.0" prefWidth="461.0">
+                  <VBox prefHeight="90.0" prefWidth="464.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="criteriaHeader" text="Select a Date" />
-                        <DatePicker fx:id="datePicker" prefHeight="27.0" prefWidth="225.0" />
+                        <DatePicker fx:id="datePicker" prefHeight="27.0" prefWidth="250.0" styleClass="dateBox" />
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="459.0">
                <children>
-                  <VBox prefHeight="61.0" prefWidth="464.0">
+                  <VBox prefHeight="101.0" prefWidth="468.0">
                      <children>
                         <Label styleClass="criteriaHeader" text="Select a Building" />
-                        <ComboBox fx:id="buildingComboBox" onAction="#getBuildingTimes" prefHeight="27.0" prefWidth="225.0" />
+                        <ComboBox fx:id="buildingComboBox" onAction="#getBuildingTimes" prefHeight="27.0" prefWidth="250.0" styleClass="comboBox" />
+                        <Text fx:id="selectBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="selectingText" wrappingWidth="129.0">
+                           <VBox.margin>
+                              <Insets left="250.0" top="30.0" />
+                           </VBox.margin></Text>
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="95.0" prefWidth="460.0">
                <children>
-                  <VBox prefHeight="100.0" prefWidth="464.0">
+                  <VBox prefHeight="94.0" prefWidth="469.0">
                      <children>
-                        <Label prefHeight="18.0" prefWidth="150.0" styleClass="criteriaHeader" text="Select time slot:" />
-                        <ComboBox fx:id="timeSlotComboBox" prefHeight="27.0" prefWidth="225.0" />
-                        <Text fx:id="selectBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="selectingText" wrappingWidth="129.0" />
+                        <Label prefHeight="23.0" prefWidth="158.0" styleClass="criteriaHeader" text="Select Time Slot" />
+                        <ComboBox fx:id="timeSlotComboBox" prefHeight="27.0" prefWidth="250.0" styleClass="comboBox" />
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="95.0" prefWidth="450.0">
                <children>
-                  <VBox prefHeight="109.0" prefWidth="457.0">
+                  <VBox prefHeight="91.0" prefWidth="467.0">
                      <children>
                         <Label styleClass="criteriaHeader" text="Select Room Type" />
-                        <ComboBox fx:id="roomTypeComboBox" prefWidth="225.0" />
+                        <ComboBox fx:id="roomTypeComboBox" prefWidth="250.0" styleClass="comboBox" />
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="109.0" prefWidth="414.0">
                <children>
-                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonHandler" prefHeight="27.0" prefWidth="65.0" text="Search" />
-                  <ImageView fitHeight="112.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonHandler" prefHeight="34.0" prefWidth="153.0" styleClass="selectButton" text="Search for rooms">
                      <HBox.margin>
-                        <Insets left="270.0" />
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font></Button>
+                  <ImageView fitHeight="111.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="190.0" />
                      </HBox.margin>
                      <image>
                         <Image url="@images/icons8-room-80.png" />
@@ -104,11 +122,119 @@
               </ImageView>
          </children>
       </HBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="roomViewOuterVBOX" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <VBox alignment="CENTER" prefHeight="533.0" prefWidth="604.0" styleClass="roomViewOuterVBOX" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <children>
             <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="478.0" prefWidth="565.0" styleClass="roomReservationPane">
                <content>
-                  <VBox fx:id="roomList" prefHeight="473.0" prefWidth="476.0" />
+                  <VBox fx:id="roomList" prefHeight="485.0" prefWidth="579.0">
+                     <children>
+                        <HBox prefHeight="160.0" prefWidth="570.0" style="-fx-border-width: 2; -fx-border-color: #2ad8ff;">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="149.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="135.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/lectureHall.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <VBox prefHeight="145.0" prefWidth="360.0">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="364.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ampere">
+                                             <font>
+                                                <Font name="Arial Bold" size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="27.0" prefWidth="360.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Hall">
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity: 150">
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="25.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="25.0" prefWidth="360.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     TV: Yes">
+                                             <font>
+                                                <Font name="Arial" size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Clicker: Yes">
+                                             <font>
+                                                <Font name="Arial" size="15.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="15.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Whiteboard: Yes">
+                                             <font>
+                                                <Font name="Arial" size="15.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="15.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="30.0" prefWidth="360.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="       Power Outlets: Yes">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="32.0" prefWidth="360.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reserved By: Kanish (Student)">
+                                             <font>
+                                                <Font name="Arial" size="16.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets right="40.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Button mnemonicParsing="false" style="-fx-text-fill: white; -fx-background-color: #2f93ff;" text="Override">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" right="18.0" top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children></VBox>
                </content>
                <VBox.margin>
                   <Insets left="5.0" right="5.0" />
@@ -132,11 +258,6 @@
         </Text>
       <VBox fx:id="sideMenu" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="50.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/backBtn.png" />
-               </image>
-            </ImageView>
             <HBox>
                <children>
                   <VBox>
@@ -147,6 +268,17 @@
                   <VBox />
                </children>
             </HBox>
+            <ImageView fitHeight="150.0" fitWidth="50.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-back-64.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </VBox>
     </children>

@@ -1,23 +1,14 @@
 * {
-    /*Blue set*/
     -linearBackground1:#57b0f2;
     -linearBackground2:#4cf2fa;
     -barColor: #97ecee;
     -menuButtonColor: #8581ff;
     -weekItemBoxOutline: #5385ff;
-
-    /*!*Orange set*!*/
-    /*-linearBackground1:#ff9966;*/
-    /*-linearBackground2:#ff5e62;*/
-    /*-barColor: #eee3e7;*/
-    /*-menuButtonColor: #ff3f17;*/
-    /*-weekItemBoxOutline: #ff5e62;*/
-
 }
 
 
 .grid {
-    -fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 53%);
+    -fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 70%);
 
 }
 
@@ -60,22 +51,59 @@
 .criteriaHeader {
     -fx-font-family: "Arial";
     -fx-font-size: 20px;    -fx-fill: black;
+    -fx-font-weight: bold;
+}
+
+.dateBox {
+    -fx-border-color: #2f93ff;
+    -fx-font-family: "Arial";
+    -fx-font-size: 15px;    -fx-fill: black;
+    -fx-font-weight: bold;
+}
+
+.comboBox {
+    -fx-background-color: white;
 }
 
 .combo-box {
-    -fx-border-width: 1px;
+    -fx-border-width: 2px;
     -fx-border-color: #2f93ff;
     -fx-border-radius: 50px;
     -fx-background-radius: 50px;
     -fx-font-size: 15px;
 }
 
-.combo-box:hover {
+/*When hovering over the box, the border becomes red*/
+.combo-box-base:hover {
+    -fx-border-color: red;
+}
+
+/*Edit Normal Cell color */
+.combo-box .combo-box-popup .list-cell{
+    -fx-background-color: linear-gradient(to right, #ccf8ff, white, transparent 90%);
+    /*-fx-background-color: #ccf8ff;*/
+    -fx-text-fill: #1c47ff;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+}
+
+/*Edit Cell Color when cursor hovers over that cell*/
+.combo-box .combo-box-popup .list-cell:hover{
+    -fx-background-color: #1c47ff;
     -fx-text-fill: white;
 }
 
-.combo-box-base:hover {
-    -fx-border-color: green;
+/*Edit Cell Color Only when selected */
+.combo-box .combo-box-popup .list-cell:selected{
+    -fx-background-color: #35b0ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
-.combo-box
+
+.selectButton {
+    -fx-background-color: #2f93ff;
+    -fx-text-fill: white;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
