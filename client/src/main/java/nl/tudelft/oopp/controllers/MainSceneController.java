@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.controllers;
 
 import static nl.tudelft.oopp.MainApp.switchScene;
+import static nl.tudelft.oopp.MainApp.user;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.sun.tools.javac.Main;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -76,6 +79,13 @@ public class MainSceneController implements Initializable {
     @FXML private VBox wednesdayAgendaBox;
     @FXML private VBox thursdayAgendaBox;
     @FXML private VBox fridayAgendaBox;
+
+    //Text fields for each of the days
+    @FXML private TextField mondayTodoEntryField;
+    @FXML private TextField tuesdayTodoEntryField;
+    @FXML private TextField wednesdayTodoEntryField;
+    @FXML private TextField thursdayTodoEntryField;
+    @FXML private TextField fridayTodoEntryField;
 
     //Buttons for each of the days
     @FXML private Button mondayTodoButton;
@@ -235,15 +245,54 @@ public class MainSceneController implements Initializable {
         status = newStatus;
     }
 
+
+    /**
+     * This method adds calls the server communication method addNewTodo by giving it paramters that the
+     * user has selected.
+     * @author - Kanish Dwivedi
+     * @param actionEvent - the event representing the button click of "Add To-Do"
+     * @throws IOException - error thrown when Jackson mapping fails
+     * @throws URISyntaxException - error thrown when URL is invalid.
+     */
     @FXML
     public void addTodo(ActionEvent actionEvent) throws IOException, URISyntaxException {
         Button button = (Button) actionEvent.getSource();
         String date = button.getId();
-       
-        ArrayList<UserTodo> list = ServerCommunication.getUserTodoList(MainApp.user.getUserId());
-        for (UserTodo ut: list) {
-            Text text = new Text(ut.toString());
-            mondayAgendaBox.getChildren().add(text);
+
+        TextField userInput = getCorrectTextField(date);
+        userInput.clear();
+        String title = userInput.getText();
+        boolean success = ServerCommunication.addNewTodo(MainApp.user.getUserId(), title, date);
+        if (!success) {
+            result.setText("Something went wrong");
+            return;
         }
+        result.setText("You have successfully added a new todo");
     }
+
+    /**
+     * This method returns the entry field that was next to the "Todo" button.
+     * @author - Kanish Dwivedi
+     * @param date - the date from which the entry field can be obtained from
+     * @return TextField object.
+     */
+    public TextField getCorrectTextField(String date) {
+        if (thisWeekMondayDate.getText().equals(date)) {
+            return mondayTodoEntryField;
+        }
+        if (thisWeekTuesdayDate.getText().equals(date)) {
+            return tuesdayTodoEntryField;
+        }
+        if (thisWeekWednesdayDate.getText().equals(date)) {
+            return wednesdayTodoEntryField;
+        }
+        if (thisWeekThursdayDate.getText().equals(date)) {
+            return thursdayTodoEntryField;
+        }
+        return fridayTodoEntryField;
+    }
+
+
+    
+
 }

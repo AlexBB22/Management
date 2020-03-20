@@ -5,6 +5,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -123,9 +124,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
+                              <TextField fx:id="mondayTodoEntryField" prefHeight="26.0" prefWidth="125.0" />
                               <Button fx:id="mondayTodoButton" mnemonicParsing="false" onAction="#addTodo" prefHeight="29.0" prefWidth="91.0" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets left="140.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -347,9 +349,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="tuesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add Todo">
+                              <TextField fx:id="tuesdayTodoEntryField" prefHeight="26.0" prefWidth="125.0" />
+                              <Button fx:id="tuesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets left="150.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -424,9 +427,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="wednesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add Todo">
+                              <TextField fx:id="wednesdayTodoEntryField" prefHeight="26.0" prefWidth="125.0" />
+                              <Button fx:id="wednesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets left="150.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -501,9 +505,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="thursdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add Todo">
+                              <TextField fx:id="thursdayTodoEntryField" prefHeight="26.0" prefWidth="125.0" />
+                              <Button fx:id="thursdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets left="150.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -578,9 +583,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="fridayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add Todo">
+                              <TextField fx:id="fridayTodoEntryField" prefWidth="125.0" />
+                              <Button fx:id="fridayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets left="150.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </Button>
                            </children>
