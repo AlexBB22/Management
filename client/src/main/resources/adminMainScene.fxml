@@ -55,7 +55,7 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
          <children>
-            <Button fx:id="createRoomButton" mnemonicParsing="false" onMouseClicked="#createRoomButtonHandler" prefHeight="26.0" prefWidth="121.0" text="create new Room" />
+            <Button fx:id="createRoomButton" mnemonicParsing="false" onAction="#createRoomButtonHandler" prefHeight="26.0" prefWidth="121.0" text="create new Room" />
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">

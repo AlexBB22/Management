@@ -220,6 +220,17 @@ public class ServerCommunication {
         return buildings;
     }
 
+    public static ArrayList<Type> getTypes() throws URISyntaxException, IOException {
+        String url = "http://localhost:8080/getListOfTypes";
+
+        String res = request(url);
+        System.out.println(res);
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Type> types = mapper.readValue(res, new TypeReference<ArrayList<Type>>(){});
+
+        return types;
+    }
+
     public static ArrayList<Room> getAllRooms() throws URISyntaxException, IOException {
         String url = "http://localhost:8080/getListOfRooms";
 
@@ -381,4 +392,78 @@ public class ServerCommunication {
         }
     }
 
+    /**
+     * sends message to the server to create a room in the database.
+     * @param capacity the capacity of the room.
+     * @param roomName the name of the room.
+     * @param buildingName the building in which it is located.
+     * @param type the type of the room.
+     * @throws URISyntaxException exception if URI syntax is wrong.
+     * @author Scott.
+     */
+    public static void createRoom(int capacity, String roomName, String buildingName, int type) throws URISyntaxException {
+        String url = String.format("http://localhost:8080/addRoomToDB/%s/%s/%s/%s", capacity, roomName, buildingName, type );
+        URI uri = new URI(url);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).POST(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+        }
+    }
+
+    /**
+     * sends a request to the server to delete a building.
+     * @param buildingName the name of the building
+     * @throws URISyntaxException exception if URI syntax is wrong.
+     * @author Scott.
+     */
+    public static void deleteBuilding(String buildingName) throws URISyntaxException {
+        String url = String.format("http://localhost:8080/deleteBuilding/%s", buildingName);
+        URI uri = new URI(url);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).DELETE().build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+        }
+    }
+
+    public static void deleteRoom(int roomId) throws URISyntaxException {
+        String url = String.format("http://localhost:8080/deleteRoom/%s", roomId);
+        URI uri = new URI(url);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).DELETE().build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+        }
+    }
 }

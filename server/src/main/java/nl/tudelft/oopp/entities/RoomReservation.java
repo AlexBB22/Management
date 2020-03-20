@@ -32,11 +32,12 @@ public class RoomReservation implements Serializable {
     private int reservationId;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "user_id")
     private User userFk;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "timeslot_id")
     private TimeSlot timeslotFk;
 

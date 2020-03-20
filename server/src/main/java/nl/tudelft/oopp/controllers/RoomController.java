@@ -90,10 +90,4 @@ public class RoomController {
             throw new IllegalArgumentException("this input does not exist");
         }
     }
-    @GetMapping("test2")
-    @ResponseBody
-    public int test2() {
-        List<Room> rooms = roomRepository.testing("DW");
-        return rooms.size();
-    }
 }
