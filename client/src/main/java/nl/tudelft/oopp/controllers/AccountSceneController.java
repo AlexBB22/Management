@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,11 +51,13 @@ public class AccountSceneController implements Initializable {
             for (UserReservationInfo uri: reservations) {
                 displayUserReservationInfo(uri);
             }
+            displayBikeReservationInfo();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+
     }
 
     /**
@@ -71,7 +74,21 @@ public class AccountSceneController implements Initializable {
         userReservationInfoList.getChildren().add(reservationinfo);
     }
 
-
+    /**
+     * This method adds the list of all bike reservations to the Vbox.
+     * @author - Sartori Kendra
+     * @throws IOException - exception thrown if the file is not found
+     * @throws URISyntaxException - exception thrown when url is not correct
+     */
+    public void displayBikeReservationInfo() throws  IOException, URISyntaxException {
+        List<String> reservations = ServerCommunication.bikeReservationList();
+        for (String s : reservations) {
+            Text t = new Text(s);
+            HBox reservationinfo = new HBox(t);
+            reservationinfo.setPadding(new Insets(10, 0, 10, 0));
+            userReservationInfoList.getChildren().add(reservationinfo);
+        }
+    }
 
     @FXML
     public void logoutButtonController(MouseEvent mouseEvent) throws IOException {

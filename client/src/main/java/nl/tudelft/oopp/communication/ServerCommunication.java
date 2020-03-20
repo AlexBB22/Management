@@ -15,6 +15,8 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.controllers.Hasher;
 
@@ -369,6 +371,18 @@ public class ServerCommunication {
         return Boolean.valueOf(res);
     }
 
+    /**
+     * Request from the server whether the user already has a bike reservation on that day.
+     * @author Sartori Kendra
+     * @param day - the day on which we check for the reservation
+     * @return true if the user already has a reservation and false otherwise
+     * @throws URISyntaxException - url exception
+     */
+    public static boolean hasBikeReservation(Date day) throws  URISyntaxException {
+        String url = String.format("http://localhost:8080/hasBikeReservation/%s/%s", day, MainApp.user.getUserId());
+        String res = request(url);
+        return Boolean.valueOf(res);
+    }
 
     /**
      * This method requests the server to retrieve a list of all reservations made by a user.
@@ -385,6 +399,20 @@ public class ServerCommunication {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserReservationInfo>>(){});
 
+    }
+
+    /**
+     * This method gives a list of strings containing the bike reservations for a specific user.
+     * @author Sartori Kendra
+     * @return a list of reservations for a specific user
+     * @throws IOException - thrown if mapping fails
+     * @throws URISyntaxException - thrown if url is invalid
+     */
+    public static List<String> bikeReservationList() throws IOException, URISyntaxException {
+        String url = String.format("http://localhost:8080/bikeReservationsForUser/%s", MainApp.user.getUserId());
+        String res = request(url);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(res, new TypeReference<List<String>>() {});
     }
 
 }

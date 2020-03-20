@@ -149,7 +149,8 @@
       </Pane>
       <HBox fx:id="topBar" prefHeight="101.0" prefWidth="226.0" styleClass="logo" stylesheets="@CSS/sidebar.css" GridPane.columnSpan="4">
          <children>
-            <Text fx:id="res" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="restext" />
+            <Text fx:id="res" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="     " />
+            <Text fx:id="result" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateY="10.0"  />
             <ImageView fitHeight="72.0" fitWidth="161.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/tudelftLogo.png" />

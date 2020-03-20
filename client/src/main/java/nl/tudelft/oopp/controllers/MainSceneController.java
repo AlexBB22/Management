@@ -75,6 +75,12 @@ public class MainSceneController implements Initializable {
     @FXML private VBox fridayAgendaBox;
 
 
+    @FXML
+    private Text result;
+
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //setting todays date on the first box
@@ -97,6 +103,12 @@ public class MainSceneController implements Initializable {
             changeResConfirmed();
             setStatus(0);
         }
+
+        if (status == 2) {
+            bikeReservationConfirmed();
+            setStatus(0);
+        }
+
 
         //setting the date for each individual week box
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -162,6 +174,7 @@ public class MainSceneController implements Initializable {
             }
         }
 
+
     }
 
 
@@ -192,6 +205,10 @@ public class MainSceneController implements Initializable {
 
     public void changeResConfirmed() {
         res.setText("The room has been successfully reserved!");
+    }
+
+    public void bikeReservationConfirmed() {
+        result.setText("You have successfully reserved a bike");
     }
 
     public static void setStatus(int newStatus) {

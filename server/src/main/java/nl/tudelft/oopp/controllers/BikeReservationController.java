@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.controllers;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -117,6 +118,52 @@ public class BikeReservationController {
             }
         }
         return numberOfBikesNearBuilding - reservationsInBuilding;
+    }
+
+    /**
+     * This method gives a list of all bike reservations for a specific user.
+     * @author - Sartori Kendra
+     * @param userID - the id of the user whose reservations we want to obtain
+     * @return - a list of all reservations
+     */
+    @GetMapping("/bikeReservationsForUser/{userID}")
+    @ResponseBody
+    public List<String> getBikeReservationsPerUser(@PathVariable (value = "userID") int userID) {
+
+        List<BikeReservation> bikeReservationsAll = bikeReservationRepository.findAll();
+        List<String> reservationsForUser = new ArrayList<>();
+
+        for (BikeReservation r : bikeReservationsAll) {
+            if (r.getBike_user_fk().getUser_id() == (userID)) {
+                reservationsForUser.add(r.toString());
+            }
+        }
+        return reservationsForUser;
+    }
+
+    /**
+     * This method checks whether a bike reservation for a day has already been made.
+     * @author Sartori Kendra
+     * @param userID - the id of the user
+     * @param day - the day on which the condition needs to be checked
+     * @return - a boolean which is true if the user already has a reservation and false otherwise
+     */
+    @GetMapping("hasBikeReservation/{day}/{userID}")
+    @ResponseBody
+    public boolean hasBikeReservation(@PathVariable (value = "userID") int userID,
+                                        @PathVariable (value = "day") Date day) {
+
+
+        List<BikeReservation> bikeReservationsAll = bikeReservationRepository.findAll();
+        List<BikeReservation> userReservations = new ArrayList<>();
+
+        for (BikeReservation r : bikeReservationsAll) {
+            if (r.getBike_user_fk().getUser_id() == (userID) && r.getDay().compareTo(day) == 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
