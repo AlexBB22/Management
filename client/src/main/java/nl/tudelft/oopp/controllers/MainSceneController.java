@@ -312,7 +312,7 @@ public class MainSceneController implements Initializable {
         fridayAgendaBox.getChildren().clear();
         ArrayList<UserTodo> userTodos = ServerCommunication.getUserTodoList(MainApp.user.getUserId());
         for (UserTodo ut: userTodos) {
-            Text userTodo = new Text("\t \u2022 " + ut.getTitle());
+            Text userTodo = new Text("\t" + ut.getTitle());
             userTodo.setFont(Font.font("Arial", 15));
             userTodo.setBoundsType(TextBoundsType.LOGICAL);
 
