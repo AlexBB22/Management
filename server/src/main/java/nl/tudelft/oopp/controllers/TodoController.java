@@ -1,5 +1,8 @@
 package nl.tudelft.oopp.controllers;
 
+import java.sql.Date;
+import java.util.List;
+import java.util.Optional;
 import nl.tudelft.oopp.entities.Todo;
 import nl.tudelft.oopp.entities.User;
 import nl.tudelft.oopp.repositories.TodoRepository;
@@ -13,9 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.sql.Date;
-import java.util.List;
-import java.util.Optional;
+
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -26,12 +27,26 @@ public class TodoController {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * This method retrieves all Todos for a particular user.
+     * @author - Kanish Dwivedi
+     * @param userID - the id of the user for whom the Todos are to be retrieved for
+     * @return - a list of Todos of the user.
+     */
     @GetMapping("getAllTodos/{userID}")
     @ResponseBody
     public List<Todo> getAllTodos(@PathVariable int userID) {
         return todoRepository.getTodoByUserFk_UserIdEquals(userID);
     }
 
+    /**
+     * This method adds a new Todo entity for a user at a given date.
+     * @author - Kanish Dwivedi
+     * @param userID - the users id that represents the user for which the todo will be added for
+     * @param day - the day at which the todo is to be added for
+     * @param todo - the todo object itself that contains the title descriping the todo
+     * @return boolean - True if addition of todo was sucessfull, false if it fails
+     */
     @PostMapping("addNewTodo/{userID}/{day}")
     @ResponseBody
     public boolean addNewTodo(@PathVariable (value = "userID") int userID, @PathVariable (value = "day") Date day,

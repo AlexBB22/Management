@@ -49,7 +49,6 @@ public class Todo {
         this.day = day;
     }
 
-
     public String getTitle() {
         return title;
     }
