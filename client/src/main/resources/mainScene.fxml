@@ -117,18 +117,21 @@
                               <Insets top="5.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="BASELINE_LEFT" prefHeight="34.0" prefWidth="297.0">
+                        <HBox alignment="BASELINE_LEFT" prefHeight="38.0" prefWidth="297.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Agenda: ">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="mondayTodoEntryField" prefHeight="26.0" prefWidth="125.0" />
-                              <Button fx:id="mondayTodoButton" mnemonicParsing="false" onAction="#addTodo" prefHeight="29.0" prefWidth="91.0" text="Add To-do">
+                              <TextField fx:id="mondayTodoEntryField" prefHeight="25.0" prefWidth="125.0" styleClass="agendaTextField" />
+                              <Button fx:id="mondayTodoButton" graphicTextGap="2.0" mnemonicParsing="false" onAction="#addTodo" styleClass="agendaAddTodoButton" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="2.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
                               </Button>
                            </children>
                            <padding>
@@ -349,10 +352,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="tuesdayTodoEntryField" prefHeight="26.0" prefWidth="125.0" />
-                              <Button fx:id="tuesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add To-do">
+                              <TextField fx:id="tuesdayTodoEntryField" prefHeight="26.0" prefWidth="125.0" styleClass="agendaTextField" />
+                              <Button fx:id="tuesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" styleClass="agendaAddTodoButton" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="2.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -427,10 +430,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="wednesdayTodoEntryField" prefHeight="26.0" prefWidth="125.0" />
-                              <Button fx:id="wednesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add To-do">
+                              <TextField fx:id="wednesdayTodoEntryField" prefHeight="26.0" prefWidth="125.0" styleClass="agendaTextField" />
+                              <Button fx:id="wednesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" styleClass="agendaAddTodoButton" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="2.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -505,10 +508,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="thursdayTodoEntryField" prefHeight="26.0" prefWidth="125.0" />
-                              <Button fx:id="thursdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add To-do">
+                              <TextField fx:id="thursdayTodoEntryField" prefHeight="26.0" prefWidth="125.0" styleClass="agendaTextField" />
+                              <Button fx:id="thursdayTodoButton" mnemonicParsing="false" onAction="#addTodo" styleClass="agendaAddTodoButton" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="2.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -583,10 +586,10 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="fridayTodoEntryField" prefWidth="125.0" />
-                              <Button fx:id="fridayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add To-do">
+                              <TextField fx:id="fridayTodoEntryField" prefWidth="125.0" styleClass="agendaTextField" />
+                              <Button fx:id="fridayTodoButton" mnemonicParsing="false" onAction="#addTodo" styleClass="agendaAddTodoButton" text="Add To-do">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="2.0" />
                                  </HBox.margin>
                               </Button>
                            </children>

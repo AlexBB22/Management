@@ -157,7 +157,7 @@ public class MainSceneController implements Initializable {
         username.setText(MainApp.user.getUserName());
         try {
             addUserReservations();
-            addTodoToGUI();
+            addTodoToGui();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
@@ -261,6 +261,9 @@ public class MainSceneController implements Initializable {
 
         TextField userInput = getCorrectTextField(date);
         String title = userInput.getText();
+        if (title.equals("")) {
+            return;
+        }
         userInput.clear();
 
         System.out.println(title);
@@ -270,7 +273,7 @@ public class MainSceneController implements Initializable {
             return;
         }
         result.setText("You have successfully added a new todo");
-        addTodoToGUI();
+        addTodoToGui();
     }
 
     /**
@@ -300,16 +303,14 @@ public class MainSceneController implements Initializable {
      * @throws URISyntaxException - error thrown when URL is invalid
      */
     @FXML
-    public void addTodoToGUI() throws IOException, URISyntaxException {
-        ArrayList<UserTodo> userTodos = ServerCommunication.getUserTodoList(MainApp.user.getUserId());
-
+    public void addTodoToGui() throws IOException, URISyntaxException {
         //clear out the agenda boxes
         mondayAgendaBox.getChildren().clear();
         tuesdayAgendaBox.getChildren().clear();
         wednesdayAgendaBox.getChildren().clear();
         thursdayAgendaBox.getChildren().clear();
         fridayAgendaBox.getChildren().clear();
-
+        ArrayList<UserTodo> userTodos = ServerCommunication.getUserTodoList(MainApp.user.getUserId());
         for (UserTodo ut: userTodos) {
             Text userTodo = new Text("\t \u2022 " + ut.getTitle());
             userTodo.setFont(Font.font("Arial", 15));
