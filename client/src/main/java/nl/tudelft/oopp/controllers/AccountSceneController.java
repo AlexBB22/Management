@@ -12,6 +12,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -85,8 +87,11 @@ public class AccountSceneController implements Initializable {
         for (String s : reservations) {
             Text t = new Text(s);
             HBox reservationinfo = new HBox(t);
+            Button deleteButton = new Button("-");
+            deleteButton.setAlignment(Pos.TOP_RIGHT);
             reservationinfo.setPadding(new Insets(10, 0, 10, 0));
-            userReservationInfoList.getChildren().add(reservationinfo);
+            HBox container =  new HBox(reservationinfo, deleteButton);
+            userReservationInfoList.getChildren().add(container);
         }
     }
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userFk", cascade = CascadeType.ALL)
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
-    @OneToMany(mappedBy = "bikeUserFk")
+    @OneToMany(mappedBy = "bikeUserFk", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     //Constructors + Getters/Setters
@@ -154,5 +155,9 @@ public class User implements Serializable {
 
     public void addBikeReservation(BikeReservation bikeReservation) {
         this.bikeReservations.add(bikeReservation);
+    }
+
+    public void removeBikeReservation(BikeReservation bikeReservation) {
+        this.bikeReservations.remove(bikeReservation);
     }
 }
