@@ -27,7 +27,7 @@ public class DataBaseConfig {
     @Primary
     public DataSource mySqlDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
+        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
 
         //projects-db.ewi.tudelft.nl is host for real DB
 
