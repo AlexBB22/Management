@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.sun.tools.javac.Main;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -158,6 +157,7 @@ public class MainSceneController implements Initializable {
         username.setText(MainApp.user.getUserName());
         try {
             addUserReservations();
+            addTodoToGUI();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
@@ -260,21 +260,23 @@ public class MainSceneController implements Initializable {
         String date = button.getId();
 
         TextField userInput = getCorrectTextField(date);
-        userInput.clear();
         String title = userInput.getText();
+        userInput.clear();
+
+        System.out.println(title);
         boolean success = ServerCommunication.addNewTodo(MainApp.user.getUserId(), title, date);
         if (!success) {
             result.setText("Something went wrong");
             return;
         }
         result.setText("You have successfully added a new todo");
+        addTodoToGUI();
     }
 
     /**
-     * This method returns the entry field that was next to the "Todo" button.
-     * @author - Kanish Dwivedi
-     * @param date - the date from which the entry field can be obtained from
-     * @return TextField object.
+     * This method gets the correct user input text field based on the given date.
+     * @param date - the date for which the input text field is to be retrieved
+     * @return - the text field associated to the date.
      */
     public TextField getCorrectTextField(String date) {
         if (thisWeekMondayDate.getText().equals(date)) {
@@ -292,7 +294,49 @@ public class MainSceneController implements Initializable {
         return fridayTodoEntryField;
     }
 
+    /**
+     * This method adds the users todos into the GUI. It does so by calling getUserTodoList from server communication.
+     * @throws IOException - error thrown when jackson mapping fails
+     * @throws URISyntaxException - error thrown when URL is invalid
+     */
+    @FXML
+    public void addTodoToGUI() throws IOException, URISyntaxException {
+        ArrayList<UserTodo> userTodos = ServerCommunication.getUserTodoList(MainApp.user.getUserId());
 
-    
+        //clear out the agenda boxes
+        mondayAgendaBox.getChildren().clear();
+        tuesdayAgendaBox.getChildren().clear();
+        wednesdayAgendaBox.getChildren().clear();
+        thursdayAgendaBox.getChildren().clear();
+        fridayAgendaBox.getChildren().clear();
+
+        for (UserTodo ut: userTodos) {
+            Text userTodo = new Text("\t \u2022 " + ut.getTitle());
+            userTodo.setFont(Font.font("Arial", 15));
+            userTodo.setBoundsType(TextBoundsType.LOGICAL);
+
+            if (ut.getDay().equals(thisWeekMondayDate.getText())) {
+                mondayAgendaBox.getChildren().add(userTodo);
+                continue;
+            }
+            if (ut.getDay().equals(thisWeekTuesdayDate.getText())) {
+                tuesdayAgendaBox.getChildren().add(userTodo);
+                continue;
+            }
+            if (ut.getDay().equals(thisWeekWednesdayDate.getText())) {
+                wednesdayAgendaBox.getChildren().add(userTodo);
+                continue;
+            }
+            if (ut.getDay().equals(thisWeekThursdayDate.getText())) {
+                thursdayAgendaBox.getChildren().add(userTodo);
+                continue;
+            }
+            if (ut.getDay().equals(thisWeekFridayDate.getText())) {
+                fridayAgendaBox.getChildren().add(userTodo);
+                continue;
+            }
+        }
+    }
+
 
 }
