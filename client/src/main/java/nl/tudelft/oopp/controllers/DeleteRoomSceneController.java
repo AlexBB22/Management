@@ -1,36 +1,67 @@
 package nl.tudelft.oopp.controllers;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.Room;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.Type;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+
 
 public class DeleteRoomSceneController implements Initializable {
 
     @FXML private Text username;
     @FXML private ScrollPane roomScrollPane;
-    @FXML private VBox VboxInScrollPane;
+    @FXML private VBox vboxInScrollPane;
+
+    private static int roomId;
+    private static String roomName;
+    private static int capacity;
+    private static String buildingName;
+    private static String typeName;
+
+    public static int getRoomId() {
+        return roomId;
+    }
+
+    public static String getRoomName() {
+        return roomName;
+    }
+
+    public static int getCapacity() {
+        return capacity;
+    }
+
+    public static String getBuildingName() {
+        return buildingName;
+    }
+
+    public static String getTypeName() {
+        return typeName;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText(MainApp.user.getUserName());
-        roomScrollPane.setContent(VboxInScrollPane);
+        roomScrollPane.setContent(vboxInScrollPane);
         ArrayList<Room> rooms = null;
 
         try {
@@ -48,11 +79,17 @@ public class DeleteRoomSceneController implements Initializable {
             deleteBtn.setAlignment(Pos.CENTER_LEFT);
             deleteBtn.setOnAction(event -> {
                 try {
-                    ServerCommunication.deleteRoom(r.getRoom_id());
-                    Alert warning = new Alert(Alert.AlertType.WARNING);
-                    warning.setContentText("Room deleted successfully.");
-                    warning.show();
-                } catch (URISyntaxException e) {
+                    DeleteRoomSceneController.roomId = r.getRoom_id();
+                    DeleteRoomSceneController.roomName = r.getRoom_name();
+                    DeleteRoomSceneController.capacity = r.getCapacity();
+                    DeleteRoomSceneController.buildingName = r.getBuilding().getBuilding_Name();
+                    DeleteRoomSceneController.typeName = r.getType().getName();
+                    Parent root = FXMLLoader.load(getClass().getResource("/deleteRoomPopUpScene.fxml"));
+                    Stage st = new Stage();
+                    Scene sc = new Scene(root, 300, 400);
+                    st.setScene(sc);
+                    st.show();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             });

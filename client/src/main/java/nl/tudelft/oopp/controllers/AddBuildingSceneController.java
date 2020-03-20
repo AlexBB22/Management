@@ -26,7 +26,7 @@ import nl.tudelft.oopp.communication.ServerCommunication;
 
 public class AddBuildingSceneController implements Initializable {
 
-    @FXML private VBox VBoxInScrollPane;
+    @FXML private VBox vboxInScrollPane;
     @FXML private Text username;
     @FXML private TextField buildingNameTextField;
     @FXML private CheckBox nonResSpaceCheckBox;
@@ -40,7 +40,7 @@ public class AddBuildingSceneController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText(MainApp.user.getUserName());
-        buildingScrollPane.setContent(VBoxInScrollPane);
+        buildingScrollPane.setContent(vboxInScrollPane);
         ArrayList<Building> buildings = null;
         try {
             buildings = ServerCommunication.getBuildings();

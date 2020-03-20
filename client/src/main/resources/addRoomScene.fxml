@@ -23,12 +23,12 @@
     <RowConstraints maxHeight="278.79999389648435" minHeight="10.0" prefHeight="278.79999389648435" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox fx:id="VboxInSP" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All current rooms" />
             <ScrollPane fx:id="roomScrollPane" prefHeight="257.0" prefWidth="640.0">
                <content>
-                  <VBox prefHeight="188.0" prefWidth="282.0" />
+                  <VBox fx:id="vboxInSP" prefHeight="188.0" prefWidth="282.0" />
                </content>
             </ScrollPane>
          </children>

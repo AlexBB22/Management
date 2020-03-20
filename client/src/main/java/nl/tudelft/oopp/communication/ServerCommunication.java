@@ -220,6 +220,13 @@ public class ServerCommunication {
         return buildings;
     }
 
+    /**
+     * requests all types from the database.
+     * @return a list of all types from the database
+     * @throws URISyntaxException exception if URI syntax is wrong.
+     * @throws IOException exception if input or output are wrong.
+     * @author Scott.
+     */
     public static ArrayList<Type> getTypes() throws URISyntaxException, IOException {
         String url = "http://localhost:8080/getListOfTypes";
 
@@ -231,6 +238,12 @@ public class ServerCommunication {
         return types;
     }
 
+    /**
+     * requests all rooms from the database.
+     * @return a list of all rooms from the database
+     * @throws URISyntaxException exception if URI syntax is wrong.
+     * @throws IOException exception if input or output are wrong.
+     */
     public static ArrayList<Room> getAllRooms() throws URISyntaxException, IOException {
         String url = "http://localhost:8080/getListOfRooms";
 
@@ -369,7 +382,6 @@ public class ServerCommunication {
      * @param description a String giving the description of the building
      * @param opening the time the building opens
      * @param closing the time the building closes
-     * @return int. -1 if fail, 1 if success
      * @throws URISyntaxException url exception
      */
     public static void createBuilding(String buildingName, boolean nonReservableSpace, int carParkingSpaces, String description, Time opening, Time closing) throws URISyntaxException {
@@ -402,7 +414,7 @@ public class ServerCommunication {
      * @author Scott.
      */
     public static void createRoom(int capacity, String roomName, String buildingName, int type) throws URISyntaxException {
-        String url = String.format("http://localhost:8080/addRoomToDB/%s/%s/%s/%s", capacity, roomName, buildingName, type );
+        String url = String.format("http://localhost:8080/addRoomToDB/%s/%s/%s/%s", capacity, roomName, buildingName, type);
         URI uri = new URI(url);
 
         HttpClient client = HttpClient.newHttpClient();
@@ -447,6 +459,11 @@ public class ServerCommunication {
         }
     }
 
+    /**
+     * requests to delete a room from the database.
+     * @param roomId the id of the room to delete.
+     * @throws URISyntaxException exception if URI syntax is wrong.
+     */
     public static void deleteRoom(int roomId) throws URISyntaxException {
         String url = String.format("http://localhost:8080/deleteRoom/%s", roomId);
         URI uri = new URI(url);

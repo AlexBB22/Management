@@ -1,8 +1,18 @@
 package nl.tudelft.oopp.controllers;
 
+import static nl.tudelft.oopp.MainApp.switchScene;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -17,24 +27,50 @@ import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.ServerCommunication;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
-import static nl.tudelft.oopp.MainApp.switchScene;
 
 public class DeleteBuildingSceneController implements Initializable {
 
     @FXML private Text username;
     @FXML private ScrollPane deleteScrollPane;
-    @FXML private VBox VBoxInScrollPane;
+    @FXML private VBox vboxInScrollPane;
+
+
+    private static String buildingName;
+    private static boolean nonResSpace;
+    private static int carParkingSpace;
+    private static String description;
+    private static String openTime;
+    private static String closeTime;
+
+    public static String getBuildingName() {
+        return buildingName;
+    }
+
+    public static boolean isNonResSpace() {
+        return nonResSpace;
+    }
+
+    public static String getCarParkingSpace() {
+        return "" + carParkingSpace;
+    }
+
+    public static String getDescription() {
+        return description;
+    }
+
+    public static String getOpenTime() {
+        return openTime;
+    }
+
+    public static String getCloseTime() {
+        return closeTime;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText(MainApp.user.getUserName());
-        deleteScrollPane.setContent(VBoxInScrollPane);
+        deleteScrollPane.setContent(vboxInScrollPane);
         ArrayList<Building> buildings = null;
 
 
@@ -52,11 +88,18 @@ public class DeleteBuildingSceneController implements Initializable {
             deleteBtn.setAlignment(Pos.CENTER_LEFT);
             deleteBtn.setOnAction(event -> {
                 try {
-                    ServerCommunication.deleteBuilding(b.getBuilding_Name());
-                    Alert warning = new Alert(Alert.AlertType.WARNING);
-                    warning.setContentText("Building deleted successfully");
-                    warning.show();
-                } catch (URISyntaxException e) {
+                    DeleteBuildingSceneController.buildingName = b.getBuilding_Name();
+                    DeleteBuildingSceneController.nonResSpace = b.isNon_reservable_space();
+                    DeleteBuildingSceneController.carParkingSpace = b.getCar_parking_spaces();
+                    DeleteBuildingSceneController.description = b.getDescription();
+                    DeleteBuildingSceneController.openTime = b.getOpening().toString();
+                    DeleteBuildingSceneController.closeTime = b.getClosing().toString();
+                    Parent root = FXMLLoader.load(getClass().getResource("/deleteBuildingPopUpScene.fxml"));
+                    Stage st = new Stage();
+                    Scene sc = new Scene(root, 300, 400);
+                    st.setScene(sc);
+                    st.show();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             });

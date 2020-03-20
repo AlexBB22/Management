@@ -44,7 +44,7 @@
          <children>
             <ScrollPane fx:id="deleteScrollPane" prefHeight="558.0" prefWidth="1280.0">
                <content>
-                  <VBox fx:id="VBoxInScrollPane" prefHeight="530.0" prefWidth="752.0" />
+                  <VBox fx:id="vboxInScrollPane" prefHeight="530.0" prefWidth="752.0" />
                </content></ScrollPane>
          </children>
       </VBox>

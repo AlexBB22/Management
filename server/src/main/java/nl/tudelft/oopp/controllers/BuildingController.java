@@ -6,12 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import nl.tudelft.oopp.entities.*;
-import nl.tudelft.oopp.repositories.*;
+import nl.tudelft.oopp.entities.Building;
+import nl.tudelft.oopp.entities.Room;
+import nl.tudelft.oopp.repositories.BikeRepository;
+import nl.tudelft.oopp.repositories.BikeReservationRepository;
+import nl.tudelft.oopp.repositories.BuildingRepository;
+import nl.tudelft.oopp.repositories.RestaurantRepository;
+import nl.tudelft.oopp.repositories.RoomRepository;
+import nl.tudelft.oopp.repositories.RoomReservationRepository;
+import nl.tudelft.oopp.repositories.TimeSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 

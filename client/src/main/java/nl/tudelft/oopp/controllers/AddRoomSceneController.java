@@ -38,14 +38,14 @@ public class AddRoomSceneController implements Initializable {
     @FXML private ComboBox<String> typeNameComboBox;
     @FXML private ScrollPane roomScrollPane;
     @FXML private Text username;
-    @FXML private VBox VBoxInSP;
+    @FXML private VBox vboxInSP;
     @FXML private Text confirmationText;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText(MainApp.user.getUserName());
         ArrayList<Room> rooms = null;
-        roomScrollPane.setContent(VBoxInSP);
+        roomScrollPane.setContent(vboxInSP);
 
         try {
             rooms = ServerCommunication.getAllRooms();
@@ -108,11 +108,11 @@ public class AddRoomSceneController implements Initializable {
             int capacity = Integer.parseInt(capacityTextField.getText());
             String roomName = roomNameTextField.getText();
             String buildingName = buildingComboBox.getValue();
-            String Typename = typeNameComboBox.getValue();
+            String typeName = typeNameComboBox.getValue();
             int typeint = 5;
             List<Type> types = ServerCommunication.getTypes();
             for (Type t : types) {
-                if (t.getName().equals(Typename)) {
+                if (t.getName().equals(typeName)) {
                     typeint = t.getType_id();
                     break;
                 }
