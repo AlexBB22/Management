@@ -18,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -39,6 +41,7 @@ import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.User;
 import nl.tudelft.oopp.communication.UserReservationInfo;
+import nl.tudelft.oopp.communication.UserTodo;
 
 
 public class MainSceneController implements Initializable {
@@ -73,6 +76,13 @@ public class MainSceneController implements Initializable {
     @FXML private VBox wednesdayAgendaBox;
     @FXML private VBox thursdayAgendaBox;
     @FXML private VBox fridayAgendaBox;
+
+    //Buttons for each of the days
+    @FXML private Button mondayTodoButton;
+    @FXML private Button tuesdayTodoButton;
+    @FXML private Button wednesdayTodoButton;
+    @FXML private Button thursdayTodoButton;
+    @FXML private Button fridayTodoButton;
 
 
     @FXML
@@ -121,10 +131,20 @@ public class MainSceneController implements Initializable {
             dates.add(dayString);
         }
         thisWeekMondayDate.setText(dates.get(0));
+        mondayTodoButton.setId(dates.get(0));
+
         thisWeekTuesdayDate.setText(dates.get(1));
+        tuesdayTodoButton.setId(dates.get(1));
+
         thisWeekWednesdayDate.setText(dates.get(2));
+        wednesdayTodoButton.setId(dates.get(2));
+
         thisWeekThursdayDate.setText(dates.get(3));
+        thursdayTodoButton.setId(dates.get(3));
+
         thisWeekFridayDate.setText(dates.get(4));
+        fridayTodoButton.setId(dates.get(4));
+
         username.setText(MainApp.user.getUserName());
         try {
             addUserReservations();
@@ -215,6 +235,15 @@ public class MainSceneController implements Initializable {
         status = newStatus;
     }
 
-
-
+    @FXML
+    public void addTodo(ActionEvent actionEvent) throws IOException, URISyntaxException {
+        Button button = (Button) actionEvent.getSource();
+        String date = button.getId();
+       
+        ArrayList<UserTodo> list = ServerCommunication.getUserTodoList(MainApp.user.getUserId());
+        for (UserTodo ut: list) {
+            Text text = new Text(ut.toString());
+            mondayAgendaBox.getChildren().add(text);
+        }
+    }
 }

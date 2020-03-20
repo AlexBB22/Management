@@ -123,7 +123,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="91.0" text="Add To-do">
+                              <Button fx:id="mondayTodoButton" mnemonicParsing="false" onAction="#addTodo" prefHeight="29.0" prefWidth="91.0" text="Add To-do">
                                  <HBox.margin>
                                     <Insets left="140.0" />
                                  </HBox.margin>
@@ -138,7 +138,7 @@
                         </HBox>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
                            <content>
-                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                              <VBox fx:id="mondayAgendaBox" prefHeight="42.0" prefWidth="290.0" />
                            </content>
                         </ScrollPane>
                      </children>
@@ -150,7 +150,7 @@
       <HBox fx:id="topBar" prefHeight="101.0" prefWidth="226.0" styleClass="logo" stylesheets="@CSS/sidebar.css" GridPane.columnSpan="4">
          <children>
             <Text fx:id="res" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="     " />
-            <Text fx:id="result" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateY="10.0"  />
+            <Text fx:id="result" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateY="10.0" />
             <ImageView fitHeight="72.0" fitWidth="161.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/tudelftLogo.png" />
@@ -347,7 +347,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button mnemonicParsing="false" text="Add Todo">
+                              <Button fx:id="tuesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add Todo">
                                  <HBox.margin>
                                     <Insets left="150.0" />
                                  </HBox.margin>
@@ -362,7 +362,7 @@
                         </HBox>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
                            <content>
-                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                              <VBox fx:id="tuesdayAgendaBox" prefHeight="42.0" prefWidth="290.0" />
                            </content>
                         </ScrollPane>
                      </children>
@@ -424,7 +424,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button mnemonicParsing="false" text="Add Todo">
+                              <Button fx:id="wednesdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add Todo">
                                  <HBox.margin>
                                     <Insets left="150.0" />
                                  </HBox.margin>
@@ -439,7 +439,7 @@
                         </HBox>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
                            <content>
-                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                              <VBox fx:id="wednesdayAgendaBox" prefHeight="42.0" prefWidth="290.0" />
                            </content>
                         </ScrollPane>
                      </children>
@@ -501,7 +501,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button mnemonicParsing="false" text="Add Todo">
+                              <Button fx:id="thursdayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add Todo">
                                  <HBox.margin>
                                     <Insets left="150.0" />
                                  </HBox.margin>
@@ -516,7 +516,7 @@
                         </HBox>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
                            <content>
-                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                              <VBox fx:id="thursdayAgendaBox" prefHeight="42.0" prefWidth="290.0" />
                            </content>
                         </ScrollPane>
                      </children>
@@ -578,7 +578,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Text>
-                              <Button mnemonicParsing="false" text="Add Todo">
+                              <Button fx:id="fridayTodoButton" mnemonicParsing="false" onAction="#addTodo" text="Add Todo">
                                  <HBox.margin>
                                     <Insets left="150.0" />
                                  </HBox.margin>
@@ -593,7 +593,7 @@
                         </HBox>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="42.0" prefWidth="252.0" styleClass="weekItemAgendaPane">
                            <content>
-                              <VBox prefHeight="42.0" prefWidth="290.0" />
+                              <VBox fx:id="fridayAgendaBox" prefHeight="42.0" prefWidth="290.0" />
                            </content>
                         </ScrollPane>
                      </children>

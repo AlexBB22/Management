@@ -415,4 +415,57 @@ public class ServerCommunication {
         return mapper.readValue(res, new TypeReference<List<String>>() {});
     }
 
+    /**
+     * This method adds a new todo item for the user by sending the required parameters to the server.
+     * @param userID - the id that identifies the user for which the todo is to be added
+     * @param title - the title of the todo
+     * @param day - the day at which the todo is being added
+     * @return boolean - true if successful, false otherwise
+     * @throws URISyntaxException - exception thrown if URL to interact with DB is invalid.
+     * @throws IOException - exception thrown if jackson mapping fails
+     */
+    public static boolean addNewTodo(int userID, String title, String day) throws URISyntaxException, IOException {
+        String strUrl = String.format("http://localhost:8080/addNewTodo/%s/%s", userID, day);
+        URI url = new URI(strUrl);
+
+        //Setting up requestBody (JSON strings)
+        HashMap<String, String> jsonValues = new HashMap<String, String>() {
+            {
+                put("title", title);
+            }
+        };
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestBody = objectMapper.writeValueAsString(jsonValues);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").POST(HttpRequest.BodyPublishers.ofString(requestBody)).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return Boolean.parseBoolean(response.body());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * This method communicates with the server to retrieve a list of todos for a particular user.
+     * @param userID - the user for which todos are to be returned
+     * @return A list of UserTodo objects
+     * @throws URISyntaxException - exception thrown if URL to interact with DB is invalid.
+     * @throws IOException - exception thrown if jackson mapping fails
+     */
+    public static ArrayList<UserTodo> getUserTodoList(int userID) throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/getAllTodos/%s", userID);
+        String jsonRes = request(url);
+        System.out.println("These are all the users todos: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserTodo>>(){});
+    }
+
+
 }
