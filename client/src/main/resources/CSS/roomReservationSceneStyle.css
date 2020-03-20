@@ -44,7 +44,7 @@
 }
 
 .scroll-bar:vertical .thumb {
-    -fx-background-color: white;
+    -fx-background-color: #e1f5ff;
     -fx-background-radius: 5em;
 }
 
@@ -106,4 +106,9 @@
     -fx-text-fill: white;
     -fx-border-radius: 50px;
     -fx-background-radius: 50px;
+}
+
+.selectButton:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: red;
 }

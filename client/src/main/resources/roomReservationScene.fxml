@@ -100,7 +100,10 @@
                      </HBox.margin>
                      <font>
                         <Font name="Arial Bold" size="15.0" />
-                     </font></Button>
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <ImageView fitHeight="111.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="190.0" />
@@ -126,115 +129,7 @@
          <children>
             <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="478.0" prefWidth="565.0" styleClass="roomReservationPane">
                <content>
-                  <VBox fx:id="roomList" prefHeight="485.0" prefWidth="579.0">
-                     <children>
-                        <HBox prefHeight="160.0" prefWidth="570.0" style="-fx-border-width: 2; -fx-border-color: #2ad8ff;">
-                           <children>
-                              <HBox alignment="CENTER" prefHeight="149.0" prefWidth="200.0">
-                                 <children>
-                                    <ImageView fitHeight="135.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/lectureHall.jpg" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                              <VBox prefHeight="145.0" prefWidth="360.0">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </HBox.margin>
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="364.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ampere">
-                                             <font>
-                                                <Font name="Arial Bold" size="18.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="27.0" prefWidth="360.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Hall">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity: 150">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="25.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="25.0" prefWidth="360.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="     TV: Yes">
-                                             <font>
-                                                <Font name="Arial" size="15.0" />
-                                             </font>
-                                          </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Clicker: Yes">
-                                             <font>
-                                                <Font name="Arial" size="15.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="15.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Whiteboard: Yes">
-                                             <font>
-                                                <Font name="Arial" size="15.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="15.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="360.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="       Power Outlets: Yes">
-                                             <font>
-                                                <Font size="15.0" />
-                                             </font>
-                                          </Text>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="32.0" prefWidth="360.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reserved By: Kanish (Student)">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets right="40.0" />
-                                             </HBox.margin>
-                                          </Text>
-                                          <Button mnemonicParsing="false" style="-fx-text-fill: white; -fx-background-color: #2f93ff;" text="Override">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Button>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" right="18.0" top="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children></VBox>
+                  <VBox fx:id="roomList" prefHeight="485.0" prefWidth="579.0" />
                </content>
                <VBox.margin>
                   <Insets left="5.0" right="5.0" />

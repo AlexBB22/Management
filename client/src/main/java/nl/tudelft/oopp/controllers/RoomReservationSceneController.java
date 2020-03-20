@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -124,10 +125,6 @@ public class RoomReservationSceneController implements Initializable {
         topBar.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.rgb(65, 165, 212), Color.BLACK,
                 BorderStrokeStyle.NONE, BorderStrokeStyle.NONE, BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
                 CornerRadii.EMPTY, new BorderWidths(5), Insets.EMPTY)));
-
-//        sideMenu.setBorder((new Border(new BorderStroke(Color.BLACK, Color.rgb(31, 125, 240), Color.BLACK, Color.BLACK,
-//                BorderStrokeStyle.NONE, BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE, BorderStrokeStyle.NONE,
-//                CornerRadii.EMPTY, new BorderWidths(5), Insets.EMPTY))));
 
         hasReserved = false;
 
@@ -257,7 +254,7 @@ public class RoomReservationSceneController implements Initializable {
 
         //Making the title "Available rooms" and adding it to the main Vbox
         Text availableRoomTitle = new Text("Available Rooms");
-        availableRoomTitle.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        availableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         availableRoomTitle.setFill(Color.BLUE);
         roomList.getChildren().add(availableRoomTitle);
 
@@ -270,10 +267,18 @@ public class RoomReservationSceneController implements Initializable {
         ArrayList<AvailableRoom> availableRooms = ServerCommunication.getOnlyAvailableRooms(buildingComboBox.getValue(), datePicker.getValue(),
                 starttime, endtime);
 
-        //Calling method createAvailableView with each room so that its shown to the user and added into the vbox
-        for (AvailableRoom ar: availableRooms) {
-            createAvailableRoomView(ar);
+        if (availableRooms.size() == 0) {
+            Text info = new Text("No available rooms.");
+            info.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+            roomList.getChildren().add(info);
+            roomList.setMargin(info, new Insets(5, 0, 10, 15));
+        } else {
+            //Calling method createAvailableView with each room so that its shown to the user and added into the vbox
+            for (AvailableRoom ar: availableRooms) {
+                createAvailableRoomView(ar);
+            }
         }
+
     }
 
     /**
@@ -289,9 +294,10 @@ public class RoomReservationSceneController implements Initializable {
 
         //Making the title "Available rooms" and adding it to the main Vbox
         Text availableRoomTitle = new Text("Available Rooms");
-        availableRoomTitle.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        availableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         availableRoomTitle.setFill(Color.BLUE);
         roomList.getChildren().add(availableRoomTitle);
+
 
         //Getting the start and end time the user selected to make query to DB
         String[] timeSlot = timeSlotComboBox.getValue().split("-");
@@ -302,14 +308,21 @@ public class RoomReservationSceneController implements Initializable {
         ArrayList<AvailableRoom> availableRooms = ServerCommunication.getOnlyAvailableRooms(buildingComboBox.getValue(), datePicker.getValue(),
                 starttime, endtime);
 
-        //Calling method createAvailableView with each room so that its shown to the user and added into the vbox
-        for (AvailableRoom ar: availableRooms) {
-            createAvailableRoomView(ar);
+        if (availableRooms.size() == 0) {
+            Text info = new Text("No available rooms.");
+            info.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+            roomList.getChildren().add(info);
+            roomList.setMargin(info, new Insets(5, 0, 10, 15));
+        } else {
+            //Calling method createAvailableView with each room so that its shown to the user and added into the vbox
+            for (AvailableRoom ar: availableRooms) {
+                createAvailableRoomView(ar);
+            }
         }
 
         //Making the title "Overridable rooms" and adding it after all the Available rooms have been added to the VBox
         Text overridableRoomTitle = new Text("Overridable Rooms");
-        overridableRoomTitle.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+        overridableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         overridableRoomTitle.setFill(Color.BLUE);
         roomList.getChildren().add(overridableRoomTitle);
 
@@ -318,9 +331,16 @@ public class RoomReservationSceneController implements Initializable {
         ArrayList<OverridableRoom> overridableRooms = ServerCommunication.getOnlyOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
                 starttime, endtime, 1);
 
-        //Calling method creatOverridableView with each room so that its shown to the user and added into the vbox
-        for (OverridableRoom or: overridableRooms) {
-            createOverridableRoomView(or);
+        if (overridableRooms.size() == 0) {
+            Text info = new Text("No overridable rooms.");
+            info.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+            roomList.getChildren().add(info);
+            roomList.setMargin(info, new Insets(5, 0, 10, 15));
+        } else {
+            //Calling method creatOverridableView with each room so that its shown to the user and added into the vbox
+            for (OverridableRoom or: overridableRooms) {
+                createOverridableRoomView(or);
+            }
         }
     }
 
@@ -454,11 +474,11 @@ public class RoomReservationSceneController implements Initializable {
         HBox roomInfo2 = new HBox();
         roomInfo2.setAlignment(Pos.TOP_LEFT);
         roomInfo2.setPrefHeight(27);
-        Text isTV = new Text("\t TV: " + or.isTv());
+        Text isTV = new Text("\t TV: " + yesNO(or.isTv()));
         isTV.setFont(Font.font("Arial", 15));
-        Text isClicker = new Text("    Clicker: " + or.isClicker());
+        Text isClicker = new Text("    Clicker: " + yesNO(or.isClicker()));
         isClicker.setFont(Font.font("Arial", 15));
-        Text isWhiteboard = new Text("    Whiteboard: " + or.isWhiteboard());
+        Text isWhiteboard = new Text("    Whiteboard: " + yesNO(or.isWhiteboard()));
         isWhiteboard.setFont(Font.font("Arial", 15));
 
         roomInfo2.getChildren().addAll(isTV, isClicker, isWhiteboard);
@@ -467,7 +487,7 @@ public class RoomReservationSceneController implements Initializable {
         HBox roomInfo3 = new HBox();
         roomInfo3.setAlignment(Pos.TOP_LEFT);
         roomInfo3.setPrefHeight(27);
-        Text isPowerOutlet = new Text("\t Power Outlets: " + or.isPowerOutlets());
+        Text isPowerOutlet = new Text("\t Power Outlets: " + yesNO(or.isPowerOutlets()));
         isPowerOutlet.setFont(Font.font("Arial", 15));
 
         roomInfo3.getChildren().add(isPowerOutlet);
@@ -481,7 +501,8 @@ public class RoomReservationSceneController implements Initializable {
 
         overrideButton.setPrefSize(345, 30);
         overrideButton.setMaxSize(345, 30);
-        overrideButton.setStyle("-fx-background-color: #2f93ff; -fx-text-fill: white; -fx-text-alignment: center; -fx-font-weight: bold");
+        overrideButton.setStyle("-fx-background-color: #2f93ff; -fx-text-fill: white; -fx-text-alignment: center; "
+                + "-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-font-weight: bold;");
         overrideButton.setOnAction(event -> {
             try {
                 overridePopUp(or.getRoomName(), or.getUserName(), or.getRoleName(), or.getReservationID());
@@ -489,6 +510,7 @@ public class RoomReservationSceneController implements Initializable {
                 e.printStackTrace();
             }
         });
+        overrideButton.setCursor(Cursor.HAND);
         roomInfo4.getChildren().add(overrideButton);
         roomInfo4.setMargin(overrideButton, new Insets(0, 5, 0, 5));
 
@@ -496,7 +518,7 @@ public class RoomReservationSceneController implements Initializable {
 
         //add info VBox and the image HBox to the main HBox and set their margins
         mainBox.getChildren().add(imgBox);
-        mainBox.setMargin(imgBox, new Insets(0, 0, 0 ,0));
+        mainBox.setMargin(imgBox, new Insets(0, 0, 0, 0));
         mainBox.getChildren().add(infoBox);
         mainBox.setMargin(infoBox, new Insets(5, 0, 5, 0));
 
@@ -566,11 +588,11 @@ public class RoomReservationSceneController implements Initializable {
         HBox roomInfo2 = new HBox();
         roomInfo2.setAlignment(Pos.TOP_LEFT);
         roomInfo2.setPrefHeight(27);
-        Text isTV = new Text("\t TV: " + ar.isTv());
+        Text isTV = new Text("\t TV: " + yesNO(ar.isTv()));
         isTV.setFont(Font.font("Arial", 15));
-        Text isClicker = new Text("    Clicker: " + ar.isClicker());
+        Text isClicker = new Text("    Clicker: " + yesNO(ar.isClicker()));
         isClicker.setFont(Font.font("Arial", 15));
-        Text isWhiteboard = new Text("    Whiteboard: " + ar.isWhiteboard());
+        Text isWhiteboard = new Text("    Whiteboard: " + yesNO(ar.isWhiteboard()));
         isWhiteboard.setFont(Font.font("Arial", 15));
 
         roomInfo2.getChildren().addAll(isTV, isClicker, isWhiteboard);
@@ -579,7 +601,7 @@ public class RoomReservationSceneController implements Initializable {
         HBox roomInfo3 = new HBox();
         roomInfo3.setAlignment(Pos.TOP_LEFT);
         roomInfo3.setPrefHeight(27);
-        Text isPowerOutlet = new Text("\t Power Outlets: " + ar.isPowerOutlets());
+        Text isPowerOutlet = new Text("\t Power Outlets: " + yesNO(ar.isPowerOutlets()));
         isPowerOutlet.setFont(Font.font("Arial", 15));
 
         roomInfo3.getChildren().add(isPowerOutlet);
@@ -592,7 +614,8 @@ public class RoomReservationSceneController implements Initializable {
         Button reserveButton = new Button("Reserve");
         reserveButton.setPrefSize(345, 30);
         reserveButton.setMaxSize(345, 30);
-        reserveButton.setStyle("-fx-background-color: #2f93ff; -fx-text-fill: white; -fx-text-alignment: center; -fx-font-weight: bold");
+        reserveButton.setStyle("-fx-background-color: #2f93ff; -fx-text-fill: white; -fx-text-alignment: center; "
+                + "-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-font-weight: bold;");
         reserveButton.setOnAction(event -> {
             try {
                 reservePopUp(ar.getRoomName(), ar.getRoomID());
@@ -600,6 +623,7 @@ public class RoomReservationSceneController implements Initializable {
                 e.printStackTrace();
             }
         });
+        reserveButton.setCursor(Cursor.HAND);
         roomInfo4.getChildren().add(reserveButton);
         roomInfo4.setMargin(reserveButton, new Insets(0, 5, 0, 5));
 
@@ -607,7 +631,7 @@ public class RoomReservationSceneController implements Initializable {
 
         //add info VBox and the image HBox to the main HBox and set their margins
         mainBox.getChildren().add(imgBox);
-        mainBox.setMargin(imgBox, new Insets(0, 0, 0 ,0));
+        mainBox.setMargin(imgBox, new Insets(0, 0, 0, 0));
         mainBox.getChildren().add(infoBox);
         mainBox.setMargin(infoBox, new Insets(5, 0, 5, 0));
 
@@ -640,8 +664,20 @@ public class RoomReservationSceneController implements Initializable {
         return resImg;
     }
 
+    /**
+     * This method is simply used during creating the room view boxes for the attribute. It returns a
+     * string "Yes" or "No" corresponding to the boolean.
+     * @author - Kanish Dwivedi
+     * @param trueFalse - boolean value representing if a room has a certain attribute or not
+     * @return - Yes or No based on the boolean
+     */
+    public String yesNO(boolean trueFalse) {
+        if (trueFalse) {
+            return "Yes";
+        }
+        return "No";
+    }
 
-    //TODO: show info in popup
 
     /**
      * A method to create a popup for a new room reservation.
