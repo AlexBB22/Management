@@ -55,7 +55,7 @@ public class BikeReservationPopUpSceneController implements Initializable {
             System.out.println("Something went wrong!");
             return;
         }
-
+        backBtnHandler();
         MainSceneController.setStatus(2);
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/mainScene.fxml"));
         Parent root = loader.load();
