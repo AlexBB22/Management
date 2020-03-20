@@ -371,6 +371,18 @@ public class ServerCommunication {
         return Boolean.valueOf(res);
     }
 
+    /**
+     * Request from the server whether the user already has a bike reservation on that day.
+     * @author Sartori Kendra
+     * @param day - the day on which we check for the reservation
+     * @return true if the user already has a reservation and false otherwise
+     * @throws URISyntaxException - url exception
+     */
+    public static boolean hasBikeReservation(Date day) throws  URISyntaxException {
+        String url = String.format("http://localhost:8080/hasBikeReservation/%s/%s", day, MainApp.user.getUserId());
+        String res = request(url);
+        return Boolean.valueOf(res);
+    }
 
     /**
      * This method requests the server to retrieve a list of all reservations made by a user.
