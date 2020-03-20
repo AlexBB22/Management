@@ -26,19 +26,38 @@ public class TypeTest {
     }
 
     @Test
-    public void getSetAttributes() {
+    public void getSetTV(){
+        Type type = new Type("someRoom", true, true, true);
+        type.setTv(true);
+        assertEquals(true, type.isTv());
+    }
+
+    @Test
+    public void getSetPowerOutlets(){
+        Type type = new Type("someRoom", true, true, true);
+        type.setPowerOutlets(false);
+        assertEquals(false, type.isPowerOutlets());
+    }
+
+    @Test
+    public void getSetWhiteBoard(){
+        Type type = new Type("someRoom", true, true, true);
+        type.setWhiteBoard(false);
+        assertEquals(false, type.isWhiteBoard());
+    }
+
+    @Test
+    public void getSetClicker(){
+        Type type = new Type("someRoom", true, true, true);
+        type.setClicker(false);
+        assertEquals(false, type.isClicker());
+    }
+
+    @Test
+    public void getSetName(){
         Type type = new Type("someRoom", true, true, true);
         type.setName("someOtherRoom");
-        type.setClicker(false);
-        type.setPowerOutlets(false);
-        type.setWhiteBoard(false);
-        type.setTv(true);
         assertEquals("someOtherRoom", type.getName());
-        assertEquals(false, type.isWhiteBoard());
-        assertEquals(false, type.isClicker());
-        assertEquals(false, type.isPowerOutlets());
-        assertEquals(false, type.isWhiteBoard());
-        assertEquals(true, type.isTv());
     }
 
     @Test

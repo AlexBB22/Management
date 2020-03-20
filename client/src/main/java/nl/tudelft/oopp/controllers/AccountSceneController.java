@@ -46,7 +46,7 @@ public class AccountSceneController implements Initializable {
         accountEmail.setText(MainApp.user.getEmail());
         accountUsername.setText(MainApp.user.getUserName());
         try {
-            ArrayList<UserReservationInfo> reservations = ServerCommunication.getUserReserationInfo(MainApp.user.getUserId());
+            ArrayList<UserReservationInfo> reservations = ServerCommunication.getUserReservationInfo(MainApp.user.getUserId());
             userReservationInfoList.getChildren().clear();
             for (UserReservationInfo uri: reservations) {
                 displayUserReservationInfo(uri);

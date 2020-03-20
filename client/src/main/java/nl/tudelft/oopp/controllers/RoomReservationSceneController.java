@@ -198,7 +198,8 @@ public class RoomReservationSceneController implements Initializable {
             if (ServerCommunication.hasReservation(Date.valueOf(datePicker.getValue()),
                     Time.valueOf(timeSlot[0]), Time.valueOf(timeSlot[1]))) {
                 hasReserved = true;
-                Alert warning = new Alert(Alert.AlertType.WARNING);
+                Alert warning = new Alert(Alert.AlertType.INFORMATION);
+                warning.setHeaderText("Conflict");
                 warning.setContentText("You have already reserved a room for the given timeslot and date. "
                         + "You are not authorized to reserve another room for the given criteria.");
                 warning.show();
