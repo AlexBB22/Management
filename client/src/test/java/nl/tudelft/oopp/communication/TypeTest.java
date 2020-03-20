@@ -34,28 +34,28 @@ public class TypeTest {
     }
 
     @Test
-    public void getSetPowerOutlets(){
+    public void getSetPowerOutlets() {
         Type type = new Type("someRoom", true, true, true);
         type.setPowerOutlets(false);
         assertEquals(false, type.isPowerOutlets());
     }
 
     @Test
-    public void getSetClicker(){
+    public void getSetClicker() {
         Type type = new Type("someRoom", true, true, true);
         type.setClicker(false);
         assertEquals(false, type.isClicker());
     }
 
     @Test
-    public void getSetName(){
+    public void getSetName() {
         Type type = new Type("someRoom", true, true, true);
         type.setName("someOtherRoom");
         assertEquals("someOtherRoom", type.getName());
     }
 
     @Test
-    public void getSetWhiteBoard(){
+    public void getSetWhiteBoard() {
         Type type = new Type("someRoom", true, true, true);
         type.setWhiteBoard(false);
         assertEquals(false, type.isWhiteBoard());

@@ -21,7 +21,7 @@ public class UserTest {
     }
 
     @Test
-    public void getSetRole(){
+    public void getSetRole() {
         User user = new User(2, "email", "username", "password");
         Role role = new Role(1, "admin");
         user.setRole(role);
@@ -29,28 +29,28 @@ public class UserTest {
     }
 
     @Test
-    public void getSetUserName(){
+    public void getSetUserName() {
         User user = new User(2, "email", "username", "password");
         user.setUser_name("notUsername");
         assertEquals("notUsername", user.getUser_name());
     }
 
     @Test
-    public void getSetPassword(){
+    public void getSetPassword() {
         User user = new User(2, "email", "username", "password");
         user.setUser_password("notPassword");
         assertEquals("notPassword", user.getUser_password());
     }
 
     @Test
-    public void getSetUserID(){
+    public void getSetUserID() {
         User user = new User(2, "email", "username", "password");
         user.setUser_id(5);
         assertEquals(5, user.getUser_id());
     }
 
     @Test
-    public void getSetEmail(){
+    public void getSetEmail() {
         User user = new User(2, "email", "username", "password");
         user.setEmail("notEmail");
         assertEquals("notEmail", user.getEmail());
