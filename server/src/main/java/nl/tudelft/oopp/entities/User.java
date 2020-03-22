@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -62,6 +64,7 @@ public class User implements Serializable {
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
     @OneToMany(mappedBy = "bikeUserFk", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     //Constructors + Getters/Setters
