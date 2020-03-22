@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="345.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.BikeReservationSceneController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="478.0" prefWidth="560.0" VBox.vgrow="ALWAYS">
+      <children>
+            <DatePicker fx:id="datePickerBike" layoutX="360.0" layoutY="73.0" />
+            <Text layoutX="280.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Date" />
+            <Text layoutX="222.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike Reservations">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="110.0" fitWidth="173.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../build/resources/main/images/tudelftLogo.png" />
+               </image>
+            </ImageView>
+            <ScrollPane layoutX="22.0" layoutY="105.0" prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <VBox fx:id="buildingList" prefHeight="200.0" prefWidth="161.0" />
+               </content>
+            </ScrollPane>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text layoutX="22.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: Reservations are valid for one calendar day" />
+            <ImageView fitHeight="109.0" fitWidth="112.0" layoutX="437.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../build/resources/main/images/bicycle.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="53.0" layoutX="503.0" layoutY="4.0" onMouseClicked="#backToLogin" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/backBtn.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="22.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available Buildings" />
+            <Button layoutX="284.0" layoutY="148.0" mnemonicParsing="false" onAction="#searchButtonHandler" text="Search" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

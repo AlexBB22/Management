@@ -19,8 +19,6 @@ import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.views.MainView;
 
-
-
 public class ReservationPopUpSceneController implements Initializable {
     @FXML private Text reservationUserName;
     @FXML private Text building;
@@ -35,7 +33,6 @@ public class ReservationPopUpSceneController implements Initializable {
     private int roomID;
     private String startTime;
     private String endTime;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

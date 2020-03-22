@@ -27,12 +27,12 @@ public class DataBaseConfig {
     @Primary
     public DataSource mySqlDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
+        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
 
         //projects-db.ewi.tudelft.nl is host for real DB
 
         //or projects_OOPPGroup4Test for Test DB        projects_OOPPGroup4 for Real DB
-        dataSourceBuilder.url("jdbc:mysql://projects-db.ewi.tudelft.nl:3306/projects_OOPPGroup4Test");
+        dataSourceBuilder.url("jdbc:mysql://projects-db.ewi.tudelft.nl/projects_OOPPGroup4Test");
 
         //pu_ylnfCNSj8WSfx for Test DB      pu_OOPPGroup4 for Real DB
         dataSourceBuilder.username("pu_ylnfCNSj8WSfx");

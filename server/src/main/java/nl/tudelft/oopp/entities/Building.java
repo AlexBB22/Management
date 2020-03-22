@@ -1,20 +1,17 @@
 package nl.tudelft.oopp.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import nl.tudelft.oopp.entities.Bike;
-import nl.tudelft.oopp.entities.Restaurant;
 
 @Entity
 @Table(name = "building")
@@ -41,6 +38,9 @@ public class Building {
 
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
     private List<Room> rooms = new ArrayList<Room>();
+
+    @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
+    private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
     private List<Restaurant> restaurants = new ArrayList<Restaurant>();
@@ -232,5 +232,38 @@ public class Building {
     public void setCarParkingSpaces(int carParkingSpaces) {
         this.carParkingSpaces = carParkingSpaces;
     }
+
+    @JsonIgnore
+    public List<BikeReservation> getBikeReservations() {
+        return bikeReservations;
+    }
+
+    public void setBikeReservations(List<BikeReservation> bikeReservations) {
+        this.bikeReservations = bikeReservations;
+    }
+
+    public void addBikeReservation(BikeReservation reservation) {
+        this.bikeReservations.add(reservation);
+        reservation.setBuilding(this);
+    }
+
+    public void removeBikeReservation(BikeReservation reservation) {
+        this.bikeReservations.remove(reservation);
+        reservation.setBuilding(null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Building building = (Building) o;
+        return Objects.equals(buildingName, building.buildingName);
+    }
+
 }
 

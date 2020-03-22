@@ -37,6 +37,10 @@ public class BikeReservation {
     @Column(name = "day")
     private Date day;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "buildingName")
+    private Building building;
+
     public BikeReservation() {
     }
 
@@ -77,4 +81,25 @@ public class BikeReservation {
     public void setDay(Date day) {
         this.day = day;
     }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
+
+    /**
+     * The representation of a bike reservation as a string.
+     * @author - Sartori Kendra
+     * @return - a string containing information about a bike reservation
+     */
+    public String toString() {
+        return "Bike reservation unique ID: "
+             + this.id + ", day: "
+             + this.day + ", location: "
+             + this.building.getBuilding_Name();
+    }
+
 }
