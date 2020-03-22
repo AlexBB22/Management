@@ -1,12 +1,14 @@
 package nl.tudelft.oopp.controllers;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 import java.util.Optional;
 
 import nl.tudelft.oopp.entities.Food;
 import nl.tudelft.oopp.entities.FoodReservation;
 import nl.tudelft.oopp.entities.Restaurant;
+import nl.tudelft.oopp.entities.TimeSlot;
 import nl.tudelft.oopp.entities.User;
 import nl.tudelft.oopp.repositories.FoodRepository;
 import nl.tudelft.oopp.repositories.FoodReservationRepository;
@@ -44,11 +46,13 @@ public class FoodReservationController {
      * @author Hidde Agterberg
      * @return a new food reservation
      */
-    @PostMapping("/addFoodReservation/{foodId}/{restaurantId}/{day}/{userId}")
+    @PostMapping("/addFoodReservation/{foodId}/{restaurantId}/{day}/{startTime}/{endTime}/{userId}")
     @ResponseBody
-    public FoodReservation addFoodReservation(@PathVariable(value = "foodId") String foodId,
+    public FoodReservation addFoodReservation(@PathVariable (value = "foodId") String foodId,
                                               @PathVariable (value = "restaurantId") int restaurantId,
                                               @PathVariable (value = "day") Date day,
+                                              @PathVariable (value = "startTime") Time startTime,
+                                              @PathVariable (value = "endTime") Time endTime,
                                               @PathVariable (value = "userId") int userId) {
 
         Optional<Food> f = foodRepository.findById(foodId);
@@ -64,7 +68,8 @@ public class FoodReservationController {
         foodReservation.setUserFk(user);
         foodReservation.setFoodFk(food);
         foodReservation.setRestaurantFk(restaurant);
-        // user.addBikeReservation(bikeReservation);
+        foodReservation.setStartTime(startTime);
+        foodReservation.setEndTime(endTime);
 
         System.out.println("Added a new bike reservation");
         return foodReservationRepository.save(foodReservation);
@@ -100,7 +105,7 @@ public class FoodReservationController {
      * @author Hidde Agterberg
      * @return all the food reservations of a user
      */
-    @GetMapping("/getUsersFoodReservations/{userId}")
+        @GetMapping("/getUsersFoodReservations/{userId}")
     @ResponseBody
     public List<FoodReservation> getUsersFoodReservations(@PathVariable(value = "userId") int userId) {
         return foodReservationRepository.getUsersFoodReservations(userId);

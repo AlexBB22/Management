@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -32,7 +33,7 @@ public class Menu {
     @JoinTable(name = "menu_food", joinColumns = @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "food_fk", referencedColumnName = "food_Id"))
     List<Food> foods = new ArrayList<Food>();
-    
+
     @OneToOne(mappedBy = "menu")
     private Restaurant restaurant;
 
@@ -63,6 +64,7 @@ public class Menu {
         this.foods = foods;
     }
 
+    @JsonBackReference
     public Restaurant getRestaurant() {
         return restaurant;
     }

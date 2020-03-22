@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = {"menu_fk"})})
 public class Restaurant {
@@ -33,6 +35,7 @@ public class Restaurant {
         this.resId = resId;
     }
 
+    @JsonManagedReference
     public Menu getMenu() {
         return menu;
     }

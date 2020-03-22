@@ -93,8 +93,8 @@ public class RoomReservationController {
 
         //Making a new RoomReservation entity and setting up its FK entity relationships with TimeSlot and User
         RoomReservation roomReservation = new RoomReservation(day);
-        roomReservation.setUser_fk(user);
-        roomReservation.setTimeslot_fk(dbTimeslot);
+        roomReservation.setUserFk(user);
+        roomReservation.setTimeslotFk(dbTimeslot);
         user.addRoomReservation(roomReservation);
         dbTimeslot.addRoomReservation(roomReservation);
 
@@ -134,7 +134,7 @@ public class RoomReservationController {
 
         //Queries the database using the role of the just initialized user
         List<Integer> objects = roomReservationRepository.findAllAvailableRoomsWithOverriding(buildingName, day, startTime,
-                endTime, user.getRole().getRole_id());
+                endTime, user.getRole().getRoleId());
 
         List<Room> rooms = new ArrayList<>();
         for (int i = 0; i < objects.size(); i++) {
@@ -174,7 +174,7 @@ public class RoomReservationController {
 
         //Queries the database using the role of the just initialized user
         List<Integer> objects = roomReservationRepository.findAllOverridableRoomReservations(buildingName, day, startTime,
-                endTime, user.getRole().getRole_id());
+                endTime, user.getRole().getRoleId());
         List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
         for (int i = 0; i < objects.size(); i++) {
             Optional<RoomReservation> r = roomReservationRepository.findById(objects.get(i));
@@ -206,7 +206,7 @@ public class RoomReservationController {
         User user = u.get();
 
         //Update the user field of the room reservation
-        roomReservation.setUser_fk(user);
+        roomReservation.setUserFk(user);
 
         System.out.println("Overridden a room reservation, new reservation is: " + roomReservation.toString());
         return roomReservationRepository.save(roomReservation);

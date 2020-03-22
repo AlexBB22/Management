@@ -47,30 +47,30 @@ public class RoomReservation implements Serializable {
         this.day = day;
     }
 
-    public int getReservation_id() {
+    public int getReservation_d() {
         return reservationId;
     }
 
-    public void setReservation_id(int reservationId) {
+    public void setReservationId(int reservationId) {
         this.reservationId = reservationId;
     }
 
     @JsonBackReference(value = "userRoomReservations")
-    public User getUser_fk() {
+    public User getUserFk() {
         return userFk;
     }
 
-    public void setUser_fk(User userFk) {
+    public void setUserFk(User userFk) {
         this.userFk = userFk;
     }
 
 
     @JsonBackReference(value = "timeslotRoomReservations")
-    public TimeSlot getTimeslot_fk() {
+    public TimeSlot getTimeslotFk() {
         return timeslotFk;
     }
 
-    public void setTimeslot_fk(TimeSlot timeslotFk) {
+    public void setTimeslotFk(TimeSlot timeslotFk) {
         this.timeslotFk = timeslotFk;
     }
 

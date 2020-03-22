@@ -2,10 +2,12 @@ package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +21,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "foodreservation")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "reservation_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "reservationId")
 public class FoodReservation implements Serializable {
 
     @Id
@@ -43,6 +45,12 @@ public class FoodReservation implements Serializable {
     @Column(name = "day")
     private Date day;
 
+    @JoinColumn(name = "start_time")
+    private Time startTime;
+
+    @JoinColumn(name = "end_time")
+    private Time endTime;
+
     public FoodReservation() {
 
     }
@@ -51,6 +59,7 @@ public class FoodReservation implements Serializable {
         this.day = day;
     }
 
+    //@JsonManagedReference(value = "reservation_id")
     public int getReservationId() {
         return reservationId;
     }
@@ -89,5 +98,21 @@ public class FoodReservation implements Serializable {
 
     public void setDay(Date day) {
         this.day = day;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
     }
 }

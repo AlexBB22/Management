@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -141,9 +143,10 @@ public class User implements Serializable {
 
     public String toString() {
         return "user_id: " + this.userId + " , email: " + this.email
-                + " , user_name: " + this.userName + " , user_password: " + this.userPassword + " , role_fk: " + this.getRole().getRole_id();
+                + " , user_name: " + this.userName + " , user_password: " + this.userPassword + " , role_fk: " + this.getRole().getRoleId();
     }
 
+    @JsonManagedReference(value = "userBike")
     public List<BikeReservation> getBikeReservations() {
         return bikeReservations;
     }

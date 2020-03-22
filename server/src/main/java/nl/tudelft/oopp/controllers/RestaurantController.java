@@ -58,8 +58,7 @@ public class RestaurantController {
     @GetMapping("/getAllRestaurants")
     @ResponseBody
     public List<Restaurant> findAllRestaurants() {
-        List<Restaurant> restaurants = restaurantRepository.getAllRestaurants();
-        return restaurants;
+        return restaurantRepository.getAllRestaurants();
     }
 
     /**
