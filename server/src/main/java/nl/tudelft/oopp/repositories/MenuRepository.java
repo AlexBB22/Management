@@ -14,4 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface MenuRepository  extends JpaRepository<Menu, Integer> {
     @Query(value = "SELECT * FROM menu WHERE menu_id = ?1", nativeQuery = true)
     Optional<Menu> findMenuById(Integer menuId);
+
+    @Query(value = "SELECT * FROM menu", nativeQuery = true)
+    Optional<Menu> findAllMenus();
 }
