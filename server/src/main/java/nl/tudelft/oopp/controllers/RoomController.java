@@ -2,12 +2,9 @@ package nl.tudelft.oopp.controllers;
 
 import java.util.List;
 import java.util.Optional;
-import nl.tudelft.oopp.entities.Building;
-import nl.tudelft.oopp.entities.Room;
-import nl.tudelft.oopp.entities.Type;
-import nl.tudelft.oopp.repositories.BuildingRepository;
-import nl.tudelft.oopp.repositories.RoomRepository;
-import nl.tudelft.oopp.repositories.TypeRepository;
+
+import nl.tudelft.oopp.entities.*;
+import nl.tudelft.oopp.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;
@@ -37,7 +34,11 @@ public class RoomController {
     @Autowired
     private TypeRepository typeRepository;
 
+    @Autowired
+    private TimeSlotRepository timeSlotRepository;
 
+    @Autowired
+    private RoomReservationRepository roomReservationRepository;
 
     @GetMapping("/getListOfRooms")
     @ResponseBody
@@ -84,10 +85,24 @@ public class RoomController {
      */
     @DeleteMapping("deleteRoom/{roomId}")
     @ResponseBody
-    public void deleteRoom(@PathVariable (value = "roomId") int roomId) {
+    public void deleteRoom(@PathVariable(value = "roomId") int roomId) {
         try {
             Optional<Room> r = roomRepository.findById(roomId);
             Room room = r.get();
+            List<TimeSlot> timeSlots = room.getTimeslots();
+            for (TimeSlot timeslot : timeSlots) {
+                timeslot.getRoom().getTimeslots().remove(timeslot);
+
+                List<RoomReservation> roomReservations = timeslot.getRoomReservations();
+                for (RoomReservation roomReservation : roomReservations) {
+                    roomReservation.getUser_fk().getRoomReservations().remove(roomReservation);
+                    roomReservation.getTimeslot_fk().getRoomReservations().remove(roomReservation);
+//                    roomReservationRepository.delete(roomReservation);
+                }
+//                timeSlotRepository.delete(timeslot);
+            }
+            room.getType().getListOfRooms().remove(room);
+            room.getBuilding().getRooms().remove(room);
             roomRepository.delete(room);
 
         } catch (Exception e) {

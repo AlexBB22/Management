@@ -50,6 +50,6 @@ public class AdminMainSceneController implements Initializable {
 
     @FXML
     public void deleteRoomButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/?.fxml", "Delete Room");
+        switchScene(mouseEvent, "/deleteRoomScene.fxml", "Delete Room");
     }
 }

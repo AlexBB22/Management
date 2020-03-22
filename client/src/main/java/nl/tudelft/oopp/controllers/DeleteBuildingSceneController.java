@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,7 @@ public class DeleteBuildingSceneController implements Initializable {
     @FXML private ScrollPane deleteScrollPane;
     @FXML private VBox vboxInScrollPane;
 
+    private ArrayList<Building> buildingList;
 
     private static String buildingName;
     private static boolean nonResSpace;
@@ -73,9 +75,9 @@ public class DeleteBuildingSceneController implements Initializable {
         deleteScrollPane.setContent(vboxInScrollPane);
         ArrayList<Building> buildings = null;
 
-
         try {
             buildings = ServerCommunication.getBuildings();
+            buildingList = buildings;
         } catch (URISyntaxException e) {
             e.printStackTrace();
         } catch (IOException e) {

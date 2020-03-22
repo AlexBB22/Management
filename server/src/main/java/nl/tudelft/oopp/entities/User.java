@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -54,6 +56,7 @@ public class User implements Serializable {
 
     //Mapping to a role, creating a FK here to point to Role table PK
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "role_fk", referencedColumnName = "role_id", nullable = false)
     private Role role;
 

@@ -1,9 +1,12 @@
 package nl.tudelft.oopp.controllers;
 
+import static nl.tudelft.oopp.MainApp.switchScene;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -26,11 +30,14 @@ import nl.tudelft.oopp.communication.Type;
 
 
 
+
 public class DeleteRoomSceneController implements Initializable {
 
     @FXML private Text username;
     @FXML private ScrollPane roomScrollPane;
     @FXML private VBox vboxInScrollPane;
+
+    private ArrayList<Room> roomList;
 
     private static int roomId;
     private static String roomName;
@@ -66,6 +73,7 @@ public class DeleteRoomSceneController implements Initializable {
 
         try {
             rooms = ServerCommunication.getAllRooms();
+            roomList = rooms;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
@@ -105,6 +113,10 @@ public class DeleteRoomSceneController implements Initializable {
             i = i + 1;
         }
         roomScrollPane.setContent(gridPane);
+    }
 
+    @FXML
+    public void backBtnHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/adminMainScene.fxml", "Admin Window");
     }
 }

@@ -63,4 +63,9 @@ public class Bike {
     public void setBuilding(Building building) {
         this.building = building;
     }
+
+    @JsonIgnore
+    public List<BikeReservation> getBikeReservations() {
+        return bikeReservations;
+    }
 }
