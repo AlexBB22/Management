@@ -1,5 +1,8 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = {"menu_fk"})})
@@ -24,7 +25,7 @@ public class Restaurant {
     @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id", unique = true)
     private Menu menu;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "building_fk")
     private Building building;
 
@@ -35,7 +36,7 @@ public class Restaurant {
         this.resId = resId;
     }
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "restaurantMenu")
     public Menu getMenu() {
         return menu;
     }

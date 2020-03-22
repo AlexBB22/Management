@@ -18,6 +18,12 @@ public class FoodController {
     @Autowired
     private FoodRepository foodRepository;
 
+    /**
+     * Add food post function.
+     * @param id - food id
+     * @param price - price of the food
+     * @return add the food to the db
+     */
     @PostMapping("/addFood/{foodId}/{price}")
     @ResponseBody
     public Food addFood(@PathVariable(value = "foodId") String id,

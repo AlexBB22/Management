@@ -105,7 +105,7 @@ public class FoodReservationController {
      * @author Hidde Agterberg
      * @return all the food reservations of a user
      */
-        @GetMapping("/getUsersFoodReservations/{userId}")
+    @GetMapping("/getUsersFoodReservations/{userId}")
     @ResponseBody
     public List<FoodReservation> getUsersFoodReservations(@PathVariable(value = "userId") int userId) {
         return foodReservationRepository.getUsersFoodReservations(userId);
