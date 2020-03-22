@@ -27,9 +27,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-
-
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
 
@@ -93,8 +90,8 @@ public class RoomReservationController {
 
         //Making a new RoomReservation entity and setting up its FK entity relationships with TimeSlot and User
         RoomReservation roomReservation = new RoomReservation(day);
-        roomReservation.setUserFk(user);
-        roomReservation.setTimeslotFk(dbTimeslot);
+        roomReservation.setUser_fk(user);
+        roomReservation.setTimeslot_fk(dbTimeslot);
         user.addRoomReservation(roomReservation);
         dbTimeslot.addRoomReservation(roomReservation);
 
@@ -134,7 +131,7 @@ public class RoomReservationController {
 
         //Queries the database using the role of the just initialized user
         List<Integer> objects = roomReservationRepository.findAllAvailableRoomsWithOverriding(buildingName, day, startTime,
-                endTime, user.getRole().getRoleId());
+                endTime, user.getRole().getRole_id());
 
         List<Room> rooms = new ArrayList<>();
         for (int i = 0; i < objects.size(); i++) {
@@ -174,7 +171,7 @@ public class RoomReservationController {
 
         //Queries the database using the role of the just initialized user
         List<Integer> objects = roomReservationRepository.findAllOverridableRoomReservations(buildingName, day, startTime,
-                endTime, user.getRole().getRoleId());
+                endTime, user.getRole().getRole_id());
         List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
         for (int i = 0; i < objects.size(); i++) {
             Optional<RoomReservation> r = roomReservationRepository.findById(objects.get(i));
@@ -206,7 +203,7 @@ public class RoomReservationController {
         User user = u.get();
 
         //Update the user field of the room reservation
-        roomReservation.setUserFk(user);
+        roomReservation.setUser_fk(user);
 
         System.out.println("Overridden a room reservation, new reservation is: " + roomReservation.toString());
         return roomReservationRepository.save(roomReservation);

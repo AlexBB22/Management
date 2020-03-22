@@ -143,7 +143,7 @@ public class User implements Serializable {
 
     public String toString() {
         return "user_id: " + this.userId + " , email: " + this.email
-                + " , user_name: " + this.userName + " , user_password: " + this.userPassword + " , role_fk: " + this.getRole().getRoleId();
+                + " , user_name: " + this.userName + " , user_password: " + this.userPassword + " , role_fk: " + this.getRole().getRole_id();
     }
 
     @JsonManagedReference(value = "userBike")

@@ -47,19 +47,19 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public int getRoleId() {
+    public int getRole_id() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRole_id(int roleId) {
         this.roleId = roleId;
     }
 
-    public String getRoleName() {
+    public String getRole_name() {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRole_name(String roleName) {
         this.roleName = roleName;
     }
 

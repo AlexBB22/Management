@@ -36,11 +36,11 @@ public class Bike {
     public Bike(){
     }
 
-    public int getBikeId() {
+    public int getBike_id() {
         return bikeId;
     }
 
-    public void setBikeId(int bikeId) {
+    public void setBike_id(int bikeId) {
         this.bikeId = bikeId;
     }
 

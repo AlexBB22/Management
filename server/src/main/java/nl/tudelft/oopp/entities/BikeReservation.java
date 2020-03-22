@@ -53,20 +53,20 @@ public class BikeReservation {
     }
 
     @JsonBackReference(value = "userBike")
-    public User getBikeUserFk() {
+    public User getBike_user_fk() {
         return bikeUserFk;
     }
 
-    public void setBikeUserFk(User bikeUserFk) {
+    public void setBike_user_fk(User bikeUserFk) {
         this.bikeUserFk = bikeUserFk;
     }
 
     @JsonBackReference(value = "bikeBikereservation")
-    public Bike getBikeFk() {
+    public Bike getBike_fk() {
         return bikeFk;
     }
 
-    public void setBikeFk(Bike bikeFk) {
+    public void setBike_fk(Bike bikeFk) {
         this.bikeFk = bikeFk;
     }
 

@@ -59,8 +59,8 @@ public class BikeReservationController {
         User user = u.get();
 
         BikeReservation bikeReservation = new BikeReservation(day);
-        bikeReservation.setBikeUserFk(user);
-        bikeReservation.setBikeFk(bike);
+        bikeReservation.setBike_user_fk(user);
+        bikeReservation.setBike_fk(bike);
         user.addBikeReservation(bikeReservation);
 
         System.out.println("Added a new bike reservation");
