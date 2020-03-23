@@ -3,8 +3,16 @@ package nl.tudelft.oopp.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import nl.tudelft.oopp.entities.*;
-import nl.tudelft.oopp.repositories.*;
+import nl.tudelft.oopp.entities.Building;
+import nl.tudelft.oopp.entities.Room;
+import nl.tudelft.oopp.entities.RoomReservation;
+import nl.tudelft.oopp.entities.TimeSlot;
+import nl.tudelft.oopp.entities.Type;
+import nl.tudelft.oopp.repositories.BuildingRepository;
+import nl.tudelft.oopp.repositories.RoomRepository;
+import nl.tudelft.oopp.repositories.RoomReservationRepository;
+import nl.tudelft.oopp.repositories.TimeSlotRepository;
+import nl.tudelft.oopp.repositories.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;
@@ -97,9 +105,9 @@ public class RoomController {
                 for (RoomReservation roomReservation : roomReservations) {
                     roomReservation.getUser_fk().getRoomReservations().remove(roomReservation);
                     roomReservation.getTimeslot_fk().getRoomReservations().remove(roomReservation);
-//                    roomReservationRepository.delete(roomReservation);
+                    roomReservationRepository.delete(roomReservation);
                 }
-//                timeSlotRepository.delete(timeslot);
+                timeSlotRepository.delete(timeslot);
             }
             room.getType().getListOfRooms().remove(room);
             room.getBuilding().getRooms().remove(room);

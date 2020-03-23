@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import nl.tudelft.oopp.entities.*;
+import nl.tudelft.oopp.entities.Bike;
+import nl.tudelft.oopp.entities.BikeReservation;
+import nl.tudelft.oopp.entities.Building;
+import nl.tudelft.oopp.entities.Restaurant;
+import nl.tudelft.oopp.entities.Room;
+import nl.tudelft.oopp.entities.RoomReservation;
+import nl.tudelft.oopp.entities.TimeSlot;
 import nl.tudelft.oopp.repositories.BikeRepository;
 import nl.tudelft.oopp.repositories.BikeReservationRepository;
 import nl.tudelft.oopp.repositories.BuildingRepository;
@@ -152,13 +158,13 @@ public class BuildingController {
                     for (RoomReservation roomReservation : roomReservations) {
                         roomReservation.getUser_fk().getRoomReservations().remove(roomReservation);
                         roomReservation.getTimeslot_fk().getRoomReservations().remove(roomReservation);
-//                        roomReservationRepository.delete(roomReservation);
+                        roomReservationRepository.delete(roomReservation);
                     }
-//                    timeSlotRepository.delete(timeslot);
+                    timeSlotRepository.delete(timeslot);
                 }
                 room.getType().getListOfRooms().remove(room);
                 building.getRooms().remove(room);
-//                roomRepository.delete(room);
+                roomRepository.delete(room);
             }
             //deleting bikes properly
             List<Bike> bikes = building.getBikes();
@@ -168,16 +174,16 @@ public class BuildingController {
                     bikeReservation.getBike_fk().getBikeReservations().remove(bikeReservation);
                     bikeReservation.getBike_user_fk().getBikeReservations().remove(bikeReservation);
 
-//                    bikeReservationRepository.delete(bikeReservation);
+                    bikeReservationRepository.delete(bikeReservation);
                 }
                 building.getBikes().remove(bike);
-//                bikeRepository.delete(bike);
+                bikeRepository.delete(bike);
             }
 
             List<Restaurant> restaurants = building.getRestaurants();
             for (Restaurant restaurant : restaurants) {
                 building.getRestaurants().remove(restaurant);
-//                restaurantRepository.delete(restaurant);
+                restaurantRepository.delete(restaurant);
             }
             buildingRepository.delete(building);
             System.out.println("building deleted successfully");
