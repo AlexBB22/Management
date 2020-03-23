@@ -217,7 +217,10 @@ public class ServerCommunication {
         System.out.println(res);
         //InputStream res = ServerCommunication.class.getResourceAsStream("/buildings_test.json");
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
         ArrayList<Building> buildings = mapper.readValue(res, new TypeReference<ArrayList<Building>>(){});
+        System.out.println("Hello is this working");
 
         return buildings;
     }
