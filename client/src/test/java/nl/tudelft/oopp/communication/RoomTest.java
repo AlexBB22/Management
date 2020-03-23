@@ -79,7 +79,7 @@ public class RoomTest {
     }
 
     @Test
-    public void getAndSetRoomTypeTest() {
+    public void getSetRoomTypeTest() {
         Room room = new Room(8, "DW-01");
         Type type = new Type("lecture", true, true, true);
         room.setType(type);
@@ -101,7 +101,7 @@ public class RoomTest {
     }
 
     @Test
-    public void getAndSetBuildingTest() {
+    public void getSetBuildingTest() {
         Room room = new Room(8, "DW-01");
         Building building = new Building();
         room.setBuilding(building);

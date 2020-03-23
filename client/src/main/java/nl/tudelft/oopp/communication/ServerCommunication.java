@@ -15,6 +15,8 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.controllers.Hasher;
 
@@ -276,6 +278,38 @@ public class ServerCommunication {
     }
 
     /**
+     * Creates a new bike reservation.
+     * @author Sartori Kendra
+     * @param buildingName - the name of the building from which a bike needs to be reserved
+     * @param day - the date on which the bike will be reserved
+     * @return -1 if the creating a reservation has failed and 1 otherwise
+     * @throws URISyntaxException - thrown is URL is invalid
+     */
+    public static int createBikeReservation(String buildingName, Date day) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080/addBikeReservation/%s/%s/%s",
+                buildingName, day, MainApp.user.getUserId());
+        URI url = new URI(urlString);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").POST(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+    }
+
+    /**
      * Function requesting a room reservation from the server.
      * @param roomId - room ID
      * @param buildingName - name of the building
@@ -307,6 +341,21 @@ public class ServerCommunication {
             return -1;
         }
         return 1;
+    }
+
+    /**
+     *This method gets the number of bikes available.
+     * @param buildingName the name of the building where the bike is.
+     * @param day the day when the user wants to select a bike.
+     * @return the number of bikes available near that building at that specific day.
+     */
+    public static int getNumberOfAvailableBikes(String buildingName, LocalDate day) throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/availableBikesNumber/%s/%s", buildingName, day.toString());
+
+        String res = request(url);
+        System.out.println(res);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(res, new TypeReference<Integer>() {});
     }
 
     /**
@@ -357,6 +406,18 @@ public class ServerCommunication {
         return Boolean.valueOf(res);
     }
 
+    /**
+     * Request from the server whether the user already has a bike reservation on that day.
+     * @author Sartori Kendra
+     * @param day - the day on which we check for the reservation
+     * @return true if the user already has a reservation and false otherwise
+     * @throws URISyntaxException - url exception
+     */
+    public static boolean hasBikeReservation(Date day) throws  URISyntaxException {
+        String url = String.format("http://localhost:8080/hasBikeReservation/%s/%s", day, MainApp.user.getUserId());
+        String res = request(url);
+        return Boolean.valueOf(res);
+    }
 
     /**
      * This method requests the server to retrieve a list of all reservations made by a user.
@@ -366,12 +427,79 @@ public class ServerCommunication {
      * @throws IOException - exception thrown if jackson mapping fails
      * @throws URISyntaxException - exception thrown if URL to interact with DB is invalid.
      */
-    public static ArrayList<UserReservationInfo> getUserReserationInfo(int userID) throws IOException, URISyntaxException {
+    public static ArrayList<UserReservationInfo> getUserReservationInfo(int userID) throws IOException, URISyntaxException {
         String url = String.format("http://localhost:8080/getUserReservationInfo/%s", userID);
         String jsonRes = request(url);
         System.out.println("These are all the users reservations: " + jsonRes);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserReservationInfo>>(){});
+
+    }
+
+    /**
+     * This method gives a list of strings containing the bike reservations for a specific user.
+     * @author Sartori Kendra
+     * @return a list of reservations for a specific user
+     * @throws IOException - thrown if mapping fails
+     * @throws URISyntaxException - thrown if url is invalid
+     */
+    public static List<String> bikeReservationList() throws IOException, URISyntaxException {
+        String url = String.format("http://localhost:8080/bikeReservationsForUser/%s", MainApp.user.getUserId());
+        String res = request(url);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(res, new TypeReference<List<String>>() {});
+    }
+
+    /**
+     * This method adds a new todo item for the user by sending the required parameters to the server.
+     * @param userID - the id that identifies the user for which the todo is to be added
+     * @param title - the title of the todo
+     * @param day - the day at which the todo is being added
+     * @return boolean - true if successful, false otherwise
+     * @throws URISyntaxException - exception thrown if URL to interact with DB is invalid.
+     * @throws IOException - exception thrown if jackson mapping fails
+     */
+    public static boolean addNewTodo(int userID, String title, String day) throws URISyntaxException, IOException {
+        String strUrl = String.format("http://localhost:8080/addNewTodo/%s/%s", userID, day);
+        URI url = new URI(strUrl);
+
+        //Setting up requestBody (JSON strings)
+        HashMap<String, String> jsonValues = new HashMap<String, String>() {
+            {
+                put("title", title);
+            }
+        };
+        ObjectMapper objectMapper = new ObjectMapper();
+        String requestBody = objectMapper.writeValueAsString(jsonValues);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").POST(HttpRequest.BodyPublishers.ofString(requestBody)).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return Boolean.parseBoolean(response.body());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * This method communicates with the server to retrieve a list of todos for a particular user.
+     * @param userID - the user for which todos are to be returned
+     * @return A list of UserTodo objects
+     * @throws URISyntaxException - exception thrown if URL to interact with DB is invalid.
+     * @throws IOException - exception thrown if jackson mapping fails
+     */
+    public static ArrayList<UserTodo> getUserTodoList(int userID) throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/getAllTodos/%s", userID);
+        String jsonRes = request(url);
+        System.out.println("These are all the users todos: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserTodo>>(){});
     }
 
     /**

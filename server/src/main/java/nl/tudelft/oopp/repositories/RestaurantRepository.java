@@ -18,4 +18,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
     @Query(value = "SELECT * FROM restaurant WHERE building_fk = ?1", nativeQuery = true)
     List<Restaurant> getRestaurantsByBuildingName(String buildingName);
 
+    @Query(value = "SELECT * FROM restaurant", nativeQuery = true)
+    List<Restaurant> getAllRestaurants();
 }

@@ -5,15 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import nl.tudelft.oopp.entities.Bike;
-import nl.tudelft.oopp.entities.Restaurant;
 
 @Entity
 @Table(name = "building")
@@ -41,6 +39,9 @@ public class Building {
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
     private List<Room> rooms = new ArrayList<Room>();
 
+    @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
+    private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
+
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
     private List<Restaurant> restaurants = new ArrayList<Restaurant>();
 
@@ -58,7 +59,7 @@ public class Building {
      * @param description extra information about the building
      * @param opening the time at which the building opens
      * @param closing the time at which the building closes
-     * @Autor Scott Jochems
+     * @author Scott Jochems
      */
     public Building(String buildingName, boolean nonReservableSpace, int carParkingSpaces, String description,Time opening, Time closing) {
         this.buildingName = buildingName;
@@ -108,7 +109,7 @@ public class Building {
     /**.
      *sets the amount of car parking space to given integer, 0 if given integer is below 0
      * @param carParkingSpaces amount the car parking space to set to
-     * @Author Scott Jochems
+     * @author Scott Jochems
      */
     public void setCar_parking_spaces(int carParkingSpaces) {
         if (carParkingSpaces < 0) {
@@ -145,7 +146,7 @@ public class Building {
 
     /**
      * Rooms getter.
-     * @return
+     * @return list of rooms
      */
     @JsonIgnore
     public List<Room> getRooms() {
@@ -201,11 +202,67 @@ public class Building {
     /**
      * remove a restaurant from the building.
      * @param restaurant restaurant to be deleted
-     * @Author Scott Jochems
+     * @author Scott Jochems
      */
     public void removeRestaurant(Restaurant restaurant) {
         this.restaurants.remove(restaurant);
         restaurant.setBuilding(null);
+    }
+
+    public String getBuildingName() {
+        return buildingName;
+    }
+
+    public void setBuildingName(String buildingName) {
+        this.buildingName = buildingName;
+    }
+
+    public boolean isNonReservableSpace() {
+        return nonReservableSpace;
+    }
+
+    public void setNonReservableSpace(boolean nonReservableSpace) {
+        this.nonReservableSpace = nonReservableSpace;
+    }
+
+    public int getCarParkingSpaces() {
+        return carParkingSpaces;
+    }
+
+    public void setCarParkingSpaces(int carParkingSpaces) {
+        this.carParkingSpaces = carParkingSpaces;
+    }
+
+    @JsonIgnore
+    public List<BikeReservation> getBikeReservations() {
+        return bikeReservations;
+    }
+
+    public void setBikeReservations(List<BikeReservation> bikeReservations) {
+        this.bikeReservations = bikeReservations;
+    }
+
+    public void addBikeReservation(BikeReservation reservation) {
+        this.bikeReservations.add(reservation);
+        reservation.setBuilding(this);
+    }
+
+    public void removeBikeReservation(BikeReservation reservation) {
+        this.bikeReservations.remove(reservation);
+        reservation.setBuilding(null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Building building = (Building) o;
+        return Objects.equals(buildingName, building.buildingName);
     }
 
 }

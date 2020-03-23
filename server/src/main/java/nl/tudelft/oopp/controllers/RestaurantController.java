@@ -51,6 +51,17 @@ public class RestaurantController {
     }
 
     /**
+     * finds all restaurants.
+     * @return a list of restaurant
+     * @Author Hidde Agterberg
+     */
+    @GetMapping("/getAllRestaurants")
+    @ResponseBody
+    public List<Restaurant> findAllRestaurants() {
+        return restaurantRepository.getAllRestaurants();
+    }
+
+    /**
      * This method adds a new restaurant to a specified building.
      * @param buildingName name of the building
      * @param menuId id of the building

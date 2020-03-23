@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,20 +36,21 @@ public class Bike {
     public Bike(){
     }
 
-    /**
-     * Getter for the bike id.
-     * @return - the bike id
-     */
     public int getBike_id() {
         return bikeId;
     }
 
-    /**
-     * setter for the bike id.
-     * @param bikeId - Sets the value of the bike to this parameter
-     */
     public void setBike_id(int bikeId) {
         this.bikeId = bikeId;
+    }
+
+    @JsonManagedReference(value = "bikeBikereservation")
+    public List<BikeReservation> getBikeReservations() {
+        return bikeReservations;
+    }
+
+    public void setBikeReservations(List<BikeReservation> bikeReservations) {
+        this.bikeReservations = bikeReservations;
     }
 
     /**
@@ -62,10 +65,5 @@ public class Bike {
 
     public void setBuilding(Building building) {
         this.building = building;
-    }
-
-    @JsonIgnore
-    public List<BikeReservation> getBikeReservations() {
-        return bikeReservations;
     }
 }
