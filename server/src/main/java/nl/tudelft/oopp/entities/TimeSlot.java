@@ -25,6 +25,8 @@ import javax.persistence.Table;
 
 import nl.tudelft.oopp.entities.Building;
 import nl.tudelft.oopp.entities.Room;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "timeslot")
@@ -34,10 +36,12 @@ public class TimeSlot {
     private int timeslotId;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "building_name")
     private Building building;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "room_id")
     private Room room;
 
