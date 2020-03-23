@@ -1,0 +1,43 @@
+Date:           23rd March 2020
+
+Main focus:     Finish up all the views and add functionality to all of them.
+
+Chair:          Kendra
+
+Note taker:     Kendra 
+
+
+# Opening
+
+
+# Points of action
+Bike reservation:  we have enhanced the way the bike reservation view looks and have also made a full working implementation for the bike reservation, including the restriction that a user can only reserve one bike per day.
+
+Room reservation: The view for the room reservation has been enhanced and is now working well.
+
+Main view: The main view has been enhanced and now also includes the functionality to add to dos.
+
+Ordering food: A great progress has been made for ordering food, the UI now looks really good and the server side post and get methods have been made.
+
+Admin functionality: The views specific for the admin functionalities have been added as well as the functionality to add buildings/rooms.
+
+
+# Action points for next week (Scrum board)
+Bike + room reservation: add features such that a user can delete his/her reservation
+
+Ordering food: tie up UI with server side
+
+Admin features: add delete methods for buildings, rooms, bikes.
+
+Database: clean the database and repopulate tables.
+
+Presentation: start thinking about how the videos should look, who wants to appear in them, what should be included in them, maybe even start filming something.
+
+Report: Start working on the report. 
+
+# Questions for the TA
+1. When is the deadline for the videos and where should they be submitted?
+2. Is there a problem if the videos will have different lengths than the ones mentioned in the Mattermost announcement?
+3. For next week's deadline, do we have to have the report fully done, or just a draft/outline of what will be included in it?
+
+
