@@ -41,6 +41,7 @@ public class Restaurant {
         return menu;
     }
 
+
     public Building getBuilding() {
         return building;
     }

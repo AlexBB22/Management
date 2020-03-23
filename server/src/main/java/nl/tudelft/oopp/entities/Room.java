@@ -119,21 +119,21 @@ public class Room {
         this.timeslots.remove(timeSlot);
     }
 
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-    }
+//    public int getRoomId() {
+//        return roomId;
+//    }
+//
+//    public void setRoomId(int roomId) {
+//        this.roomId = roomId;
+//    }
+//
+//    public String getRoomName() {
+//        return roomName;
+//    }
+//
+//    public void setRoomName(String roomName) {
+//        this.roomName = roomName;
+//    }
 
     public String toString() {
         return "room_id: " + this.roomId + ", room_name: " + this.roomName + ", capacity: " + this.capacity

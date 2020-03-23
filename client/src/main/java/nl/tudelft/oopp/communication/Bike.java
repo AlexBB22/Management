@@ -8,6 +8,7 @@ public class Bike {
     private int bikeId;
     private Building building;
 
+
     public int getBikeId() {
         return bikeId;
     }
