@@ -8,7 +8,13 @@ Note taker:     Kendra
 
 
 # Opening
-
+Scott
+Alex
+Eli
+Hidde
+Kanish
+Niels
+Kendra
 
 # Points of action
 Bike reservation:  we have enhanced the way the bike reservation view looks and have also made a full working implementation for the bike reservation, including the restriction that a user can only reserve one bike per day.
@@ -23,17 +29,19 @@ Admin functionality: The views specific for the admin functionalities have been 
 
 
 # Action points for next week (Scrum board)
-Bike + room reservation: add features such that a user can delete his/her reservation
+Bike reservation view: solve problems with diplaying buildings (Eli)
 
-Ordering food: tie up UI with server side
+Bike + room reservation: add features such that a user can delete his/her reservation (Alex)
 
-Admin features: add delete methods for buildings, rooms, bikes.
+Ordering food: tie up UI with server side, add more methods (Niels, Hidde) 
 
-Database: clean the database and repopulate tables.
+Admin features: add delete methods for buildings, rooms, bikes. (Kendra)
 
-Presentation: start thinking about how the videos should look, who wants to appear in them, what should be included in them, maybe even start filming something.
+Admin views: make the views look good. (Scott)
 
-Report: Start working on the report. 
+Presentation: do a script for the video (Eli)
+
+Report: Start working on the report. (Kanish, Hidde, needs to be reviewed by everyone)
 
 # Questions for the TA
 1. When is the deadline for the videos and where should they be submitted?
