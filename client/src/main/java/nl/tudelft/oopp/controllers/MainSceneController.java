@@ -1,7 +1,21 @@
 package nl.tudelft.oopp.controllers;
 
-import static nl.tudelft.oopp.MainApp.switchScene;
-import static nl.tudelft.oopp.MainApp.user;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
+import nl.tudelft.oopp.MainApp;
+import nl.tudelft.oopp.communication.ServerCommunication;
+import nl.tudelft.oopp.communication.UserReservationInfo;
+import nl.tudelft.oopp.communication.UserTodo;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -10,40 +24,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
-import nl.tudelft.oopp.MainApp;
-import nl.tudelft.oopp.communication.ServerCommunication;
-import nl.tudelft.oopp.communication.User;
-import nl.tudelft.oopp.communication.UserReservationInfo;
-import nl.tudelft.oopp.communication.UserTodo;
+import static nl.tudelft.oopp.MainApp.switchScene;
 
 
 public class MainSceneController implements Initializable {
@@ -203,10 +186,7 @@ public class MainSceneController implements Initializable {
                 continue;
             }
         }
-
-
     }
-
 
     @FXML
     public void reserveRoomButtonHandler(MouseEvent mouseEvent) throws IOException {
@@ -225,7 +205,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     public void restaurantButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/?.fxml");
+        switchScene(mouseEvent, "/restaurantScene.fxml");
     }
 
     @FXML

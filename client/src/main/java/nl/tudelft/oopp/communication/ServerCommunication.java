@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.tudelft.oopp.MainApp;
+import nl.tudelft.oopp.controllers.Hasher;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,9 +19,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import nl.tudelft.oopp.MainApp;
-import nl.tudelft.oopp.controllers.Hasher;
 
 public class ServerCommunication {
 
@@ -468,6 +468,22 @@ public class ServerCommunication {
         System.out.println("These are all the users todos: " + jsonRes);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserTodo>>(){});
+    }
+
+    public static ArrayList<Restaurant> getRestaurants(String buildingName) throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/ListRestaurants/%s", buildingName);
+        String jsonRes = request(url);
+        System.out.println("These are all the restaurants: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<Restaurant>>(){});
+    }
+
+    public static ArrayList<Food> getFoods(int resId) throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/getAllFoodForRestaurant/%s", resId);
+        String jsonRes = request(url);
+        System.out.println("These are all the food options for this restaurant: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<Food>>(){});
     }
 
 
