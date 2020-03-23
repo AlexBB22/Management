@@ -229,6 +229,7 @@ public class Building {
         this.bikeReservations.add(reservation);
         reservation.setBuilding(this);
     }
+
     public void removeBikeReservation(BikeReservation reservation) {
         this.bikeReservations.remove(reservation);
         reservation.setBuilding(null);
