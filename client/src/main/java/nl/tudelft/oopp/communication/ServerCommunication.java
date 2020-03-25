@@ -422,7 +422,7 @@ public class ServerCommunication {
      * @return -1 if fail and 1 if success
      * @throws URISyntaxException - exception thrown if a syntax error occurs
      */
-    public static int deleteBikeReservation ( int reservationID) throws URISyntaxException {
+    public static int deleteBikeReservation(int reservationID) throws URISyntaxException {
         String urlString = String.format("http://localhost:8080/deleteBikeReservation/%s", reservationID);
         URI url = new URI(urlString);
 

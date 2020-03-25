@@ -78,14 +78,13 @@ public class AccountSceneController implements Initializable {
             + ", Building: " + uri.getBuildingName() + ", Room: " + uri.getRoomName() + " (" + uri.getName() + ") " + "\n Unique reservationID: " + uri.getReservationID());
         HBox reservationinfo = new HBox(information);
 
-        int id = uri.getReservationID();
-
         Button deleteButton = new Button("-");
         deleteButton.setAlignment(Pos.TOP_RIGHT);
         reservationinfo.setPadding(new Insets(10, 0, 10, 0));
         HBox container =  new HBox(reservationinfo, deleteButton);
         userReservationInfoList.getChildren().add(container);
 
+        int id = uri.getReservationID();
         deleteButton.setOnAction(event -> {
             try {
                 deletePopUp(id);
@@ -141,6 +140,12 @@ public class AccountSceneController implements Initializable {
         switchScene(mouseEvent, "/mainScene.fxml", "Tu Delft Reservation Application");
     }
 
+    /**
+     * This method starts the pop up.
+     * @author Sartori Kendra
+     * @param id - id of the reservation to be deleted
+     * @throws IOException - throws exception if the file is not found
+     */
     @FXML
     public void deletePopUp(int id) throws IOException {
         DeleteReservationPopUpController.id = id;

@@ -1,9 +1,15 @@
 package nl.tudelft.oopp.controllers;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Parent;
-import javafx.event.ActionEvent;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
@@ -12,11 +18,7 @@ import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.views.MainView;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.sql.Date;
-import java.util.ResourceBundle;
+
 
 public class DeleteReservationPopUpController {
 
@@ -28,7 +30,7 @@ public class DeleteReservationPopUpController {
 
 
     public void initialize(URL location, ResourceBundle resources) {
-       resId.setText(Integer.toString(id));
+        resId.setText(Integer.toString(id));
     }
 
     @FXML
@@ -37,7 +39,12 @@ public class DeleteReservationPopUpController {
         stage.close();
     }
 
-
+    /**
+     * This method is used to delete the selected reservations.
+     * @param actionEvent - the event which activates the neet for this method
+     * @throws URISyntaxException - exception thrown if syntax is incorrect
+     * @throws IOException - exception thrown if the file is not found
+     */
     @FXML
     public void deleteReservation(ActionEvent actionEvent) throws URISyntaxException, IOException {
 
