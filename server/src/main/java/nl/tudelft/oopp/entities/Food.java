@@ -22,10 +22,6 @@ public class Food {
         this.price = price;
     }
 
-    public String getFood_id() {
-        return foodId;
-    }
-
     public int getPrice() {
         return price;
     }
