@@ -1,16 +1,5 @@
 package nl.tudelft.oopp.controllers;
 
-import static nl.tudelft.oopp.MainApp.switchScene;
-
-import com.sun.tools.javac.Main;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.sql.Date;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,26 +12,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -51,6 +27,17 @@ import nl.tudelft.oopp.communication.AvailableRoom;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.OverridableRoom;
 import nl.tudelft.oopp.communication.ServerCommunication;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import static nl.tudelft.oopp.MainApp.switchScene;
 
 public class RoomReservationSceneController implements Initializable {
 
@@ -65,6 +52,8 @@ public class RoomReservationSceneController implements Initializable {
     @FXML private static Button searchButton;
     @FXML private VBox sideMenu;
     @FXML private HBox topBar;
+    @FXML private Label selectTimeSlot;
+    @FXML private Label selectBuilding;
 
     //This arrayList just saves all the buildings from the query made during initialisation
     private ArrayList<Building> buildingList;
@@ -143,9 +132,22 @@ public class RoomReservationSceneController implements Initializable {
             buildingComboBox.getItems().add(b.getBuilding_Name());
         }
         //hide timeslot combobox
-        timeSlotComboBox.setDisable(true);
-        selectBuildingMessage.setText("Select a building first please");
+        timeSlotComboBox.setVisible(false);
+        selectTimeSlot.setVisible(false);
+        //selectBuildingMessage.setText("Select a building first please");
+
+        //hide building combobox
+        buildingComboBox.setVisible(false);
+        selectBuilding.setVisible(false);
     }
+
+    @FXML
+    public void showBuildingComboBox (ActionEvent actionEvent) {
+        buildingComboBox.setVisible(true);
+        selectBuilding.setVisible(true);
+    }
+
+
 
     /**
      * Whenever a building is selected from the dropdown menu
@@ -189,8 +191,9 @@ public class RoomReservationSceneController implements Initializable {
         timeSlotComboBox.getItems().clear();
         timeSlotComboBox.getItems().addAll(times);
 
-        timeSlotComboBox.setDisable(false);
-        selectBuildingMessage.setText("");
+        timeSlotComboBox.setVisible(true);
+        selectTimeSlot.setVisible(true);
+        //selectBuildingMessage.setText("");
     }
 
 
