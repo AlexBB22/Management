@@ -243,7 +243,7 @@ public class RestaurantSceneController implements Initializable {
         HBox foodNameBox = new HBox();
         foodNameBox.setAlignment(Pos.CENTER_LEFT);
         foodNameBox.setPrefHeight(25);
-        Text foodName = new Text(fd.getFoodId());
+        Text foodName = new Text(fd.getName());
         foodName.setFont(Font.font("Arial", FontWeight.BOLD, 18));
         foodName.setFill(Color.BLACK);
         foodNameBox.getChildren().add(foodName);
@@ -267,7 +267,7 @@ public class RestaurantSceneController implements Initializable {
                 + "-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-font-weight: bold;");
         orderButton.setOnAction(event -> {
             try {
-                reservePopUp(fd.getFoodId(), fd.getPrice());
+                reservePopUp(fd.getName(), fd.getPrice());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -291,18 +291,18 @@ public class RestaurantSceneController implements Initializable {
         foodList.setMargin(mainBox, new Insets(5, 18, 5, 0));
     }
 
-    public Image getCorrectImage(String foodType) {
+    public Image getCorrectImage(int foodId) {
         Image resImg = null;
-        if (foodType.equals("StudyRoom")) {
+        if (foodId == 1) {
             resImg = new Image("images/studyRoom.jpg");
         }
-        if (foodType.equals("ProjectRoom")) {
+        if (foodId == 2) {
             resImg = new Image("images/projectRoom.jpg");
         }
-        if (foodType.equals("LectureHall")) {
+        if (foodId == 3) {
             resImg = new Image("images/lectureHall.jpg");
         }
-        if (foodType.equals("StudyHall")) {
+        if (foodId == 4) {
             resImg = new Image("images/studyHall.jpg");
         }
         return resImg;

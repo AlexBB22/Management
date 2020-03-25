@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,6 +21,7 @@ import java.util.List;
 @Table(name = "menu")
 public class Menu {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "menu_id")
     private int menuId;
 
@@ -44,14 +47,6 @@ public class Menu {
     public List<Food> getFoods() {
         return foods;
     }
-
-//    public int getMenuId() {
-//        return menuId;
-//    }
-
-//    public void setMenuId(int menuId) {
-//        this.menuId = menuId;
-//    }
 
     public void setFoods(List<Food> foods) {
         this.foods = foods;

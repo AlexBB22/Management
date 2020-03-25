@@ -9,13 +9,16 @@ public class MenuTest {
 
     @Test
     public void menuConstructor() {
-        assertNotNull(new Menu(2));
+        assertNotNull(new Menu());
     }
 
     @Test
     public void getId() {
         Menu menu = new Menu(1);
         assertEquals(1, menu.getMenuId());
+
+        Menu menu2 = new Menu();
+        assertNotNull(menu2.getMenuId());
     }
 
 }

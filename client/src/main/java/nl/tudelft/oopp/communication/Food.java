@@ -1,13 +1,17 @@
 package nl.tudelft.oopp.communication;
 
+import java.util.List;
+
 public class Food {
-    private String foodId;
+    private int foodId;
+    private String name;
     private int price;
+    private List<Menu> menus;
 
     public Food(){}
 
-    public Food(String foodId, int price) {
-        this.foodId = foodId;
+    public Food(String name, int price) {
+        this.name = name;
         this.price = price;
     }
 
@@ -27,12 +31,17 @@ public class Food {
             this.price = price;
         }
     }
+    public String getName() { return name; }
 
-    public String getFoodId() {
+    public void setName(String name) { this.name = name; }
+
+    public int getFoodId() {
         return foodId;
     }
 
-    public void setFoodId(String foodId) {
+    public void setFoodId(int foodId) {
         this.foodId = foodId;
     }
+
+    public List<Menu> getMenus() { return this.menus; }
 }

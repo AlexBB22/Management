@@ -53,7 +53,7 @@
                   <VBox prefHeight="90.0" prefWidth="464.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="criteriaHeader" text="Select a Date" />
-                        <DatePicker fx:id="datePicker" prefHeight="27.0" prefWidth="250.0" styleClass="dateBox" />
+                        <DatePicker fx:id="datePicker" onAction="#checkPastDate" prefHeight="27.0" prefWidth="250.0" styleClass="dateBox" />
                      </children>
                   </VBox>
                </children>

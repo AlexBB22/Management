@@ -1,5 +1,18 @@
 package nl.tudelft.oopp.controllers;
 
+import static nl.tudelft.oopp.MainApp.switchScene;
+
+import com.sun.tools.javac.Main;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -721,5 +734,24 @@ public class RoomReservationSceneController implements Initializable {
 
     public static Stage getStage() {
         return (Stage) searchButton.getScene().getWindow();
+    }
+
+
+    /**
+     * This action handler checks whether the user has selected a date in the past or not.
+     * If the user selects a date in the past, then a warning is shown and the datapicker is set back to normal.
+     * @param actionEvent - the action event that occurs when the user selects a date.
+     */
+    @FXML
+    public void checkPastDate(ActionEvent actionEvent) {
+        LocalDate date = datePicker.getValue();
+        LocalDate today = LocalDate.now();
+        if (date.isBefore(today)) {
+            Alert warning = new Alert(Alert.AlertType.INFORMATION);
+            warning.setHeaderText("Conflict");
+            warning.setContentText("You cannot reserve a room in the past, please choose another date");
+            warning.show();
+            datePicker.getEditor().clear();
+        }
     }
 }
