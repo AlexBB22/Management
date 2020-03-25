@@ -12,9 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -37,6 +35,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -51,12 +50,18 @@ public class RestaurantSceneController implements Initializable {
     @FXML private Text selectBuildingMessage;
     @FXML private Text selectFoodBuildingMessage;
     @FXML private VBox foodList;
+    @FXML private Label selectBuilding;
+    @FXML private Label selectTimeSlot;
+    @FXML private Label selectRestaurant;
 
+    private static int foodId;
     private static String foodName;
     private static int price;
     private static int restaurant;
     private static Date day;
     private static String timeSlot;
+
+    public static int getFoodId() { return foodId; }
 
     public static String getFoodName() {
         return foodName;
@@ -96,13 +101,18 @@ public class RestaurantSceneController implements Initializable {
         for (Building b : buildings) {
             buildingComboBox.getItems().add(b.getBuilding_Name());
         }
+        buildingComboBox.setVisible(false);
+        selectBuilding.setVisible(false);
+
         //hide timeslot combobox
-        timeSlotComboBox.setDisable(true);
-        selectBuildingMessage.setText("Select a building first please");
+        timeSlotComboBox.setVisible(false);
+        selectTimeSlot.setVisible(false);
+        //selectBuildingMessage.setText("Select a building first please");
 
         //hide food combobox
-        restaurantComboBox.setDisable(true);
-        selectFoodBuildingMessage.setText("Select a building first please");
+        restaurantComboBox.setVisible(false);
+        selectRestaurant.setVisible(false);
+        //selectFoodBuildingMessage.setText("Select a building first please");
     }
 
     /**
@@ -148,8 +158,9 @@ public class RestaurantSceneController implements Initializable {
         timeSlotComboBox.getItems().clear();
         timeSlotComboBox.getItems().addAll(times);
 
-        timeSlotComboBox.setDisable(false);
-        selectBuildingMessage.setText("");
+        timeSlotComboBox.setVisible(true);
+        selectTimeSlot.setVisible(true);
+        //selectBuildingMessage.setText("");
 
         ArrayList<Restaurant> restaurants = ServerCommunication.getRestaurants(buildingName);
         ObservableList<String> restaurantNames = FXCollections.observableArrayList();
@@ -161,10 +172,18 @@ public class RestaurantSceneController implements Initializable {
         //first clear out items in combobox then add new set
         restaurantComboBox.getItems().clear();
         restaurantComboBox.getItems().addAll(restaurantNames);
+    }
 
-        //Enable food combobox
-        restaurantComboBox.setDisable(false);
-        selectFoodBuildingMessage.setText("");
+    @FXML
+    public void showBuildingComboBox(ActionEvent actionEvent) {
+        buildingComboBox.setVisible(true);
+        selectBuilding.setVisible(true);
+    }
+
+    @FXML
+    public void showRestaurantComboBox(ActionEvent actionEvent) {
+        restaurantComboBox.setVisible(true);
+        selectRestaurant.setVisible(true);
     }
 
     @FXML
@@ -182,9 +201,9 @@ public class RestaurantSceneController implements Initializable {
         foodList.getChildren().clear();
 
         //Making the title "This restaurants menu" and adding it to the main Vbox
-        Text availableRoomTitle = new Text("This restaurants menu");
+        Text availableRoomTitle = new Text("This restaurants menu:");
         availableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-        availableRoomTitle.setFill(Color.BLUE);
+        availableRoomTitle.setFill(Color.GREEN);
         foodList.getChildren().add(availableRoomTitle);
 
         //Getting the start and end time the user selected to make query to DB
@@ -215,7 +234,7 @@ public class RestaurantSceneController implements Initializable {
         HBox mainBox = new HBox();
         mainBox.setPrefHeight(160);
         mainBox.setPrefWidth(560);
-        mainBox.setStyle("-fx-border-width: 2; -fx-border-color:  #2ad8ff;");
+        mainBox.setStyle("-fx-border-width: 2; -fx-border-color:  #98FB98;");
 
         //image Hbox
         HBox imgBox = new HBox();
@@ -252,7 +271,7 @@ public class RestaurantSceneController implements Initializable {
         HBox foodPrice = new HBox();
         foodPrice.setAlignment(Pos.TOP_LEFT);
         foodPrice.setPrefHeight(27);
-        Text Price = new Text("\t price: €" + fd.getPrice());
+        Text Price = new Text("\t Price: \u20ac" + fd.getPrice());
         Price.setFont(Font.font("Arial", 16));
         foodPrice.getChildren().add(Price);
 
@@ -263,11 +282,11 @@ public class RestaurantSceneController implements Initializable {
         Button orderButton = new Button("Order!");
         orderButton.setPrefSize(345, 30);
         orderButton.setMaxSize(345, 30);
-        orderButton.setStyle("-fx-background-color: #2f93ff; -fx-text-fill: white; -fx-text-alignment: center; "
+        orderButton.setStyle("-fx-background-color: #006400; -fx-text-fill: white; -fx-text-alignment: center; "
                 + "-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-font-weight: bold;");
         orderButton.setOnAction(event -> {
             try {
-                reservePopUp(fd.getName(), fd.getPrice());
+                reservePopUp(fd.getName(), fd.getFoodId(), fd.getPrice());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -277,9 +296,6 @@ public class RestaurantSceneController implements Initializable {
         imageBox.setMargin(orderButton, new Insets(0, 5, 0, 5));
 
         infoBox.getChildren().addAll(foodNameBox, foodPrice, imageBox);
-
-
-
 
         mainBox.getChildren().add(imgBox);
         mainBox.setMargin(imgBox, new Insets(0, 0, 0, 0));
@@ -293,11 +309,11 @@ public class RestaurantSceneController implements Initializable {
 
     public Image getCorrectImage(int foodId) {
         Image resImg = null;
-        if (foodId == 1) {
-            resImg = new Image("images/studyRoom.jpg");
+        if (foodId == 281) {
+            resImg = new Image("images/frenchFries.jpeg");
         }
-        if (foodId == 2) {
-            resImg = new Image("images/projectRoom.jpg");
+        if (foodId == 257) {
+            resImg = new Image("images/pasta.jpeg");
         }
         if (foodId == 3) {
             resImg = new Image("images/lectureHall.jpg");
@@ -308,7 +324,7 @@ public class RestaurantSceneController implements Initializable {
         return resImg;
     }
 
-    public void reservePopUp(String foodName, int price) throws IOException {
+    public void reservePopUp(String foodName, int foodId, int price) throws IOException {
         //Setting static variables to properties given so that these can be accessed in the other controller class
         RestaurantSceneController.foodName = foodName;
         RestaurantSceneController.price = price;
@@ -316,11 +332,32 @@ public class RestaurantSceneController implements Initializable {
         RestaurantSceneController.day = Date.valueOf(datePicker.getValue());
         String timeslot = timeSlotComboBox.getValue();
         RestaurantSceneController.timeSlot = timeslot;
+        RestaurantSceneController.foodId = foodId;
 
         Parent root = FXMLLoader.load(getClass().getResource("/restaurantPopUpScene.fxml"));
         Stage st = new Stage();
         Scene sc = new Scene(root, 300, 400);
         st.setScene(sc);
         st.show();
+    }
+
+    /**
+     * This action handler checks whether the user has selected a date in the past or not.
+     * If the user selects a date in the past, then a warning is shown and the datapicker is set back to normal.
+     * @param actionEvent - the action event that occurs when the user selects a date.
+     */
+    @FXML
+    public void checkPastDate(ActionEvent actionEvent) {
+        LocalDate date = datePicker.getValue();
+        LocalDate today = LocalDate.now();
+        if (date.isBefore(today)) {
+            Alert warning = new Alert(Alert.AlertType.INFORMATION);
+            warning.setHeaderText("Conflict");
+            warning.setContentText("You cannot reserve a room in the past, please choose another date");
+            warning.show();
+            datePicker.getEditor().clear();
+            return;
+        }
+        showBuildingComboBox(actionEvent);
     }
 }

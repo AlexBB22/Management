@@ -111,6 +111,10 @@ public class MainSceneController implements Initializable {
             setStatus(0);
         }
 
+        if (status == 3) {
+            foodReservationConfirmed();
+            setStatus(0);
+        }
 
         //setting the date for each individual week box
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -231,7 +235,11 @@ public class MainSceneController implements Initializable {
     }
 
     public void bikeReservationConfirmed() {
-        result.setText("You have successfully reserved a bike");
+        result.setText("You have successfully reserved a bike!");
+    }
+
+    public void foodReservationConfirmed() {
+        result.setText("You have successfully reserved food!");
     }
 
     public static void setStatus(int newStatus) {

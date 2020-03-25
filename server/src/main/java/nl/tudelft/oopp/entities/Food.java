@@ -1,5 +1,8 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -58,6 +61,7 @@ public class Food {
         this.name = name;
     }
 
+    @JsonBackReference(value = "foodMenu")
     public List<Menu> getMenus() {
         return menus;
     }

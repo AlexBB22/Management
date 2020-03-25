@@ -20,7 +20,7 @@
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="64.26287937164307">
                     <HBox.margin>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                     </HBox.margin>
                 </Text>
                 <Text fx:id="reservationUserName" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.99999856948853">
@@ -88,7 +88,7 @@
                         <Insets right="10.0" />
                     </HBox.margin>
                 </Text>
-                <Text fx:id="time" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="130.00000286102295">
+                <Text fx:id="time" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
                     <HBox.margin>
                         <Insets left="20.0" />
                     </HBox.margin></Text>
@@ -100,7 +100,7 @@
             </children></HBox>
         <HBox alignment="CENTER">
             <children>
-                <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onMouseClicked="#backBtnHandler" text="Cancel" />
+                <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#backBtnHandler" onMouseClicked="#backBtnHandler" text="Cancel" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.20001530647278" />
                 <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#makeNewFoodOrder" text="Reserve" />
             </children>

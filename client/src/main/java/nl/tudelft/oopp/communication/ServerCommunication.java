@@ -521,10 +521,15 @@ public class ServerCommunication {
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<Food>>(){});
     }
 
-    public static int createFoodReservation(String foodId, int restaurantId, Date day, Time startTime, Time endTime) throws URISyntaxException {
+    public static int createFoodReservation(int foodId, int restaurantId, Date day, Time startTime, Time endTime) throws URISyntaxException {
         String urlString = String.format("http://localhost:8080//addFoodReservation/%s/%s/%s/%s/%s/%s", foodId,
                 restaurantId, day, startTime, endTime, MainApp.user.getUserId());
         URI url = new URI(urlString);
+        System.out.println(foodId);
+        System.out.println(restaurantId);
+        System.out.println(day);
+        System.out.println(startTime);
+        System.out.println(endTime);
 
         HttpClient client = HttpClient.newHttpClient();
 

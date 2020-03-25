@@ -42,7 +42,7 @@
                         <VBox prefHeight="90.0" prefWidth="464.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="criteriaHeader" text="Select a Date" />
-                                <DatePicker fx:id="datePicker" layoutX="994.0" layoutY="173.0" prefHeight="27.0" prefWidth="250.0" styleClass="dateBox" />
+                                <DatePicker fx:id="datePicker" layoutX="994.0" layoutY="173.0" onAction="#checkPastDate" prefHeight="27.0" prefWidth="250.0" styleClass="dateBox" />
                             </children>
                         </VBox>
                     </children>
@@ -51,9 +51,9 @@
                     <children>
                         <VBox prefHeight="101.0" prefWidth="468.0">
                             <children>
-                                <Label styleClass="criteriaHeader" text="Select a Building" />
+                                <Label fx:id="selectBuilding" styleClass="criteriaHeader" text="Select a Building" />
                                 <ComboBox fx:id="buildingComboBox" layoutX="994.0" layoutY="253.0" onAction="#getBuildingTimesAndRestaurants" prefHeight="27.0" prefWidth="250.0" promptText="Select Building" styleClass="comboBox" />
-                                <Text fx:id="selectBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="selectingText" wrappingWidth="129.0">
+                                <Text fx:id="selectBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="129.0">
                                     <VBox.margin>
                                         <Insets left="250.0" top="30.0" />
                                     </VBox.margin></Text>
@@ -65,9 +65,9 @@
                     <children>
                         <VBox prefHeight="94.0" prefWidth="469.0">
                             <children>
-                                <Label prefHeight="23.0" prefWidth="177.0" styleClass="criteriaHeader" text="Select a Time Slot" />
-                                <ComboBox fx:id="timeSlotComboBox" layoutX="994.0" layoutY="333.0" prefHeight="27.0" prefWidth="250.0" promptText="Select Timeslot" styleClass="comboBox" />
-                                <Text fx:id="selectFoodBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="selectingText" wrappingWidth="129.0">
+                                <Label fx:id="selectTimeSlot" prefHeight="23.0" prefWidth="177.0" styleClass="criteriaHeader" text="Select a Time Slot" />
+                                <ComboBox fx:id="timeSlotComboBox" layoutX="994.0" layoutY="333.0" onAction="#showRestaurantComboBox" prefHeight="27.0" prefWidth="250.0" promptText="Select Timeslot" styleClass="comboBox" />
+                                <Text fx:id="selectFoodBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="129.0">
                                     <VBox.margin>
                                         <Insets left="250.0" top="30.0" />
                                     </VBox.margin></Text>
@@ -79,7 +79,7 @@
                     <children>
                         <VBox prefHeight="91.0" prefWidth="467.0">
                             <children>
-                                <Label styleClass="criteriaHeader" text="Select a Restaurant" />
+                                <Label fx:id="selectRestaurant" styleClass="criteriaHeader" text="Select a Restaurant" />
                                 <ComboBox fx:id="restaurantComboBox" layoutX="994.0" layoutY="413.0" prefHeight="27.0" prefWidth="250.0" promptText="Select Restaurant" styleClass="comboBox" />
                             </children>
                         </VBox>
@@ -87,7 +87,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" prefHeight="109.0" prefWidth="414.0">
                     <children>
-                        <Button fx:id="orderButton" layoutX="1043.0" layoutY="472.0" mnemonicParsing="false" onAction="#orderBtnHandler" prefHeight="34.0" prefWidth="153.0" styleClass="selectButton" text="Order!">
+                        <Button fx:id="orderButton" layoutX="1043.0" layoutY="472.0" mnemonicParsing="false" onAction="#orderBtnHandler" prefHeight="34.0" prefWidth="153.0" styleClass="selectButton" text="Search">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
