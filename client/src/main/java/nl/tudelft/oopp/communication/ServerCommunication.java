@@ -486,5 +486,29 @@ public class ServerCommunication {
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<Food>>(){});
     }
 
+    public static int createFoodReservation(String foodId, int restaurantId, Date day, Time startTime, Time endTime) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080//addFoodReservation/%s/%s/%s/%s/%s/%s", foodId,
+                restaurantId, day, startTime, endTime, MainApp.user.getUserId());
+        URI url = new URI(urlString);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").POST(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+    }
+
 
 }

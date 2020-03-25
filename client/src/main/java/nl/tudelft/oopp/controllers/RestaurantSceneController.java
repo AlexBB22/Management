@@ -26,12 +26,16 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
-import nl.tudelft.oopp.communication.*;
+import nl.tudelft.oopp.communication.Building;
+import nl.tudelft.oopp.communication.Food;
+import nl.tudelft.oopp.communication.Restaurant;
+import nl.tudelft.oopp.communication.ServerCommunication;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -50,6 +54,9 @@ public class RestaurantSceneController implements Initializable {
 
     private static String foodName;
     private static int price;
+    private static int restaurant;
+    private static Date day;
+    private static String timeSlot;
 
     public static String getFoodName() {
         return foodName;
@@ -57,6 +64,18 @@ public class RestaurantSceneController implements Initializable {
 
     public static int getPrice() {
         return price;
+    }
+
+    public static int getRestaurant() {
+        return restaurant;
+    }
+
+    public static Date getDate() {
+        return day;
+    }
+
+    public static String getTimeSlot() {
+        return timeSlot;
     }
 
     //This arrayList just saves all the buildings from the query made during initialisation
@@ -293,6 +312,10 @@ public class RestaurantSceneController implements Initializable {
         //Setting static variables to properties given so that these can be accessed in the other controller class
         RestaurantSceneController.foodName = foodName;
         RestaurantSceneController.price = price;
+        RestaurantSceneController.restaurant = Integer.parseInt(restaurantComboBox.getValue());
+        RestaurantSceneController.day = Date.valueOf(datePicker.getValue());
+        String timeslot = timeSlotComboBox.getValue();
+        RestaurantSceneController.timeSlot = timeslot;
 
         Parent root = FXMLLoader.load(getClass().getResource("/restaurantPopUpScene.fxml"));
         Stage st = new Stage();
