@@ -15,12 +15,15 @@
 }
 
 .grid {
-    -fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 70%);
+    /*-fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 70%); */
+    -fx-background-image: url("../images/foodBackground.png");
 }
 
 .topBar {
-    -fx-background-color: linear-gradient(to right, -barColor, white);
+    /*-fx-background-color: linear-gradient(to right, -barColor, white); */
+
 }
+
 .roomViewOuterVBOX {
     -fx-background-color: white;
     /*-fx-background-color: #fef3ff;*/

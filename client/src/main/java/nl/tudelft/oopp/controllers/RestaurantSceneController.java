@@ -201,7 +201,7 @@ public class RestaurantSceneController implements Initializable {
         foodList.getChildren().clear();
 
         //Making the title "This restaurants menu" and adding it to the main Vbox
-        Text availableRoomTitle = new Text("This restaurants menu:");
+        Text availableRoomTitle = new Text("This restaurant's menu:");
         availableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         availableRoomTitle.setFill(Color.GREEN);
         foodList.getChildren().add(availableRoomTitle);

@@ -209,7 +209,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     public void restaurantButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/restaurantScene.fxml");
+        switchScene(mouseEvent, "/restaurantScene.fxml", "Order Food");
     }
 
     @FXML

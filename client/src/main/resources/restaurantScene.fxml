@@ -27,7 +27,7 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="56.0" prefWidth="432.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select criteria for your food reservation" wrappingWidth="459.70526123046875">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select criteria for your order" wrappingWidth="459.70526123046875">
                             <font>
                                 <Font name="Avenir Book" size="25.0" />
                             </font>
