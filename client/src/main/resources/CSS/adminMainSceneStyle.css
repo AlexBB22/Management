@@ -1,60 +1,62 @@
 .gridaddbuilding{
-    -fx-background-color: linear-gradient(to right, limegreen, yellow, orange); 
+    /* -fx-background-color: linear-gradient(to right, rgb(99, 214, 99), rgb(245, 245, 88), rgb(250, 183, 58));  */
+
 }
 
 .gridaddroom{
-    -fx-background-color: linear-gradient(to right, limegreen, yellow, orange);
+    /* -fx-background-color: linear-gradient(to right, rgb(99, 214, 99), rgb(245, 245, 88), rgb(250, 183, 58)); */
 }
 
 .griddeletebuilding{
-    -fx-background-color: linear-gradient(to right , orange, red);
+    /* -fx-background-color: linear-gradient(to right , rgb(250, 183, 58), rgb(248, 80, 80)); */
 }
 
 .grddeleteroom{
-    -fx-background-color: linear-gradient(to right, orange, red);
+    /* -fx-background-color: linear-gradient(to right, rgb(250, 183, 58), rgb(248, 80, 80)); */
     
 }
 
 .addbuildingbutton{
-    -fx-background-color: rgb(134, 245, 111);
+    -fx-background-color: #8FB9A8;
     -fx-border-color: blue;
     -fx-font-family: "Chalkboard SE";
-    -fx-font-size: 25px;
+    -fx-font-size: 30px;
     -fx-border-radius: 30px;
     -fx-background-radius: 30px;
     -fx-border-width: 3px;
 }
 
 .deletebuildingbutton{
-    -fx-background-color: rgb(245, 180, 59);
+    -fx-background-color: #FCD0BA;
     -fx-border-color: blue;
     -fx-font-family: "Chalkboard SE";
-    -fx-font-size: 25px;
+    -fx-font-size: 30px;
     -fx-border-radius: 30px;
     -fx-background-radius: 30px;
     -fx-border-width: 3px;
 }
 
 .deleteroombutton{
-    -fx-background-color: rgb(248, 69, 69);
+    -fx-background-color: #F1828D;
     -fx-border-color: blue;
     -fx-font-family: "Chalkboard SE";
-    -fx-font-size: 25px;
+    -fx-font-size: 30px;
     -fx-border-radius: 30px;
     -fx-background-radius: 30px;
     -fx-border-width: 3px;
 }
 
 .addroombutton{
-    -fx-background-color: rgb(245, 232, 111);
+    -fx-background-color: #FEFAD4;
     -fx-border-color: blue;
     -fx-font-family: "Chalkboard SE";
-    -fx-font-size: 25px;
+    -fx-font-size: 30px;
     -fx-border-radius: 30px;
     -fx-background-radius: 30px;
     -fx-border-width: 3px;
 }
 
 .grid{
-    -fx-background-color: linear-gradient(to right, limegreen,yellow, orange, rgb(255, 72, 0), red);
+    /* -fx-background-color: linear-gradient(to right, rgb(99, 214, 99),rgb(245, 245, 88), rgb(250, 183, 58), rgb(253, 129, 81), rgb(248, 80, 80)); */
+    -fx-background-color: linear-gradient(to right,  rgb(184, 84, 130), white);
 }
