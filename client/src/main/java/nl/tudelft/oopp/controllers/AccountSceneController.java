@@ -46,6 +46,12 @@ public class AccountSceneController implements Initializable {
     @FXML
     private VBox userReservationInfoList;
 
+    private static int reservationID;
+
+    public static int getReservationID(){
+        return reservationID;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         accountId.setText(Integer.toString(MainApp.user.getUserId()));
@@ -148,7 +154,7 @@ public class AccountSceneController implements Initializable {
      */
     @FXML
     public void deletePopUp(int id) throws IOException {
-        DeleteReservationPopUpController.id = id;
+       AccountSceneController.reservationID = id;
         Parent root = FXMLLoader.load(getClass().getResource("/deleteReservationPopUp.fxml"));
         Stage st = new Stage();
         Scene sc = new Scene(root, 300, 400);

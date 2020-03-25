@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 
 import javafx.scene.Scene;
@@ -20,17 +21,18 @@ import nl.tudelft.oopp.views.MainView;
 
 
 
-public class DeleteReservationPopUpController {
+public class DeleteReservationPopUpController implements Initializable {
 
     @FXML private Button cancelButton;
 
-    @FXML public static int id;
+   private int id;
 
-    private Text resId;
+    @FXML private Text resId;
 
 
     public void initialize(URL location, ResourceBundle resources) {
-        resId.setText(Integer.toString(id));
+        this.id = AccountSceneController.getReservationID();
+        resId.setText(Integer.toString(this.id));
     }
 
     @FXML
