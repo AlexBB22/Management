@@ -78,11 +78,21 @@ public class AccountSceneController implements Initializable {
             + ", Building: " + uri.getBuildingName() + ", Room: " + uri.getRoomName() + " (" + uri.getName() + ") " + "\n Unique reservationID: " + uri.getReservationID());
         HBox reservationinfo = new HBox(information);
 
+        int id = uri.getReservationID();
+
         Button deleteButton = new Button("-");
         deleteButton.setAlignment(Pos.TOP_RIGHT);
         reservationinfo.setPadding(new Insets(10, 0, 10, 0));
         HBox container =  new HBox(reservationinfo, deleteButton);
         userReservationInfoList.getChildren().add(container);
+
+        deleteButton.setOnAction(event -> {
+            try {
+                deletePopUp(id);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /**

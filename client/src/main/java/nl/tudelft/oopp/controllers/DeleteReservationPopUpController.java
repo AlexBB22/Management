@@ -41,11 +41,20 @@ public class DeleteReservationPopUpController {
     @FXML
     public void deleteReservation(ActionEvent actionEvent) throws URISyntaxException, IOException {
 
-        int okCode = ServerCommunication.deleteBikeReservation(this.id);
+        int okRoomCode = ServerCommunication.deleteRoomReservation(this.id);
+        int okBikeCode = ServerCommunication.deleteBikeReservation(this.id);
 
-        if (okCode == -1) {
-            System.out.println("Something went wrong!");
-            return;
+        if (okBikeCode == -1) {
+            if (okRoomCode == -1) {
+                System.out.println("Something went wrong!");
+                return;
+            } else {
+                backBtnHandler();
+                MainSceneController.setStatus(3);
+                FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/mainScene.fxml"));
+                Parent root = loader.load();
+                MainView.getPrimaryStage().setScene(new Scene(root));
+            }
         }
         backBtnHandler();
         MainSceneController.setStatus(3);
@@ -53,6 +62,6 @@ public class DeleteReservationPopUpController {
         Parent root = loader.load();
         MainView.getPrimaryStage().setScene(new Scene(root));
     }
-    }
+}
 
 

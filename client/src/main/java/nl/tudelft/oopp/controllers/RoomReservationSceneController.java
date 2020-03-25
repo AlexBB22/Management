@@ -212,10 +212,10 @@ public class RoomReservationSceneController implements Initializable {
             if (ServerCommunication.hasReservation(Date.valueOf(datePicker.getValue()),
                     Time.valueOf(timeSlot[0]), Time.valueOf(timeSlot[1]))) {
                 hasReserved = true;
-                Alert warning = new Alert(Alert.AlertType.INFORMATION);
+                Alert warning = new Alert(Alert.AlertType.WARNING);
                 warning.setHeaderText("Conflict");
-                warning.setContentText("You have already reserved a room for the given timeslot and date. "
-                        + "You are not authorized to reserve another room for the given criteria.");
+                warning.setContentText("You have already reserved a room for the given timeslot and date.\n "
+                        + "You are not authorized to reserve another room for the given criteria.\n");
                 warning.show();
                 //set hasReserved to false now
                 hasReserved = false;
@@ -687,8 +687,8 @@ public class RoomReservationSceneController implements Initializable {
     public void reservePopUp(String roomName, int roomID) throws IOException {
         if (hasReserved) {
             Alert warning = new Alert(Alert.AlertType.WARNING);
-            warning.setContentText("You have already reserved a room for the given timeslot and date. "
-                    + "You are not authorized to reserve another room for the given criteria.");
+            warning.setContentText("You have already reserved a room for the given timeslot and date.\n "
+                    + "You are not authorized to reserve another room for the given criteria.\n");
             warning.show();
             return;
         }
