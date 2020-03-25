@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,6 +20,7 @@ import javax.persistence.Table;
 @Table(name = "menu")
 public class Menu {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "menu_id")
     private int menuId;
 
@@ -30,10 +33,6 @@ public class Menu {
     private Restaurant restaurant;
 
     public Menu() {
-    }
-
-    public Menu(int id) {
-        this.menuId = id;
     }
 
     public int getMenu_id() {

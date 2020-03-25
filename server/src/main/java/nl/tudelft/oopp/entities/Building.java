@@ -209,7 +209,6 @@ public class Building {
         restaurant.setBuilding(null);
     }
 
-
     @JsonIgnore
     public List<BikeReservation> getBikeReservations() {
         return bikeReservations;

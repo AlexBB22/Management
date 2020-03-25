@@ -48,7 +48,7 @@ public class FoodReservationController {
      */
     @PostMapping("/addFoodReservation/{foodId}/{restaurantId}/{day}/{startTime}/{endTime}/{userId}")
     @ResponseBody
-    public FoodReservation addFoodReservation(@PathVariable (value = "foodId") String foodId,
+    public FoodReservation addFoodReservation(@PathVariable (value = "foodId") int foodId,
                                               @PathVariable (value = "restaurantId") int restaurantId,
                                               @PathVariable (value = "day") Date day,
                                               @PathVariable (value = "startTime") Time startTime,
