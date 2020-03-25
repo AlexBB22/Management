@@ -58,7 +58,6 @@ public class RoomReservationSceneController implements Initializable {
     @FXML private DatePicker datePicker;
     @FXML private ComboBox<String> buildingComboBox;
     @FXML private ComboBox<String> timeSlotComboBox;
-    @FXML private ComboBox<String> roomTypeComboBox;
     @FXML private VBox roomList;
     @FXML private Text username;
     @FXML private Text selectBuildingMessage;
