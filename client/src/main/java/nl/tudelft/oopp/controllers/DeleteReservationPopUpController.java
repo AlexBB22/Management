@@ -25,7 +25,7 @@ public class DeleteReservationPopUpController implements Initializable {
 
     @FXML private Button cancelButton;
 
-   private int id;
+    private int id;
 
     @FXML private Text resId;
 

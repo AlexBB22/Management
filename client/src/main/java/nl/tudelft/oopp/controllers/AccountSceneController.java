@@ -48,7 +48,7 @@ public class AccountSceneController implements Initializable {
 
     private static int reservationID;
 
-    public static int getReservationID(){
+    public static int getReservationID() {
         return reservationID;
     }
 
@@ -154,7 +154,7 @@ public class AccountSceneController implements Initializable {
      */
     @FXML
     public void deletePopUp(int id) throws IOException {
-       AccountSceneController.reservationID = id;
+        AccountSceneController.reservationID = id;
         Parent root = FXMLLoader.load(getClass().getResource("/deleteReservationPopUp.fxml"));
         Stage st = new Stage();
         Scene sc = new Scene(root, 300, 400);
