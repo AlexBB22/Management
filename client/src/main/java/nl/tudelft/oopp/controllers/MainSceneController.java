@@ -109,6 +109,11 @@ public class MainSceneController implements Initializable {
             setStatus(0);
         }
 
+        if(status == 3) {
+            deleteReservationConfirmed();
+            setStatus(0);
+        }
+
 
         //setting the date for each individual week box
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -215,6 +220,7 @@ public class MainSceneController implements Initializable {
         status = newStatus;
     }
 
-
-
+    public void deleteReservationConfirmed() {
+        result.setText("You have successfully deleted a reservation");
+    }
 }
