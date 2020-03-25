@@ -203,6 +203,11 @@
                   </Button>
                </children>
             </HBox>
+            <Button fx:id="adminButton" alignment="CENTER" mnemonicParsing="false" onAction="#adminButtonHandler" prefHeight="35.0" prefWidth="122.0" styleClass="topBarButton" stylesheets="@CSS/mainSceneStyle.css" text="Admin screen">
+               <HBox.margin>
+                  <Insets top="69.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <VBox fx:id="sideMenu" prefHeight="616.0" prefWidth="215.0" styleClass="sidebar" GridPane.rowIndex="1" GridPane.rowSpan="2">

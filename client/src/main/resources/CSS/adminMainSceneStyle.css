@@ -1,0 +1,60 @@
+.gridaddbuilding{
+    -fx-background-color: linear-gradient(to right, limegreen, yellow, orange); 
+}
+
+.gridaddroom{
+    -fx-background-color: linear-gradient(to right, limegreen, yellow, orange);
+}
+
+.griddeletebuilding{
+    -fx-background-color: linear-gradient(to right , orange, red);
+}
+
+.grddeleteroom{
+    -fx-background-color: linear-gradient(to right, orange, red);
+    
+}
+
+.addbuildingbutton{
+    -fx-background-color: rgb(134, 245, 111);
+    -fx-border-color: blue;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 25px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;
+}
+
+.deletebuildingbutton{
+    -fx-background-color: rgb(245, 180, 59);
+    -fx-border-color: blue;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 25px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;
+}
+
+.deleteroombutton{
+    -fx-background-color: rgb(248, 69, 69);
+    -fx-border-color: blue;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 25px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;
+}
+
+.addroombutton{
+    -fx-background-color: rgb(245, 232, 111);
+    -fx-border-color: blue;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 25px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;
+}
+
+.grid{
+    -fx-background-color: linear-gradient(to right, limegreen,yellow, orange, rgb(255, 72, 0), red);
+}
