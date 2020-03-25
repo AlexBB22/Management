@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FoodRepository extends JpaRepository<Food, String> {
+public interface FoodRepository extends JpaRepository<Food, Integer> {
 
     /**
      * Query that returns all food.
