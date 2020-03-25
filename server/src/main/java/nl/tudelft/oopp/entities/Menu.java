@@ -44,14 +44,6 @@ public class Menu {
         return foods;
     }
 
-//    public int getMenuId() {
-//        return menuId;
-//    }
-
-//    public void setMenuId(int menuId) {
-//        this.menuId = menuId;
-//    }
-
     public void setFoods(List<Food> foods) {
         this.foods = foods;
     }

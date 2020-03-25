@@ -42,6 +42,13 @@ public class FoodController {
 
     }
 
+    /**
+     * Function that adds a food entity to a menu.
+     * @param foodId - the id of the food entity
+     * @param menuId - the id of the menu entity
+     * @return the menu
+     * @author Hidde Agterberg
+     */
     @PostMapping("/addFoodToMenu/{foodId}/{menuId}")
     @ResponseBody
     public Menu addFoodToMenu(@PathVariable(value = "foodId") int foodId,

@@ -17,7 +17,7 @@ public class Food {
     @Id
     @Column(name = "food_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int food_id;
+    private int foodId;
 
     @Column(name = "name")
     private String name;
@@ -37,7 +37,7 @@ public class Food {
     }
 
     public int getFood_id() {
-        return food_id;
+        return foodId;
     }
 
     public int getPrice() {
@@ -58,7 +58,7 @@ public class Food {
     }
 
     public void setFood_id(int foodId) {
-        this.food_id = foodId;
+        this.foodId = foodId;
     }
 
     public String getName() {

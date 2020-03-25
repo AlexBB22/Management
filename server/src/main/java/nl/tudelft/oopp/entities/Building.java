@@ -209,30 +209,6 @@ public class Building {
         restaurant.setBuilding(null);
     }
 
-//    public String getBuildingName() {
-//        return buildingName;
-//    }
-
-//    public void setBuildingName(String buildingName) {
-//        this.buildingName = buildingName;
-//    }
-
-//    public boolean isNonReservableSpace() {
-//        return nonReservableSpace;
-//    }
-
-//    public void setNonReservableSpace(boolean nonReservableSpace) {
-//        this.nonReservableSpace = nonReservableSpace;
-//    }
-//
-//    public int getCarParkingSpaces() {
-//        return carParkingSpaces;
-//    }
-
-//    public void setCarParkingSpaces(int carParkingSpaces) {
-//        this.carParkingSpaces = carParkingSpaces;
-//    }
-
     @JsonIgnore
     public List<BikeReservation> getBikeReservations() {
         return bikeReservations;
