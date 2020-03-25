@@ -67,6 +67,7 @@ public class LoginSceneController implements Initializable {
     }
 
 
+    /*
     /**
      * Handle back button. Switches scene to allow user to go back to the welcome scene.
      * @throws IOException - Exception thrown when switch fails (eg. wrong fxml file name)
