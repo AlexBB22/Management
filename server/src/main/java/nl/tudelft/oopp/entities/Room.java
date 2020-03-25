@@ -20,7 +20,8 @@ import javax.persistence.Table;
 import nl.tudelft.oopp.entities.Building;
 import nl.tudelft.oopp.entities.TimeSlot;
 import nl.tudelft.oopp.entities.Type;
-
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
@@ -38,10 +39,12 @@ public class Room {
     private String roomName;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "type_id")
     private Type type;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "building_name")
     private Building building;
 

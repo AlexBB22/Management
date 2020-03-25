@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +28,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+
 
 
 @Entity
@@ -56,6 +59,7 @@ public class User implements Serializable {
 
     //Mapping to a role, creating a FK here to point to Role table PK
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "role_fk", referencedColumnName = "role_id", nullable = false)
     private Role role;
 
@@ -122,8 +126,7 @@ public class User implements Serializable {
     public void setRole(Role role) {
         this.role = role;
     }
-
-
+    
     @JsonManagedReference(value = "userRoomReservations")
     public List<RoomReservation> getRoomReservations() {
         return roomReservations;
