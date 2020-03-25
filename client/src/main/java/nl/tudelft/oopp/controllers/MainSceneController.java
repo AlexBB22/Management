@@ -6,6 +6,7 @@ import static nl.tudelft.oopp.MainApp.user;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,6 +98,12 @@ public class MainSceneController implements Initializable {
     @FXML
     private Text result;
 
+    @FXML private TextField mondayHasBikeReservation;
+    @FXML private TextField tuesdayHasBikeReservation;
+    @FXML private TextField wednesdayHasBikeReservation;
+    @FXML private TextField thursdayHasBikeReservation;
+    @FXML private TextField fridayHasBikeReservation;
+
 
 
 
@@ -125,6 +132,11 @@ public class MainSceneController implements Initializable {
 
         if (status == 2) {
             bikeReservationConfirmed();
+            mondayHasBikeReservation.clear();
+            tuesdayHasBikeReservation.clear();
+            wednesdayHasBikeReservation.clear();
+            thursdayHasBikeReservation.clear();
+            fridayHasBikeReservation.clear();
             setStatus(0);
         }
 
@@ -132,6 +144,9 @@ public class MainSceneController implements Initializable {
         //setting the date for each individual week box
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
         ArrayList<String> dates = new ArrayList<>();
+        String dayReservation;
+        Date dateReservation;
+        String bool;
 
         for (int i = Calendar.MONDAY; i <= Calendar.FRIDAY; i++) {
             cal.set(Calendar.DAY_OF_WEEK, i);
@@ -141,6 +156,22 @@ public class MainSceneController implements Initializable {
         }
         thisWeekMondayDate.setText(dates.get(0));
         mondayTodoButton.setId(dates.get(0));
+        try {
+            mondayHasBikeReservation.clear();
+            tuesdayHasBikeReservation.clear();
+            wednesdayHasBikeReservation.clear();
+            thursdayHasBikeReservation.clear();
+            fridayHasBikeReservation.clear();
+            setMondayHasBikeReservation(dates.get(0));
+            setTuesdayHasBikeReservation(dates.get(1));
+            setWednesdayHasBikeReservation(dates.get(2));
+            setThursdayHasBikeReservation(dates.get(3));
+            setFridayHasBikeReservation(dates.get(4));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         thisWeekTuesdayDate.setText(dates.get(1));
         tuesdayTodoButton.setId(dates.get(1));
@@ -352,5 +383,85 @@ public class MainSceneController implements Initializable {
         }
     }
 
+    public void setMondayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "yes";
+        } else {
+          yesno = "no";
+        }
+        mondayHasBikeReservation.setEditable(false);
+        mondayHasBikeReservation.setMouseTransparent(true);
+        mondayHasBikeReservation.setFocusTraversable(false);
+        mondayHasBikeReservation.setText(yesno);
+    }
+
+    public void setTuesdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "yes";
+        } else {
+            yesno = "no";
+        }
+        tuesdayHasBikeReservation.setText(yesno);
+        tuesdayHasBikeReservation.setEditable(false);
+        tuesdayHasBikeReservation.setMouseTransparent(true);
+        tuesdayHasBikeReservation.setFocusTraversable(false);
+    }
+
+    public void setWednesdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "yes";
+        } else {
+            yesno = "no";
+        }
+        wednesdayHasBikeReservation.setText(yesno);
+        wednesdayHasBikeReservation.setEditable(false);
+        wednesdayHasBikeReservation.setMouseTransparent(true);
+        wednesdayHasBikeReservation.setFocusTraversable(false);
+
+    }
+
+    public void setThursdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "yes";
+        } else {
+            yesno = "no";
+        }
+        thursdayHasBikeReservation.setText(yesno);
+        thursdayHasBikeReservation.setEditable(false);
+        thursdayHasBikeReservation.setMouseTransparent(true);
+        thursdayHasBikeReservation.setFocusTraversable(false);
+    }
+
+    public void setFridayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "yes";
+        } else {
+            yesno = "no";
+        }
+        fridayHasBikeReservation.setText(yesno);
+        fridayHasBikeReservation.setEditable(false);
+        fridayHasBikeReservation.setMouseTransparent(true);
+        fridayHasBikeReservation.setFocusTraversable(false);
+    }
 
 }
