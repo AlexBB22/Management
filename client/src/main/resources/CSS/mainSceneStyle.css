@@ -128,3 +128,43 @@
     -fx-background-color: white;
     -fx-background-radius: 5em;
 }
+
+.agendaTextField {
+    -fx-border-radius: 5px;
+    -fx-border-color: #ff7892;
+    -fx-border-width: 1px;
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+}
+
+.agendaTextField:focused:hover {
+    -fx-border-color: #ff3e2d;
+    -fx-background-color: white;
+}
+
+.agendaTextField:focused:hover {
+    -fx-border-color: #1ea325;
+    -fx-background-color: white;
+}
+
+
+.agendaAddTodoButton {
+    -fx-background-color: white;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 18px;
+    -fx-border-width: 2px;
+    -fx-border-color: #ead2e1;
+    -fx-font-family: "Arial";
+    -fx-text-fill: black;
+}
+
+.agendaAddTodoButton:hover {
+    -fx-background-color: white;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 18px;
+    -fx-border-width: 2px;
+    -fx-border-color: #ff8400;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: #018000;
+}
