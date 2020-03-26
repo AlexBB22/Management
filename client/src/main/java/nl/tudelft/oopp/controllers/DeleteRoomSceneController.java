@@ -87,11 +87,11 @@ public class DeleteRoomSceneController implements Initializable {
             deleteBtn.setAlignment(Pos.CENTER_LEFT);
             deleteBtn.setOnAction(event -> {
                 try {
-                    DeleteRoomSceneController.roomId = r.getRoom_id();
-                    DeleteRoomSceneController.roomName = r.getRoom_name();
-                    DeleteRoomSceneController.capacity = r.getCapacity();
-                    DeleteRoomSceneController.buildingName = r.getBuilding().getBuilding_Name();
-                    DeleteRoomSceneController.typeName = r.getType().getName();
+                    roomId = r.getRoom_id();
+                    roomName = r.getRoom_name();
+                    capacity = r.getCapacity();
+                    buildingName = r.getBuilding().getBuilding_Name();
+                    typeName = r.getType().getName();
                     Parent root = FXMLLoader.load(getClass().getResource("/deleteRoomPopUpScene.fxml"));
                     Stage st = new Stage();
                     Scene sc = new Scene(root, 300, 400);

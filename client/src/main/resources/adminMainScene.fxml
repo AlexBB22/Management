@@ -44,29 +44,62 @@
       </VBox>
       <VBox prefHeight="159.0" prefWidth="525.0" styleClass="gridaddbuilding" stylesheets="@CSS/adminMainSceneStyle.css" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="createBuildingbutton" mnemonicParsing="false" onMouseClicked="#createBuildingButtonHandler" prefHeight="150.0" prefWidth="400.0" styleClass="addbuildingbutton" stylesheets="@CSS/adminMainSceneStyle.css" text="create new Building">
+            <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="238.0">
                <VBox.margin>
-                  <Insets left="115.0" top="50.0" />
+                  <Insets left="260.0" top="10.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#createBuildingButtonHandler" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons8-add-100.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="90.0" fitWidth="95.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#createBuildingButtonHandler" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons8-building-100.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Button fx:id="createBuildingbutton" mnemonicParsing="false" onMouseClicked="#createBuildingButtonHandler" prefHeight="120.0" prefWidth="400.0" styleClass="addbuildingbutton" stylesheets="@CSS/adminMainSceneStyle.css" text="create new Building">
+               <VBox.margin>
+                  <Insets left="115.0" top="10.0" />
                </VBox.margin></Button>
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="griddeletebuilding" stylesheets="@CSS/adminMainSceneStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="deleteBuildingButton" mnemonicParsing="false" onMouseClicked="#deleteBuildingButtonHandler" prefHeight="150.0" prefWidth="400.0" styleClass="deletebuildingbutton" stylesheets="@CSS/adminMainSceneStyle.css" text="delete Building">
+            <HBox alignment="BOTTOM_LEFT">
                <VBox.margin>
-                  <Insets left="115.0" top="50.0" />
-               </VBox.margin></Button>
-            <VBox prefHeight="50.0" prefWidth="640.0" />
-            <HBox>
+                  <Insets left="220.0" top="10.0" />
+               </VBox.margin>
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="90.0" fitWidth="95.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#deleteBuildingButtonHandler" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/warningSign.png" />
+                        <Image url="@images/icons8-building-100.png" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: deleting is permanent and can not be reverted" wrappingWidth="293.336669921875" />
+                  <VBox>
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#deleteBuildingButtonHandler" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons8-turn-100.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="51.0" fitWidth="60.0" onMouseClicked="#deleteBuildingButtonHandler" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons8-delete-bin-100.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
+            <Button fx:id="deleteBuildingButton" mnemonicParsing="false" onMouseClicked="#deleteBuildingButtonHandler" prefHeight="120.0" prefWidth="400.0" styleClass="deletebuildingbutton" stylesheets="@CSS/adminMainSceneStyle.css" text="delete Building">
+               <VBox.margin>
+                  <Insets left="115.0" top="10.0" />
+               </VBox.margin></Button>
+            <VBox prefHeight="50.0" prefWidth="640.0" />
             <HBox>
                <children>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -77,23 +110,6 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: when deleting a building the rooms, the restaurants, bikes and all reservations of that building will be deleted to" wrappingWidth="294.21636962890625" />
                </children>
             </HBox>
-         </children>
-      </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="gridaddbuilding" stylesheets="@CSS/adminMainSceneStyle.css" GridPane.rowIndex="2">
-         <children>
-            <Button fx:id="createRoomButton" mnemonicParsing="false" onAction="#createRoomButtonHandler" prefHeight="150.0" prefWidth="400.0" styleClass="addroombutton" stylesheets="@CSS/adminMainSceneStyle.css" text="create new Room">
-               <VBox.margin>
-                  <Insets left="115.0" top="50.0" />
-               </VBox.margin></Button>
-         </children>
-      </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="grddeleteroom" stylesheets="@CSS/adminMainSceneStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <children>
-            <Button fx:id="deleteRoomButton" mnemonicParsing="false" onMouseClicked="#deleteRoomButtonHandler" prefHeight="150.0" prefWidth="400.0" styleClass="deleteroombutton" stylesheets="@CSS/adminMainSceneStyle.css" text="delete Room">
-               <VBox.margin>
-                  <Insets left="115.0" top="50.0" />
-               </VBox.margin>
-            </Button>
             <HBox>
                <children>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -104,6 +120,67 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: deleting is permanent and can not be reverted" wrappingWidth="293.336669921875" />
                </children>
             </HBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="gridaddbuilding" stylesheets="@CSS/adminMainSceneStyle.css" GridPane.rowIndex="2">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <VBox.margin>
+                  <Insets left="260.0" top="10.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#createRoomButtonHandler" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons8-add-100.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="90.0" fitWidth="95.0" onMouseClicked="#createRoomButtonHandler" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/roomIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Button fx:id="createRoomButton" mnemonicParsing="false" onMouseClicked="#createRoomButtonHandler" prefHeight="120.0" prefWidth="400.0" styleClass="addroombutton" stylesheets="@CSS/adminMainSceneStyle.css" text="create new Room">
+               <VBox.margin>
+                  <Insets left="115.0" top="10.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="grddeleteroom" stylesheets="@CSS/adminMainSceneStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <HBox alignment="BOTTOM_LEFT">
+               <VBox.margin>
+                  <Insets left="220.0" top="10.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="90.0" fitWidth="95.0" onMouseClicked="#deleteRoomButtonHandler" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/roomIcon.png" />
+                     </image>
+                  </ImageView>
+                  <VBox>
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#deleteRoomButtonHandler" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons8-turn-100.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="55.0" fitWidth="60.0" onMouseClicked="#deleteRoomButtonHandler" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/icons8-delete-bin-100.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button fx:id="deleteRoomButton" mnemonicParsing="false" onMouseClicked="#deleteRoomButtonHandler" prefHeight="120.0" prefWidth="400.0" styleClass="deleteroombutton" stylesheets="@CSS/adminMainSceneStyle.css" text="delete Room">
+               <VBox.margin>
+                  <Insets left="115.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <HBox />
             <HBox>
                <children>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

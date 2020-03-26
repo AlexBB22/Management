@@ -17,7 +17,7 @@
 }
 
 .addbuildingbutton{
-    -fx-background-color: #8FB9A8;
+    -fx-background-color: rgb(247, 197, 244);
     -fx-border-color: blue;
     -fx-font-family: "Chalkboard SE";
     -fx-font-size: 30px;
@@ -57,6 +57,10 @@
 }
 
 .grid{
+    /* very colorfull */
     /* -fx-background-color: linear-gradient(to right, rgb(99, 214, 99),rgb(245, 245, 88), rgb(250, 183, 58), rgb(253, 129, 81), rgb(248, 80, 80)); */
-    -fx-background-color: linear-gradient(to right,  rgb(184, 84, 130), white);
+    
+    /* -fx-background-color: linear-gradient(to bottom right,  rgb(184, 84, 130), white); */
+
+    -fx-background-color: linear-gradient(to bottom right, rgb(255, 164, 164), white)
 }
