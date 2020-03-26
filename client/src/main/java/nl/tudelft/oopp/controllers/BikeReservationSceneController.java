@@ -35,8 +35,6 @@ public class BikeReservationSceneController implements Initializable {
     @FXML
     private VBox buildingList;
     @FXML
-    private VBox newBuildingList;
-    @FXML
     private DatePicker datePickerBike;
 
     private static String buildingName;
@@ -75,7 +73,7 @@ public class BikeReservationSceneController implements Initializable {
      */
     public void getBuildings() throws IOException, URISyntaxException {
         List<Building> listOfBuildings = ServerCommunication.getBuildings();
-        newBuildingList.getChildren().clear();
+        buildingList.getChildren().clear();
         for (Building building : listOfBuildings) {
             if (ServerCommunication.getNumberOfAvailableBikes(building.getBuilding_Name(), datePickerBike.getValue()) > 0) {
                 Text buildingName = new Text(building.getBuilding_Name());
@@ -89,7 +87,7 @@ public class BikeReservationSceneController implements Initializable {
                     }
                 });
                 HBox container = new HBox(buildingName, reserveButton);
-                newBuildingList.getChildren().add(container);
+                buildingList.getChildren().add(container);
             }
 
         }
