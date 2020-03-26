@@ -379,11 +379,10 @@ public class MainSceneController implements Initializable {
         boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
         String yesno;
         if (bool) {
-            yesno = "yes";
+            yesno = "Yes";
         } else {
-          yesno = "no";
+          yesno = "No";
         }
-        System.out.println("bam");
         mondayHasBikeReservation.setText(yesno);
     }
 
@@ -393,9 +392,9 @@ public class MainSceneController implements Initializable {
         boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
         String yesno;
         if (bool) {
-            yesno = "yes";
+            yesno = "Yes";
         } else {
-            yesno = "no";
+            yesno = "No";
         }
         tuesdayHasBikeReservation.setText(yesno);
     }
@@ -406,9 +405,9 @@ public class MainSceneController implements Initializable {
         boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
         String yesno;
         if (bool) {
-            yesno = "yes";
+            yesno = "Yes";
         } else {
-            yesno = "no";
+            yesno = "No";
         }
         wednesdayHasBikeReservation.setText(yesno);
 
@@ -420,9 +419,9 @@ public class MainSceneController implements Initializable {
         boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
         String yesno;
         if (bool) {
-            yesno = "yes";
+            yesno = "Yes";
         } else {
-            yesno = "no";
+            yesno = "No";
         }
         thursdayHasBikeReservation.setText(yesno);
     }
@@ -433,9 +432,9 @@ public class MainSceneController implements Initializable {
         boolean bool= ServerCommunication.hasBikeReservation(sqlDate);
         String yesno;
         if (bool) {
-            yesno = "yes";
+            yesno = "Yes";
         } else {
-            yesno = "no";
+            yesno = "No";
         }
         fridayHasBikeReservation.setText(yesno);
     }
