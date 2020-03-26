@@ -26,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javafx.stage.Stage;
+import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.Building;
 
 import nl.tudelft.oopp.communication.ServerCommunication;
@@ -34,6 +35,8 @@ public class BikeReservationSceneController implements Initializable {
 
     @FXML
     private VBox buildingList;
+    @FXML
+    private Text username;
     @FXML
     private DatePicker datePickerBike;
 
@@ -59,6 +62,7 @@ public class BikeReservationSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        username.setText(MainApp.user.getUserName());
         hasReserved = false;
     }
 

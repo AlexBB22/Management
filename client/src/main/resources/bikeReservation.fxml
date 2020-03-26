@@ -57,6 +57,19 @@
                         <Font size="35.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="40.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@images/userIcon.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="350.0" top="35.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="-40.0" left="300.0" />
+                     </GridPane.margin>
+                  </Text>
                </children>
             </GridPane>
             <ImageView fitHeight="150.0" fitWidth="50.0" layoutX="14.0" layoutY="101.0" onMouseClicked="#backToLogin" pickOnBounds="true" preserveRatio="true">

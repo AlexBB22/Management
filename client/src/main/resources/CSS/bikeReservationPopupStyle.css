@@ -7,7 +7,7 @@
 }
 
 .grid {
-    -fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 125%);
+    -fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 500%);
 }
 
 .selectButton {
