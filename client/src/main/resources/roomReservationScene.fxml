@@ -52,8 +52,13 @@
                <children>
                   <VBox prefHeight="101.0" prefWidth="468.0">
                      <children>
-                        <Label styleClass="criteriaHeader" text="Select a Building" />
+                        <Label fx:id="selectBuilding" styleClass="criteriaHeader" text="Select a Building" />
                         <ComboBox fx:id="buildingComboBox" onAction="#getBuildingTimes" prefHeight="27.0" prefWidth="250.0" styleClass="comboBox" />
+
+                        <Text fx:id="selectBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="129.0">
+                           <VBox.margin>
+                              <Insets left="250.0" top="30.0" />
+                           </VBox.margin></Text>
                      </children>
                   </VBox>
                </children>
@@ -62,11 +67,10 @@
                <children>
                   <VBox prefHeight="94.0" prefWidth="469.0">
                      <children>
-                        <Label prefHeight="23.0" prefWidth="158.0" styleClass="criteriaHeader" text="Select Time Slot" />
+                        <Label fx:id="selectTimeSlot" prefHeight="23.0" prefWidth="158.0" styleClass="criteriaHeader" text="Select Time Slot" />
                         <ComboBox fx:id="timeSlotComboBox" prefHeight="27.0" prefWidth="250.0" styleClass="comboBox" />
                      </children>
                   </VBox>
-                  <Text fx:id="selectBuildingMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="selectingText" wrappingWidth="129.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="414.0">
