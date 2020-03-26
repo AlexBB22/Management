@@ -8,15 +8,22 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.UserReservationInfo;
@@ -38,6 +45,12 @@ public class AccountSceneController implements Initializable {
 
     @FXML
     private VBox userReservationInfoList;
+
+    private static int reservationID;
+
+    public static int getReservationID() {
+        return reservationID;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,8 +83,21 @@ public class AccountSceneController implements Initializable {
         Text information = new Text("Day: " + uri.getDay() + " ,StartTime: " + uri.getStartTime() + ", EndTime: " + uri.getEndTime()
             + ", Building: " + uri.getBuildingName() + ", Room: " + uri.getRoomName() + " (" + uri.getName() + ") " + "\n Unique reservationID: " + uri.getReservationID());
         HBox reservationinfo = new HBox(information);
+
+        Button deleteButton = new Button("-");
+        deleteButton.setAlignment(Pos.TOP_RIGHT);
         reservationinfo.setPadding(new Insets(10, 0, 10, 0));
-        userReservationInfoList.getChildren().add(reservationinfo);
+        HBox container =  new HBox(reservationinfo, deleteButton);
+        userReservationInfoList.getChildren().add(container);
+
+        int id = uri.getReservationID();
+        deleteButton.setOnAction(event -> {
+            try {
+                deletePopUp(id);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /**
@@ -85,8 +111,27 @@ public class AccountSceneController implements Initializable {
         for (String s : reservations) {
             Text t = new Text(s);
             HBox reservationinfo = new HBox(t);
+            Button deleteButton = new Button("-");
+            deleteButton.setAlignment(Pos.TOP_RIGHT);
+
+            String[] res = s.split(",");
+            String resId = res[0];
+            String[] res2 = resId.split(": ");
+            String resIdString = res2[1];
+            int id = Integer.parseInt(resIdString);
+
             reservationinfo.setPadding(new Insets(10, 0, 10, 0));
-            userReservationInfoList.getChildren().add(reservationinfo);
+            HBox container =  new HBox(reservationinfo, deleteButton);
+            userReservationInfoList.getChildren().add(container);
+
+            deleteButton.setOnAction(event -> {
+                try {
+                    deletePopUp(id);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
         }
     }
 
@@ -99,6 +144,22 @@ public class AccountSceneController implements Initializable {
     @FXML
     public void bckButtonController(MouseEvent mouseEvent) throws IOException {
         switchScene(mouseEvent, "/mainScene.fxml", "Tu Delft Reservation Application");
+    }
+
+    /**
+     * This method starts the pop up.
+     * @author Sartori Kendra
+     * @param id - id of the reservation to be deleted
+     * @throws IOException - throws exception if the file is not found
+     */
+    @FXML
+    public void deletePopUp(int id) throws IOException {
+        AccountSceneController.reservationID = id;
+        Parent root = FXMLLoader.load(getClass().getResource("/deleteReservationPopUp.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 300, 400);
+        st.setScene(sc);
+        st.show();
     }
 
 

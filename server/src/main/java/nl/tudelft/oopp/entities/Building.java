@@ -13,6 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import nl.tudelft.oopp.entities.Bike;
+import nl.tudelft.oopp.entities.Restaurant;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.transaction.annotation.Transactional;
+
 @Entity
 @Table(name = "building")
 public class Building {
@@ -39,7 +45,8 @@ public class Building {
     @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
     private List<Room> rooms = new ArrayList<Room>();
 
-    @OneToMany(mappedBy = "building",  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "building", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)

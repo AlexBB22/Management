@@ -128,6 +128,11 @@ public class MainSceneController implements Initializable {
             setStatus(0);
         }
 
+        if (status == 5) {
+            deleteReservationConfirmed();
+            setStatus(0);
+        }
+
 
         //setting the date for each individual week box
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -258,6 +263,9 @@ public class MainSceneController implements Initializable {
         status = newStatus;
     }
 
+    public void deleteReservationConfirmed() {
+        result.setText("You have successfully deleted a reservation");
+    }
 
     /**
      * This method adds calls the server communication method addNewTodo by giving it paramters that the
@@ -351,6 +359,4 @@ public class MainSceneController implements Initializable {
             }
         }
     }
-
-
 }

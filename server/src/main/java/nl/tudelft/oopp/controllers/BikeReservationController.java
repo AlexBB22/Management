@@ -16,10 +16,13 @@ import nl.tudelft.oopp.repositories.BuildingRepository;
 import nl.tudelft.oopp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
 
 
 @Controller
@@ -164,6 +167,29 @@ public class BikeReservationController {
         }
 
         return false;
+    }
+
+    /**
+     * This method deletes a bike reservation made by a user.
+     * @author Sartori Kendra
+     * @param bikeReservationId - the id of the reservation that needs to be deleted
+     */
+    @DeleteMapping("deleteBikeReservation/{bikeReservationId}")
+    @ResponseBody
+    public void deleteBikeReservation(@PathVariable(value = "bikeReservationId") int bikeReservationId) {
+        List<BikeReservation> bikeReservationsAll = bikeReservationRepository.findAll();
+
+        try {
+            Optional<BikeReservation> r = bikeReservationRepository.findById(bikeReservationId);
+            BikeReservation bikeReservation = r.get();
+            bikeReservation.getBuilding().removeBikeReservation(bikeReservation);
+            bikeReservation.getBike_user_fk().removeBikeReservation(bikeReservation);
+            bikeReservation.setBike_user_fk(null);
+            bikeReservation.setBuilding(null);
+            bikeReservationRepository.delete(bikeReservation);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("the deletion has failed");
+        }
     }
 
 }

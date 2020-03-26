@@ -454,6 +454,35 @@ public class ServerCommunication {
     }
 
     /**
+     * This method deletes a bike reservation from the database.
+     * @author - Sartori Kendra
+     * @param reservationID - the id of the reservation that needs to be deleted
+     * @return -1 if fail and 1 if success
+     * @throws URISyntaxException - exception thrown if a syntax error occurs
+     */
+    public static int deleteBikeReservation(int reservationID) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080/deleteBikeReservation/%s", reservationID);
+        URI url = new URI(urlString);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").DELETE().build();
+
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+    }
+
+    /**
      * This method adds a new todo item for the user by sending the required parameters to the server.
      * @param userID - the id that identifies the user for which the todo is to be added
      * @param title - the title of the todo
@@ -462,6 +491,7 @@ public class ServerCommunication {
      * @throws URISyntaxException - exception thrown if URL to interact with DB is invalid.
      * @throws IOException - exception thrown if jackson mapping fails
      */
+
     public static boolean addNewTodo(int userID, String title, String day) throws URISyntaxException, IOException {
         String strUrl = String.format("http://localhost:8080/addNewTodo/%s/%s", userID, day);
         URI url = new URI(strUrl);
@@ -562,6 +592,36 @@ public class ServerCommunication {
         if (response.statusCode() != 200) {
             System.out.println("Error code = " + response.statusCode());
         }
+    }
+
+    /**
+     * This method deletes a room reservation.
+     * @author - Sartori Kendra
+     * @param id - the id of the room that needs to be deleted
+     * @return -1 if it fails, 1 if it succeeds
+     * @throws URISyntaxException - exception thrown if the syntax is incorrect
+     */
+    public static int deleteRoomReservation(int id) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080/deleteRoomReservation/%s", id);
+        URI url = new URI(urlString);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").DELETE().build();
+
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+
     }
 
     /**
