@@ -66,7 +66,7 @@ public class DeleteReservationPopUpController implements Initializable {
             }
         }
         backBtnHandler();
-        MainSceneController.setStatus(3);
+        MainSceneController.setStatus(5);
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/mainScene.fxml"));
         Parent root = loader.load();
         MainView.getPrimaryStage().setScene(new Scene(root));

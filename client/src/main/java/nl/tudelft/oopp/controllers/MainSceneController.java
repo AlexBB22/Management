@@ -109,7 +109,7 @@ public class MainSceneController implements Initializable {
             setStatus(0);
         }
 
-        if (status == 3) {
+        if (status == 5) {
             deleteReservationConfirmed();
             setStatus(0);
         }
