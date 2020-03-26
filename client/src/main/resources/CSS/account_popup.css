@@ -1,0 +1,8 @@
+* {
+    -linearBackground1: #57b0f2;
+    -linearBackground2: #4cf2fa;
+}
+
+.grid {
+    -fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 85%);
+}
