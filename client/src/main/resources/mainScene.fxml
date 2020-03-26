@@ -95,11 +95,11 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="mondayHasBikeReservation" prefHeight="19.0" prefWidth="63.0" styleClass="weekItemHeadersText">
+                              <Text fx:id="mondayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
-                              </TextField>
+                              </Text>
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -323,11 +323,11 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="tuesdayHasBikeReservation" prefHeight="26.0" prefWidth="63.0" styleClass="weekItemHeadersText">
+                              <Text fx:id="tuesdayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
-                              </TextField>
+                              </Text>
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -401,11 +401,11 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="wednesdayHasBikeReservation" prefHeight="26.0" prefWidth="63.0" styleClass="weekItemHeadersText">
+                              <Text fx:id="wednesdayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
-                              </TextField>
+                              </Text>
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -479,11 +479,11 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="thursdayHasBikeReservation" prefHeight="26.0" prefWidth="63.0" styleClass="weekItemHeadersText">
+                              <Text fx:id="thursdayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
-                              </TextField>
+                              </Text>
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -557,11 +557,11 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="fridayHasBikeReservation" prefHeight="26.0" prefWidth="63.0" styleClass="weekItemHeadersText">
+                              <Text fx:id="fridayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
-                              </TextField>
+                              </Text>
                            </children>
                            <opaqueInsets>
                               <Insets />

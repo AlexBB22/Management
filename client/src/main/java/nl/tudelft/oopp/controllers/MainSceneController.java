@@ -98,11 +98,11 @@ public class MainSceneController implements Initializable {
     @FXML
     private Text result;
 
-    @FXML private TextField mondayHasBikeReservation;
-    @FXML private TextField tuesdayHasBikeReservation;
-    @FXML private TextField wednesdayHasBikeReservation;
-    @FXML private TextField thursdayHasBikeReservation;
-    @FXML private TextField fridayHasBikeReservation;
+    @FXML private Text mondayHasBikeReservation;
+    @FXML private Text tuesdayHasBikeReservation;
+    @FXML private Text wednesdayHasBikeReservation;
+    @FXML private Text thursdayHasBikeReservation;
+    @FXML private Text fridayHasBikeReservation;
 
 
 
@@ -132,11 +132,6 @@ public class MainSceneController implements Initializable {
 
         if (status == 2) {
             bikeReservationConfirmed();
-            mondayHasBikeReservation.clear();
-            tuesdayHasBikeReservation.clear();
-            wednesdayHasBikeReservation.clear();
-            thursdayHasBikeReservation.clear();
-            fridayHasBikeReservation.clear();
             setStatus(0);
         }
 
@@ -157,11 +152,6 @@ public class MainSceneController implements Initializable {
         thisWeekMondayDate.setText(dates.get(0));
         mondayTodoButton.setId(dates.get(0));
         try {
-            mondayHasBikeReservation.clear();
-            tuesdayHasBikeReservation.clear();
-            wednesdayHasBikeReservation.clear();
-            thursdayHasBikeReservation.clear();
-            fridayHasBikeReservation.clear();
             setMondayHasBikeReservation(dates.get(0));
             setTuesdayHasBikeReservation(dates.get(1));
             setWednesdayHasBikeReservation(dates.get(2));
@@ -393,9 +383,7 @@ public class MainSceneController implements Initializable {
         } else {
           yesno = "no";
         }
-        mondayHasBikeReservation.setEditable(false);
-        mondayHasBikeReservation.setMouseTransparent(true);
-        mondayHasBikeReservation.setFocusTraversable(false);
+        System.out.println("bam");
         mondayHasBikeReservation.setText(yesno);
     }
 
@@ -410,9 +398,6 @@ public class MainSceneController implements Initializable {
             yesno = "no";
         }
         tuesdayHasBikeReservation.setText(yesno);
-        tuesdayHasBikeReservation.setEditable(false);
-        tuesdayHasBikeReservation.setMouseTransparent(true);
-        tuesdayHasBikeReservation.setFocusTraversable(false);
     }
 
     public void setWednesdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
@@ -426,9 +411,6 @@ public class MainSceneController implements Initializable {
             yesno = "no";
         }
         wednesdayHasBikeReservation.setText(yesno);
-        wednesdayHasBikeReservation.setEditable(false);
-        wednesdayHasBikeReservation.setMouseTransparent(true);
-        wednesdayHasBikeReservation.setFocusTraversable(false);
 
     }
 
@@ -443,9 +425,6 @@ public class MainSceneController implements Initializable {
             yesno = "no";
         }
         thursdayHasBikeReservation.setText(yesno);
-        thursdayHasBikeReservation.setEditable(false);
-        thursdayHasBikeReservation.setMouseTransparent(true);
-        thursdayHasBikeReservation.setFocusTraversable(false);
     }
 
     public void setFridayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
@@ -459,9 +438,6 @@ public class MainSceneController implements Initializable {
             yesno = "no";
         }
         fridayHasBikeReservation.setText(yesno);
-        fridayHasBikeReservation.setEditable(false);
-        fridayHasBikeReservation.setMouseTransparent(true);
-        fridayHasBikeReservation.setFocusTraversable(false);
     }
 
 }
