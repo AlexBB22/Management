@@ -84,26 +84,15 @@ public class BikeReservationSceneController implements Initializable {
     /**
      * You won't see the buildings where there are no bikes left to reserve.
      * @author Alexandru Bobe
+     * @author Eli Shamayev
      */
     public void getBuildings() throws IOException, URISyntaxException {
         List<Building> listOfBuildings = ServerCommunication.getBuildings();
         buildingList.getChildren().clear();
         for (Building building : listOfBuildings) {
             if (ServerCommunication.getNumberOfAvailableBikes(building.getBuilding_Name(), datePickerBike.getValue()) > 0) {
-                Text buildingName = new Text(building.getBuilding_Name());
-                Button reserveButton = new Button("Reserve");
-                reserveButton.setAlignment(Pos.TOP_RIGHT);
-                reserveButton.setOnAction(event -> {
-                    try {
-                        reservePopUp(building.getBuilding_Name(), datePickerBike.getValue().toString());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                HBox container = new HBox(buildingName, reserveButton);
-                buildingList.getChildren().add(container);
+                    createAvailableBuildingView(building);
             }
-
         }
     }
 
@@ -133,7 +122,6 @@ public class BikeReservationSceneController implements Initializable {
      * On click this method checks whether the user already has a bike reservation on that day.
      * If he does, a warning will show up, else he can continue doing a new reservation.
      * @author Sartori Kendra
-     * @author Eli Shamayev
      * @param actionEvent - the event that happens
      * @throws IOException - exception
      * @throws URISyntaxException - exception thrown if the syntax is wrong
@@ -152,10 +140,7 @@ public class BikeReservationSceneController implements Initializable {
             //set hasReserved to false now
             hasReserved = false;
         } else {
-            ArrayList<Building> availableBuildings = ServerCommunication.getBuildings();
-            for (Building ar : availableBuildings) {
-                createAvailableBuildingView(ar);
-            }
+            getBuildings();
         }
     }
 
@@ -226,7 +211,7 @@ public class BikeReservationSceneController implements Initializable {
         buildingList.getChildren().add(mainBox);
         buildingList.setMargin(mainBox, new Insets(5, 18, 5, 0));
         Button reserveButton = new Button("Reserve");
-        reserveButton.setPrefSize(345, 30);
+        reserveButton.setPrefSize(345,  30);
         reserveButton.setMaxSize(345, 30);
         reserveButton.setStyle("-fx-background-color: #2f93ff; -fx-text-fill: white; -fx-text-alignment: center; "
                 + "-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-font-weight: bold;");
