@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/roomReservationSceneStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.SeeAllRoomReservationsSceneController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="896.0" minWidth="10.0" prefWidth="116.36854553222656" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="645.7650375366211" minWidth="0.0" prefWidth="638.1314544677734" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="641.0677490234375" minWidth="10.0" prefWidth="526.2320556640625" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="398.42584228515625" minHeight="10.0" prefHeight="126.50409698486328" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="398.42584228515625" minHeight="10.0" prefHeight="267.9959030151367" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="402.91355895996094" minHeight="10.0" prefHeight="326.58831787109375" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="402.91355895996094" minHeight="10.0" prefHeight="38.91168212890625" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+
+        <VBox prefHeight="587.0" prefWidth="466.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+            <GridPane.margin>
+                <Insets left="30.0" right="30.0" top="30.0" />
+            </GridPane.margin>
+         <children>
+            <VBox alignment="CENTER" prefHeight="283.0" prefWidth="234.0">
+               <children>
+                   <ImageView fitHeight="111.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@images/studyRoom.jpg" />
+                       </image>
+                   </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Study Room" wrappingWidth="137.14403533935547">
+                     <font>
+                        <Font name="Cambria" size="23.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="107.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                   <image>
+                       <Image url="@images/lectureHall.jpg" />
+                   </image>
+                   </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lecture Hall" wrappingWidth="129.75389862060547">
+                     <font>
+                        <Font name="Cambria" size="23.0" />
+                     </font>
+                  </Text>
+               </children></VBox>
+            <VBox alignment="CENTER" prefHeight="156.0" prefWidth="466.0">
+               <children>
+                   <ImageView fitHeight="94.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@images/projectRoom.jpg" />
+                       </image>
+                   </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Project Room" wrappingWidth="142.75389862060547">
+                     <font>
+                        <Font name="Cambria" size="23.0" />
+                     </font></Text>
+               </children></VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                   <ImageView fitHeight="92.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@images/studyHall.jpg" />
+                       </image>
+                   </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Study Hall" wrappingWidth="115.75390625">
+                     <font>
+                        <Font name="Cambria" size="23.0" />
+                     </font></Text>
+               </children></VBox>
+         </children>
+        </VBox>
+        <HBox fx:id="topBar" prefHeight="116.0" prefWidth="756.0" styleClass="topBar" GridPane.columnSpan="3">
+            <children>
+                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/tudelftLogo.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </HBox>
+        <VBox alignment="CENTER" prefHeight="533.0" prefWidth="604.0" styleClass="roomViewOuterVBOX" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+            <children >
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your Room Reservations">
+               <font>
+                  <Font name="Cambria" size="25.0" />
+               </font></Text>
+                <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="478.0" prefWidth="565.0" styleClass="roomReservationPane">
+                    <content>
+                        <VBox fx:id="userReservationInfoList" prefHeight="510.0" prefWidth="555.0" />
+                    </content>
+                    <VBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                    </VBox.margin>
+                </ScrollPane>
+            </children>
+            <GridPane.margin>
+                <Insets left="35.0" top="30.0" />
+            </GridPane.margin>
+        </VBox>
+        <VBox fx:id="sideMenu" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
+            <children>
+                <HBox>
+                    <children>
+                        <VBox>
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox />
+                    </children>
+                </HBox>
+                <ImageView fitHeight="150.0" fitWidth="50.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/icons8-back-64.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                    </VBox.margin>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ImageView>
+            </children>
+        </VBox>
+    </children>
+</GridPane>

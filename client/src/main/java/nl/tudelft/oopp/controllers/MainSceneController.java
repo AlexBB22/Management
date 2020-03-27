@@ -477,4 +477,9 @@ public class MainSceneController implements Initializable {
         fridayHasBikeReservation.setText(yesno);
     }
 
+    @FXML
+    public void seeAllRoomReservationsButtonHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/seeAllRoomReservations.fxml", "All room reservations");
+    }
+
 }
