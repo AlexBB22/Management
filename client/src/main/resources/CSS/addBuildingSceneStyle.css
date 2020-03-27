@@ -1,0 +1,89 @@
+.grid{
+    -fx-background-color: linear-gradient(to right, rgb(247, 197, 244), white);
+}
+
+.roomViewOuterVBOX {
+    -fx-background-color: white;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 35px;
+    -fx-border-width: 7px;
+    -fx-border-color: rgb(231, 43, 99)
+}
+
+.roomReservationPane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: white;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(248, 228, 247);
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar:horizontal{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:horizontal .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: rgb(248, 228, 247);
+    -fx-background-radius: 5em;
+}
+
+
+.text{
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 20px;
+    -fx-background-radius: 30px;
+}
+
+.questiontext{
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 20px;
+    -fx-background-radius: 30px;
+}
+
+.timetext{
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 15px;
+    -fx-background-radius: 30px;
+}
+
+.addbutton{
+    -fx-background-color: rgb(231, 43, 99);
+    -fx-text-fill: white;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+.addbutton:hover{
+    -fx-opacity: 80%;
+}
+
+.textfield{
+    -fx-background-color: white;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 35px;
+    -fx-border-width: 3px;
+    -fx-border-color: rgb(231, 43, 99)
+}
+
+

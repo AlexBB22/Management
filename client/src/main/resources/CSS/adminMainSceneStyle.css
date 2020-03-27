@@ -26,6 +26,10 @@
     -fx-border-width: 3px;
 }
 
+.addbuildingbutton:hover{
+    -fx-opacity: 80%;
+}
+
 .deletebuildingbutton{
     -fx-background-color: #FCD0BA;
     -fx-border-color: blue;
@@ -34,6 +38,10 @@
     -fx-border-radius: 30px;
     -fx-background-radius: 30px;
     -fx-border-width: 3px;
+}
+
+.deletebuildingbutton:hover{
+    -fx-opacity: 80%;
 }
 
 .deleteroombutton{
@@ -46,6 +54,10 @@
     -fx-border-width: 3px;
 }
 
+.deleteroombutton:hover{
+    -fx-opacity: 80%;
+}
+
 .addroombutton{
     -fx-background-color: #FEFAD4;
     -fx-border-color: blue;
@@ -54,6 +66,10 @@
     -fx-border-radius: 30px;
     -fx-background-radius: 30px;
     -fx-border-width: 3px;
+}
+
+.addroombutton:hover{
+    -fx-opacity: 80%;
 }
 
 .grid{

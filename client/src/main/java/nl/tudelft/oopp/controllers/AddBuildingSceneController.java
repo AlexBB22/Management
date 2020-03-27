@@ -59,6 +59,8 @@ public class AddBuildingSceneController implements Initializable {
             i = i + 1;
             gridPane.add(new Text("opening time: " + b.getOpening() + " closing time: " + b.getClosing()), 0, i);
             i = i + 1;
+            gridPane.add(new Text(""), 0, i);
+            i = i + 1;
 
         }
         buildingScrollPane.setContent(gridPane);
