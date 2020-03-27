@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.DeleteRoomSceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/deleteRoomSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.DeleteRoomSceneController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -40,11 +40,12 @@
             <Image url="@images/userIcon.png" />
          </image>
       </ImageView>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="roomViewOuterVBOX" GridPane.rowIndex="1">
          <children>
-            <ScrollPane fx:id="roomScrollPane" prefHeight="528.0" prefWidth="1280.0">
+            <VBox prefHeight="59.0" prefWidth="1266.0" />
+            <ScrollPane fx:id="roomScrollPane" prefHeight="412.0" prefWidth="1266.0" styleClass="roomPane">
                <content>
-                  <VBox fx:id="vboxInScrollPane" prefHeight="546.0" prefWidth="898.0" />
+                  <VBox fx:id="vboxInScrollPane" prefHeight="436.0" prefWidth="1238.0" />
                </content>
             </ScrollPane>
          </children>

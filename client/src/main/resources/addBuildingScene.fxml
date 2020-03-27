@@ -24,7 +24,7 @@
     <RowConstraints maxHeight="521.6000122070312" minHeight="10.0" prefHeight="521.6000122070312" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="roomViewOuterVBOX" stylesheets="@CSS/addBuildingSceneStyle.css" GridPane.rowIndex="1">
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="buildingViewOuterVBOX" stylesheets="@CSS/addBuildingSceneStyle.css" GridPane.rowIndex="1">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="   Current buildings: " />
             <ScrollPane fx:id="buildingScrollPane" prefHeight="454.0" prefWidth="626.0" styleClass="scrollpane" stylesheets="@CSS/addBuildingSceneStyle.css">

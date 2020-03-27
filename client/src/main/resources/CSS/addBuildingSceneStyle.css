@@ -2,12 +2,12 @@
     -fx-background-color: linear-gradient(to right, rgb(247, 197, 244), white);
 }
 
-.roomViewOuterVBOX {
+.buildingViewOuterVBOX {
     -fx-background-color: white;
     -fx-background-radius: 40px;
     -fx-border-radius: 35px;
     -fx-border-width: 7px;
-    -fx-border-color: rgb(231, 43, 99)
+    -fx-border-color: rgb(231, 43, 99);
 }
 
 .buildingPane {

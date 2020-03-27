@@ -1,0 +1,49 @@
+.grid{
+    -fx-background-color: linear-gradient(to right, #F1828D, white);
+}
+
+.roomViewOuterVBOX {
+    -fx-background-color: white;
+    -fx-background-radius: 40px;
+    -fx-border-radius: 35px;
+    -fx-border-width: 7px;
+    -fx-border-color: #F1828D;
+}
+
+.roomPane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: white;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(240, 166, 173);
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar:horizontal{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:horizontal .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: rgb(241, 163, 170);
+    -fx-background-radius: 5em;
+}
