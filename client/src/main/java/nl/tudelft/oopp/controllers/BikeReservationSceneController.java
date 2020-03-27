@@ -83,15 +83,15 @@ public class BikeReservationSceneController implements Initializable {
 
     /**
      * You won't see the buildings where there are no bikes left to reserve.
-     * @author Alexandru Bobe
-     * @author Eli Shamayev
+     * @Author Alexandru Bobe
+     * @Author Eli Shamayev
      */
     public void getBuildings() throws IOException, URISyntaxException {
         List<Building> listOfBuildings = ServerCommunication.getBuildings();
         buildingList.getChildren().clear();
         for (Building building : listOfBuildings) {
             if (ServerCommunication.getNumberOfAvailableBikes(building.getBuilding_Name(), datePickerBike.getValue()) > 0) {
-                    createAvailableBuildingView(building);
+                createAvailableBuildingView(building);
             }
         }
     }
@@ -121,7 +121,7 @@ public class BikeReservationSceneController implements Initializable {
     /**
      * On click this method checks whether the user already has a bike reservation on that day.
      * If he does, a warning will show up, else he can continue doing a new reservation.
-     * @author Sartori Kendra
+     * @Author Sartori Kendra
      * @param actionEvent - the event that happens
      * @throws IOException - exception
      * @throws URISyntaxException - exception thrown if the syntax is wrong
@@ -147,7 +147,7 @@ public class BikeReservationSceneController implements Initializable {
     /**
      * this will create hboxs to display the available buildings in which you can reserve a bike from.
      * @Author Eli Shamayev
-     * @param ar
+     * @param ar building
      */
     public void createAvailableBuildingView(Building ar) {
 
@@ -229,9 +229,9 @@ public class BikeReservationSceneController implements Initializable {
     }
 
     /**
-     * this will identify the approriate building picture for the building name given
+     * this will identify the approriate building picture for the building name given.
      * @Author Eli Shamayev
-     * @param buildingName
+     * @param buildingName building name
      * @return image of building
      */
     public Image getCorrectImage(String buildingName) {
