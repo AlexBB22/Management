@@ -154,7 +154,7 @@ public class BikeReservationSceneController implements Initializable {
         } else {
             ArrayList<Building> availableBuildings = ServerCommunication.getBuildings();
             for (Building ar : availableBuildings) {
-                createAvailableBuildingView(ar);nm
+                createAvailableBuildingView(ar);
             }
         }
     }
@@ -251,7 +251,7 @@ public class BikeReservationSceneController implements Initializable {
             resImg = new Image("images/mechanicalengineering_building.jpg");
         }
         if (getBuildingName().equals("CSE")) {
-            resImg = new Image("images/cs_building.jpg");
+            resImg = new Image("images/cs_building.png");
         }
         return resImg;
     }
