@@ -222,9 +222,25 @@ public class BikeReservationSceneController implements Initializable {
         mainBox.getChildren().add(infoBox);
         mainBox.setMargin(infoBox, new Insets(5, 0, 5, 0));
 
-        //add mainBox to the outermost VBox that contains all these room reservation Hboxes
+        //add mainBox to the outermost VBox
         buildingList.getChildren().add(mainBox);
         buildingList.setMargin(mainBox, new Insets(5, 18, 5, 0));
+        Button reserveButton = new Button("Reserve");
+        reserveButton.setPrefSize(345, 30);
+        reserveButton.setMaxSize(345, 30);
+        reserveButton.setStyle("-fx-background-color: #2f93ff; -fx-text-fill: white; -fx-text-alignment: center; "
+                + "-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-font-weight: bold;");
+        reserveButton.setOnAction(event -> {
+            try {
+                reservePopUp(ar.getBuilding_Name(), datePickerBike.getValue().toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        reserveButton.setCursor(Cursor.HAND);
+        buildingInfo1.getChildren().add(reserveButton);
+        buildingInfo1.setMargin(reserveButton, new Insets(0, 5, 0, 5));
+
     }
 
     /**
@@ -235,22 +251,22 @@ public class BikeReservationSceneController implements Initializable {
      */
     public Image getCorrectImage(String buildingName) {
         Image resImg = null;
-        if (getBuildingName().equals("AS")) {
+        if (buildingName.equals("AS")) {
             resImg = new Image("images/aerospace_building.jpg");
         }
-        if (getBuildingName().equals("Pulse")) {
+        if (buildingName.equals("Pulse")) {
             resImg = new Image("images/pulse_building.jpg");
         }
-        if (getBuildingName().equals("NS")) {
+        if (buildingName.equals("NS")) {
             resImg = new Image("images/natuurkunde_building.jpg");
         }
-        if (getBuildingName().equals("DW")) {
+        if (buildingName.equals("DW")) {
             resImg = new Image("images/dw_building.jpg");
         }
-        if (getBuildingName().equals("ME")) {
+        if (buildingName.equals("ME")) {
             resImg = new Image("images/mechanicalengineering_building.jpg");
         }
-        if (getBuildingName().equals("CSE")) {
+        if (buildingName.equals("CSE")) {
             resImg = new Image("images/cs_building.png");
         }
         return resImg;
