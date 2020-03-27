@@ -95,7 +95,7 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                              <Text fx:id="mondayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -323,7 +323,7 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                              <Text fx:id="tuesdayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -401,7 +401,7 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                              <Text fx:id="wednesdayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -479,7 +479,7 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                              <Text fx:id="thursdayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
@@ -557,7 +557,7 @@
                                     <Font name="System Italic" size="15.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="weekItemHeadersText" text="Yes/No">
+                              <Text fx:id="fridayHasBikeReservation" styleClass="weekItemHeadersText">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>

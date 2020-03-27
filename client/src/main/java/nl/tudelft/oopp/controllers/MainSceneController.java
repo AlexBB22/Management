@@ -6,6 +6,7 @@ import static nl.tudelft.oopp.MainApp.user;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,6 +98,12 @@ public class MainSceneController implements Initializable {
     @FXML
     private Text result;
 
+    @FXML private Text mondayHasBikeReservation;
+    @FXML private Text tuesdayHasBikeReservation;
+    @FXML private Text wednesdayHasBikeReservation;
+    @FXML private Text thursdayHasBikeReservation;
+    @FXML private Text fridayHasBikeReservation;
+
 
 
 
@@ -137,6 +144,9 @@ public class MainSceneController implements Initializable {
         //setting the date for each individual week box
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
         ArrayList<String> dates = new ArrayList<>();
+        String dayReservation;
+        Date dateReservation;
+        String bool;
 
         for (int i = Calendar.MONDAY; i <= Calendar.FRIDAY; i++) {
             cal.set(Calendar.DAY_OF_WEEK, i);
@@ -146,6 +156,17 @@ public class MainSceneController implements Initializable {
         }
         thisWeekMondayDate.setText(dates.get(0));
         mondayTodoButton.setId(dates.get(0));
+        try {
+            setMondayHasBikeReservation(dates.get(0));
+            setTuesdayHasBikeReservation(dates.get(1));
+            setWednesdayHasBikeReservation(dates.get(2));
+            setThursdayHasBikeReservation(dates.get(3));
+            setFridayHasBikeReservation(dates.get(4));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         thisWeekTuesdayDate.setText(dates.get(1));
         tuesdayTodoButton.setId(dates.get(1));
@@ -359,4 +380,101 @@ public class MainSceneController implements Initializable {
             }
         }
     }
+
+    /**
+     * This sets the text for Monday, yes if the user has a bike reservation on Monday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setMondayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        }   else {
+            yesno = "No";
+        }
+        mondayHasBikeReservation.setText(yesno);
+    }
+
+    /**
+     * This sets the text for Tuesday, yes if the user has a bike reservation on Tuesday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setTuesdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        } else {
+            yesno = "No";
+        }
+        tuesdayHasBikeReservation.setText(yesno);
+    }
+
+    /**
+     * This sets the text for Wednesday, yes if the user has a bike reservation on Wednesday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setWednesdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        } else {
+            yesno = "No";
+        }
+        wednesdayHasBikeReservation.setText(yesno);
+
+    }
+
+    /**
+     * This sets the text for Thursday, yes if the user has a bike reservation on Thursday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setThursdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        } else {
+            yesno = "No";
+        }
+        thursdayHasBikeReservation.setText(yesno);
+    }
+
+    /**
+     * This sets the text for Friday, yes if the user has a bike reservation on Friday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setFridayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        } else {
+            yesno = "No";
+        }
+        fridayHasBikeReservation.setText(yesno);
+    }
+
 }
