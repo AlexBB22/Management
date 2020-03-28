@@ -54,6 +54,8 @@ public class SeeAllRoomReservationsSceneController implements Initializable {
             e.printStackTrace();
         }
 
+        reservationID = -1;
+
     }
     @FXML
     public void backBtnHandler(MouseEvent mouseEvent) throws IOException {
