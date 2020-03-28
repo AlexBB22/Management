@@ -231,6 +231,11 @@ public class MainSceneController implements Initializable {
         switchScene(mouseEvent, "/?.fxml");
     }
 
+    /**
+     * Button handler for the account button.
+     * @param mouseEvent - the event created by the button
+     * @throws IOException - exception thrown if file doesn't exist
+     */
     @FXML
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
         // switchScene(mouseEvent, "/accountScene.fxml", "Account Settings");
