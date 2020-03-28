@@ -18,8 +18,10 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -40,6 +42,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
+import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.User;
@@ -254,9 +257,20 @@ public class MainSceneController implements Initializable {
         switchScene(mouseEvent, "/?.fxml");
     }
 
+    /**
+     * Button handler for the account button.
+     * @param mouseEvent - the event created by the button
+     * @throws IOException - exception thrown if file doesn't exist
+     */
     @FXML
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/accountScene.fxml", "Account Settings");
+        // switchScene(mouseEvent, "/accountScene.fxml", "Account Settings");
+
+        Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 300, 400);
+        st.setScene(sc);
+        st.show();
     }
 
     /**
