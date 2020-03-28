@@ -180,8 +180,8 @@ public class BikeReservationSceneController implements Initializable {
         infoBox.setPrefHeight(145);
         infoBox.setPrefWidth(360);
 
-        //the info VBox has 5 Hboxes inside that have the name of room and its capacity and all its attributes
-        //this first one adds the name of room
+        //the info VBox has 3 Hboxes inside that have the name of building name, opening times and description displayed
+        //this first one adds the name of building
         HBox buildingNameBox = new HBox();
         buildingNameBox.setAlignment(Pos.CENTER_LEFT);
         buildingNameBox.setPrefHeight(25);
@@ -190,16 +190,51 @@ public class BikeReservationSceneController implements Initializable {
         buildingName.setFill(Color.BLACK);
         buildingNameBox.getChildren().add(buildingName);
 
-        //this second one adds the type of the room + capacity
+        //this second one adds building description headline
         HBox buildingInfo1 = new HBox();
         buildingInfo1.setAlignment(Pos.TOP_LEFT);
         buildingInfo1.setPrefHeight(27);
-        Text buildingType = new Text(ar.getBuilding_Name());
-        buildingType.setFont(Font.font("Arial", 16));
+        Text buildingDesc = new Text("Building Description");
+        buildingDesc.setFill(Color.SEAGREEN);
+        buildingDesc.setFont(Font.font("Arial", FontWeight.BOLD, 15));
 
-        buildingInfo1.getChildren().addAll(buildingType);
+        buildingInfo1.getChildren().addAll(buildingDesc);
 
-        infoBox.getChildren().addAll(buildingNameBox, buildingInfo1);
+        //this third one adds building description
+        HBox buildingInfo2 = new HBox();
+        buildingInfo2.setAlignment(Pos.TOP_LEFT);
+        buildingInfo2.setPrefHeight(27);
+        Text description = new Text(ar.getDescription());
+        description.setFont(Font.font("Arial", 15));
+
+        buildingInfo2.getChildren().addAll(description);
+
+        //this fourth will add a headline opening times
+        HBox buildingInfo3 = new HBox();
+        buildingInfo3.setAlignment(Pos.TOP_LEFT);
+        buildingInfo3.setPrefHeight(27);
+        Text openingTimes = new Text("Opening Times");
+        openingTimes.setFill(Color.SEAGREEN);
+        openingTimes.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        buildingInfo3.getChildren().addAll(openingTimes);
+
+        //this fifth one adds opening time
+        HBox buildingInfo4 = new HBox();
+        buildingInfo4.setAlignment(Pos.TOP_LEFT);
+        buildingInfo4.setPrefHeight(27);
+        Text opening = new Text("Opens at " + ar.getOpening());
+        opening.setFont(Font.font("Arial", 15));
+
+        buildingInfo4.getChildren().addAll(opening);
+
+        //this sixth one adds closing time
+        HBox buildingInfo5 = new HBox();
+        buildingInfo5.setAlignment(Pos.TOP_LEFT);
+        buildingInfo5.setPrefHeight(27);
+        Text closing = new Text("Closes at " + ar.getClosing());
+        closing.setFont(Font.font("Arial", 15));
+
+        buildingInfo5.getChildren().addAll(closing);
 
         //add info VBox and the image HBox to the main HBox and set their margins
         mainBox.getChildren().add(imgBox);
@@ -209,8 +244,9 @@ public class BikeReservationSceneController implements Initializable {
 
         //add mainBox to the outermost VBox
         buildingList.getChildren().add(mainBox);
-        buildingList.setMargin(mainBox, new Insets(5, 18, 5, 0));
+        // buildingList.setMargin(mainBox, new Insets(5, 18, 5, 0));
         Button reserveButton = new Button("Reserve");
+        reserveButton.setAlignment(Pos.TOP_RIGHT);
         reserveButton.setPrefSize(345,  30);
         reserveButton.setMaxSize(345, 30);
         reserveButton.setStyle("-fx-background-color: #2f93ff; -fx-text-fill: white; -fx-text-alignment: center; "
@@ -222,9 +258,12 @@ public class BikeReservationSceneController implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        infoBox.getChildren().addAll(buildingNameBox, buildingInfo1, buildingInfo2, buildingInfo3, buildingInfo4, buildingInfo5);
+
         reserveButton.setCursor(Cursor.HAND);
-        buildingInfo1.getChildren().add(reserveButton);
-        buildingInfo1.setMargin(reserveButton, new Insets(0, 5, 0, 5));
+        buildingInfo5.getChildren().add(reserveButton);
+        buildingInfo5.setMargin(reserveButton, new Insets(70, 35, 0, 5));
 
     }
 
