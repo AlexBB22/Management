@@ -70,7 +70,6 @@ public class AccountSceneController implements Initializable {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
