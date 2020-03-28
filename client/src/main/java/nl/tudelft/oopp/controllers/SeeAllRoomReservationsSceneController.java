@@ -1,5 +1,13 @@
 package nl.tudelft.oopp.controllers;
 
+import static nl.tudelft.oopp.MainApp.switchScene;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,17 +23,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.UserReservationInfo;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
-import static nl.tudelft.oopp.MainApp.switchScene;
 
 public class SeeAllRoomReservationsSceneController implements Initializable {
 
@@ -57,14 +60,21 @@ public class SeeAllRoomReservationsSceneController implements Initializable {
         reservationID = -1;
 
     }
+
     @FXML
     public void backBtnHandler(MouseEvent mouseEvent) throws IOException {
         switchScene(mouseEvent, "/mainScene.fxml", "TuDelft Reservation Application");
     }
 
+    /**
+     * This method creates a list of all the room reservations and adds them to the Vbox.
+     * @author Kanish Dwivedi
+     * @param uri - the UserReservationInfo object which is to be displayed.
+     */
     public void displayUserReservationInfo(UserReservationInfo uri) {
 
-        Text information = new Text("\nBuilding: " + uri.getBuildingName() + "\nRoom: " + uri.getRoomName() + "\nType: " + uri.getName()  + "\nDay: " + uri.getDay() + "\nStartTime: " + uri.getStartTime() + "\nEndTime: " + uri.getEndTime() + "\n\n");
+        Text information = new Text("\nBuilding: " + uri.getBuildingName()
+                + "\nRoom: " + uri.getRoomName() + "\nType: " + uri.getName()  + "\nDay: " + uri.getDay() + "\nStartTime: " + uri.getStartTime() + "\nEndTime: " + uri.getEndTime() + "\n\n");
         information.setTextAlignment(TextAlignment.CENTER);
         information.setFont(Font.font("Chalkboard SE", 16));
         HBox reservationinfo = new HBox(information);
@@ -100,6 +110,12 @@ public class SeeAllRoomReservationsSceneController implements Initializable {
         });
     }
 
+    /**
+     * This method starts the pop up.
+     * @author Sartori Kendra
+     * @param id - id of the reservation to be deleted
+     * @throws IOException - throws exception if the file is not found
+     */
     @FXML
     public void deletePopUp(int id) throws IOException {
         SeeAllRoomReservationsSceneController.reservationID = id;

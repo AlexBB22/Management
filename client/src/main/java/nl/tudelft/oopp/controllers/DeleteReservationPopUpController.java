@@ -29,12 +29,11 @@ public class DeleteReservationPopUpController implements Initializable {
 
     @FXML private Text resId;
 
-
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(SeeAllRoomReservationsSceneController.getReservationID() != -1) {
+        if (SeeAllRoomReservationsSceneController.getReservationID() != -1) {
             this.id = SeeAllRoomReservationsSceneController.getReservationID();
-        }
-        else {
+        } else {
             this.id = AccountSceneController.getReservationID();
         }
         resId.setText(Integer.toString(this.id));
