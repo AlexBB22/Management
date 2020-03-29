@@ -131,14 +131,20 @@ public class BuildingController {
                                @PathVariable (value = "openingTime") Time openingTime,
                                 @PathVariable (value = "closingTime") Time closingTime) {
 
-        //adding spaces back that were removed during the building of the URL.
-        String[] stringArray = description.split("_");
-        String buildingDescription = stringArray[0];
-        for ( int i = 1; i < stringArray.length; i++) {
-            buildingDescription = buildingDescription + " " + stringArray[i];
+        String[] nameArray = buildingName.split("_");
+        String name = nameArray[0];
+        for (int i = 1; i < nameArray.length; i++) {
+            name = name + " " + nameArray[i];
         }
 
-        Building newBuilding = new Building(buildingName, nonReservableSpace, carParkingSpaces, buildingDescription, openingTime, closingTime);
+        //adding spaces back that were removed during the building of the URL.
+        String[] descriptionArray = description.split("_");
+        String buildingDescription = descriptionArray[0];
+        for ( int i = 1; i < descriptionArray.length; i++) {
+            buildingDescription = buildingDescription + " " + descriptionArray[i];
+        }
+
+        Building newBuilding = new Building(name, nonReservableSpace, carParkingSpaces, buildingDescription, openingTime, closingTime);
 
         System.out.println("Added a new building to the database");
         buildingRepository.save(newBuilding);
@@ -152,7 +158,13 @@ public class BuildingController {
     @ResponseBody
     public void deleteBuilding(@PathVariable (value = "buildingName") String buildingName) {
         try {
-            Optional<Building> b = buildingRepository.findById(buildingName);
+            String[] nameArray = buildingName.split("_");
+            String name = nameArray[0];
+            for (int i = 1; i < nameArray.length; i++) {
+                name = name + " " + nameArray[i];
+            }
+
+            Optional<Building> b = buildingRepository.findById(name);
             Building building = b.get();
             //deleting rooms correctly.
             List<Room> rooms = building.getRooms();

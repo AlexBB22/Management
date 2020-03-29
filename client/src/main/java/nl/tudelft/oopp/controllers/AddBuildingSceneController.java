@@ -74,16 +74,23 @@ public class AddBuildingSceneController implements Initializable {
     @FXML
     public void addBuildingButtonHandler(MouseEvent mouseEvent) {
         try {
-            String buildingName = buildingNameTextField.getText();
+            //removing spaces so the description can be send in the url using _ to later identify where spaces should be.
+            String spaceBuildingName = buildingNameTextField.getText();
+            String[] buildingArray = spaceBuildingName.split(" ");
+            String buildingName = buildingArray[0];
+            for (int i = 1; i < buildingArray.length; i++) {
+                buildingName = buildingName + "_" + buildingArray[i];
+            }
+
             Boolean nonResSpace = nonResSpaceCheckBox.isSelected();
             int carParkingSpace = Integer.parseInt(carParkingSpaceTextField.getText());
 
             //removing spaces so the description can be send in the url using _ to later identify where spaces should be.
             String spaceDescription = descriptionTextField.getText();
-            String[] stringArray = spaceDescription.split(" ");
-            String description = stringArray[0];
-            for (int i = 1; i < stringArray.length; i++) {
-                description = description + "_" + stringArray[i];
+            String[] descriptionArray = spaceDescription.split(" ");
+            String description = descriptionArray[0];
+            for (int i = 1; i < descriptionArray.length; i++) {
+                description = description + "_" + descriptionArray[i];
             }
 
             Time openTime = Time.valueOf(openTimeTextField.getText());

@@ -73,8 +73,19 @@ public class RoomController {
                             @PathVariable (value = "roomName") String roomName,
                             @PathVariable (value = "buildingName") String buildingName,
                             @PathVariable (value = "typeId") int typeId) {
-        Room room = new Room(capacity, roomName);
 
+        String[] roomArray = roomName.split("_");
+        String realRoomName = roomArray[0];
+        for (int i = 1; i < roomArray.length; i++) {
+            realRoomName = realRoomName + " " + roomArray[i];
+        }
+        Room room = new Room(capacity, realRoomName);
+
+        String[] nameArray = buildingName.split("_");
+        String name = nameArray[0];
+        for (int i = 1; i < nameArray.length; i++) {
+            name = name + " " + nameArray[i];
+        }
         Optional<Building> b = buildingRepository.findById(buildingName);
         Building building = b.get();
         room.setBuilding(building);

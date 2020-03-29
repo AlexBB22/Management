@@ -146,8 +146,22 @@ public class AddRoomSceneController implements Initializable {
     public void addButtonHandler(MouseEvent mouseEvent) {
         try {
             int capacity = Integer.parseInt(capacityTextField.getText());
-            String roomName = roomNameTextField.getText();
-            String buildingName = buildingComboBox.getValue();
+
+
+            String spaceRoomName = roomNameTextField.getText();
+            String[] roomArray = spaceRoomName.split(" ");
+            String roomName = roomArray[0];
+            for (int i = 1; i < roomArray.length; i++) {
+                roomName = roomName + "_" + roomArray[i];
+            }
+
+            String spaceBuildingName = buildingComboBox.getValue();
+            String[] buildingArray = spaceBuildingName.split(" ");
+            String buildingName = buildingArray[0];
+            for (int i = 1; i < buildingArray.length; i++) {
+                buildingName = buildingName + "_" + buildingArray[i];
+            }
+
             String typeName = typeNameComboBox.getValue();
             int typeint = 5;
             List<Type> types = ServerCommunication.getTypes();
