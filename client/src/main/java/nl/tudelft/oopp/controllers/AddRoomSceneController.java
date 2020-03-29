@@ -63,9 +63,9 @@ public class AddRoomSceneController implements Initializable {
             gridPane.add(new Text("capacity: " + r.getCapacity() + " Building: " + r.getBuilding().getBuilding_Name()), 0, i);
             i = i + 1;
             Type or = r.getType();
-            gridPane.add(new Text("Clicker: " + Boolean.toString(or.isClicker()) + " PowerOutlets: " + Boolean.toString(or.isPowerOutlets()) + " TV: " + Boolean.toString(or.isTv())), 0, i);
+            gridPane.add(new Text("Clicker: " + or.isClicker() + " PowerOutlets: " + or.isPowerOutlets() + " TV: " + or.isTv()), 0, i);
             i = i + 1;
-            gridPane.add(new Text("Whiteboard: " + Boolean.toString(or.isWhiteBoard())), 0, i);
+            gridPane.add(new Text("Whiteboard: " + or.isWhiteBoard()), 0, i);
             i = i + 1;
 
         }
@@ -84,7 +84,7 @@ public class AddRoomSceneController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (Building b : buildingList) {
+        for (Building b : buildings) {
             buildingComboBox.getItems().add(b.getBuilding_Name());
         }
         for (Type t : types) {

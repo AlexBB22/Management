@@ -67,7 +67,7 @@
             <Image url="@images/userIcon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="82.0" fitWidth="72.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+      <ImageView fx:id="backBtn" fitHeight="82.0" fitWidth="72.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
          <image>
             <Image url="@images/backBtn.png" />
          </image>

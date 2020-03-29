@@ -112,6 +112,8 @@ public class DeleteBuildingSceneController implements Initializable {
             gridPane.add(new Text("opening time: " + b.getOpening() + " closing time: " + b.getClosing()), 0, i);
             gridPane.add(deleteBtn, 1, i);
             i = i + 1;
+            gridPane.add(new Text(""), 0, i);
+            i = i + 1;
         }
         deleteScrollPane.setContent(gridPane);
     }

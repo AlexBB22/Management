@@ -24,7 +24,7 @@
    <children>
       <VBox>
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="90.0" fitWidth="194.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/tudelftLogo.png" />
                </image>
@@ -32,7 +32,7 @@
                   <Insets left="20.0" top="10.0" />
                </VBox.margin>
             </ImageView>
-            <ImageView fx:id="backbutton" fitHeight="150.0" fitWidth="50.0" nodeOrientation="INHERIT" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="backbutton" fitHeight="46.0" fitWidth="49.0" nodeOrientation="INHERIT" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/backBtn.png" />
                </image>
