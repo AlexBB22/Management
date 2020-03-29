@@ -34,12 +34,23 @@ public class SeeAllBikeReservationsSceneController implements Initializable {
 
     private static int reservationID;
 
+    private static int status;
+
+    public static int getStatus() {
+        return status;
+    }
+
+    public static void setStatus(int status) {
+        SeeAllBikeReservationsSceneController.status = status;
+    }
+
     public static int getReservationID() {
         return reservationID;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        SeeAllBikeReservationsSceneController.status = 0;
         try {
             ArrayList<UserReservationInfo> reservations = ServerCommunication.getUserReservationInfo(MainApp.user.getUserId());
             userReservationInfoList.getChildren().clear();
@@ -112,6 +123,7 @@ public class SeeAllBikeReservationsSceneController implements Initializable {
     @FXML
     public void deletePopUp(int id) throws IOException {
         SeeAllBikeReservationsSceneController.reservationID = id;
+        SeeAllBikeReservationsSceneController.setStatus(1);
         Parent root = FXMLLoader.load(getClass().getResource("/deleteReservationPopUp.fxml"));
         Stage st = new Stage();
         Scene sc = new Scene(root, 300, 400);
