@@ -54,7 +54,7 @@ public class SeeAllRoomReservationsSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        SeeAllRoomReservationsSceneController.status=0;
+        SeeAllRoomReservationsSceneController.status = 0;
         try {
             ArrayList<UserReservationInfo> reservations = ServerCommunication.getUserReservationInfo(MainApp.user.getUserId());
             userReservationInfoList.getChildren().clear();
