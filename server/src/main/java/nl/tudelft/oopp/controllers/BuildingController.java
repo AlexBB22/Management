@@ -131,7 +131,14 @@ public class BuildingController {
                                @PathVariable (value = "openingTime") Time openingTime,
                                 @PathVariable (value = "closingTime") Time closingTime) {
 
-        Building newBuilding = new Building(buildingName, nonReservableSpace, carParkingSpaces, description, openingTime, closingTime);
+        //adding spaces back that were removed during the building of the URL.
+        String[] stringArray = description.split("_");
+        String buildingDescription = stringArray[0];
+        for ( int i = 1; i < stringArray.length; i++) {
+            buildingDescription = buildingDescription + " " + stringArray[i];
+        }
+
+        Building newBuilding = new Building(buildingName, nonReservableSpace, carParkingSpaces, buildingDescription, openingTime, closingTime);
 
         System.out.println("Added a new building to the database");
         buildingRepository.save(newBuilding);

@@ -77,7 +77,15 @@ public class AddBuildingSceneController implements Initializable {
             String buildingName = buildingNameTextField.getText();
             Boolean nonResSpace = nonResSpaceCheckBox.isSelected();
             int carParkingSpace = Integer.parseInt(carParkingSpaceTextField.getText());
-            String description = descriptionTextField.getText();
+
+            //removing spaces so the description can be send in the url using _ to later identify where spaces should be.
+            String spaceDescription = descriptionTextField.getText();
+            String[] stringArray = spaceDescription.split(" ");
+            String description = stringArray[0];
+            for (int i = 1; i < stringArray.length; i++) {
+                description = description + "_" + stringArray[i];
+            }
+
             Time openTime = Time.valueOf(openTimeTextField.getText());
             Time closeTime = Time.valueOf(closeTimeTextField.getText());
             ServerCommunication.createBuilding(buildingName, nonResSpace, carParkingSpace, description, openTime, closeTime);
