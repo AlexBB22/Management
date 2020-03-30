@@ -6,6 +6,7 @@ import static nl.tudelft.oopp.MainApp.user;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,8 +18,10 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -39,6 +42,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
+import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.User;
@@ -100,6 +104,12 @@ public class MainSceneController implements Initializable {
     @FXML
     private Text result;
 
+    @FXML private Text mondayHasBikeReservation;
+    @FXML private Text tuesdayHasBikeReservation;
+    @FXML private Text wednesdayHasBikeReservation;
+    @FXML private Text thursdayHasBikeReservation;
+    @FXML private Text fridayHasBikeReservation;
+
 
 
 
@@ -135,10 +145,18 @@ public class MainSceneController implements Initializable {
             setStatus(0);
         }
 
+        if (status == 5) {
+            deleteReservationConfirmed();
+            setStatus(0);
+        }
+
 
         //setting the date for each individual week box
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
         ArrayList<String> dates = new ArrayList<>();
+        String dayReservation;
+        Date dateReservation;
+        String bool;
 
         for (int i = Calendar.MONDAY; i <= Calendar.FRIDAY; i++) {
             cal.set(Calendar.DAY_OF_WEEK, i);
@@ -148,6 +166,17 @@ public class MainSceneController implements Initializable {
         }
         thisWeekMondayDate.setText(dates.get(0));
         mondayTodoButton.setId(dates.get(0));
+        try {
+            setMondayHasBikeReservation(dates.get(0));
+            setTuesdayHasBikeReservation(dates.get(1));
+            setWednesdayHasBikeReservation(dates.get(2));
+            setThursdayHasBikeReservation(dates.get(3));
+            setFridayHasBikeReservation(dates.get(4));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         thisWeekTuesdayDate.setText(dates.get(1));
         tuesdayTodoButton.setId(dates.get(1));
@@ -235,9 +264,20 @@ public class MainSceneController implements Initializable {
         switchScene(mouseEvent, "/?.fxml");
     }
 
+    /**
+     * Button handler for the account button.
+     * @param mouseEvent - the event created by the button
+     * @throws IOException - exception thrown if file doesn't exist
+     */
     @FXML
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/accountScene.fxml", "Account Settings");
+        // switchScene(mouseEvent, "/accountScene.fxml", "Account Settings");
+
+        Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 300, 400);
+        st.setScene(sc);
+        st.show();
     }
 
     /**
@@ -262,6 +302,9 @@ public class MainSceneController implements Initializable {
         status = newStatus;
     }
 
+    public void deleteReservationConfirmed() {
+        result.setText("You have successfully deleted a reservation");
+    }
 
     /**
      * This method adds calls the server communication method addNewTodo by giving it paramters that the
@@ -356,5 +399,105 @@ public class MainSceneController implements Initializable {
         }
     }
 
+    /**
+     * This sets the text for Monday, yes if the user has a bike reservation on Monday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setMondayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        }   else {
+            yesno = "No";
+        }
+        mondayHasBikeReservation.setText(yesno);
+    }
+
+    /**
+     * This sets the text for Tuesday, yes if the user has a bike reservation on Tuesday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setTuesdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        } else {
+            yesno = "No";
+        }
+        tuesdayHasBikeReservation.setText(yesno);
+    }
+
+    /**
+     * This sets the text for Wednesday, yes if the user has a bike reservation on Wednesday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setWednesdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        } else {
+            yesno = "No";
+        }
+        wednesdayHasBikeReservation.setText(yesno);
+
+    }
+
+    /**
+     * This sets the text for Thursday, yes if the user has a bike reservation on Thursday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setThursdayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        } else {
+            yesno = "No";
+        }
+        thursdayHasBikeReservation.setText(yesno);
+    }
+
+    /**
+     * This sets the text for Friday, yes if the user has a bike reservation on Friday, otherwise No.
+     * @param dayReservation The date of Monday.
+     * @throws ParseException parse exception.
+     * @throws URISyntaxException uri exception.
+     */
+    public void setFridayHasBikeReservation(String dayReservation) throws ParseException, URISyntaxException {
+        Date dateReservation = new SimpleDateFormat("yyyy-MM-dd").parse(dayReservation);
+        java.sql.Date sqlDate = new java.sql.Date(dateReservation.getTime());
+        boolean bool = ServerCommunication.hasBikeReservation(sqlDate);
+        String yesno;
+        if (bool) {
+            yesno = "Yes";
+        } else {
+            yesno = "No";
+        }
+        fridayHasBikeReservation.setText(yesno);
+    }
+
+    @FXML
+    public void seeAllRoomReservationsButtonHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/seeAllRoomReservations.fxml", "All room reservations");
+    }
 
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.DeleteReservationPopUpController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="135.0" prefWidth="300.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure you want to delete this reservation?" textAlignment="CENTER" wrappingWidth="149.98046875">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="48.0" prefWidth="300.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reservation id:">
+                 <HBox.margin>
+                     <Insets right="10.0" />
+                 </HBox.margin>
+             </Text>
+         </children>
+         <Text fx:id="resId" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.00000619888306">
+              <HBox.margin>
+                  <Insets left="20.0" />
+              </HBox.margin>
+         </Text>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="76.0" prefWidth="300.0">
+         <children>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onMouseClicked="#backBtnHandler"  text="Cancel" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.20001530647278" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteReservation" text="Delete" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
