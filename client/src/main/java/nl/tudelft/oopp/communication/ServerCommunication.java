@@ -255,6 +255,8 @@ public class ServerCommunication {
         String res = request(url);
         System.out.println(res);
         ObjectMapper mapper = new ObjectMapper();
+
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         ArrayList<Room> rooms = mapper.readValue(res, new TypeReference<ArrayList<Room>>(){});
 
         return rooms;

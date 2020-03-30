@@ -50,7 +50,12 @@ public class DeleteBuildingPopUpSceneController implements Initializable {
      */
     @FXML
     public void confirmButtonHandler() throws URISyntaxException {
-        ServerCommunication.deleteBuilding(buildingName.getText());
+        String[] nameArray = buildingName.getText().split(" ");
+        String name = nameArray[0];
+        for (int i = 1; i < nameArray.length; i++) {
+            name = name + "_" + nameArray[i];
+        }
+        ServerCommunication.deleteBuilding(name);
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }

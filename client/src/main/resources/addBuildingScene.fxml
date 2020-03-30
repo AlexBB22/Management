@@ -9,51 +9,58 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AddBuildingSceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/addBuildingSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AddBuildingSceneController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="195.59998168945313" minHeight="10.0" prefHeight="106.39999389648438" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="379.20000610351565" minHeight="10.0" prefHeight="379.20000610351565" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="520.8000030517578" minHeight="10.0" prefHeight="198.19998779296876" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="521.6000122070312" minHeight="10.0" prefHeight="521.6000122070312" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="buildingViewOuterVBOX" stylesheets="@CSS/addBuildingSceneStyle.css" GridPane.rowIndex="1">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current buildings: " />
-            <ScrollPane fx:id="buildingScrollPane" prefHeight="360.0" prefWidth="640.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="   Current buildings: " />
+            <ScrollPane fx:id="buildingScrollPane" prefHeight="454.0" prefWidth="626.0" styleClass="scrollpane" stylesheets="@CSS/addBuildingSceneStyle.css">
                <content>
-                  <VBox fx:id="vboxInScrollPane" prefHeight="333.0" prefWidth="614.0" />
+                  <VBox fx:id="vboxInScrollPane" prefHeight="455.0" prefWidth="607.0" styleClass="buildingPane" stylesheets="@CSS/addBuildingSceneStyle.css" />
                </content>
             </ScrollPane>
          </children>
       </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox prefHeight="482.0" prefWidth="640.0" stylesheets="@CSS/addBuildingSceneStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building name: " />
-            <TextField fx:id="buildingNameTextField" prefHeight="26.0" prefWidth="218.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Building name: " />
+            <TextField fx:id="buildingNameTextField" prefHeight="26.0" prefWidth="218.0" styleClass="textfield" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <CheckBox fx:id="nonResSpaceCheckBox" mnemonicParsing="false" text="has non reservable space." />
+            <HBox>
+               <children>
+                  <CheckBox fx:id="nonResSpaceCheckBox" mnemonicParsing="false" prefHeight="0.0" prefWidth="19.0" styleClass="checkbox" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="has non reservable space." wrappingWidth="256.5367317199707" />
+               </children>
+            </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Amount of car parking spaces:" />
-            <TextField fx:id="carParkingSpaceTextField" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Amount of car parking spaces:" />
+            <TextField fx:id="carParkingSpaceTextField" prefHeight="31.0" prefWidth="523.0" styleClass="textfield" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Give a description of the building:" />
-            <TextField fx:id="descriptionTextField" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Give a description of the building:" />
+            <TextField fx:id="descriptionTextField" styleClass="textfield" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="At what time does the building open and close? (please use this format XX:XX:XX)" wrappingWidth="299.089111328125" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timetext" text="At what time does the building open and close? (please use this format XX:XX:XX)" wrappingWidth="299.089111328125" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Open:" />
-            <TextField fx:id="openTimeTextField" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Open:" />
+            <TextField fx:id="openTimeTextField" styleClass="textfield" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Close:" />
-            <TextField fx:id="closeTimeTextField" />
-            <Button fx:id="addBuildingButton" mnemonicParsing="false" onMouseClicked="#addBuildingButtonHandler" text="Add" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Close:" />
+            <TextField fx:id="closeTimeTextField" styleClass="textfield" />
+            <VBox prefHeight="22.0" prefWidth="640.0" />
+            <Button fx:id="addBuildingButton" maxHeight="38.0" minHeight="38.0" mnemonicParsing="false" onMouseClicked="#addBuildingButtonHandler" prefHeight="38.0" prefWidth="220.0" styleClass="addbutton" stylesheets="@CSS/addBuildingSceneStyle.css" text="Add" />
          </children>
       </VBox>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
@@ -64,7 +71,7 @@
             <Insets left="20.0" top="10.0" />
          </GridPane.margin>
       </ImageView>
-      <ImageView fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <ImageView fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="50.0" top="50.0" />
          </GridPane.margin>

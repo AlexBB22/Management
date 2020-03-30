@@ -9,44 +9,46 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AddRoomSceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/addRoomSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AddRoomSceneController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="191.60001220703126" minHeight="10.0" prefHeight="122.00000610351563" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="278.79999389648435" minHeight="10.0" prefHeight="278.79999389648435" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="310.40001525878904" minHeight="10.0" prefHeight="64.80000915527344" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="543.1999900817872" minHeight="10.0" prefHeight="538.3999908447266" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <VBox prefHeight="336.0" prefWidth="640.0" styleClass="roomViewOuterVBOX" GridPane.rowIndex="1">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="All current rooms" />
-            <ScrollPane fx:id="roomScrollPane" prefHeight="257.0" prefWidth="640.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="     All current rooms:" />
+            <ScrollPane fx:id="roomScrollPane" prefHeight="482.0" prefWidth="626.0" styleClass="roomPane">
                <content>
-                  <VBox fx:id="vboxInSP" prefHeight="188.0" prefWidth="282.0" />
+                  <VBox fx:id="vboxInSP" prefHeight="504.0" prefWidth="603.0" />
                </content>
             </ScrollPane>
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity:" />
-            <TextField fx:id="capacityTextField" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Capacity:" />
+            <TextField fx:id="capacityTextField" styleClass="textfield" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room name:" />
-            <TextField fx:id="roomNameTextField" prefHeight="26.0" prefWidth="50.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Room name:" />
+            <TextField fx:id="roomNameTextField" prefHeight="26.0" prefWidth="50.0" styleClass="textfield" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building:" />
-            <ComboBox fx:id="buildingComboBox" prefWidth="150.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Building:" />
+            <ComboBox fx:id="buildingComboBox" prefWidth="150.0" styleClass="comboBox" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
-            <ComboBox fx:id="typeNameComboBox" prefWidth="150.0" />
-            <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#addButtonHandler" text="add" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Type:" />
+            <ComboBox fx:id="typeNameComboBox" prefWidth="150.0" styleClass="comboBox" />
+            <HBox prefHeight="27.0" prefWidth="640.0" />
+            <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#addButtonHandler" prefWidth="220.0" styleClass="addbutton" text="add" />
          </children>
       </VBox>
       <ImageView fitHeight="121.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
@@ -57,7 +59,7 @@
             <Image url="@images/tudelftLogo.png" />
          </image>
       </ImageView>
-      <ImageView fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <ImageView fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="50.0" top="50.0" />
          </GridPane.margin>
@@ -65,7 +67,7 @@
             <Image url="@images/userIcon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="82.0" fitWidth="72.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+      <ImageView fx:id="backBtn" fitHeight="82.0" fitWidth="72.0" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
          <image>
             <Image url="@images/backBtn.png" />
          </image>

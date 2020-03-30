@@ -38,12 +38,23 @@ public class SeeAllRoomReservationsSceneController implements Initializable {
 
     private static int reservationID;
 
+    private static int status;
+
     public static int getReservationID() {
         return reservationID;
     }
 
+    public static int getStatus() {
+        return status;
+    }
+
+    public static void setStatus(int status) {
+        SeeAllRoomReservationsSceneController.status = status;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        SeeAllRoomReservationsSceneController.status = 0;
         try {
             ArrayList<UserReservationInfo> reservations = ServerCommunication.getUserReservationInfo(MainApp.user.getUserId());
             userReservationInfoList.getChildren().clear();
@@ -119,6 +130,7 @@ public class SeeAllRoomReservationsSceneController implements Initializable {
     @FXML
     public void deletePopUp(int id) throws IOException {
         SeeAllRoomReservationsSceneController.reservationID = id;
+        SeeAllRoomReservationsSceneController.setStatus(1);
         Parent root = FXMLLoader.load(getClass().getResource("/deleteReservationPopUp.fxml"));
         Stage st = new Stage();
         Scene sc = new Scene(root, 300, 400);
