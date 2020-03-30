@@ -182,7 +182,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
                <children>
-                  <Button mnemonicParsing="false" styleClass="topBarButton" onMouseClicked="#seeAllRoomReservationsButtonHandler" text="See all Bike Reservations">
+                  <Button mnemonicParsing="false" styleClass="topBarButton" onMouseClicked="#seeAllBikeReservationsButtonHandler" text="See All Bike Reservations">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
