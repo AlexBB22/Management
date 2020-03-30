@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
@@ -40,15 +41,45 @@
             <Image url="@images/userIcon.png" />
          </image>
       </ImageView>
-      <VBox prefHeight="306.0" prefWidth="1280.0" styleClass="buildingViewOuterVBOX" GridPane.rowIndex="1">
+      <HBox prefHeight="526.0" prefWidth="1217.0" GridPane.rowIndex="1">
          <children>
-            <VBox prefHeight="30.0" prefWidth="1266.0" />
-            <ScrollPane fx:id="deleteScrollPane" prefHeight="462.0" prefWidth="1266.0">
-               <content>
-                  <VBox fx:id="vboxInScrollPane" prefHeight="530.0" prefWidth="752.0" />
-               </content></ScrollPane>
+            <VBox prefHeight="526.0" prefWidth="806.0" styleClass="buildingViewOuterVBOX">
+               <children>
+                  <VBox prefHeight="30.0" prefWidth="1266.0" />
+                  <ScrollPane fx:id="deleteScrollPane" prefHeight="462.0" prefWidth="1266.0">
+                     <content>
+                        <VBox fx:id="vboxInScrollPane" prefHeight="530.0" prefWidth="752.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="526.0" prefWidth="475.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <ImageView fitHeight="66.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/warningSign.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Deleting is permanent and can not be reverted. " wrappingWidth="410.1366024017334" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="72.0" prefWidth="496.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="66.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/warningSign.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Warning: when deleting a building the rooms, the restaurants, bikes and all reservations of that building will be deleted to." wrappingWidth="433.1146240234375" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
       <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="username" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="105.0" top="74.0" />

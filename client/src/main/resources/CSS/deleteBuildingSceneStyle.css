@@ -47,3 +47,9 @@
     -fx-background-color: rgb(248, 221, 207);
     -fx-background-radius: 5em;
 }
+
+.questiontext{
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 20px;
+    -fx-background-radius: 30px;
+}
