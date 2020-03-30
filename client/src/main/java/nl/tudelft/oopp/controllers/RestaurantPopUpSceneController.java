@@ -1,5 +1,12 @@
 package nl.tudelft.oopp.controllers;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,15 +19,6 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.views.MainView;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.sql.Date;
-import java.sql.Time;
-import java.util.ResourceBundle;
-
-import static nl.tudelft.oopp.MainApp.switchScene;
 
 public class RestaurantPopUpSceneController implements Initializable {
     @FXML private Text reservationUserName;
@@ -53,6 +51,13 @@ public class RestaurantPopUpSceneController implements Initializable {
         stage.close();
     }
 
+    /**
+     * A method that is called when a user clicks on the order button, this method calls another method which
+     * communicates with the server and stores the actual food reservation in the DB.
+     * @param event an ActionEvent that activates this method whenever a user clicks on the order button
+     * @throws URISyntaxException - url exception
+     * @throws IOException - input/output exception
+     */
     @FXML
     public void makeNewFoodOrder(ActionEvent event) throws URISyntaxException, IOException {
         String[] timeSlot = time.getText().split("-");
@@ -60,7 +65,7 @@ public class RestaurantPopUpSceneController implements Initializable {
         String endTime = timeSlot[1];
         int statusCode = ServerCommunication.createFoodReservation(foodId, Integer.parseInt(restaurant.getText()),
                 Date.valueOf(date.getText()), Time.valueOf(startTime), Time.valueOf(endTime));
-        if(statusCode == -1) {
+        if (statusCode == -1) {
             System.out.println("Looks like something went wrong!");
             return;
         }

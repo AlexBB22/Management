@@ -1,5 +1,17 @@
 package nl.tudelft.oopp.controllers;
 
+import static nl.tudelft.oopp.MainApp.switchScene;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +24,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,23 +39,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.Food;
 import nl.tudelft.oopp.communication.Restaurant;
 import nl.tudelft.oopp.communication.ServerCommunication;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import static nl.tudelft.oopp.MainApp.switchScene;
 
 public class RestaurantSceneController implements Initializable {
     @FXML private Text username;
@@ -61,7 +66,9 @@ public class RestaurantSceneController implements Initializable {
     private static Date day;
     private static String timeSlot;
 
-    public static int getFoodId() { return foodId; }
+    public static int getFoodId() {
+        return foodId;
+    }
 
     public static String getFoodName() {
         return foodName;
@@ -164,7 +171,7 @@ public class RestaurantSceneController implements Initializable {
 
         ArrayList<Restaurant> restaurants = ServerCommunication.getRestaurants(buildingName);
         ObservableList<String> restaurantNames = FXCollections.observableArrayList();
-        for(int i = 0; i < restaurants.size(); i++) {
+        for (int i = 0; i < restaurants.size(); i++) {
             int id = restaurants.get(i).getResId();
             restaurantNames.add(Integer.toString(id));
         }
@@ -191,33 +198,39 @@ public class RestaurantSceneController implements Initializable {
         switchScene(mouseEvent, "/mainScene.fxml", "TuDelft Reservation Application");
     }
 
+    /**
+     * A method that queries the DB for all available food options for the user selected criteria and calls
+     * another method for displaying them nicely to the user.
+     * @param actionEvent an ActionEvent that is given every time a user clicks on the search button
+     * @throws IOException - an input/output exception
+     * @throws URISyntaxException - a url exception
+     */
     @FXML
     public void orderBtnHandler(ActionEvent actionEvent) throws IOException, URISyntaxException {
-        String resIdString = restaurantComboBox.getValue();
-        int resId = Integer.parseInt(resIdString);
-        ArrayList<Food> foods = ServerCommunication.getFoods(resId);
-
         // Clear vbox before adding all the food items into it
         foodList.getChildren().clear();
 
         //Making the title "This restaurants menu" and adding it to the main Vbox
-        Text availableRoomTitle = new Text("This restaurant's menu:");
-        availableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-        availableRoomTitle.setFill(Color.GREEN);
-        foodList.getChildren().add(availableRoomTitle);
+        Text availableRestaurantTitle = new Text("This restaurant's menu:");
+        availableRestaurantTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        availableRestaurantTitle.setFill(Color.GREEN);
+        foodList.getChildren().add(availableRestaurantTitle);
 
         //Getting the start and end time the user selected to make query to DB
         String[] timeSlot = timeSlotComboBox.getValue().split("-");
         String starttime = timeSlot[0];
         String endtime = timeSlot[1];
 
+        String resIdString = restaurantComboBox.getValue();
+        int resId = Integer.parseInt(resIdString);
+        ArrayList<Food> foods = ServerCommunication.getFoods(resId);
         if (foods.size() == 0) {
             Text info = new Text("No available food for this restaurant.");
             info.setFont(Font.font("Arial", FontWeight.BOLD, 15));
             foodList.getChildren().add(info);
             foodList.setMargin(info, new Insets(5, 0, 10, 15));
         } else {
-        //Calling method createFoodView with each food option so that its shown to the user and added into the vbox
+            //Calling method createFoodView with each food option so that its shown to the user and added into the vbox
             for (Food fd: foods) {
                 createFoodView(fd);
             }
@@ -229,7 +242,13 @@ public class RestaurantSceneController implements Initializable {
         switchScene(mouseEvent, "/accountScene.fxml", "Account settings");
     }
 
-    public void createFoodView(Food fd) throws FileNotFoundException {
+    /**
+     * A method that creates a nice box for each food type in which that foodtype is displayed with the price,
+     * an image of that food and an order button.
+     * The correct image is obtained by calling another method.
+     * @param fd the food type for which a display needs to be created
+     */
+    public void createFoodView(Food fd) {
         //Making outermost box
         HBox mainBox = new HBox();
         mainBox.setPrefHeight(160);
@@ -271,9 +290,10 @@ public class RestaurantSceneController implements Initializable {
         HBox foodPrice = new HBox();
         foodPrice.setAlignment(Pos.TOP_LEFT);
         foodPrice.setPrefHeight(27);
-        Text Price = new Text("\t Price: \u20ac" + fd.getPrice());
-        Price.setFont(Font.font("Arial", 16));
-        foodPrice.getChildren().add(Price);
+        // the /u20ac is a euro sign
+        Text price = new Text("\t Price: \u20ac" + fd.getPrice());
+        price.setFont(Font.font("Arial", 16));
+        foodPrice.getChildren().add(price);
 
         HBox imageBox = new HBox();
         imageBox.setAlignment(Pos.BOTTOM_LEFT);
@@ -307,6 +327,11 @@ public class RestaurantSceneController implements Initializable {
         foodList.setMargin(mainBox, new Insets(5, 18, 5, 0));
     }
 
+    /**
+     * A method that is callled for obtaining the right image for a given food type.
+     * @param foodId the foodId of a foodtype for which we want to display the right image
+     * @return the correct image that belongs to a given foodtype
+     */
     public Image getCorrectImage(int foodId) {
         Image resImg = null;
         if (foodId == 281) {
@@ -324,6 +349,14 @@ public class RestaurantSceneController implements Initializable {
         return resImg;
     }
 
+    /**
+     * Creates a popup for verifying that the user wants to order this food and also sets the static variables
+     * of this class to the right information so that the popup controller can access these variables.
+     * @param foodName the name of the food that a user wants to order
+     * @param foodId the id of the food that a user wants to order
+     * @param price the price of the food that a user wants to order
+     * @throws IOException - an input/output exception
+     */
     public void reservePopUp(String foodName, int foodId, int price) throws IOException {
         //Setting static variables to properties given so that these can be accessed in the other controller class
         RestaurantSceneController.foodName = foodName;

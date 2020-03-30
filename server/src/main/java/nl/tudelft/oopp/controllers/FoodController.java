@@ -1,27 +1,21 @@
 package nl.tudelft.oopp.controllers;
 
-import nl.tudelft.oopp.entities.Food;
-import nl.tudelft.oopp.entities.Menu;
-import nl.tudelft.oopp.entities.Restaurant;
-import nl.tudelft.oopp.repositories.FoodRepository;
-import nl.tudelft.oopp.repositories.RestaurantRepository;
 import java.util.List;
 import java.util.Optional;
 
 import nl.tudelft.oopp.entities.Food;
-import nl.tudelft.oopp.entities.FoodReservation;
 import nl.tudelft.oopp.entities.Menu;
+import nl.tudelft.oopp.entities.Restaurant;
 import nl.tudelft.oopp.repositories.FoodRepository;
 import nl.tudelft.oopp.repositories.MenuRepository;
+import nl.tudelft.oopp.repositories.RestaurantRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class FoodController {

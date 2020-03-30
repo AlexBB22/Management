@@ -8,7 +8,8 @@ public class Food {
     private int price;
     private List<Menu> menus;
 
-    public Food(){}
+    public Food(){
+    }
 
     public Food(String name, int price) {
         this.name = name;
@@ -31,9 +32,14 @@ public class Food {
             this.price = price;
         }
     }
-    public String getName() { return name; }
 
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getFoodId() {
         return foodId;
@@ -43,5 +49,7 @@ public class Food {
         this.foodId = foodId;
     }
 
-    public List<Menu> getMenus() { return this.menus; }
+    public List<Menu> getMenus() {
+        return this.menus;
+    }
 }

@@ -7,7 +7,8 @@ public class Menu {
     private List<Food> foods;
     private Restaurant restaurant;
 
-    public Menu(){}
+    public Menu(){
+    }
 
     public Menu(int id) {
         this.menuId = id;

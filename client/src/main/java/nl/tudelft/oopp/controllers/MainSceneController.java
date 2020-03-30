@@ -1,21 +1,6 @@
 package nl.tudelft.oopp.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
-import nl.tudelft.oopp.MainApp;
-import nl.tudelft.oopp.communication.ServerCommunication;
-import nl.tudelft.oopp.communication.UserReservationInfo;
-import nl.tudelft.oopp.communication.UserTodo;
+import static nl.tudelft.oopp.MainApp.switchScene;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -26,8 +11,30 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import static nl.tudelft.oopp.MainApp.switchScene;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 
+import nl.tudelft.oopp.MainApp;
+import nl.tudelft.oopp.communication.ServerCommunication;
+import nl.tudelft.oopp.communication.UserReservationInfo;
+import nl.tudelft.oopp.communication.UserTodo;
 
 public class MainSceneController implements Initializable {
 

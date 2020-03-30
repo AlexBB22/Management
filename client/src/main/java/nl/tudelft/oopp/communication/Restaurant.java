@@ -5,7 +5,8 @@ public class Restaurant {
     private Menu menu;
     private Building building;
 
-    public Restaurant(){}
+    public Restaurant() {
+    }
 
     public Restaurant(int resId) {
         this.resId = resId;

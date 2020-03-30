@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.tudelft.oopp.MainApp;
-import nl.tudelft.oopp.controllers.Hasher;
 
 import java.io.IOException;
 import java.net.URI;
@@ -19,6 +17,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import nl.tudelft.oopp.MainApp;
+import nl.tudelft.oopp.controllers.Hasher;
 
 public class ServerCommunication {
 
@@ -505,6 +506,13 @@ public class ServerCommunication {
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<UserTodo>>(){});
     }
 
+    /**
+     * A method which gets all the restaurants available in a given building.
+     * @param buildingName the name of the building for which you want to find all available methods
+     * @return A list of restaurants which are available in a building
+     * @throws URISyntaxException - url exception
+     * @throws IOException - input/output exception
+     */
     public static ArrayList<Restaurant> getRestaurants(String buildingName) throws URISyntaxException, IOException {
         String url = String.format("http://localhost:8080/ListRestaurants/%s", buildingName);
         String jsonRes = request(url);
@@ -513,6 +521,13 @@ public class ServerCommunication {
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<Restaurant>>(){});
     }
 
+    /**
+     * A method which gets all the food that a restaurant serves.
+     * @param resId the id of the restaurant for which we want to get all available food
+     * @return a list of food available in selected restaurant
+     * @throws URISyntaxException - url exception
+     * @throws IOException - input/ouput exception
+     */
     public static ArrayList<Food> getFoods(int resId) throws URISyntaxException, IOException {
         String url = String.format("http://localhost:8080/getAllFoodForRestaurant/%s", resId);
         String jsonRes = request(url);
@@ -521,6 +536,17 @@ public class ServerCommunication {
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<Food>>(){});
     }
 
+    /**
+     * A method which adds a new food reservation in our DB.
+     * @param foodId the id of the food that is ordered
+     * @param restaurantId the restaurant in which that food is ordered
+     * @param day the day for which that food is ordered
+     * @param startTime the start time of the timeslot for which that food is ordered
+     * @param endTime the end time of the timeslot for which that food is ordered
+     * @return an int which is a status code that is used to check whether a food reservation has been
+     *              successfully created
+     * @throws URISyntaxException - url exception
+     */
     public static int createFoodReservation(int foodId, int restaurantId, Date day, Time startTime, Time endTime) throws URISyntaxException {
         String urlString = String.format("http://localhost:8080//addFoodReservation/%s/%s/%s/%s/%s/%s", foodId,
                 restaurantId, day, startTime, endTime, MainApp.user.getUserId());
