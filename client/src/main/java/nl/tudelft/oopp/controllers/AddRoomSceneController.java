@@ -145,7 +145,6 @@ public class AddRoomSceneController implements Initializable {
     @FXML
     public void addButtonHandler(MouseEvent mouseEvent) {
         try {
-            int capacity = Integer.parseInt(capacityTextField.getText());
 
 
             String spaceRoomName = roomNameTextField.getText();
@@ -171,6 +170,9 @@ public class AddRoomSceneController implements Initializable {
                     break;
                 }
             }
+
+            int capacity = Integer.parseInt(capacityTextField.getText());
+
             ServerCommunication.createRoom(capacity, roomName, buildingName, typeint);
             confirmationText.setText("Room added successfully.");
 

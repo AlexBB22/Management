@@ -140,7 +140,7 @@ public class BuildingController {
         //adding spaces back that were removed during the building of the URL.
         String[] descriptionArray = description.split("_");
         String buildingDescription = descriptionArray[0];
-        for ( int i = 1; i < descriptionArray.length; i++) {
+        for (int i = 1; i < descriptionArray.length; i++) {
             buildingDescription = buildingDescription + " " + descriptionArray[i];
         }
 

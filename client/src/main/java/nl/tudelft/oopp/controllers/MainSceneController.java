@@ -247,7 +247,7 @@ public class MainSceneController implements Initializable {
      */
     @FXML
     public void adminButtonHandler(ActionEvent actionEvent) throws IOException {
-            switchScene(actionEvent, "/adminMainScene.fxml", "Admin Window");
+        switchScene(actionEvent, "/adminMainScene.fxml", "Admin Window");
     }
 
     public void changeResConfirmed() {
