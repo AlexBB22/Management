@@ -10,7 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="386.0" styleClass="grid" stylesheets="@CSS/deleteBuildingPopupStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.DeleteBuildingPopUpSceneController">
    <children>
-      <AnchorPane prefHeight="274.0" prefWidth="418.0">
+      <AnchorPane prefHeight="235.0" prefWidth="358.0">
          <children>
             <HBox layoutX="50.0" layoutY="57.0" prefHeight="10.0" prefWidth="300.0" styleClass="fontBold">
                <children>
@@ -86,8 +86,8 @@
             </HBox>
             <HBox layoutX="1.0" layoutY="203.0" prefHeight="43.0" prefWidth="370.0">
                <children>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="40.0" prefWidth="190.0" styleClass="selectButton3" stylesheets="@CSS/deleteReservationPopupStyle.css" text="cancel" />
-                  <Button mnemonicParsing="false" onAction="#confirmButtonHandler" prefHeight="40.0" prefWidth="190.0" styleClass="selectButton2" text="confirm" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="40.0" prefWidth="190.0" styleClass="selectButton3" stylesheets="@CSS/deleteReservationPopupStyle.css" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#confirmButtonHandler" prefHeight="40.0" prefWidth="190.0" styleClass="selectButton2" text="Confirm" />
                </children>
             </HBox>
             <Text layoutX="2.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fontBold" text="Note: deletion cannot be reversed" />

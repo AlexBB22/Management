@@ -126,7 +126,7 @@ public class SeeAllBikeReservationsSceneController implements Initializable {
         SeeAllBikeReservationsSceneController.setStatus(1);
         Parent root = FXMLLoader.load(getClass().getResource("/deleteReservationPopUp.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 305, 131);
         st.setScene(sc);
         st.show();
     }
