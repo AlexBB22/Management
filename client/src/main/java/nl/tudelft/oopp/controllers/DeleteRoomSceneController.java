@@ -159,4 +159,18 @@ public class DeleteRoomSceneController implements Initializable {
     public void backBtnHandler(MouseEvent mouseEvent) throws IOException {
         switchScene(mouseEvent, "/adminMainScene.fxml", "Admin Window");
     }
+
+    /**
+     * Button handler for the account button.
+     * @param mouseEvent - the event created by the button
+     * @throws IOException - exception thrown if file doesn't exist
+     */
+    @FXML
+    public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 300, 400);
+        st.setScene(sc);
+        st.show();
+    }
 }

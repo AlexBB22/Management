@@ -71,7 +71,7 @@
             <Insets left="20.0" top="10.0" />
          </GridPane.margin>
       </ImageView>
-      <ImageView fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <ImageView fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="50.0" top="50.0" />
          </GridPane.margin>
