@@ -89,6 +89,7 @@ public class DeleteRoomSceneController implements Initializable {
         for (Room r : rooms) {
             Button deleteBtn = new Button("Delete");
             deleteBtn.setAlignment(Pos.CENTER_LEFT);
+            deleteBtn.setStyle("-fx-background-color: #F1828D; -fx-text-fill: rgb(0, 0, 0); -fx-border-radius: 50px; -fx-background-radius: 50px;");
             deleteBtn.setOnAction(event -> {
                 try {
                     roomId = r.getRoom_id();

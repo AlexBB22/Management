@@ -89,6 +89,7 @@ public class DeleteBuildingSceneController implements Initializable {
         for (Building b : buildings) {
             Button deleteBtn = new Button("Delete");
             deleteBtn.setAlignment(Pos.CENTER_LEFT);
+            deleteBtn.setStyle("-fx-background-color: rgb(255, 151, 98); -fx-text-fill: rgb(0, 0, 0); -fx-border-radius: 50px; -fx-background-radius: 50px;");
             deleteBtn.setOnAction(event -> {
                 try {
                     DeleteBuildingSceneController.buildingName = b.getBuilding_Name();
