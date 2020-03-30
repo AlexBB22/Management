@@ -71,7 +71,7 @@ public class FoodReservationController {
         foodReservation.setStartTime(startTime);
         foodReservation.setEndTime(endTime);
 
-        System.out.println("Added a new bike reservation");
+        System.out.println("Added a new food reservation");
         return foodReservationRepository.save(foodReservation);
 
     }

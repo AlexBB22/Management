@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import nl.tudelft.oopp.entities.Food;
-import nl.tudelft.oopp.entities.FoodReservation;
 import nl.tudelft.oopp.entities.Menu;
+import nl.tudelft.oopp.entities.Restaurant;
 import nl.tudelft.oopp.repositories.FoodRepository;
 import nl.tudelft.oopp.repositories.MenuRepository;
+import nl.tudelft.oopp.repositories.RestaurantRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,9 @@ public class FoodController {
 
     @Autowired
     private FoodRepository foodRepository;
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
     private MenuRepository menuRepository;
@@ -72,5 +77,21 @@ public class FoodController {
         return foodRepository.getAllFood();
     }
 
+    /**
+     * Get function that gets all food in the DB for a given restaurant.
+     * @author Niels Tomassen
+     * @return list of food
+     */
+    @GetMapping("/getAllFoodForRestaurant/{resId}")
+    @ResponseBody
+    public List<Food> getAllFoodForRestaurant(@PathVariable(value = "resId") int resId) {
+        Optional<Restaurant> r = restaurantRepository.findById(resId);
+        Restaurant restaurant = r.get();
 
+        Menu menu = restaurant.getMenu();
+
+        List<Food> foods = menu.getFoods();
+        return foods;
+    }
 }
+

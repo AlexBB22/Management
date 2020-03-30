@@ -1,7 +1,6 @@
 package nl.tudelft.oopp.controllers;
 
 import static nl.tudelft.oopp.MainApp.switchScene;
-import static nl.tudelft.oopp.MainApp.user;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -11,24 +10,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -39,16 +34,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 import javafx.stage.Stage;
+
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
-import nl.tudelft.oopp.communication.User;
 import nl.tudelft.oopp.communication.UserReservationInfo;
 import nl.tudelft.oopp.communication.UserTodo;
-
 
 public class MainSceneController implements Initializable {
 
@@ -145,11 +138,15 @@ public class MainSceneController implements Initializable {
             setStatus(0);
         }
 
+        if (status == 3) {
+            foodReservationConfirmed();
+            setStatus(0);
+        }
+
         if (status == 5) {
             deleteReservationConfirmed();
             setStatus(0);
         }
-
 
         //setting the date for each individual week box
         SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -239,10 +236,7 @@ public class MainSceneController implements Initializable {
                 continue;
             }
         }
-
-
     }
-
 
     @FXML
     public void reserveRoomButtonHandler(MouseEvent mouseEvent) throws IOException {
@@ -261,7 +255,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     public void restaurantButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/?.fxml");
+        switchScene(mouseEvent, "/restaurantScene.fxml", "Order Food");
     }
 
     /**
@@ -295,7 +289,11 @@ public class MainSceneController implements Initializable {
     }
 
     public void bikeReservationConfirmed() {
-        result.setText("You have successfully reserved a bike");
+        result.setText("You have successfully reserved a bike!");
+    }
+
+    public void foodReservationConfirmed() {
+        result.setText("You have successfully reserved food!");
     }
 
     public static void setStatus(int newStatus) {

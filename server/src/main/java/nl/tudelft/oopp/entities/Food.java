@@ -1,18 +1,23 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+
 
 @Entity
+@Table(name = "food")
 public class Food {
     @Id
     @Column(name = "food_id")
@@ -36,7 +41,7 @@ public class Food {
         this.price = price;
     }
 
-    public int getFood_id() {
+    public int getFoodId() {
         return foodId;
     }
 
@@ -57,10 +62,6 @@ public class Food {
         }
     }
 
-    public void setFood_id(int foodId) {
-        this.foodId = foodId;
-    }
-
     public String getName() {
         return name;
     }
@@ -69,6 +70,7 @@ public class Food {
         this.name = name;
     }
 
+    @JsonBackReference(value = "foodMenu")
     public List<Menu> getMenus() {
         return menus;
     }

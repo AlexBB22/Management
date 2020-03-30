@@ -1,9 +1,11 @@
 package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,10 +37,15 @@ public class Menu {
     public Menu() {
     }
 
-    public int getMenu_id() {
+    public Menu(int id) {
+        this.menuId = id;
+    }
+
+    public int getMenuId() {
         return menuId;
     }
 
+    @JsonManagedReference(value = "foodMenu")
     public List<Food> getFoods() {
         return foods;
     }

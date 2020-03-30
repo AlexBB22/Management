@@ -612,7 +612,7 @@ public class RoomReservationSceneController implements Initializable {
 
         roomInfo2.getChildren().addAll(isTV, isClicker, isWhiteboard);
 
-        //this fourth one adds power outles attribute of the room
+        //this fourth one adds power outlets attribute of the room
         HBox roomInfo3 = new HBox();
         roomInfo3.setAlignment(Pos.TOP_LEFT);
         roomInfo3.setPrefHeight(27);
