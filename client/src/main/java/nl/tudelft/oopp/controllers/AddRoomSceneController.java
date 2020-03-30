@@ -12,12 +12,16 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.Building;
@@ -58,14 +62,27 @@ public class AddRoomSceneController implements Initializable {
         GridPane gridPane = new GridPane();
         for (Room r : rooms) {
 
-            gridPane.add(new Text(r.getRoom_name()), 0, i);
+            Image image = getCorrectImage(r.getType().getName());
+            ImageView imV = new ImageView();
+            imV.setImage(image);
+            imV.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+            imV.setFitWidth(180);
+            imV.setFitHeight(135);
+            gridPane.add(imV, 0, i);
+
+            Text roomName = new Text(r.getRoom_name());
+            roomName.setFont(Font.font(20));
+
+            gridPane.add(roomName, 1, i);
             i = i + 1;
             gridPane.add(new Text("capacity: " + r.getCapacity() + " Building: " + r.getBuilding().getBuilding_Name()), 0, i);
             i = i + 1;
             Type or = r.getType();
-            gridPane.add(new Text("Clicker: " + Boolean.toString(or.isClicker()) + " PowerOutlets: " + Boolean.toString(or.isPowerOutlets()) + " TV: " + Boolean.toString(or.isTv())), 0, i);
+            gridPane.add(new Text("Clicker: " + or.isClicker() + " PowerOutlets: " + or.isPowerOutlets() + " TV: " + or.isTv()), 0, i);
             i = i + 1;
-            gridPane.add(new Text("Whiteboard: " + Boolean.toString(or.isWhiteBoard())), 0, i);
+            gridPane.add(new Text("Whiteboard: " + or.isWhiteBoard()), 0, i);
+            i = i + 1;
+            gridPane.add(new Text(""), 0, i);
             i = i + 1;
 
         }
@@ -84,12 +101,35 @@ public class AddRoomSceneController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (Building b : buildingList) {
+        for (Building b : buildings) {
             buildingComboBox.getItems().add(b.getBuilding_Name());
         }
         for (Type t : types) {
             typeNameComboBox.getItems().add(t.getName());
         }
+    }
+
+    /**
+     * This method creates an JavaFX Image object based on the roomType given.
+     * @author Kanish Dwivedi
+     * @param roomType - the name of the roomType for which the coressponding image is to be loaded
+     * @return - a new Image object that represents the roomType given
+     */
+    public Image getCorrectImage(String roomType) {
+        Image resImg = null;
+        if (roomType.equals("StudyRoom")) {
+            resImg = new Image("images/studyRoom.jpg");
+        }
+        if (roomType.equals("ProjectRoom")) {
+            resImg = new Image("images/projectRoom.jpg");
+        }
+        if (roomType.equals("LectureHall")) {
+            resImg = new Image("images/lectureHall.jpg");
+        }
+        if (roomType.equals("StudyHall")) {
+            resImg = new Image("images/studyHall.jpg");
+        }
+        return resImg;
     }
 
     @FXML
@@ -105,9 +145,22 @@ public class AddRoomSceneController implements Initializable {
     @FXML
     public void addButtonHandler(MouseEvent mouseEvent) {
         try {
-            int capacity = Integer.parseInt(capacityTextField.getText());
-            String roomName = roomNameTextField.getText();
-            String buildingName = buildingComboBox.getValue();
+
+
+            String spaceRoomName = roomNameTextField.getText();
+            String[] roomArray = spaceRoomName.split(" ");
+            String roomName = roomArray[0];
+            for (int i = 1; i < roomArray.length; i++) {
+                roomName = roomName + "_" + roomArray[i];
+            }
+
+            String spaceBuildingName = buildingComboBox.getValue();
+            String[] buildingArray = spaceBuildingName.split(" ");
+            String buildingName = buildingArray[0];
+            for (int i = 1; i < buildingArray.length; i++) {
+                buildingName = buildingName + "_" + buildingArray[i];
+            }
+
             String typeName = typeNameComboBox.getValue();
             int typeint = 5;
             List<Type> types = ServerCommunication.getTypes();
@@ -117,6 +170,9 @@ public class AddRoomSceneController implements Initializable {
                     break;
                 }
             }
+
+            int capacity = Integer.parseInt(capacityTextField.getText());
+
             ServerCommunication.createRoom(capacity, roomName, buildingName, typeint);
             confirmationText.setText("Room added successfully.");
 

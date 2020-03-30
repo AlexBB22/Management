@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.Building;
@@ -53,11 +54,17 @@ public class AddBuildingSceneController implements Initializable {
         GridPane gridPane = new GridPane();
         for (Building b : buildings) {
 
-            gridPane.add(new Text(b.getBuilding_Name()), 0, i);
+            Text buildingName = new Text(b.getBuilding_Name());
+            buildingName.setFont(Font.font(20));
+
+            gridPane.add(buildingName, 0, i);
             i = i + 1;
+
             gridPane.add(new Text(b.getDescription() + " car parking spaces: " + b.getCar_parking_spaces() + " has non reservable space: " + b.isNon_reservable_space()), 0, i);
             i = i + 1;
             gridPane.add(new Text("opening time: " + b.getOpening() + " closing time: " + b.getClosing()), 0, i);
+            i = i + 1;
+            gridPane.add(new Text(""), 0, i);
             i = i + 1;
 
         }
@@ -72,10 +79,25 @@ public class AddBuildingSceneController implements Initializable {
     @FXML
     public void addBuildingButtonHandler(MouseEvent mouseEvent) {
         try {
-            String buildingName = buildingNameTextField.getText();
+            //removing spaces so the description can be send in the url using _ to later identify where spaces should be.
+            String spaceBuildingName = buildingNameTextField.getText();
+            String[] buildingArray = spaceBuildingName.split(" ");
+            String buildingName = buildingArray[0];
+            for (int i = 1; i < buildingArray.length; i++) {
+                buildingName = buildingName + "_" + buildingArray[i];
+            }
+
             Boolean nonResSpace = nonResSpaceCheckBox.isSelected();
             int carParkingSpace = Integer.parseInt(carParkingSpaceTextField.getText());
-            String description = descriptionTextField.getText();
+
+            //removing spaces so the description can be send in the url using _ to later identify where spaces should be.
+            String spaceDescription = descriptionTextField.getText();
+            String[] descriptionArray = spaceDescription.split(" ");
+            String description = descriptionArray[0];
+            for (int i = 1; i < descriptionArray.length; i++) {
+                description = description + "_" + descriptionArray[i];
+            }
+
             Time openTime = Time.valueOf(openTimeTextField.getText());
             Time closeTime = Time.valueOf(closeTimeTextField.getText());
             ServerCommunication.createBuilding(buildingName, nonResSpace, carParkingSpace, description, openTime, closeTime);

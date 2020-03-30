@@ -97,6 +97,9 @@ public class MainSceneController implements Initializable {
     @FXML private Button thursdayTodoButton;
     @FXML private Button fridayTodoButton;
 
+    //admin button
+    @FXML private Button adminButton;
+
 
     @FXML
     private Text result;
@@ -118,6 +121,10 @@ public class MainSceneController implements Initializable {
         todayDay.setText(dateInfo[0]);
         todayDateNumber.setText(dateInfo[2]);
         todayMonthYear.setText(dateInfo[1] + " " + dateInfo[5]);
+
+        if (!MainApp.user.getRole().getRoleName().equals("Admin")) {
+            adminButton.setVisible(false);
+        }
 
         //setting the border colors
         topBar.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.rgb(238, 201, 210), Color.BLACK,
@@ -275,15 +282,12 @@ public class MainSceneController implements Initializable {
 
     /**
      * handler for if someone wants to acces the admin menu.
-     * @param mouseEvent the clicking on the button.
+     * @param actionEvent the clicking on the button.
      * @throws IOException if the input is wrong throws an exception.
      */
     @FXML
-    public void adminButtonHandler(MouseEvent mouseEvent) throws IOException {
-        String role = MainApp.user.getRole().getRoleName();
-        if (role.equals("Admin")) {
-            switchScene(mouseEvent, "/adminMainScene.fxml", "Admin Window");
-        }
+    public void adminButtonHandler(ActionEvent actionEvent) throws IOException {
+        switchScene(actionEvent, "/adminMainScene.fxml", "Admin Window");
     }
 
     public void changeResConfirmed() {

@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
@@ -105,12 +106,17 @@ public class DeleteBuildingSceneController implements Initializable {
                     e.printStackTrace();
                 }
             });
-            gridPane.add(new Text(b.getBuilding_Name()), 0, i);
+            Text buildingName = new Text(b.getBuilding_Name());
+            buildingName.setFont(Font.font(20));
+
+            gridPane.add(buildingName, 0, i);
             i = i + 1;
             gridPane.add(new Text(b.getDescription() + " car parking spaces: " + b.getCar_parking_spaces() + " has non reservable space: " + b.isNon_reservable_space()), 0, i);
             i = i + 1;
             gridPane.add(new Text("opening time: " + b.getOpening() + " closing time: " + b.getClosing()), 0, i);
             gridPane.add(deleteBtn, 1, i);
+            i = i + 1;
+            gridPane.add(new Text(""), 0, i);
             i = i + 1;
         }
         deleteScrollPane.setContent(gridPane);

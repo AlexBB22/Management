@@ -38,7 +38,7 @@ public class AdminMainSceneController implements Initializable {
     }
 
     @FXML
-    public void createRoomButtonHandler(ActionEvent mouseEvent) throws IOException {
+    public void createRoomButtonHandler(MouseEvent mouseEvent) throws IOException {
         switchScene(mouseEvent, "/addRoomScene.fxml", "Create Room");
     }
 
