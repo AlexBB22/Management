@@ -9,18 +9,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.User;
 
 public class LoginSceneController implements Initializable {
+    @FXML private GridPane grid;
     @FXML private Text submitResponse;
     @FXML private TextField passwordfield;
     @FXML private TextField usernameField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        usernameField.setFocusTraversable(false);
+        passwordfield.setFocusTraversable(false);
     }
 
     /**
@@ -61,13 +66,17 @@ public class LoginSceneController implements Initializable {
         MainApp.switchScene(event, "/newUserScene.fxml", "Create an account");
     }
 
+
+    /*
     /**
      * Handle back button. Switches scene to allow user to go back to the welcome scene.
      * @throws IOException - Exception thrown when switch fails (eg. wrong fxml file name)
      */
+    /*
     @FXML
     public void backToWelcome(MouseEvent event) throws IOException {
         MainApp.switchScene(event, "/Welcome.fxml", "Welcome to the application");
     }
+    */
 
 }

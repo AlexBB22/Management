@@ -4,17 +4,29 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import nl.tudelft.oopp.entities.Bike;
+import nl.tudelft.oopp.entities.BikeReservation;
 import nl.tudelft.oopp.entities.Building;
+import nl.tudelft.oopp.entities.Restaurant;
 import nl.tudelft.oopp.entities.Room;
+import nl.tudelft.oopp.entities.RoomReservation;
+import nl.tudelft.oopp.entities.TimeSlot;
+import nl.tudelft.oopp.repositories.BikeRepository;
+import nl.tudelft.oopp.repositories.BikeReservationRepository;
 import nl.tudelft.oopp.repositories.BuildingRepository;
+import nl.tudelft.oopp.repositories.RestaurantRepository;
+import nl.tudelft.oopp.repositories.RoomRepository;
+import nl.tudelft.oopp.repositories.RoomReservationRepository;
+import nl.tudelft.oopp.repositories.TimeSlotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
@@ -24,6 +36,24 @@ public class BuildingController {
 
     @Autowired
     private BuildingRepository buildingRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
+
+    @Autowired
+    private TimeSlotRepository timeSlotRepository;
+
+    @Autowired
+    private RoomReservationRepository roomReservationRepository;
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private BikeRepository bikeRepository;
+
+    @Autowired
+    private BikeReservationRepository bikeReservationRepository;
 
     @GetMapping("buildings/")
     @ResponseBody
@@ -83,27 +113,103 @@ public class BuildingController {
     }
 
     /**
-     * This method allows the admin to add a new building name.
-     * @param buildingName - the name/identifier of the building that needs to be added
-     * @param building - the building that needs to be added
-     *
-     * @author Sartori Kendra
+     * adds a new building to the database only an admin can do this.
+     * @param buildingName the name of the building.
+     * @param nonReservableSpace a boolean saying if the the building has non reservable space.
+     * @param carParkingSpaces the amount of car parking spaces
+     * @param description a String description of the building
+     * @param openingTime the time the building opens
+     * @param closingTime the time the building closes
+     * @author Kendra/Scott.
      */
-    @PostMapping("/addNewBuilding/{buildingName}/{closingTime}/{openingTime}")
+    @PostMapping("addNewBuilding/{buildingName}/{nonReservableSpace}/{carParkingSpaces}/{description}/{openingTime}/{closingTime}")
     @ResponseBody
     public void addNewBuilding(@PathVariable (value = "buildingName") String buildingName,
-                                @PathVariable (value = "closingTime") Time closingTime,
-                                @PathVariable (value = "openingTime") Time openingTime,
-                                @RequestBody Building building) {
+                               @PathVariable (value = "nonReservableSpace") boolean nonReservableSpace,
+                               @PathVariable (value = "carParkingSpaces") int carParkingSpaces,
+                               @PathVariable (value = "description") String description,
+                               @PathVariable (value = "openingTime") Time openingTime,
+                                @PathVariable (value = "closingTime") Time closingTime) {
 
-        Building newBuilding = building;
+        String[] nameArray = buildingName.split("_");
+        String name = nameArray[0];
+        for (int i = 1; i < nameArray.length; i++) {
+            name = name + " " + nameArray[i];
+        }
 
-        newBuilding.setBuilding_name(buildingName);
-        newBuilding.setOpening(openingTime);
-        newBuilding.setClosing(closingTime);
+        //adding spaces back that were removed during the building of the URL.
+        String[] descriptionArray = description.split("_");
+        String buildingDescription = descriptionArray[0];
+        for (int i = 1; i < descriptionArray.length; i++) {
+            buildingDescription = buildingDescription + " " + descriptionArray[i];
+        }
+
+        Building newBuilding = new Building(name, nonReservableSpace, carParkingSpaces, buildingDescription, openingTime, closingTime);
 
         System.out.println("Added a new building to the database");
         buildingRepository.save(newBuilding);
+    }
+
+    /**
+     * deletes building from the database.
+     * @param buildingName the building to be deleted
+     */
+    @DeleteMapping("deleteBuilding/{buildingName}")
+    @ResponseBody
+    public void deleteBuilding(@PathVariable (value = "buildingName") String buildingName) {
+        try {
+            String[] nameArray = buildingName.split("_");
+            String name = nameArray[0];
+            for (int i = 1; i < nameArray.length; i++) {
+                name = name + " " + nameArray[i];
+            }
+
+            Optional<Building> b = buildingRepository.findById(name);
+            Building building = b.get();
+            //deleting rooms correctly.
+            List<Room> rooms = building.getRooms();
+            for (Room room : rooms) {
+                List<TimeSlot> timeSlots = room.getTimeslots();
+                for (TimeSlot timeslot : timeSlots) {
+                    timeslot.getRoom().getTimeslots().remove(timeslot);
+
+                    List<RoomReservation> roomReservations = timeslot.getRoomReservations();
+                    for (RoomReservation roomReservation : roomReservations) {
+                        roomReservation.getUser_fk().getRoomReservations().remove(roomReservation);
+                        roomReservation.getTimeslot_fk().getRoomReservations().remove(roomReservation);
+                        roomReservationRepository.delete(roomReservation);
+                    }
+                    timeSlotRepository.delete(timeslot);
+                }
+                room.getType().getListOfRooms().remove(room);
+                building.getRooms().remove(room);
+                roomRepository.delete(room);
+            }
+            //deleting bikes properly
+            List<Bike> bikes = building.getBikes();
+            for (Bike bike : bikes) {
+                List<BikeReservation> bikeReservations = bike.getBikeReservations();
+                for (BikeReservation bikeReservation : bikeReservations) {
+                    bikeReservation.getBike_fk().getBikeReservations().remove(bikeReservation);
+                    bikeReservation.getBike_user_fk().getBikeReservations().remove(bikeReservation);
+
+                    bikeReservationRepository.delete(bikeReservation);
+                }
+                building.getBikes().remove(bike);
+                bikeRepository.delete(bike);
+            }
+
+            List<Restaurant> restaurants = building.getRestaurants();
+            for (Restaurant restaurant : restaurants) {
+                building.getRestaurants().remove(restaurant);
+                restaurantRepository.delete(restaurant);
+            }
+            buildingRepository.delete(building);
+            System.out.println("building deleted successfully");
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException("this input does not exist");
+        }
     }
 }
 

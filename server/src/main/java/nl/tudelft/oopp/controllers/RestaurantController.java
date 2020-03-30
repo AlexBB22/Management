@@ -51,26 +51,35 @@ public class RestaurantController {
     }
 
     /**
-     * This method adds a new restaurant to a specified building.
+     * finds all restaurants.
+     * @return a list of restaurant
+     * @Author Hidde Agterberg
+     */
+    @GetMapping("/getAllRestaurants")
+    @ResponseBody
+    public List<Restaurant> findAllRestaurants() {
+        return restaurantRepository.getAllRestaurants();
+    }
+
+    /**
+     * This method adds a new restaurant to a specified building and creates a new menu.
      * @param buildingName name of the building
-     * @param menuId id of the building
      * @param restaurant the restaurant
      */
-    @PostMapping("/AddRestaurant/{buildingName}/{menuId}")
+    @PostMapping("/AddRestaurant/{buildingName}")
     @ResponseBody
     public void addRestaurant(@PathVariable (value = "buildingName") String buildingName,
-                              @PathVariable (value = "menuId") Integer menuId,
                               @RequestBody Restaurant restaurant) {
         Restaurant newRestaurant = restaurant;
 
         Optional<Building> b = buildingRepository.findById(buildingName);
         Building building = b.get();
 
-        Optional<Menu> m = menuRepository.findMenuById(menuId);
-        Menu menuObj = m.get();
+        Menu menu = new Menu();
+        menuRepository.save(menu);
 
         newRestaurant.setBuilding(building);
-        newRestaurant.setMenu(menuObj);
+        newRestaurant.setMenu(menu);
         building.addRestaurant(newRestaurant);
 
         restaurantRepository.save(newRestaurant);

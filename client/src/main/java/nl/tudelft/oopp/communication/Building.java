@@ -77,6 +77,20 @@ public class Building {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Building{" + "nonReservableSpace=" + nonReservableSpace
+                + ", carParkingSpaces=" + carParkingSpaces
+                + ", description='" + description + '\''
+                + ", opening=" + opening
+                + ", closing=" + closing
+                + ", buildingName='" + buildingName + '\''
+                + ", rooms=" + rooms
+                + ", restaurants=" + restaurants
+                + ", bikes=" + bikes
+                + '}';
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }

@@ -1,29 +1,28 @@
 package nl.tudelft.oopp.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "menu")
-
 public class Menu {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "menu_id")
     private int menuId;
 
@@ -42,11 +41,25 @@ public class Menu {
         this.menuId = id;
     }
 
-    public int getMenu_id() {
+    public int getMenuId() {
         return menuId;
     }
 
+    @JsonManagedReference(value = "foodMenu")
     public List<Food> getFoods() {
         return foods;
+    }
+
+    public void setFoods(List<Food> foods) {
+        this.foods = foods;
+    }
+
+    @JsonBackReference(value = "restaurantMenu")
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

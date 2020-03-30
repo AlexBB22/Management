@@ -5,10 +5,13 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import nl.tudelft.oopp.entities.Building;
 import nl.tudelft.oopp.entities.Room;
 import nl.tudelft.oopp.entities.RoomReservation;
+
 import nl.tudelft.oopp.entities.TimeSlot;
+
 import nl.tudelft.oopp.entities.User;
 import nl.tudelft.oopp.projections.AvailableRoomProjection;
 import nl.tudelft.oopp.projections.OverridableRoomProjection;
@@ -21,14 +24,12 @@ import nl.tudelft.oopp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
-
 
 @EnableJpaRepositories("nl.tudelft.oopp.repositories")
 
@@ -67,7 +68,7 @@ public class RoomReservationController {
      */
     @PostMapping(value = "createNewReservation/{roomId}/{buildingName}/{Day}/{start_time}/{end_time}/{userId}")
     @ResponseBody
-    public RoomReservation addRoomReservation(@PathVariable (value = "roomId") int roomId, @PathVariable (value = "buildingName") String buildingName,
+    public RoomReservation addRoomReservation(@PathVariable(value = "roomId") int roomId, @PathVariable (value = "buildingName") String buildingName,
                                               @PathVariable (value = "Day") Date day, @PathVariable (value = "start_time") Time startTime,
                                               @PathVariable (value = "end_time") Time endTime, @PathVariable (value = "userId") int userId) {
 
@@ -280,5 +281,29 @@ public class RoomReservationController {
         return userReservedRooms;
     }
 
+    /**
+     * This method deletes a room reservation.
+     * @param roomReservationID - the id of the reservation that needs to be deleted.
+     */
+    @DeleteMapping ("/deleteRoomReservation/{roomReservationID}")
+    @ResponseBody
+    public void deleteRoomReservation(@PathVariable (value = "roomReservationID") int roomReservationID) {
+
+        try {
+            Optional<RoomReservation> r = roomReservationRepository.findById(roomReservationID);
+            RoomReservation roomReservation = r.get();
+            roomReservation.getUser_fk().removeRoomReservation(roomReservation);
+            roomReservation.setUser_fk(null);
+            roomReservation.getTimeslot_fk().removeRoomReservation(roomReservation);
+            timeSlotRepository.delete(roomReservation.getTimeslot_fk());
+            roomReservation.setTimeslot_fk(null);
+            roomReservationRepository.delete(roomReservation);
+            System.out.println("The reservation has been deleted successfully");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Couldn't delete room reservation");
+        }
+
+
+    }
 
 }

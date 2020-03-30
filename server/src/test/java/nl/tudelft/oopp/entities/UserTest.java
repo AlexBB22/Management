@@ -21,19 +21,39 @@ public class UserTest {
     }
 
     @Test
-    public void getSetAttributes() {
+    public void getSetRole() {
         User user = new User(2, "email", "username", "password");
         Role role = new Role(1, "admin");
-        user.setEmail("notEmail");
-        user.setUser_id(5);
-        user.setUser_password("notPassword");
-        user.setUser_name("notUsername");
         user.setRole(role);
-        assertEquals("notEmail", user.getEmail());
-        assertEquals("notPassword", user.getUser_password());
-        assertEquals(5, user.getUser_id());
-        assertEquals("notUsername", user.getUser_name());
         assertEquals(role, user.getRole());
+    }
+
+    @Test
+    public void getSetUserName() {
+        User user = new User(2, "email", "username", "password");
+        user.setUser_name("notUsername");
+        assertEquals("notUsername", user.getUser_name());
+    }
+
+    @Test
+    public void getSetPassword() {
+        User user = new User(2, "email", "username", "password");
+        user.setUser_password("notPassword");
+        assertEquals("notPassword", user.getUser_password());
+    }
+
+    @Test
+    public void getSetUserID() {
+        User user = new User(2, "email", "username", "password");
+        user.setUser_id(5);
+        assertEquals(5, user.getUser_id());
+    }
+
+    @Test
+    public void getSetEmail() {
+        User user = new User(2, "email", "username", "password");
+        user.setEmail("notEmail");
+        assertEquals("notEmail", user.getEmail());
     }
 
     @Test
