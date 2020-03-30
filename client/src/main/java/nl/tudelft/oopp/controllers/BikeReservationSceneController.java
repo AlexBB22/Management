@@ -150,7 +150,6 @@ public class BikeReservationSceneController implements Initializable {
      * @param ar building
      */
     public void createAvailableBuildingView(Building ar) {
-
         //Making outermost box
         HBox mainBox = new HBox();
         mainBox.setPrefHeight(160);
@@ -244,11 +243,11 @@ public class BikeReservationSceneController implements Initializable {
 
         //add mainBox to the outermost VBox
         buildingList.getChildren().add(mainBox);
-        // buildingList.setMargin(mainBox, new Insets(5, 18, 5, 0));
+        buildingList.setMargin(mainBox, new Insets(5, 18, 5, 0));
         Button reserveButton = new Button("Reserve");
         reserveButton.setAlignment(Pos.TOP_RIGHT);
-        reserveButton.setPrefSize(345,  30);
-        reserveButton.setMaxSize(345, 30);
+        reserveButton.setPrefSize(120,  30);
+        reserveButton.setMaxSize(120, 30);
         reserveButton.setStyle("-fx-background-color: #2f93ff; -fx-text-fill: white; -fx-text-alignment: center; "
                 + "-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-font-weight: bold;");
         reserveButton.setOnAction(event -> {
@@ -263,7 +262,7 @@ public class BikeReservationSceneController implements Initializable {
 
         reserveButton.setCursor(Cursor.HAND);
         buildingInfo5.getChildren().add(reserveButton);
-        buildingInfo5.setMargin(reserveButton, new Insets(70, 35, 0, 5));
+        buildingInfo5.setMargin(reserveButton, new Insets(0, 0, 0, 110));
 
     }
 
