@@ -2,7 +2,6 @@ package nl.tudelft.oopp.controllers;
 
 import static nl.tudelft.oopp.MainApp.switchScene;
 
-import com.sun.tools.javac.Main;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -29,6 +28,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,6 +45,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.AvailableRoom;
 import nl.tudelft.oopp.communication.Building;
@@ -56,7 +57,6 @@ public class RoomReservationSceneController implements Initializable {
     @FXML private DatePicker datePicker;
     @FXML private ComboBox<String> buildingComboBox;
     @FXML private ComboBox<String> timeSlotComboBox;
-    @FXML private ComboBox<String> roomTypeComboBox;
     @FXML private VBox roomList;
     @FXML private Text username;
     @FXML private Text selectBuildingMessage;
@@ -64,6 +64,8 @@ public class RoomReservationSceneController implements Initializable {
     @FXML private static Button searchButton;
     @FXML private VBox sideMenu;
     @FXML private HBox topBar;
+    @FXML private Label selectTimeSlot;
+    @FXML private Label selectBuilding;
 
     //This arrayList just saves all the buildings from the query made during initialisation
     private ArrayList<Building> buildingList;
@@ -142,9 +144,22 @@ public class RoomReservationSceneController implements Initializable {
             buildingComboBox.getItems().add(b.getBuilding_Name());
         }
         //hide timeslot combobox
-        timeSlotComboBox.setDisable(true);
-        selectBuildingMessage.setText("Select a building first please");
+        timeSlotComboBox.setVisible(false);
+        selectTimeSlot.setVisible(false);
+        //selectBuildingMessage.setText("Select a building first please");
+
+        //hide building combobox
+        buildingComboBox.setVisible(false);
+        selectBuilding.setVisible(false);
     }
+
+    @FXML
+    public void showBuildingComboBox(ActionEvent actionEvent) {
+        buildingComboBox.setVisible(true);
+        selectBuilding.setVisible(true);
+    }
+
+
 
     /**
      * Whenever a building is selected from the dropdown menu
@@ -188,8 +203,9 @@ public class RoomReservationSceneController implements Initializable {
         timeSlotComboBox.getItems().clear();
         timeSlotComboBox.getItems().addAll(times);
 
-        timeSlotComboBox.setDisable(false);
-        selectBuildingMessage.setText("");
+        timeSlotComboBox.setVisible(true);
+        selectTimeSlot.setVisible(true);
+        //selectBuildingMessage.setText("");
     }
 
 
@@ -211,10 +227,10 @@ public class RoomReservationSceneController implements Initializable {
             if (ServerCommunication.hasReservation(Date.valueOf(datePicker.getValue()),
                     Time.valueOf(timeSlot[0]), Time.valueOf(timeSlot[1]))) {
                 hasReserved = true;
-                Alert warning = new Alert(Alert.AlertType.INFORMATION);
+                Alert warning = new Alert(Alert.AlertType.WARNING);
                 warning.setHeaderText("Conflict");
-                warning.setContentText("You have already reserved a room for the given timeslot and date. "
-                        + "You are not authorized to reserve another room for the given criteria.");
+                warning.setContentText("You have already reserved a room for the given timeslot and date.\n "
+                        + "You are not authorized to reserve another room for the given criteria.\n");
                 warning.show();
                 //set hasReserved to false now
                 hasReserved = false;
@@ -686,8 +702,8 @@ public class RoomReservationSceneController implements Initializable {
     public void reservePopUp(String roomName, int roomID) throws IOException {
         if (hasReserved) {
             Alert warning = new Alert(Alert.AlertType.WARNING);
-            warning.setContentText("You have already reserved a room for the given timeslot and date. "
-                    + "You are not authorized to reserve another room for the given criteria.");
+            warning.setContentText("You have already reserved a room for the given timeslot and date.\n "
+                    + "You are not authorized to reserve another room for the given criteria.\n");
             warning.show();
             return;
         }
@@ -720,10 +736,18 @@ public class RoomReservationSceneController implements Initializable {
         st.show();
     }
 
-
+    /**
+     * Button handler for the account button.
+     * @param mouseEvent - the event created by the button
+     * @throws IOException - exception thrown if file doesn't exist
+     */
     @FXML
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
-        switchScene(mouseEvent, "/accountScene.fxml", "Account settings");
+        Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 300, 400);
+        st.setScene(sc);
+        st.show();
     }
 
     @FXML
@@ -751,6 +775,8 @@ public class RoomReservationSceneController implements Initializable {
             warning.setContentText("You cannot reserve a room in the past, please choose another date");
             warning.show();
             datePicker.getEditor().clear();
+            return;
         }
+        showBuildingComboBox(actionEvent);
     }
 }

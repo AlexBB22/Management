@@ -4,12 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,20 +16,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
-
 
 
 @Entity
@@ -66,7 +60,8 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userFk", cascade = CascadeType.ALL)
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
-    @OneToMany(mappedBy = "bikeUserFk")
+    @OneToMany(mappedBy = "bikeUserFk", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     //Constructors + Getters/Setters
@@ -160,6 +155,10 @@ public class User implements Serializable {
 
     public void addBikeReservation(BikeReservation bikeReservation) {
         this.bikeReservations.add(bikeReservation);
+    }
+
+    public void removeBikeReservation(BikeReservation bikeReservation) {
+        this.bikeReservations.remove(bikeReservation);
     }
 
 }

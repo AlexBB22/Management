@@ -1,0 +1,82 @@
+.gridaddbuilding{
+    /* -fx-background-color: linear-gradient(to right, rgb(99, 214, 99), rgb(245, 245, 88), rgb(250, 183, 58));  */
+
+}
+
+.gridaddroom{
+    /* -fx-background-color: linear-gradient(to right, rgb(99, 214, 99), rgb(245, 245, 88), rgb(250, 183, 58)); */
+}
+
+.griddeletebuilding{
+    /* -fx-background-color: linear-gradient(to right , rgb(250, 183, 58), rgb(248, 80, 80)); */
+}
+
+.grddeleteroom{
+    /* -fx-background-color: linear-gradient(to right, rgb(250, 183, 58), rgb(248, 80, 80)); */
+    
+}
+
+.addbuildingbutton{
+    -fx-background-color: rgb(247, 197, 244);
+    -fx-border-color: blue;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 30px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;
+}
+
+.addbuildingbutton:hover{
+    -fx-opacity: 80%;
+}
+
+.deletebuildingbutton{
+    -fx-background-color: #FCD0BA;
+    -fx-border-color: blue;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 30px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;
+}
+
+.deletebuildingbutton:hover{
+    -fx-opacity: 80%;
+}
+
+.deleteroombutton{
+    -fx-background-color: #F1828D;
+    -fx-border-color: blue;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 30px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;
+}
+
+.deleteroombutton:hover{
+    -fx-opacity: 80%;
+}
+
+.addroombutton{
+    -fx-background-color: #FEFAD4;
+    -fx-border-color: blue;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 30px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;
+}
+
+.addroombutton:hover{
+    -fx-opacity: 80%;
+}
+
+.grid{
+    /* very colorfull */
+    /* -fx-background-color: linear-gradient(to right, rgb(99, 214, 99),rgb(245, 245, 88), rgb(250, 183, 58), rgb(253, 129, 81), rgb(248, 80, 80)); */
+    
+    /* -fx-background-color: linear-gradient(to bottom right,  rgb(184, 84, 130), white); */
+
+    -fx-background-color: linear-gradient(to bottom right, rgb(255, 164, 164), white)
+}

@@ -6,11 +6,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.DeleteRoomSceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/deleteRoomSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.DeleteRoomSceneController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -32,7 +33,7 @@
             <Image url="@images/backBtn.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <ImageView fitHeight="50.0" fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="50.0" top="50.0" />
          </GridPane.margin>
@@ -40,15 +41,45 @@
             <Image url="@images/userIcon.png" />
          </image>
       </ImageView>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <HBox GridPane.rowIndex="1">
          <children>
-            <ScrollPane fx:id="roomScrollPane" prefHeight="528.0" prefWidth="1280.0">
-               <content>
-                  <VBox fx:id="vboxInScrollPane" prefHeight="546.0" prefWidth="898.0" />
-               </content>
-            </ScrollPane>
+            <VBox prefHeight="506.0" prefWidth="806.0" styleClass="roomViewOuterVBOX">
+               <children>
+                  <VBox prefHeight="59.0" prefWidth="1266.0" />
+                  <ScrollPane fx:id="roomScrollPane" prefHeight="412.0" prefWidth="1266.0" styleClass="roomPane">
+                     <content>
+                        <VBox fx:id="vboxInScrollPane" prefHeight="445.0" prefWidth="774.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="506.0" prefWidth="475.0">
+               <children>
+                  <HBox prefHeight="66.0" prefWidth="475.0">
+                     <children>
+                        <ImageView fitHeight="66.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/warningSign.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Warning: deleting is permanent and can not be reverted" wrappingWidth="412.3167724609375" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="72.0" prefWidth="496.0" />
+                  <HBox prefHeight="61.0" prefWidth="475.0">
+                     <children>
+                        <ImageView fitHeight="66.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/warningSign.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Warning: all roomreservations for this room will be deleted" wrappingWidth="405.05224609375" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
       <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="username" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="105.0" top="74.0" />

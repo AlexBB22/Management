@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -35,6 +36,10 @@ public class NewUserSceneController implements Initializable {
         Role staff = new Role(2, "Staff");
         Role student = new Role(1, "Student");
         roleComboBox.getItems().addAll(admin.getRoleName(), teacher.getRoleName(), staff.getRoleName(), student.getRoleName());
+
+        passwordField.setFocusTraversable(false);
+        emailField.setFocusTraversable(false);
+        usernameField.setFocusTraversable(false);
     }
 
     /**
