@@ -290,8 +290,8 @@ public class RestaurantSceneController implements Initializable {
         HBox foodPrice = new HBox();
         foodPrice.setAlignment(Pos.TOP_LEFT);
         foodPrice.setPrefHeight(27);
-        // the /u20ac is a euro sign
-        Text price = new Text("\t Price: \u20ac" + fd.getPrice());
+
+        Text price = new Text("\t Price: \u20ac" + fd.getPrice() + ",-"); // the /u20ac is a euro sign
         price.setFont(Font.font("Arial", 16));
         foodPrice.getChildren().add(price);
 
