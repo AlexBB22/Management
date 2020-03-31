@@ -50,6 +50,15 @@ public class BikeReservationSceneController implements Initializable {
     @FXML
     private DatePicker datePickerBike;
 
+    @FXML
+    public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 232, 208);
+        st.setScene(sc);
+        st.show();
+    }
+
     private static String buildingName;
     private static String day;
     private static boolean hasReserved;
@@ -80,6 +89,7 @@ public class BikeReservationSceneController implements Initializable {
         switchScene(mouseEvent, "/mainScene.fxml", "TuDelft Reservation Application");
 
     }
+
 
     /**
      * You won't see the buildings where there are no bikes left to reserve.
