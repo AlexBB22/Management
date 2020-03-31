@@ -369,7 +369,7 @@ public class RestaurantSceneController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/restaurantPopUpScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 178, 234);
+        Scene sc = new Scene(root, 245, 234);
         st.setScene(sc);
         st.show();
     }

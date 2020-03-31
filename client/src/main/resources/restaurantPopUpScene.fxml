@@ -55,17 +55,20 @@
                           </HBox.margin>
                   </Text>
                   </children>
+               <padding>
+                  <Insets top="2.0" />
+               </padding>
               </HBox>
           <HBox alignment="CENTER" layoutX="13.0" layoutY="78.0" styleClass="fontBold">
               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurant:" wrappingWidth="64.26287937164307">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurant:" wrappingWidth="71.46289157867432">
                       <HBox.margin>
                           <Insets right="10.0" />
                       </HBox.margin>
                   </Text>
-                  <Text fx:id="restaurant" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
+                  <Text fx:id="restaurant" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="83.3999457359314">
                       <HBox.margin>
-                          <Insets left="20.0" />
+                          <Insets left="10.0" />
                       </HBox.margin>
                   </Text>
               </children>
