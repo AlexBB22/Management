@@ -49,3 +49,10 @@
     -fx-border-color: grey;
     -fx-border-radius: 15px;
 }
+
+.submitResponse {
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+
+}
