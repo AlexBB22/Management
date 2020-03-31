@@ -16,9 +16,6 @@
 
 <GridPane fx:id="grid" alignment="center" hgap="10" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/login.css" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.LoginSceneController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
-
-    <!--This bit adds the button which triggers an event which is handled by the controller-->
-    <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="6" />
    <VBox alignment="TOP_CENTER" prefHeight="461.0" prefWidth="398.0" styleClass="outerVbox" GridPane.rowIndex="2">
       <children>
          <ImageView fitHeight="74.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
@@ -57,12 +54,12 @@
                <Insets left="20.0" right="20.0" top="30.0" />
             </VBox.margin>
          </PasswordField>
-         <HBox fx:id="submitResponse" prefHeight="100.0" prefWidth="200.0">
+         <HBox prefHeight="100.0" prefWidth="200.0">
             <VBox.margin>
                <Insets top="30.0" />
             </VBox.margin>
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="submitResponse">
+               <Text fx:id="submitResponse" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="submitResponse">
                   <HBox.margin>
                      <Insets left="22.0" top="20.0" />
                   </HBox.margin>
