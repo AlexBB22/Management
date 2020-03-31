@@ -50,5 +50,9 @@
 .fontBold{
     -fx-font-weight: bold;
     -fx-opacity: 0.7;
+}
 
+.box{
+    -fx-border-width: 2px;
+    -fx-border-color: white;
 }

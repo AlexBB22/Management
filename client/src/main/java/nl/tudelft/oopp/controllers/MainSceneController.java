@@ -269,7 +269,7 @@ public class MainSceneController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 232, 208);
         st.setScene(sc);
         st.show();
     }

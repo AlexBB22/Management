@@ -57,7 +57,7 @@
                         <Font size="35.0" />
                      </font>
                   </Text>
-                  <ImageView fitHeight="40.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                  <ImageView fitHeight="40.0" fitWidth="54.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                      <image>
                         <Image url="@images/userIcon.png" />
                      </image>

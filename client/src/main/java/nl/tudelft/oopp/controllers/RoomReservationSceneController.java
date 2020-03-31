@@ -713,7 +713,7 @@ public class RoomReservationSceneController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/reservationPopUpScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 290, 230);
         st.setScene(sc);
         st.show();
     }
@@ -745,7 +745,7 @@ public class RoomReservationSceneController implements Initializable {
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 232, 208);
         st.setScene(sc);
         st.show();
     }
