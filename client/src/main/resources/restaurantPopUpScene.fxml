@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.RestaurantPopUpSceneController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="86.0" prefWidth="300.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="These are the details of your order" textAlignment="CENTER" wrappingWidth="149.98046875">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Text>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="64.26287937164307">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Text>
+                <Text fx:id="reservationUserName" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.99999856948853">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin></Text>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Food type:" wrappingWidth="64.26287937164307">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Text>
+                <Text fx:id="foodName" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.00000619888306">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin></Text>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" layoutX="10.0" layoutY="189.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" wrappingWidth="64.26287937164307">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Text>
+                <Text fx:id="price" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin></Text>
+            </children>
+        </HBox>
+    <HBox alignment="CENTER" layoutX="10.0" layoutY="189.0">
+        <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurant:" wrappingWidth="64.26287937164307">
+                <HBox.margin>
+                    <Insets right="10.0" />
+                </HBox.margin>
+            </Text>
+            <Text fx:id="restaurant" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
+                <HBox.margin>
+                    <Insets left="20.0" />
+                </HBox.margin></Text>
+        </children>
+    </HBox>
+        <HBox alignment="CENTER" layoutX="10.0" layoutY="180.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" wrappingWidth="64.26287937164307">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Text>
+                <Text fx:id="date" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin></Text>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" layoutX="10.0" layoutY="171.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Timeslot:" wrappingWidth="64.26287937164307">
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </Text>
+                <Text fx:id="time" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin></Text>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="38.0" prefWidth="300.0">
+            <children>
+                <Text fx:id="resConfirmed" strokeType="OUTSIDE" strokeWidth="0.0" />
+            </children></HBox>
+        <HBox alignment="CENTER">
+            <children>
+                <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#backBtnHandler" onMouseClicked="#backBtnHandler" text="Cancel" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.20001530647278" />
+                <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#makeNewFoodOrder" text="Reserve" />
+            </children>
+        </HBox>
+    </children>
+</VBox>
