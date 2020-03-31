@@ -22,7 +22,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="64.0" layoutY="46.0" prefHeight="48.0" prefWidth="173.0" styleClass="fontBold" stylesheets="@CSS/deleteReservationPopupStyle.css">
+            <HBox alignment="CENTER" layoutX="73.0" layoutY="46.0" prefHeight="48.0" prefWidth="173.0" styleClass="fontBold" stylesheets="@CSS/deleteReservationPopupStyle.css">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="">
                        <HBox.margin>
@@ -30,7 +30,7 @@
                        </HBox.margin>
                    </Text>
                </children>
-               <Text fx:id="resId" fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fontBold" wrappingWidth="133.00000619888306">
+               <Text fx:id="resId" fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.00000619888306">
                     <HBox.margin>
                         <Insets left="20.0" />
                     </HBox.margin>
