@@ -1,35 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane fx:id="grid" alignment="center" hgap="10" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/login.css" vgap="5.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.LoginSceneController">
+<GridPane fx:id="grid" alignment="center" hgap="10" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/login.css" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.LoginSceneController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
 
-    <TextField fx:id="usernameField" promptText="Username" GridPane.rowIndex="2">
-      <GridPane.margin>
-         <Insets bottom="5.0" />
-      </GridPane.margin></TextField>
-
-    <PasswordField fx:id="passwordfield" promptText="Password" GridPane.rowIndex="4">
-      <GridPane.margin>
-         <Insets bottom="10.0" />
-      </GridPane.margin></PasswordField>
-
     <!--This bit adds the button which triggers an event which is handled by the controller-->
-    <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="5">
-        <Button alignment="TOP_CENTER" onAction="#newUserButtonHandler" text="Create new user">
-         <HBox.margin>
-            <Insets />
-         </HBox.margin></Button>
-        <Button alignment="TOP_CENTER" layoutX="106.0" layoutY="10.0" onAction="#signInButtonHandler" text="Sign in" />
-    </HBox>
+    <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="6" />
+   <VBox alignment="TOP_CENTER" prefHeight="461.0" prefWidth="398.0" styleClass="outerVbox" GridPane.rowIndex="2">
+      <children>
+         <ImageView fitHeight="74.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/tudelftLogo.png" />
+            </image>
+            <VBox.margin>
+               <Insets top="5.0" />
+            </VBox.margin>
+         </ImageView>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="login">
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin>
+            <font>
+               <Font name="Arial Hebrew" size="25.0" />
+            </font>
+         </Text>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Continue to Application">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Text>
+      
+          <TextField fx:id="usernameField" prefWidth="203.0" promptText="Enter Username">
+            <VBox.margin>
+               <Insets left="20.0" right="20.0" top="40.0" />
+            </VBox.margin>
+         </TextField>
+      
+          <PasswordField fx:id="passwordfield" promptText="Enter Password">
+            <VBox.margin>
+               <Insets left="20.0" right="20.0" top="30.0" />
+            </VBox.margin>
+         </PasswordField>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+                 <Button alignment="TOP_CENTER" onAction="#newUserButtonHandler" text="Create new user">
+                  <HBox.margin>
+                     <Insets left="20.0" top="20.0" />
+                  </HBox.margin>
+               </Button>
+                 <Button alignment="TOP_CENTER" onAction="#signInButtonHandler" prefHeight="33.0" prefWidth="80.0" text="Sign in">
+                  <HBox.margin>
+                     <Insets left="125.0" top="20.0" />
+                  </HBox.margin>
+               </Button>
+            </children>
+            <VBox.margin>
+               <Insets top="50.0" />
+            </VBox.margin>
+         </HBox>
+      </children>
+   </VBox>
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
+      <RowConstraints />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
