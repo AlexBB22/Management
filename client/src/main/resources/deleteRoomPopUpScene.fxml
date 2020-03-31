@@ -14,26 +14,26 @@
          <children>
             <HBox layoutX="20.0" layoutY="106.0" prefHeight="16.0" prefWidth="147.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room name: " />
-                  <Text fx:id="roomName" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Room name: " />
+                  <Text fx:id="roomName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
             <HBox layoutX="20.0" layoutY="129.0" prefHeight="16.0" prefWidth="147.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity: " />
-                  <Text fx:id="capacity" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity: " />
+                  <Text fx:id="capacity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
             <HBox layoutX="20.0" layoutY="82.0" prefHeight="16.0" prefWidth="147.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building: " />
-                  <Text fx:id="buildingName" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Building: " />
+                  <Text fx:id="buildingName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
             <HBox layoutX="20.0" layoutY="54.0" prefHeight="16.0" prefWidth="147.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type: " />
-                  <Text fx:id="typeName" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Type: " />
+                  <Text fx:id="typeName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
             <HBox layoutY="193.0" prefHeight="26.0" prefWidth="187.0">

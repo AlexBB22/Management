@@ -24,22 +24,22 @@
          <children>
             <AnchorPane prefHeight="422.0" prefWidth="600.0">
                <children>
-                  <HBox alignment="CENTER" layoutX="-1.0" layoutY="42.0" prefHeight="30.0" prefWidth="200.0" styleClass="fontBold">
+                  <HBox alignment="CENTER" layoutX="13.0" layoutY="42.0" prefHeight="30.0" prefWidth="183.0" styleClass="fontBold">
                      <children>
-                        <Label text="Username: " />
-                        <Label fx:id="username" layoutX="10.0" layoutY="23.0" text="{Username}" />
+                        <Label text="Username: " textFill="WHITE" />
+                        <Label fx:id="username" layoutX="10.0" layoutY="23.0" text="{Username}" textFill="WHITE" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="-14.0" layoutY="102.0" prefHeight="30.0" prefWidth="200.0" styleClass="fontBold">
+                  <HBox alignment="CENTER" layoutY="102.0" prefHeight="30.0" prefWidth="183.0" styleClass="fontBold">
                      <children>
-                        <Label text="Email: " />
-                        <Label fx:id="email" layoutX="10.0" layoutY="23.0" text="{Email}" />
+                        <Label text="Email: " textFill="WHITE" />
+                        <Label fx:id="email" layoutX="10.0" layoutY="23.0" text="{Email}" textFill="WHITE" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="-5.0" layoutY="72.0" prefHeight="30.0" prefWidth="200.0" styleClass="fontBold">
+                  <HBox alignment="CENTER" layoutX="9.0" layoutY="72.0" prefHeight="30.0" prefWidth="183.0" styleClass="fontBold">
                      <children>
-                        <Label text="Role: " />
-                        <Label fx:id="role" layoutX="10.0" layoutY="23.0" text="{Role}" />
+                        <Label text="Role: " textFill="WHITE" />
+                        <Label fx:id="role" layoutX="10.0" layoutY="23.0" text="{Role}" textFill="WHITE" />
                      </children>
                   </HBox>
                   <Button alignment="CENTER" contentDisplay="CENTER" layoutX="58.0" layoutY="139.0" mnemonicParsing="false" onMouseClicked="#logoutBtnHandler" prefHeight="54.0" prefWidth="116.0" text="Logout" textAlignment="CENTER">

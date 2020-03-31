@@ -713,7 +713,7 @@ public class RoomReservationSceneController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/reservationPopUpScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 190, 230);
+        Scene sc = new Scene(root, 290, 230);
         st.setScene(sc);
         st.show();
     }

@@ -22,15 +22,15 @@
                   </Text>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="12.0" layoutY="46.0" prefHeight="48.0" prefWidth="173.0" styleClass="fontBold" stylesheets="@CSS/deleteReservationPopupStyle.css">
+            <HBox alignment="CENTER" layoutX="64.0" layoutY="46.0" prefHeight="48.0" prefWidth="173.0" styleClass="fontBold" stylesheets="@CSS/deleteReservationPopupStyle.css">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reservation ID:">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="">
                        <HBox.margin>
                            <Insets right="10.0" />
                        </HBox.margin>
                    </Text>
                </children>
-               <Text fx:id="resId" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.00000619888306">
+               <Text fx:id="resId" fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fontBold" wrappingWidth="133.00000619888306">
                     <HBox.margin>
                         <Insets left="20.0" />
                     </HBox.margin>
@@ -50,6 +50,7 @@
                      </styleClass></Button>
                </children>
             </HBox>
+            <Text fill="WHITE" layoutX="13.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fontBold" text="Reservation ID:" />
          </children>
       </AnchorPane>
    </children>

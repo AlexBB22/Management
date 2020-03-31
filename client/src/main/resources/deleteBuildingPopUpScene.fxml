@@ -15,22 +15,22 @@
          <children>
             <HBox layoutX="50.0" layoutY="57.0" prefHeight="10.0" prefWidth="300.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building Name:">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Building Name:">
                      <HBox.margin>
                         <Insets left="57.0" />
                      </HBox.margin>
                   </Text>
-                  <Text fx:id="buildingName" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="buildingName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
             <HBox layoutX="26.0" layoutY="139.0" prefHeight="5.0" prefWidth="300.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contains Non-Reservable space:">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Contains Non-Reservable space:">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Text>
-                  <Text fx:id="nonResSpace" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="nonResSpace" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -41,12 +41,12 @@
             </HBox>
             <HBox layoutX="50.0" layoutY="123.0" prefHeight="0.0" prefWidth="300.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Car Parking Space:">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Car Parking Space:">
                      <HBox.margin>
                         <Insets left="35.0" />
                      </HBox.margin>
                   </Text>
-                  <Text fx:id="carParkingSpace" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="carParkingSpace" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
                <padding>
                   <Insets left="5.0" />
@@ -54,12 +54,12 @@
             </HBox>
             <HBox layoutX="50.0" layoutY="107.0" prefHeight="0.0" prefWidth="300.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
                      <HBox.margin>
                         <Insets left="74.0" />
                      </HBox.margin>
                   </Text>
-                  <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="description" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
                <padding>
                   <Insets left="3.0" />
@@ -67,22 +67,22 @@
             </HBox>
             <HBox layoutX="50.0" layoutY="89.0" prefHeight="0.0" prefWidth="300.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opening Time:">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Opening Time:">
                      <HBox.margin>
                         <Insets left="62.0" />
                      </HBox.margin>
                   </Text>
-                  <Text fx:id="openTime" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="openTime" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
             <HBox layoutX="50.0" layoutY="73.0" prefHeight="12.0" prefWidth="300.0" styleClass="fontBold">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Closing Time:">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Closing Time:">
                      <HBox.margin>
                         <Insets left="69.0" />
                      </HBox.margin>
                   </Text>
-                  <Text fx:id="closeTime" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="closeTime" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </HBox>
             <HBox layoutX="1.0" layoutY="203.0" prefHeight="43.0" prefWidth="370.0">
@@ -109,7 +109,6 @@
                   </Text>
                </children>
             </HBox>
-            <HBox layoutX="11.0" layoutY="50.0" prefHeight="112.0" prefWidth="354.0" styleClass="box" stylesheets="@CSS/deleteBuildingPopupStyle.css" />
          </children>
       </AnchorPane>
    </children>
