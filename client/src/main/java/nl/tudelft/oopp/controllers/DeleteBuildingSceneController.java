@@ -100,7 +100,7 @@ public class DeleteBuildingSceneController implements Initializable {
                     DeleteBuildingSceneController.closeTime = b.getClosing().toString();
                     Parent root = FXMLLoader.load(getClass().getResource("/deleteBuildingPopUpScene.fxml"));
                     Stage st = new Stage();
-                    Scene sc = new Scene(root, 300, 400);
+                    Scene sc = new Scene(root, 386, 252);
                     st.setScene(sc);
                     st.show();
                 } catch (IOException e) {
