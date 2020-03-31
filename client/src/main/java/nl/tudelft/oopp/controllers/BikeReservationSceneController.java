@@ -50,6 +50,10 @@ public class BikeReservationSceneController implements Initializable {
     @FXML
     private DatePicker datePickerBike;
 
+    /** redirects to account details popup on click.
+     * @param mouseEvent event created by the button
+     * @throws IOException exception thrown if file does not exist
+     */
     @FXML
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
