@@ -99,7 +99,7 @@ public class DeleteRoomSceneController implements Initializable {
                     typeName = r.getType().getName();
                     Parent root = FXMLLoader.load(getClass().getResource("/deleteRoomPopUpScene.fxml"));
                     Stage st = new Stage();
-                    Scene sc = new Scene(root, 300, 400);
+                    Scene sc = new Scene(root, 191, 228);
                     st.setScene(sc);
                     st.show();
                 } catch (IOException e) {
