@@ -31,6 +31,7 @@ public class RestaurantPopUpSceneController implements Initializable {
     @FXML private Text resConfirmed;
     @FXML private Button cancelButton;
     @FXML private int foodId;
+    private int resId;
 
 
 
@@ -39,10 +40,11 @@ public class RestaurantPopUpSceneController implements Initializable {
         reservationUserName.setText(MainApp.user.getUserName());
         foodName.setText(RestaurantSceneController.getFoodName());
         price.setText(String.valueOf(RestaurantSceneController.getPrice()));
-        restaurant.setText(String.valueOf(RestaurantSceneController.getRestaurant()));
+        restaurant.setText(String.valueOf(RestaurantSceneController.getRestaurantName()));
         date.setText(RestaurantSceneController.getDate().toString());
         time.setText(RestaurantSceneController.getTimeSlot());
         foodId = RestaurantSceneController.getFoodId();
+        resId = RestaurantSceneController.getResId();
     }
 
     @FXML
@@ -63,7 +65,7 @@ public class RestaurantPopUpSceneController implements Initializable {
         String[] timeSlot = time.getText().split("-");
         String startTime = timeSlot[0];
         String endTime = timeSlot[1];
-        int statusCode = ServerCommunication.createFoodReservation(foodId, Integer.parseInt(restaurant.getText()),
+        int statusCode = ServerCommunication.createFoodReservation(foodId, resId,
                 Date.valueOf(date.getText()), Time.valueOf(startTime), Time.valueOf(endTime));
         if (statusCode == -1) {
             System.out.println("Looks like something went wrong!");
