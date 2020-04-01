@@ -25,7 +25,7 @@ public class Restaurant {
     @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id", unique = true)
     private Menu menu;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "building_fk")
     private Building building;
 
