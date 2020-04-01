@@ -62,9 +62,10 @@ public class RestaurantSceneController implements Initializable {
     private static int foodId;
     private static String foodName;
     private static int price;
-    private static int restaurant;
+    private static String restaurantName;
     private static Date day;
     private static String timeSlot;
+    private static int resId;
 
     public static int getFoodId() {
         return foodId;
@@ -78,8 +79,8 @@ public class RestaurantSceneController implements Initializable {
         return price;
     }
 
-    public static int getRestaurant() {
-        return restaurant;
+    public static String getRestaurantName() {
+        return restaurantName;
     }
 
     public static Date getDate() {
@@ -89,6 +90,8 @@ public class RestaurantSceneController implements Initializable {
     public static String getTimeSlot() {
         return timeSlot;
     }
+
+    public static int getResId() { return resId; }
 
     //This arrayList just saves all the buildings from the query made during initialisation
     private ArrayList<Building> buildingList;
@@ -172,8 +175,8 @@ public class RestaurantSceneController implements Initializable {
         ArrayList<Restaurant> restaurants = ServerCommunication.getRestaurants(buildingName);
         ObservableList<String> restaurantNames = FXCollections.observableArrayList();
         for (int i = 0; i < restaurants.size(); i++) {
-            int id = restaurants.get(i).getResId();
-            restaurantNames.add(Integer.toString(id));
+            String restaurantName = restaurants.get(i).getRestaurantName();
+            restaurantNames.add(restaurantName);
         }
 
         //first clear out items in combobox then add new set
@@ -221,8 +224,15 @@ public class RestaurantSceneController implements Initializable {
         String starttime = timeSlot[0];
         String endtime = timeSlot[1];
 
+        int resId = 0;
         String resIdString = restaurantComboBox.getValue();
-        int resId = Integer.parseInt(resIdString);
+        ArrayList<Restaurant> allRestaurants = ServerCommunication.getAllRestaurants();
+        for(int i = 0; i < allRestaurants.size(); i++) {
+            if(allRestaurants.get(i).getRestaurantName().equals(resIdString)) {
+                resId = allRestaurants.get(i).getResId();
+                break;
+            }
+        }
         ArrayList<Food> foods = ServerCommunication.getFoods(resId);
         if (foods.size() == 0) {
             Text info = new Text("No available food for this restaurant.");
@@ -232,7 +242,7 @@ public class RestaurantSceneController implements Initializable {
         } else {
             //Calling method createFoodView with each food option so that its shown to the user and added into the vbox
             for (Food fd: foods) {
-                createFoodView(fd);
+                createFoodView(fd, resId);
             }
         }
     }
@@ -248,7 +258,7 @@ public class RestaurantSceneController implements Initializable {
      * The correct image is obtained by calling another method.
      * @param fd the food type for which a display needs to be created
      */
-    public void createFoodView(Food fd) {
+    public void createFoodView(Food fd, int resId) {
         //Making outermost box
         HBox mainBox = new HBox();
         mainBox.setPrefHeight(160);
@@ -306,7 +316,7 @@ public class RestaurantSceneController implements Initializable {
                 + "-fx-font-family: 'Arial'; -fx-font-size: 13px; -fx-font-weight: bold;");
         orderButton.setOnAction(event -> {
             try {
-                reservePopUp(fd.getName(), fd.getFoodId(), fd.getPrice());
+                reservePopUp(fd.getName(), fd.getFoodId(), fd.getPrice(), resId);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -357,15 +367,16 @@ public class RestaurantSceneController implements Initializable {
      * @param price the price of the food that a user wants to order
      * @throws IOException - an input/output exception
      */
-    public void reservePopUp(String foodName, int foodId, int price) throws IOException {
+    public void reservePopUp(String foodName, int foodId, int price, int resId) throws IOException {
         //Setting static variables to properties given so that these can be accessed in the other controller class
         RestaurantSceneController.foodName = foodName;
         RestaurantSceneController.price = price;
-        RestaurantSceneController.restaurant = Integer.parseInt(restaurantComboBox.getValue());
+        RestaurantSceneController.restaurantName = restaurantComboBox.getValue();
         RestaurantSceneController.day = Date.valueOf(datePicker.getValue());
         String timeslot = timeSlotComboBox.getValue();
         RestaurantSceneController.timeSlot = timeslot;
         RestaurantSceneController.foodId = foodId;
+        RestaurantSceneController.resId = resId;
 
         Parent root = FXMLLoader.load(getClass().getResource("/restaurantPopUpScene.fxml"));
         Stage st = new Stage();
