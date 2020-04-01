@@ -21,6 +21,12 @@ public class RoleTest {
     }
 
     @Test
+    void emptyConstructorTest() {
+        Role r = new Role();
+        assertNotNull(r);
+    }
+
+    @Test
     public void getRoleId() {
         Role role = new Role(1, "admin");
         assertEquals(1, role.getRole_id());

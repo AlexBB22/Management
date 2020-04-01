@@ -128,4 +128,17 @@ public class RoomTest {
         room.setTimeslots(list);
         assertEquals(3, room.getTimeslots().size());
     }
+
+    @Test
+    void toStringTest() {
+        Room r = new Room(50, "DW-IZ4");
+        Type t = new Type("StudyHall", true, true, true);
+        r.setType(t);
+
+        Building building = new Building("CSE", true, 50, "nice building", new Time(1235), new Time(6876));
+        r.setBuilding(building);
+        String res = "room_id: 0, room_name: DW-IZ4, capacity: 50, building_name: CSE, type_id: 0";
+        assertEquals(res, r.toString());
+    }
+
 }
