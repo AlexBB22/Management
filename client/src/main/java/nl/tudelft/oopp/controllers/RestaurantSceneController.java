@@ -91,7 +91,9 @@ public class RestaurantSceneController implements Initializable {
         return timeSlot;
     }
 
-    public static int getResId() { return resId; }
+    public static int getResId() {
+        return resId;
+    }
 
     //This arrayList just saves all the buildings from the query made during initialisation
     private ArrayList<Building> buildingList;
@@ -227,8 +229,8 @@ public class RestaurantSceneController implements Initializable {
         int resId = 0;
         String resIdString = restaurantComboBox.getValue();
         ArrayList<Restaurant> allRestaurants = ServerCommunication.getAllRestaurants();
-        for(int i = 0; i < allRestaurants.size(); i++) {
-            if(allRestaurants.get(i).getRestaurantName().equals(resIdString)) {
+        for (int i = 0; i < allRestaurants.size(); i++) {
+            if (allRestaurants.get(i).getRestaurantName().equals(resIdString)) {
                 resId = allRestaurants.get(i).getResId();
                 break;
             }
