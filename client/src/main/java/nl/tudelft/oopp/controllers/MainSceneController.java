@@ -503,5 +503,10 @@ public class MainSceneController implements Initializable {
         switchScene(mouseEvent, "/seeAllBikeReservations.fxml", "All bike reservations");
     }
 
+    @FXML
+    public void seeAllFoodOrdersButtonHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/seeAllFoodOrders.fxml", "All food orders");
+    }
+
 
 }
