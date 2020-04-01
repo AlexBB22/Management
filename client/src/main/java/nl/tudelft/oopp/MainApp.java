@@ -1,6 +1,5 @@
 package nl.tudelft.oopp;
 
-import java.io.IOException;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.communication.User;
 import nl.tudelft.oopp.views.MainView;
+
+import java.io.IOException;
 
 public class MainApp {
 
