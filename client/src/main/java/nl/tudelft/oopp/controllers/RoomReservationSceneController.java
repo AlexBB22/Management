@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.sun.tools.javac.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -430,6 +429,14 @@ public class RoomReservationSceneController implements Initializable {
 
     }
 
+    /**
+     * This method initiates the communication with the database to first get a list of all available rooms
+     * and then also get a list of all overridable rooms (ie. rooms previously reserved by teachers, students and staff)
+     *
+     * @author - Sartori Kendra
+     * @throws IOException - Exception thrown if I/O fails
+     * @throws URISyntaxException - Exception thrown if the URl which is used to communicate with DB is invalid
+     */
     public void getRoomsForAdmin() throws IOException, URISyntaxException {
         // Clear vbox before adding all the room items into it
         roomList.getChildren().clear();
