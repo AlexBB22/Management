@@ -540,13 +540,27 @@ public class ServerCommunication {
 
     /**
      * A method which gets all the restaurants available in a given building.
-     * @param buildingName the name of the building for which you want to find all available methods
+     * @param buildingName the name of the building for which you want to find all available restaurants
      * @return A list of restaurants which are available in a building
      * @throws URISyntaxException - url exception
      * @throws IOException - input/output exception
      */
     public static ArrayList<Restaurant> getRestaurants(String buildingName) throws URISyntaxException, IOException {
         String url = String.format("http://localhost:8080/ListRestaurants/%s", buildingName);
+        String jsonRes = request(url);
+        System.out.println("These are all the restaurants: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<Restaurant>>(){});
+    }
+
+    /**
+     * A method which gets all the restaurants available in the DB.
+     * @return A list of restaurants which are available in the DB
+     * @throws URISyntaxException - url exception
+     * @throws IOException - input/output exception
+     */
+    public static ArrayList<Restaurant> getAllRestaurants() throws URISyntaxException, IOException {
+        String url = "http://localhost:8080/getAllRestaurants";
         String jsonRes = request(url);
         System.out.println("These are all the restaurants: " + jsonRes);
         ObjectMapper mapper = new ObjectMapper();
