@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.sun.tools.javac.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -246,6 +247,9 @@ public class RoomReservationSceneController implements Initializable {
         if (MainApp.user.getRole().getRoleName().equals("Teacher")) {
             getRoomsForTeacher();
         }
+        if (MainApp.user.getRole().getRoleName().equals("Admin")) {
+            getRoomsForAdmin();
+        }
 
         //Set up the static variables attribute
         //I set them up here, and not later as because if set later, then its possible for the user to change the
@@ -426,6 +430,66 @@ public class RoomReservationSceneController implements Initializable {
 
     }
 
+    public void getRoomsForAdmin() throws IOException, URISyntaxException {
+        // Clear vbox before adding all the room items into it
+        roomList.getChildren().clear();
+
+        //Making the title "Available rooms" and adding it to the main Vbox
+        Text availableRoomTitle = new Text("Available Rooms");
+        availableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        availableRoomTitle.setFill(Color.BLUE);
+        roomList.getChildren().add(availableRoomTitle);
+
+        //Getting the start and end time the user selected to make query to DB
+        String[] timeSlot = timeSlotComboBox.getValue().split("-");
+        String starttime = timeSlot[0];
+        String endtime = timeSlot[1];
+
+        //Get List of available rooms
+        ArrayList<AvailableRoom> availableRooms = ServerCommunication.getOnlyAvailableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime);
+
+        if (availableRooms.size() == 0) {
+            Text info = new Text("No available rooms.");
+            info.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+            roomList.getChildren().add(info);
+            roomList.setMargin(info, new Insets(5, 0, 10, 15));
+        } else {
+            //Calling method createAvailableView with each room so that its shown to the user and added into the vbox
+            for (AvailableRoom ar: availableRooms) {
+                createAvailableRoomView(ar);
+            }
+        }
+
+        //Making the title "Overridable rooms" and adding it after all the Available rooms have been added to the VBox
+        Text overridableRoomTitle = new Text("Overridable Rooms");
+        overridableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        overridableRoomTitle.setFill(Color.BLUE);
+        roomList.getChildren().add(overridableRoomTitle);
+
+        //Get List of overridable rooms
+        //Call with roleId = 1 and roleId = 2, as Admin wants overridable rooms of Students (which are role 1) and staff (which are role 2) and Teachers (which are role 3)
+        ArrayList<OverridableRoom> overridableRooms = ServerCommunication.getOnlyOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime, 1);
+        ArrayList<OverridableRoom> overridableRooms2 = ServerCommunication.getOnlyOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime, 2);
+        ArrayList<OverridableRoom> overridableRooms3 = ServerCommunication.getOnlyOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime, 3);
+        overridableRooms.addAll(overridableRooms2);
+        overridableRooms.addAll(overridableRooms3);
+
+        if (overridableRooms.size() == 0) {
+            Text info = new Text("No overridable rooms.");
+            info.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+            roomList.getChildren().add(info);
+            roomList.setMargin(info, new Insets(5, 0, 10, 15));
+        } else {
+            //Calling method creatOverridableView with each room so that its shown to the user and added into the vbox
+            for (OverridableRoom or: overridableRooms) {
+                createOverridableRoomView(or);
+            }
+        }
+    }
 
     /**
      * This method simply creates the HBox entity that will show all important information and contain functionality
