@@ -568,6 +568,14 @@ public class ServerCommunication {
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<Food>>(){});
     }
 
+    public static ArrayList<FoodReservation> getFoodReservations() throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/getUsersFoodReservations/%s", MainApp.user.getUserId());
+        String jsonRes = request(url);
+        System.out.println("These are all the food reservations for this user: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<Food>>(){});
+    }
+
     /**
      * A method which adds a new food reservation in our DB.
      * @param foodId the id of the food that is ordered
