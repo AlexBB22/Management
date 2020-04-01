@@ -28,7 +28,7 @@ public class AvailableRoom {
      * @author Kanish Dwivedi
      * @param buildingName - the name of the building.
      * @param roomName the name of the room
-     * @param name - the type of the building
+     * @param name - the type of the room
      * @param roomID - the id of the room
      * @param capacity - the capacity of the room
      * @param clicker - if the room has a clicker or not
