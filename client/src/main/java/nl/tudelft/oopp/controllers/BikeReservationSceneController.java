@@ -44,6 +44,8 @@ import nl.tudelft.oopp.communication.ServerCommunication;
 public class BikeReservationSceneController implements Initializable {
 
     @FXML
+    private DatePicker datePicker;
+    @FXML
     private VBox buildingList;
     @FXML
     private Text username;
@@ -307,5 +309,20 @@ public class BikeReservationSceneController implements Initializable {
             resImg = new Image("images/cs_building.png");
         }
         return resImg;
+    }
+
+    @FXML
+    public void checkPastDate(ActionEvent actionEvent) throws IOException, URISyntaxException {
+        LocalDate date = datePicker.getValue();
+        LocalDate today = LocalDate.now();
+        if (date.isBefore(today)) {
+            Alert warning = new Alert(Alert.AlertType.INFORMATION);
+            warning.setHeaderText("Conflict");
+            warning.setContentText("You cannot reserve a bike in the past.\n Please choose another date!");
+            warning.show();
+            datePicker.getEditor().clear();
+            return;
+        }
+        searchButtonHandler(actionEvent);
     }
 }

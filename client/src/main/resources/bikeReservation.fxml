@@ -19,7 +19,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="466.0" prefWidth="649.0" styleClass="grid" stylesheets="@CSS/bikeReservationSceneStyle.css" VBox.vgrow="ALWAYS">
       <children>
-            <DatePicker fx:id="datePickerBike" layoutX="757.0" layoutY="196.0" prefHeight="26.0" prefWidth="238.0" />
+            <DatePicker fx:id="datePickerBike" onAction="#checkPastDate" layoutX="757.0" layoutY="196.0" prefHeight="26.0" prefWidth="238.0" />
             <Text layoutX="757.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a date for your bike reservation">
                <font>
                   <Font size="26.0" />
