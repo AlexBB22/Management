@@ -1,9 +1,12 @@
 package nl.tudelft.oopp.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -11,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.FoodReservation;
 import nl.tudelft.oopp.communication.ServerCommunication;
@@ -27,9 +31,20 @@ import static nl.tudelft.oopp.MainApp.switchScene;
 public class SeeAllFoodOrdersSceneController implements Initializable {
     @FXML
     private VBox foodOrderInfoList;
+    private static int reservationID;
+    private static int status;
+
+    public static int getReservationID(){
+        return reservationID;
+    }
+
+    public static int getStatus() {
+        return status;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        SeeAllFoodOrdersSceneController.status = 0;
         try {
             ArrayList<FoodReservation> orders = ServerCommunication.getFoodReservations();
             foodOrderInfoList.getChildren().clear();
@@ -53,8 +68,11 @@ public class SeeAllFoodOrdersSceneController implements Initializable {
      */
     public void displayFoodReservationInfo(FoodReservation fr) {
 
-        Text information = new Text("\nFood: " + fr.getFoodFk().getName()
-                + "\nRestaurant: " + fr.getRestaurantFk().getName + "\nType: " + uri.getName()  + "\nDay: " + uri.getDay() + "\nStartTime: " + uri.getStartTime() + "\nEndTime: " + uri.getEndTime() + "\n\n");
+        Text information = new Text("\nUnique Order ID: " + fr.getReservationId() +
+                "\nFood: " + fr.getFoodFk().getName() +
+                "\nRestaurant: " + fr.getRestaurantFk().getRestaurantName() +
+                "\nDay: " + fr.getDay()  + "\nStartTime: " + fr.getStartTime() + "\nEndTime: " + fr.getEndTime() +
+               "\n\n");
         information.setTextAlignment(TextAlignment.CENTER);
         information.setFont(Font.font("Chalkboard SE", 16));
         HBox reservationinfo = new HBox(information);
@@ -90,10 +108,21 @@ public class SeeAllFoodOrdersSceneController implements Initializable {
         });
     }
 
-
-
-
-
+    /**
+     * This method starts the pop up.
+     * @param id - id of the order to be deleted
+     * @throws IOException - throws exception if the file is not found
+     */
+    @FXML
+    public void deletePopUp(int id) throws IOException {
+        SeeAllFoodOrdersSceneController.reservationID = id;
+        SeeAllFoodOrdersSceneController.status = 1;
+        Parent root = FXMLLoader.load(getClass().getResource("/deleteReservationPopUp.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 300, 400);
+        st.setScene(sc);
+        st.show();
+    }
 
     public void backBtnHandler(MouseEvent mouseEvent) throws IOException {
         switchScene(mouseEvent, "/mainScene.fxml", "TuDelft Reservation Application");

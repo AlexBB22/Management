@@ -720,6 +720,36 @@ public class ServerCommunication {
     }
 
     /**
+     * This method deletes a room reservation.
+     * @author - Sartori Kendra
+     * @param id - the id of the room that needs to be deleted
+     * @return -1 if it fails, 1 if it succeeds
+     * @throws URISyntaxException - exception thrown if the syntax is incorrect
+     */
+    public static int deleteFoodReservation(int id) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080/deleteFoodReservation/%s", id);
+        URI url = new URI(urlString);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").DELETE().build();
+
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+
+    }
+
+    /**
      * sends a request to the server to delete a building.
      * @param buildingName the name of the building
      * @throws URISyntaxException exception if URI syntax is wrong.

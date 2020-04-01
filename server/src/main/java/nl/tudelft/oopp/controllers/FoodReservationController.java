@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.util.List;
 import java.util.Optional;
 
+import nl.tudelft.oopp.entities.BikeReservation;
 import nl.tudelft.oopp.entities.Food;
 import nl.tudelft.oopp.entities.FoodReservation;
 import nl.tudelft.oopp.entities.Restaurant;
@@ -17,6 +18,7 @@ import nl.tudelft.oopp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -109,6 +111,25 @@ public class FoodReservationController {
     @ResponseBody
     public List<FoodReservation> getUsersFoodReservations(@PathVariable(value = "userId") int userId) {
         return foodReservationRepository.getUsersFoodReservations(userId);
+    }
+
+    /**
+     * This method deletes a food reservation made by a user.
+     * @param foodReservationId - the id of the reservation that needs to be deleted
+     */
+    @DeleteMapping("deleteBikeReservation/{foodReservationId}")
+    @ResponseBody
+    public void deleteBikeReservation(@PathVariable(value = "foodReservationId") int foodReservationId) {
+        try {
+            Optional<FoodReservation> f = foodReservationRepository.findById(foodReservationId);
+            FoodReservation foodReservation = f.get();
+            foodReservation.setRestaurantFk(null);
+            foodReservation.setUserFk(null);
+            foodReservation.setFoodFk(null);
+            foodReservationRepository.delete(foodReservation);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("the deletion has failed");
+        }
     }
 
 }
