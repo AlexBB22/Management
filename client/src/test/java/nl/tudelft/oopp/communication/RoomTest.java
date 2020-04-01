@@ -66,7 +66,7 @@ public class RoomTest {
     }
 
     @Test
-    public void setRoomIDTest() {
+    public void setRoomIdTest() {
         Room room = new Room(8, "DW-IZ4");
         room.setRoom_id(15);
         assertEquals(15, room.getRoom_id());

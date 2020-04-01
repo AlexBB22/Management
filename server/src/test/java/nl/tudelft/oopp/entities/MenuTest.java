@@ -3,29 +3,29 @@ package nl.tudelft.oopp.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class MenuTest {
     private Menu m1;
     private List<Food> foods;
-    private Restaurant r;
+    private Restaurant r1;
 
 
     @BeforeEach
     void setUp() {
         m1 = new Menu(1);
-        r = new Restaurant(3);
+        r1 = new Restaurant(3);
         Food f1 = new Food("Burger", 10);
         Food f2 = new Food("Fries", 5);
         foods = new ArrayList<>();
         foods.add(f1);
         foods.add(f2);
         m1.setFoods(foods);
-        m1.setRestaurant(r);
+        m1.setRestaurant(r1);
     }
 
 
@@ -61,7 +61,7 @@ public class MenuTest {
 
     @Test
     void getRestaurantTest() {
-        assertEquals(r, m1.getRestaurant());
+        assertEquals(r1, m1.getRestaurant());
     }
 
     @Test

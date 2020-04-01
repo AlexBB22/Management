@@ -1,41 +1,42 @@
 package nl.tudelft.oopp.entities;
 
-import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.sql.Date;
 import java.sql.Time;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+
 
 class FoodReservationTest {
     private FoodReservation fr1;
     private FoodReservation fr2;
-    private Food f;
-    private User u;
-    private Restaurant r;
-    private Date d;
+    private Food f1;
+    private User u1;
+    private Restaurant r1;
+    private Date d1;
     private Time st;
     private Time et;
 
     @BeforeEach
     void setUp() {
-        f = new Food("Burger", 10);
-        u = new User(42, "123@test", "Kanish", "password");
-        r = new Restaurant(15);
-        d = new Date(20200401);
+        f1 = new Food("Burger", 10);
+        u1 = new User(42, "123@test", "Kanish", "password");
+        r1 = new Restaurant(15);
+        d1 = new Date(20200401);
         st = new Time(1234);
         et = new Time(5678);
 
-        fr1 = new FoodReservation(d);
+        fr1 = new FoodReservation(d1);
         fr1.setReservationId(1);
         fr1.setEndTime(et);
         fr1.setStartTime(st);
-        fr1.setFoodFk(f);
-        fr1.setRestaurantFk(r);
-        fr1.setUserFk(u);
+        fr1.setFoodFk(f1);
+        fr1.setRestaurantFk(r1);
+        fr1.setUserFk(u1);
 
         fr2 = new FoodReservation();
     }
@@ -64,7 +65,7 @@ class FoodReservationTest {
 
     @Test
     void getUserFk() {
-        assertEquals(u, fr1.getUserFk());
+        assertEquals(u1, fr1.getUserFk());
     }
 
     @Test
@@ -76,7 +77,7 @@ class FoodReservationTest {
 
     @Test
     void getFoodFk() {
-        assertEquals(f, fr1.getFoodFk());
+        assertEquals(f1, fr1.getFoodFk());
     }
 
     @Test
@@ -88,7 +89,7 @@ class FoodReservationTest {
 
     @Test
     void getRestaurantFk() {
-        assertEquals(r, fr1.getRestaurantFk());
+        assertEquals(r1, fr1.getRestaurantFk());
     }
 
     @Test
@@ -100,7 +101,7 @@ class FoodReservationTest {
 
     @Test
     void getDay() {
-        assertEquals(d, fr1.getDay());
+        assertEquals(d1, fr1.getDay());
     }
 
     @Test

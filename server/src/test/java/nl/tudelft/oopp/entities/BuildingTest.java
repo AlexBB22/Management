@@ -190,19 +190,18 @@ public class BuildingTest {
 
     @Test
     void getBikesTest() {
-        Time time = new Time(6, 45, 0);
-        Time time2 = new Time(21, 0, 0);
-        Building building = new Building("EWI", true, 300,
-                "Tallest building on campus, has an elevator", time, time2);
+
         Bike b1 = new Bike();
         b1.setBike_id(1);
         Bike b2 = new Bike();
         b2.setBike_id(2);
-
         List<Bike> bikes = new ArrayList<>();
         bikes.add(b1);
         bikes.add(b2);
-
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
         building.setBikes(bikes);
 
         assertEquals(bikes, building.getBikes());
@@ -210,10 +209,6 @@ public class BuildingTest {
 
     @Test
     void setBikesTest() {
-        Time time = new Time(6, 45, 0);
-        Time time2 = new Time(21, 0, 0);
-        Building building = new Building("EWI", true, 300,
-                "Tallest building on campus, has an elevator", time, time2);
         Bike b1 = new Bike();
         b1.setBike_id(1);
         Bike b2 = new Bike();
@@ -221,7 +216,10 @@ public class BuildingTest {
         List<Bike> bikes = new ArrayList<>();
         bikes.add(b1);
         bikes.add(b2);
-
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
         building.setBikes(bikes);
 
         List<Bike> newList = new ArrayList<>();
@@ -233,18 +231,16 @@ public class BuildingTest {
 
     @Test
     void addBikesTest() {
-        Time time = new Time(6, 45, 0);
-        Time time2 = new Time(21, 0, 0);
-        Building building = new Building("EWI", true, 300,
-                "Tallest building on campus, has an elevator", time, time2);
-
         Bike b1 = new Bike();
         b1.setBike_id(1);
         Bike b2 = new Bike();
         b2.setBike_id(2);
         List<Bike> bikes = new ArrayList<>();
         bikes.add(b1);
-
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
         building.setBikes(bikes);
         building.addBike(b2);
 
@@ -258,11 +254,6 @@ public class BuildingTest {
 
     @Test
     void removeBikesTest() {
-        Time time = new Time(6, 45, 0);
-        Time time2 = new Time(21, 0, 0);
-        Building building = new Building("EWI", true, 300,
-                "Tallest building on campus, has an elevator", time, time2);
-
         Bike b1 = new Bike();
         b1.setBike_id(1);
         Bike b2 = new Bike();
@@ -270,6 +261,11 @@ public class BuildingTest {
         List<Bike> bikes = new ArrayList<>();
         bikes.add(b1);
         bikes.add(b2);
+
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
 
         building.setBikes(bikes);
         building.removeBike(b2);

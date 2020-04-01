@@ -97,7 +97,6 @@ public class UserTest {
 
     @Test
     void getBikeReservationsTest() {
-        User u1 = new User(1, "123@test", "Kanish", "password");
         Bike b1 = new Bike();
         Bike b2 = new Bike();
         BikeReservation br1 = new BikeReservation(new Date(20200401));
@@ -107,6 +106,7 @@ public class UserTest {
         List<BikeReservation> bikeReservations = new ArrayList<>();
         bikeReservations.add(br1);
         bikeReservations.add(br2);
+        User u1 = new User(1, "123@test", "Kanish", "password");
 
         u1.setBikeReservations(bikeReservations);
         assertEquals(bikeReservations, u1.getBikeReservations());
@@ -114,7 +114,6 @@ public class UserTest {
 
     @Test
     void setBikeReservationsTest() {
-        User u1 = new User(1, "123@test", "Kanish", "password");
         Bike b1 = new Bike();
         Bike b2 = new Bike();
         BikeReservation br1 = new BikeReservation(new Date(20200401));
@@ -124,6 +123,7 @@ public class UserTest {
         List<BikeReservation> bikeReservations = new ArrayList<>();
         bikeReservations.add(br1);
         bikeReservations.add(br2);
+        User u1 = new User(1, "123@test", "Kanish", "password");
 
         u1.setBikeReservations(bikeReservations);
 
@@ -141,15 +141,15 @@ public class UserTest {
 
     @Test
     void addBikeReservationsTest() {
-        User u1 = new User(1, "123@test", "Kanish", "password");
         Bike b1 = new Bike();
         Bike b2 = new Bike();
         BikeReservation br1 = new BikeReservation(new Date(20200401));
         br1.setBike_fk(b1);
-        BikeReservation br2 = new BikeReservation(new Date(20200402));
         br1.setBike_fk(b2);
         List<BikeReservation> bikeReservations = new ArrayList<>();
         bikeReservations.add(br1);
+        User u1 = new User(1, "123@test", "Kanish", "password");
+        BikeReservation br2 = new BikeReservation(new Date(20200402));
 
         u1.setBikeReservations(bikeReservations);
         u1.addBikeReservation(br2);
@@ -163,7 +163,6 @@ public class UserTest {
 
     @Test
     void removeBikeReservationsTest() {
-        User u1 = new User(1, "123@test", "Kanish", "password");
         Bike b1 = new Bike();
         Bike b2 = new Bike();
         BikeReservation br1 = new BikeReservation(new Date(20200401));
@@ -173,6 +172,7 @@ public class UserTest {
         List<BikeReservation> bikeReservations = new ArrayList<>();
         bikeReservations.add(br1);
         bikeReservations.add(br2);
+        User u1 = new User(1, "123@test", "Kanish", "password");
 
         u1.setBikeReservations(bikeReservations);
         u1.removeBikeReservation(br2);

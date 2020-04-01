@@ -1,9 +1,13 @@
 package nl.tudelft.oopp.communication;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class AvailableRoomTest {
 
@@ -28,7 +32,8 @@ class AvailableRoomTest {
 
     @Test
     void testToString() {
-        String res = "AvailableRoom{buildingName='CSE', roomName='Ampere', name='LectureHall', roomID=1, capacity=150, clicker=true, powerOutlets=true, " +
+        String res = "AvailableRoom{buildingName='CSE', roomName='Ampere', name='LectureHall', roomID=1, capacity=150, clicker=true, powerOutlets=true, "
+                +
                 "tv=true, whiteboard=true}";
         assertEquals(res, ar1.toString());
     }
