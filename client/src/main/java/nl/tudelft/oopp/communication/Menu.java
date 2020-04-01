@@ -10,6 +10,10 @@ public class Menu {
     public Menu(){
     }
 
+    /**
+     * Constructor for Menu object.
+     * @param id - the id for the menu.
+     */
     public Menu(int id) {
         this.menuId = id;
     }

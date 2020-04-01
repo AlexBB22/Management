@@ -69,7 +69,7 @@ public class User {
 
     public String toString() {
         return "User{" + "userId=" + userId + ", email='" + email + '\'' + ", userName='" + userName
-                + '\'' + ", userPassword='" + userPassword + '\'' + ", role=" + role + '}';
+                + '\'' + ", userPassword='" + userPassword + '\'' + ", role=" + role.getRoleName() + '}';
     }
 
 }
