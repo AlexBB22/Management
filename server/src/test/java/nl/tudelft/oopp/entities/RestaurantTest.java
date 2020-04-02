@@ -22,7 +22,7 @@ class RestaurantTest {
         Time time2 = new Time(6789);
         b1 = new Building("EWI", true, 300,
                 "Tallest building on campus, has an elevator", time, time2);
-        r1 = new Restaurant(2);
+        r1 = new Restaurant(2, "Cafeteria");
         r2 = new Restaurant();
         m1 = new Menu(2);
 
@@ -61,6 +61,17 @@ class RestaurantTest {
                 "Tallest building on campus, has an elevator", time, time2);
         r1.setBuilding(b2);
         assertEquals(b2, r1.getBuilding());
+    }
+
+    @Test
+    void getResNameTest() {
+        assertEquals("Cafeteria", r1.getRestaurantName());
+    }
+
+    @Test
+    void setResNameTest() {
+        r1.setRestaurantName("Burger King");
+        assertEquals("Burger King", r1.getRestaurantName());
     }
 
     @Test

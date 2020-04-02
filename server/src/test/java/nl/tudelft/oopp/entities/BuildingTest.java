@@ -282,8 +282,8 @@ public class BuildingTest {
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300,
                 "Tallest building on campus, has an elevator", time, time2);
-        Restaurant r1 = new Restaurant(1);
-        Restaurant r2 = new Restaurant(2);
+        Restaurant r1 = new Restaurant(1, "Cafeteria");
+        Restaurant r2 = new Restaurant(2, "KFC");
 
 
         List<Restaurant> restaurants = new ArrayList<>();
@@ -300,8 +300,8 @@ public class BuildingTest {
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300,
                 "Tallest building on campus, has an elevator", time, time2);
-        Restaurant r1 = new Restaurant(1);
-        Restaurant r2 = new Restaurant(2);
+        Restaurant r1 = new Restaurant(1, "Cafeteria");
+        Restaurant r2 = new Restaurant(2, "KFC");
 
 
         List<Restaurant> restaurants = new ArrayList<>();
@@ -310,7 +310,7 @@ public class BuildingTest {
 
         building.setRestaurants(restaurants);
 
-        Restaurant r3 = new Restaurant(3);
+        Restaurant r3 = new Restaurant(3, "Burger King");
         restaurants.add(r3);
         building.setRestaurants(restaurants);
 
@@ -324,8 +324,8 @@ public class BuildingTest {
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300,
                 "Tallest building on campus, has an elevator", time, time2);
-        Restaurant r1 = new Restaurant(1);
-        Restaurant r2 = new Restaurant(2);
+        Restaurant r1 = new Restaurant(1, "Cafeteria");
+        Restaurant r2 = new Restaurant(2, "KFC");
 
 
         List<Restaurant> restaurants = new ArrayList<>();
@@ -347,8 +347,8 @@ public class BuildingTest {
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300,
                 "Tallest building on campus, has an elevator", time, time2);
-        Restaurant r1 = new Restaurant(1);
-        Restaurant r2 = new Restaurant(2);
+        Restaurant r1 = new Restaurant(1, "Cafeteria");
+        Restaurant r2 = new Restaurant(2, "KFC");
 
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(r1);

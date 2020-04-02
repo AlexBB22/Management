@@ -18,7 +18,7 @@ public class MenuTest {
     @BeforeEach
     void setUp() {
         m1 = new Menu(1);
-        r1 = new Restaurant(3);
+        r1 = new Restaurant(3, "Cafeteria");
         Food f1 = new Food("Burger", 10);
         Food f2 = new Food("Fries", 5);
         foods = new ArrayList<>();
@@ -66,7 +66,7 @@ public class MenuTest {
 
     @Test
     void setRestaurantTest() {
-        Restaurant r2 = new Restaurant(5);
+        Restaurant r2 = new Restaurant(5, "KFC");
         m1.setRestaurant(r2);
         assertEquals(r2, m1.getRestaurant());
     }

@@ -25,11 +25,11 @@ public class BikeReservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User bikeUserFk;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bike_id")
     private Bike bikeFk;
 
@@ -37,8 +37,8 @@ public class BikeReservation {
     @Column(name = "day")
     private Date day;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "building_name")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "buildingName")
     private Building building;
 
     public BikeReservation() {

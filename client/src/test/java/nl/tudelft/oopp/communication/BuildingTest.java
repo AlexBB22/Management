@@ -200,8 +200,8 @@ public class BuildingTest {
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300,
                 "Tallest building on campus, has an elevator", time, time2);
-        Restaurant r1 = new Restaurant(1);
-        Restaurant r2 = new Restaurant(2);
+        Restaurant r1 = new Restaurant(1, "KFC");
+        Restaurant r2 = new Restaurant(2, "Burger King");
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(r1);
         restaurants.add(r2);
@@ -215,8 +215,8 @@ public class BuildingTest {
         Time time2 = new Time(21, 0, 0);
         Building building = new Building("EWI", true, 300,
                 "Tallest building on campus, has an elevator", time, time2);
-        Restaurant r3 = new Restaurant(3);
-        Restaurant r4 = new Restaurant(4);
+        Restaurant r3 = new Restaurant(3, "KFC");
+        Restaurant r4 = new Restaurant(4, "Burger King");
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(r3);
         restaurants.add(r4);

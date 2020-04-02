@@ -25,7 +25,7 @@ class FoodReservationTest {
     void setUp() {
         f1 = new Food("Burger", 10);
         u1 = new User(42, "123@test", "Kanish", "password");
-        r1 = new Restaurant(15);
+        r1 = new Restaurant(15, "Cafeteria");
         d1 = new Date(20200401);
         st = new Time(1234);
         et = new Time(5678);
@@ -94,7 +94,7 @@ class FoodReservationTest {
 
     @Test
     void setRestaurantFk() {
-        Restaurant r2 = new Restaurant(15);
+        Restaurant r2 = new Restaurant(15, "KFC");
         fr1.setRestaurantFk(r2);
         assertEquals(r2, fr1.getRestaurantFk());
     }
