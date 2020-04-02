@@ -35,12 +35,12 @@ public class TimeSlot {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int timeslotId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "building_name")
     private Building building;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "room_id")
     private Room room;
@@ -52,6 +52,7 @@ public class TimeSlot {
     private Time endTime;
 
     @OneToMany(mappedBy = "timeslotFk", cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<RoomReservation> roomReservations = new ArrayList<RoomReservation>();
 
     public TimeSlot() {

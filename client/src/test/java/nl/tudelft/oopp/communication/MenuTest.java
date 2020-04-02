@@ -59,14 +59,14 @@ class MenuTest {
 
     @Test
     void getRestaurant() {
-        Restaurant r1 = new Restaurant(1);
+        Restaurant r1 = new Restaurant(1, "Cafeteria");
         m1.setRestaurant(r1);
         assertEquals(r1, m1.getRestaurant());
     }
 
     @Test
     void setRestaurant() {
-        Restaurant r2 = new Restaurant(2);
+        Restaurant r2 = new Restaurant(2, "KFC");
         m1.setRestaurant(r2);
         assertEquals(r2, m1.getRestaurant());
     }

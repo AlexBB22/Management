@@ -24,7 +24,7 @@ class RestaurantTest {
         menu = new Menu(4);
         building = new Building("DW", true, 50, "Nice building", time, time2);
 
-        r1 = new Restaurant(1);
+        r1 = new Restaurant(1, "Cafeteria");
         r2 = new Restaurant();
 
         r1.setBuilding(building);
@@ -69,6 +69,17 @@ class RestaurantTest {
     void setResId() {
         r1.setResId(10);
         assertEquals(10, r1.getResId());
+    }
+
+    @Test
+    void getResNameTest() {
+        assertEquals("Cafeteria", r1.getRestaurantName());
+    }
+
+    @Test
+    void setResNameTest() {
+        r1.setRestaurantName("Burger King");
+        assertEquals("Burger King", r1.getRestaurantName());
     }
 
     @Test

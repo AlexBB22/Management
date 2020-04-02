@@ -86,7 +86,7 @@ public class RoomController {
         for (int i = 1; i < nameArray.length; i++) {
             name = name + " " + nameArray[i];
         }
-        Optional<Building> b = buildingRepository.findById(buildingName);
+        Optional<Building> b = buildingRepository.findById(name);
         Building building = b.get();
         room.setBuilding(building);
 
