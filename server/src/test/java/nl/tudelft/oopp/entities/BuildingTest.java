@@ -2,6 +2,7 @@ package nl.tudelft.oopp.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -185,4 +186,312 @@ public class BuildingTest {
         building.setRooms(list);
         assertEquals(list, building.getRooms());
     }
+
+
+    @Test
+    void getBikesTest() {
+
+        Bike b1 = new Bike();
+        b1.setBike_id(1);
+        Bike b2 = new Bike();
+        b2.setBike_id(2);
+        List<Bike> bikes = new ArrayList<>();
+        bikes.add(b1);
+        bikes.add(b2);
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+        building.setBikes(bikes);
+
+        assertEquals(bikes, building.getBikes());
+    }
+
+    @Test
+    void setBikesTest() {
+        Bike b1 = new Bike();
+        b1.setBike_id(1);
+        Bike b2 = new Bike();
+        b2.setBike_id(2);
+        List<Bike> bikes = new ArrayList<>();
+        bikes.add(b1);
+        bikes.add(b2);
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+        building.setBikes(bikes);
+
+        List<Bike> newList = new ArrayList<>();
+        newList.add(b1);
+        building.setBikes(newList);
+
+        assertEquals(newList, building.getBikes());
+    }
+
+    @Test
+    void addBikesTest() {
+        Bike b1 = new Bike();
+        b1.setBike_id(1);
+        Bike b2 = new Bike();
+        b2.setBike_id(2);
+        List<Bike> bikes = new ArrayList<>();
+        bikes.add(b1);
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+        building.setBikes(bikes);
+        building.addBike(b2);
+
+        List<Bike> actual = new ArrayList<>();
+        actual.add(b1);
+        actual.add(b2);
+
+        assertEquals(actual, building.getBikes());
+    }
+
+
+    @Test
+    void removeBikesTest() {
+        Bike b1 = new Bike();
+        b1.setBike_id(1);
+        Bike b2 = new Bike();
+        b2.setBike_id(2);
+        List<Bike> bikes = new ArrayList<>();
+        bikes.add(b1);
+        bikes.add(b2);
+
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+
+        building.setBikes(bikes);
+        building.removeBike(b2);
+
+        List<Bike> actual = new ArrayList<>();
+        actual.add(b1);
+        assertEquals(actual, building.getBikes());
+    }
+
+
+    @Test
+    void getRestaurantsTest() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+        Restaurant r1 = new Restaurant(1);
+        Restaurant r2 = new Restaurant(2);
+
+
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(r1);
+        restaurants.add(r2);
+
+        building.setRestaurants(restaurants);
+        assertEquals(restaurants, building.getRestaurants());
+    }
+
+    @Test
+    void setRestaurantsTest() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+        Restaurant r1 = new Restaurant(1);
+        Restaurant r2 = new Restaurant(2);
+
+
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(r1);
+        restaurants.add(r2);
+
+        building.setRestaurants(restaurants);
+
+        Restaurant r3 = new Restaurant(3);
+        restaurants.add(r3);
+        building.setRestaurants(restaurants);
+
+        assertEquals(restaurants, building.getRestaurants());
+
+    }
+
+    @Test
+    void addRestaurantTest() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+        Restaurant r1 = new Restaurant(1);
+        Restaurant r2 = new Restaurant(2);
+
+
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(r1);
+
+        building.setRestaurants(restaurants);
+        building.addRestaurant(r2);
+
+        List<Restaurant> actual = new ArrayList<>();
+        actual.add(r1);
+        actual.add(r2);
+
+        assertEquals(actual, building.getRestaurants());
+    }
+
+    @Test
+    void removeRestaurantTest() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+        Restaurant r1 = new Restaurant(1);
+        Restaurant r2 = new Restaurant(2);
+
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(r1);
+        restaurants.add(r2);
+
+        building.setRestaurants(restaurants);
+        building.removeRestaurant(r2);
+
+        List<Restaurant> actual = new ArrayList<>();
+        actual.add(r1);
+
+        assertEquals(actual, building.getRestaurants());
+    }
+
+
+    @Test
+    void getBikeReservationsTest() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+
+        BikeReservation br1 = new BikeReservation(new Date(20200401));
+        BikeReservation br2 = new BikeReservation(new Date(20200403));
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+        bikeReservations.add(br2);
+
+        building.setBikeReservations(bikeReservations);
+        assertEquals(bikeReservations, building.getBikeReservations());
+    }
+
+    @Test
+    void setBikeReservationsTest() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+
+        BikeReservation br1 = new BikeReservation(new Date(20200401));
+        BikeReservation br2 = new BikeReservation(new Date(20200403));
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+        bikeReservations.add(br2);
+
+        building.setBikeReservations(bikeReservations);
+
+        BikeReservation br3 = new BikeReservation(new Date(20200405));
+        bikeReservations.add(br3);
+
+        building.setBikeReservations(bikeReservations);
+
+        assertEquals(bikeReservations, building.getBikeReservations());
+    }
+
+    @Test
+    void addBikeReservationTest() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+
+        BikeReservation br1 = new BikeReservation(new Date(20200401));
+        BikeReservation br2 = new BikeReservation(new Date(20200403));
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+
+        building.setBikeReservations(bikeReservations);
+        building.addBikeReservation(br2);
+
+        List<BikeReservation> actual = new ArrayList<>();
+        actual.add(br1);
+        actual.add((br2));
+
+        assertEquals(actual, building.getBikeReservations());
+    }
+
+    @Test
+    void removeBikeReservationTest() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+
+        BikeReservation br1 = new BikeReservation(new Date(20200401));
+        BikeReservation br2 = new BikeReservation(new Date(20200403));
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+        bikeReservations.add(br2);
+
+        building.setBikeReservations(bikeReservations);
+        building.removeBikeReservation(br2);
+
+        List<BikeReservation> actual = new ArrayList<>();
+        actual.add(br1);
+
+        assertEquals(actual, building.getBikeReservations());
+    }
+
+    @Test
+    void equalsTest1() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+        assertEquals(building, building);
+    }
+
+    @Test
+    void equalsTest2() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+
+        Building b = null;
+        assertNotEquals(b, building);
+    }
+
+    @Test
+    void equalsTest3() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+
+        Room r = new Room();
+        assertNotEquals(building, r);
+    }
+
+    @Test
+    void equalsTest4() {
+        Time time = new Time(6, 45, 0);
+        Time time2 = new Time(21, 0, 0);
+        Building building = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+
+        Building building2 = new Building("EWI", true, 300,
+                "Tallest building on campus, has an elevator", time, time2);
+
+        assertEquals(building, building2);
+    }
+
+
+
 }

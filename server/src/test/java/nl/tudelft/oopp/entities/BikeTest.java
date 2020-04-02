@@ -54,4 +54,38 @@ public class BikeTest {
         bike.setBuilding(building);
         assertEquals(building, bike.getBuilding());
     }
+
+    @Test
+    void getBikeReservations() {
+        Bike bike = new Bike();
+        Date d1 = new Date(20200401);
+        Date d2 = new Date(20200403);
+        BikeReservation br1 = new BikeReservation(d1);
+        BikeReservation br2 = new BikeReservation(d2);
+
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+        bikeReservations.add(br2);
+
+        bike.setBikeReservations(bikeReservations);
+        assertEquals(bikeReservations, bike.getBikeReservations());
+    }
+
+
+    @Test
+    void setBikeReservations() {
+        Bike bike = new Bike();
+        Date d3 = new Date(20200404);
+        Date d4 = new Date(20200405);
+        BikeReservation br1 = new BikeReservation(d3);
+        BikeReservation br2 = new BikeReservation(d4);
+
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+        bikeReservations.add(br2);
+
+        bike.setBikeReservations(bikeReservations);
+        assertEquals(bikeReservations, bike.getBikeReservations());
+    }
+
 }

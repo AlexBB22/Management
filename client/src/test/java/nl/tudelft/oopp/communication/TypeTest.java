@@ -21,9 +21,23 @@ public class TypeTest {
     }
 
     @Test
+    public void emptyConstructorTest() {
+        Type t = new Type();
+        assertNotNull(t);
+    }
+
+
+    @Test
     public void getTypeId() {
         Type type = new Type("someRoom", true, true, true);
         assertEquals(0, type.getType_id());
+    }
+
+    @Test
+    public void setTypeID() {
+        Type type = new Type("someRoom", true, true, true);
+        type.setType_id(15);
+        assertEquals(15, type.getType_id());
     }
 
     @Test

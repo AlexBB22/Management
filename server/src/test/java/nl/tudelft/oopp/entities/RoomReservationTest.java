@@ -23,6 +23,12 @@ public class RoomReservationTest {
     }
 
     @Test
+    void emptyConstructorTest() {
+        RoomReservation r1 = new RoomReservation();
+        assertNotNull(r1);
+    }
+
+    @Test
     public void getRoomReservationId() {
         Date date = new Date(2020, 3, 10);
         RoomReservation rs = new RoomReservation(date);
