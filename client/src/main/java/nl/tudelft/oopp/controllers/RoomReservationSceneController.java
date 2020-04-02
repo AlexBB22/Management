@@ -802,7 +802,7 @@ public class RoomReservationSceneController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/overrideReservationPopUpScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 309, 198);
         st.setScene(sc);
         st.show();
     }
