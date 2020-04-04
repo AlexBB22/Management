@@ -43,6 +43,7 @@ import nl.tudelft.oopp.communication.ServerCommunication;
 
 public class BikeReservationSceneController implements Initializable {
 
+
     @FXML
     private VBox buildingList;
     @FXML
@@ -154,6 +155,17 @@ public class BikeReservationSceneController implements Initializable {
             //set hasReserved to false now
             hasReserved = false;
         } else {
+            LocalDate today = LocalDate.now();
+            LocalDate dayLocalDate = datePickerBike.getValue();
+
+            if (today.compareTo(dayLocalDate) > 0) {
+                Alert warning = new Alert(Alert.AlertType.INFORMATION);
+                warning.setHeaderText("Conflict");
+                warning.setContentText("You cannot reserve a bike in the past. \n Please choose another date");
+                warning.show();
+                datePickerBike.getEditor().clear();
+                return;
+            }
             getBuildings();
         }
     }
@@ -308,4 +320,6 @@ public class BikeReservationSceneController implements Initializable {
         }
         return resImg;
     }
+
+
 }
