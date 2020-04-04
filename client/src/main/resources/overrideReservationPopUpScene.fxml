@@ -78,7 +78,7 @@
                   </Text>
                   <Text fx:id="reservedBy" fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fontBold" wrappingWidth="130.00000286102295">
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="-3.0" />
                      </HBox.margin>
                   </Text>
                </children>
