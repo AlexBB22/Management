@@ -5,6 +5,7 @@ import static nl.tudelft.oopp.MainApp.switchScene;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,8 +24,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.MainApp;
+import nl.tudelft.oopp.communication.BikeReservation;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.UserReservationInfo;
+
 
 
 public class SeeAllBikeReservationsSceneController implements Initializable {
@@ -47,6 +50,7 @@ public class SeeAllBikeReservationsSceneController implements Initializable {
     public static int getReservationID() {
         return reservationID;
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,18 +81,34 @@ public class SeeAllBikeReservationsSceneController implements Initializable {
         List<String> reservations = ServerCommunication.bikeReservationList();
         for (String s : reservations) {
             Text t = new Text(s);
+            String[] string;
+            string = s.split(", ");
+            String dateString = string[1];
+            string = dateString.split(": ");
+            String dayString = string[1];
+
+
+
+
             t.setStyle("-fx-border-width:3;");
             t.setStyle("-fx-border-color:blue;");
             t.setStyle("-fx-border-style: solid;");
             t.setStyle("-fx-background-color: #99ebff;");
             t.setStyle("-fx-color: purple;");
-            HBox reservationinfo = new HBox(t);
             Button deleteButton = new Button("Remove");
+
+            LocalDate today = LocalDate.now();
+            LocalDate dayLocalDate = LocalDate.parse(dayString);
+
+            if (today.compareTo(dayLocalDate) > 0) {
+                deleteButton.setVisible(false);
+            }
             deleteButton.setStyle("-fx-base: purple");
             deleteButton.setAlignment(Pos.BOTTOM_CENTER);
 
             Text space = new Text("  ");
 
+            HBox reservationinfo = new HBox(t);
             reservationinfo.setPadding(new Insets(10, 0, 10, 0));
             HBox container =  new HBox(reservationinfo, space, deleteButton);
             container.setStyle("-fx-border-width:3;");
