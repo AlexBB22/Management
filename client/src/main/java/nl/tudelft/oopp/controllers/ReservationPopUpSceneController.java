@@ -60,12 +60,6 @@ public class ReservationPopUpSceneController implements Initializable {
      */
     @FXML
     public void makeNewReservation(ActionEvent event) throws URISyntaxException, IOException {
-        /*if (ServerCommunication.hasReservation(Date.valueOf(this.date.getText()),
-                                        Time.valueOf(this.startTime), Time.valueOf(this.endTime))) {
-            // TODO: do something
-            return;
-        }
-        */
         System.out.println(this.startTime + "    " + this.endTime);
         System.out.println(roomID + " - " + date.getText() + " - " + startTime);
         System.out.flush();
@@ -81,9 +75,5 @@ public class ReservationPopUpSceneController implements Initializable {
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/mainScene.fxml"));
         Parent root = loader.load();
         MainView.getPrimaryStage().setScene(new Scene(root));
-
-        // TODO: Make a method in ServerCommunication.java that makes a url to the DB to make a new reservation
-        // TODO: Call that method here, and then if successful, inform the user it was (resConfirmed.setText("...."))
-
     }
 }

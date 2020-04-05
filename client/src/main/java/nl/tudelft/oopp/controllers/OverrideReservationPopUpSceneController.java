@@ -65,11 +65,5 @@ public class OverrideReservationPopUpSceneController implements Initializable {
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/mainScene.fxml"));
         Parent root = loader.load();
         MainView.getPrimaryStage().setScene(new Scene(root));
-
-        /*
-         * TODO: Make a method in ServerCommunication.java that makes a url to the DB to override a reservation
-         * TODO: Call that method here, and then if successful, inform the user it was (resConfirmed.setText("...."))
-         */
-
     }
 }
