@@ -9,11 +9,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="252.0" prefWidth="386.0" styleClass="grid" stylesheets="@CSS/deleteBuildingPopupStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.DeleteBuildingPopUpSceneController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="488.0" styleClass="grid" stylesheets="@CSS/deleteBuildingPopupStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.DeleteBuildingPopUpSceneController">
    <children>
       <AnchorPane prefHeight="235.0" prefWidth="358.0">
          <children>
-            <HBox layoutX="50.0" layoutY="57.0" prefHeight="10.0" prefWidth="300.0" styleClass="fontBold">
+            <HBox layoutX="-35.0" layoutY="57.0" prefHeight="10.0" prefWidth="300.0" styleClass="fontBold">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Building Name:">
                      <HBox.margin>
@@ -22,8 +22,11 @@
                   </Text>
                   <Text fx:id="buildingName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
+               <padding>
+                  <Insets left="-8.0" />
+               </padding>
             </HBox>
-            <HBox layoutX="26.0" layoutY="139.0" prefHeight="5.0" prefWidth="300.0" styleClass="fontBold">
+            <HBox layoutX="38.0" layoutY="139.0" prefHeight="5.0" prefWidth="300.0" styleClass="fontBold">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Contains Non-Reservable space:">
                      <HBox.margin>
@@ -36,10 +39,10 @@
                   <Insets />
                </opaqueInsets>
                <padding>
-                  <Insets left="-11.0" />
+                  <Insets left="-25.0" />
                </padding>
             </HBox>
-            <HBox layoutX="50.0" layoutY="123.0" prefHeight="0.0" prefWidth="300.0" styleClass="fontBold">
+            <HBox layoutX="-14.0" layoutY="123.0" prefHeight="0.0" prefWidth="300.0" styleClass="fontBold">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Car Parking Space:">
                      <HBox.margin>
@@ -49,10 +52,10 @@
                   <Text fx:id="carParkingSpace" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
                <padding>
-                  <Insets left="5.0" />
+                  <Insets left="-8.0" />
                </padding>
             </HBox>
-            <HBox layoutX="50.0" layoutY="107.0" prefHeight="0.0" prefWidth="300.0" styleClass="fontBold">
+            <HBox layoutX="-53.0" layoutY="107.0" prefHeight="0.0" prefWidth="300.0" styleClass="fontBold">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
                      <HBox.margin>
@@ -62,10 +65,10 @@
                   <Text fx:id="description" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
                <padding>
-                  <Insets left="3.0" />
+                  <Insets left="-8.0" />
                </padding>
             </HBox>
-            <HBox layoutX="50.0" layoutY="89.0" prefHeight="0.0" prefWidth="300.0" styleClass="fontBold">
+            <HBox layoutX="-42.0" layoutY="90.0" prefHeight="0.0" prefWidth="300.0" styleClass="fontBold">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Opening Time:">
                      <HBox.margin>
@@ -74,8 +77,11 @@
                   </Text>
                   <Text fx:id="openTime" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
+               <padding>
+                  <Insets left="-8.0" />
+               </padding>
             </HBox>
-            <HBox layoutX="50.0" layoutY="73.0" prefHeight="12.0" prefWidth="300.0" styleClass="fontBold">
+            <HBox layoutX="-48.0" layoutY="73.0" prefHeight="12.0" prefWidth="300.0" styleClass="fontBold">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Closing Time:">
                      <HBox.margin>
@@ -84,25 +90,28 @@
                   </Text>
                   <Text fx:id="closeTime" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
+               <padding>
+                  <Insets left="-8.0" />
+               </padding>
             </HBox>
-            <HBox layoutX="1.0" layoutY="203.0" prefHeight="43.0" prefWidth="370.0">
+            <HBox layoutX="1.0" layoutY="203.0" prefHeight="53.0" prefWidth="478.0">
                <children>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="40.0" prefWidth="190.0" stylesheets="@CSS/deleteReservationPopupStyle.css" text="Cancel">
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonHandler" prefHeight="45.0" prefWidth="280.0" stylesheets="@CSS/deleteReservationPopupStyle.css" text="Cancel">
                      <styleClass>
                         <String fx:value="selectButton3" />
                         <String fx:value="fontBold" />
                      </styleClass></Button>
-                  <Button mnemonicParsing="false" onAction="#confirmButtonHandler" prefHeight="40.0" prefWidth="190.0" text="Confirm">
+                  <Button mnemonicParsing="false" onAction="#confirmButtonHandler" prefHeight="45.0" prefWidth="280.0" text="Confirm">
                      <styleClass>
                         <String fx:value="selectButton2" />
                         <String fx:value="fontBold" />
                      </styleClass></Button>
                </children>
             </HBox>
-            <Text fill="WHITE" layoutX="2.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fontBold" text="Note: deletion cannot be reversed" />
-            <HBox alignment="CENTER" layoutX="54.0" layoutY="4.0" prefHeight="20.0" prefWidth="268.0" styleClass="selectButton" stylesheets="@CSS/deleteReservationPopupStyle.css">
+            <Text fill="WHITE" layoutX="6.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fontBold" text="Note: deletion cannot be reversed" />
+            <HBox alignment="CENTER" layoutX="51.0" layoutY="4.0" prefHeight="20.0" prefWidth="378.0" styleClass="selectButton" stylesheets="@CSS/deleteReservationPopupStyle.css">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delete this reservation?" textAlignment="CENTER" wrappingWidth="149.98046875">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delete this Building?" textAlignment="CENTER" wrappingWidth="149.98046875">
                      <font>
                         <Font size="14.0" />
                      </font>
