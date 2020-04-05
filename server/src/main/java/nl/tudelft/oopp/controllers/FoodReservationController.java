@@ -2,6 +2,7 @@ package nl.tudelft.oopp.controllers;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -109,8 +110,16 @@ public class FoodReservationController {
      */
     @GetMapping("/getUsersFoodReservations/{userId}")
     @ResponseBody
-    public List<FoodReservation> getUsersFoodReservations(@PathVariable(value = "userId") int userId) {
-        return foodReservationRepository.getUsersFoodReservations(userId);
+    public List<String> getUsersFoodReservations(@PathVariable(value = "userId") int userId) {
+        List<FoodReservation> foodReservationsAll = foodReservationRepository.findAll();
+        List<String> reservationsForUser = new ArrayList<>();
+
+        for (FoodReservation f : foodReservationsAll) {
+            if (f.getUserFk().getUser_id() == (userId)) {
+                reservationsForUser.add(f.toString());
+            }
+        }
+        return reservationsForUser;
     }
 
     /**
@@ -119,7 +128,7 @@ public class FoodReservationController {
      */
     @DeleteMapping("deleteFoodReservation/{foodReservationId}")
     @ResponseBody
-    public void deleteBikeReservation(@PathVariable(value = "foodReservationId") int foodReservationId) {
+    public void deleteFoodReservation(@PathVariable(value = "foodReservationId") int foodReservationId) {
         try {
             Optional<FoodReservation> f = foodReservationRepository.findById(foodReservationId);
             FoodReservation foodReservation = f.get();

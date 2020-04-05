@@ -46,11 +46,11 @@ public class SeeAllFoodOrdersSceneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         SeeAllFoodOrdersSceneController.status = 0;
         try {
-            ArrayList<FoodReservation> orders = ServerCommunication.getFoodReservations();
+            ArrayList<String> orders = ServerCommunication.getFoodReservations();
             foodOrderInfoList.getChildren().clear();
-            for (FoodReservation fr: orders) {
+            for (String str: orders) {
                 System.out.println("here");
-                displayFoodReservationInfo(fr);
+                displayFoodReservationInfo(str);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,40 +63,39 @@ public class SeeAllFoodOrdersSceneController implements Initializable {
 
     /**
      * This method creates a list of all the food orders and adds them to the Vbox.
-     * @author Kanish Dwivedi
-     * @param fr - the FoodReservation object which is to be displayed.
+     * @author Niels Tomassen
+     * @param str - the FoodReservation object which is to be displayed.
      */
-    public void displayFoodReservationInfo(FoodReservation fr) {
+    public void displayFoodReservationInfo(String str) {
 
-        Text information = new Text("\nUnique Order ID: " + fr.getReservationId() +
-                "\nFood: " + fr.getFoodFk().getName() +
-                "\nRestaurant: " + fr.getRestaurantFk().getRestaurantName() +
-                "\nDay: " + fr.getDay()  + "\nStartTime: " + fr.getStartTime() + "\nEndTime: " + fr.getEndTime() +
-               "\n\n");
+        Text information = new Text(str);
         information.setTextAlignment(TextAlignment.CENTER);
         information.setFont(Font.font("Chalkboard SE", 16));
         HBox reservationinfo = new HBox(information);
 
         reservationinfo.setStyle("-fx-border-width:3;");
-        reservationinfo.setStyle("-fx-border-color:blue;");
+        reservationinfo.setStyle("-fx-border-color:green;");
         reservationinfo.setStyle("-fx-border-style: solid;");
-        reservationinfo.setStyle("-fx-background-color: #99ebff;");
+        reservationinfo.setStyle("-fx-background-color: #90EE90;");
 
 
         Button deleteButton = new Button("Remove");
-        deleteButton.setStyle("-fx-base: blue");
+        deleteButton.setStyle("-fx-base: green");
 
         deleteButton.setAlignment(Pos.CENTER_LEFT);
         reservationinfo.setPadding(new Insets(10, 0, 10, 0));
         HBox container =  new HBox(reservationinfo, deleteButton);
         container.setStyle("-fx-border-width:3;");
-        container.setStyle("-fx-border-color:blue;");
+        container.setStyle("-fx-border-color:green;");
         container.setStyle("-fx-border-style: solid;");
         container.setAlignment(Pos.CENTER);
 
         foodOrderInfoList.getChildren().add(container);
 
-        int id = fr.getReservationId();
+        String[] test = str.split(",");
+        //the first 22 characters are text and the 23rd character and onwards is the id
+        String test2 = test[0].substring(22);
+        int id = Integer.parseInt(test2);
         System.out.println(id);
         deleteButton.setOnAction(event -> {
             try {

@@ -212,8 +212,6 @@
                   <Insets top="69.0" />
                </HBox.margin>
             </Button>
-            <Text fx:id="result" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateX="-370.0" />
-            <Text fx:id="res" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="     " translateX="-370.0" />
          </children>
       </HBox>
       <VBox fx:id="sideMenu" prefHeight="616.0" prefWidth="215.0" styleClass="sidebar" GridPane.rowIndex="1" GridPane.rowSpan="2">
@@ -622,5 +620,6 @@
             </HBox>
          </children>
       </Pane>
+      <Text fx:id="result" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateX="650.0" translateY="-40.0" />
    </children>
 </GridPane>
