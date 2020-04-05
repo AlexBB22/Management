@@ -302,22 +302,29 @@ public class BikeReservationSceneController implements Initializable {
         Image resImg = null;
         if (buildingName.equals("AS")) {
             resImg = new Image("images/aerospace_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("Pulse")) {
             resImg = new Image("images/pulse_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("NS")) {
             resImg = new Image("images/natuurkunde_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("DW")) {
             resImg = new Image("images/dw_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("ME")) {
             resImg = new Image("images/mechanicalengineering_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("CSE")) {
             resImg = new Image("images/cs_building.png");
+            return resImg;
         }
+        resImg = new Image("images/no_Image.png");
         return resImg;
     }
 
