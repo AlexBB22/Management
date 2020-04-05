@@ -27,15 +27,23 @@ public class DeleteReservationPopUpController implements Initializable {
 
     private int id;
 
+    private int type;
+
     @FXML private Text resId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (SeeAllRoomReservationsSceneController.getStatus() == 1) {
             this.id = SeeAllRoomReservationsSceneController.getReservationID();
+            type = 0;
         }
         if (SeeAllBikeReservationsSceneController.getStatus() == 1) {
             this.id = SeeAllBikeReservationsSceneController.getReservationID();
+            type = 1;
+        }
+        if (SeeAllFoodOrdersSceneController.getStatus() == 1) {
+            this.id = SeeAllFoodOrdersSceneController.getReservationID();
+            type = 2;
         }
         resId.setText(Integer.toString(this.id));
     }
@@ -55,19 +63,25 @@ public class DeleteReservationPopUpController implements Initializable {
     @FXML
     public void deleteReservation(ActionEvent actionEvent) throws URISyntaxException, IOException {
 
-        int okRoomCode = ServerCommunication.deleteRoomReservation(this.id);
-        int okBikeCode = ServerCommunication.deleteBikeReservation(this.id);
-
-        if (okBikeCode == -1) {
+        if (type == 0) {
+            int okRoomCode = ServerCommunication.deleteRoomReservation(this.id);
             if (okRoomCode == -1) {
                 System.out.println("Something went wrong!");
                 return;
-            } else {
-                backBtnHandler();
-                MainSceneController.setStatus(3);
-                FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/mainScene.fxml"));
-                Parent root = loader.load();
-                MainView.getPrimaryStage().setScene(new Scene(root));
+            }
+        }
+        if (type == 1) {
+            int okBikeCode = ServerCommunication.deleteBikeReservation(this.id);
+            if (okBikeCode == -1) {
+                System.out.println("Something went wrong!");
+                return;
+            }
+        }
+        if (type == 2) {
+            int okFoodCode = ServerCommunication.deleteFoodReservation(this.id);
+            if (okFoodCode == -1) {
+                System.out.println("Something went wrong!");
+                return;
             }
         }
         backBtnHandler();

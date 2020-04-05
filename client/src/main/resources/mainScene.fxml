@@ -162,12 +162,12 @@
                   </Text>
                </children>
             </HBox>
-            <HBox alignment="BOTTOM_CENTER" prefHeight="104.0" prefWidth="262.0">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="104.0" prefWidth="227.0">
                <HBox.margin>
-                  <Insets left="50.0" />
+                  <Insets left="0.0" />
                </HBox.margin>
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#seeAllRoomReservationsButtonHandler" styleClass="topBarButton" text="See All Room Reservations">
+                  <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#seeAllRoomReservationsButtonHandler" styleClass="topBarButton" text="See All Room Reservations" translateX="15.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -177,12 +177,12 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="BOTTOM_CENTER" prefHeight="104.0" prefWidth="240.0">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="104.0" prefWidth="218.0">
                <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="0.0" />
                </HBox.margin>
                <children>
-                  <Button mnemonicParsing="false" styleClass="topBarButton" onMouseClicked="#seeAllBikeReservationsButtonHandler" text="See All Bike Reservations">
+                  <Button mnemonicParsing="false" onMouseClicked="#seeAllBikeReservationsButtonHandler" styleClass="topBarButton" text="See All Bike Reservations" translateX="-10.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -192,13 +192,26 @@
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="adminButton" alignment="CENTER" mnemonicParsing="false" onAction="#adminButtonHandler" prefHeight="35.0" prefWidth="122.0" styleClass="topBarButton" stylesheets="@CSS/mainSceneStyle.css" text="Admin screen">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="104.0" prefWidth="186.0">
+               <HBox.margin>
+                  <Insets left="0.0" />
+               </HBox.margin>
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#seeAllFoodOrdersButtonHandler" styleClass="topBarButton" text="See All Food Orders" translateX="-35.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="2.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="adminButton" alignment="CENTER" mnemonicParsing="false" onAction="#adminButtonHandler" prefHeight="35.0" prefWidth="122.0" styleClass="topBarButton" stylesheets="@CSS/mainSceneStyle.css" text="Admin screen" translateX="-45.0" translateY="-2.0">
                <HBox.margin>
                   <Insets top="69.0" />
                </HBox.margin>
             </Button>
-            <Text fx:id="result" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateX="-370.0" />
-            <Text fx:id="res" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="     " translateX="-370.0" />
          </children>
       </HBox>
       <VBox fx:id="sideMenu" prefHeight="616.0" prefWidth="215.0" styleClass="sidebar" GridPane.rowIndex="1" GridPane.rowSpan="2">
@@ -607,5 +620,6 @@
             </HBox>
          </children>
       </Pane>
+      <Text fx:id="result" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateX="650.0" translateY="-40.0" />
    </children>
 </GridPane>

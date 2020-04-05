@@ -221,7 +221,6 @@ public class ServerCommunication {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         ArrayList<Building> buildings = mapper.readValue(res, new TypeReference<ArrayList<Building>>(){});
-        System.out.println("Hello is this working");
 
         return buildings;
     }
@@ -583,6 +582,21 @@ public class ServerCommunication {
     }
 
     /**
+     * This method gives a list of strings containing the food orders for a specific user.
+     * @author Niels Tomassen
+     * @return a list of food orders for a specific user
+     * @throws IOException - input/output exception
+     * @throws URISyntaxException - thrown if url is invalid
+     */
+    public static ArrayList<String> getFoodReservations() throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/getUsersFoodReservations/%s", MainApp.user.getUserId());
+        String jsonRes = request(url);
+        System.out.println("These are all the food reservations for this user: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<String>>(){});
+    }
+
+    /**
      * A method which adds a new food reservation in our DB.
      * @param foodId the id of the food that is ordered
      * @param restaurantId the restaurant in which that food is ordered
@@ -690,6 +704,36 @@ public class ServerCommunication {
      */
     public static int deleteRoomReservation(int id) throws URISyntaxException {
         String urlString = String.format("http://localhost:8080/deleteRoomReservation/%s", id);
+        URI url = new URI(urlString);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").DELETE().build();
+
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+
+    }
+
+    /**
+     * This method deletes a food reservation.
+     * @author - Niels Tomassen
+     * @param id - the id of the room that needs to be deleted
+     * @return -1 if it fails, 1 if it succeeds
+     * @throws URISyntaxException - exception thrown if the syntax is incorrect
+     */
+    public static int deleteFoodReservation(int id) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080/deleteFoodReservation/%s", id);
         URI url = new URI(urlString);
 
         HttpClient client = HttpClient.newHttpClient();

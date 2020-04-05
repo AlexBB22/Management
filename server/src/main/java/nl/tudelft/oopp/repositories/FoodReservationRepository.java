@@ -33,7 +33,7 @@ public interface FoodReservationRepository extends JpaRepository<FoodReservation
      * @author Hidde Agterberg
      * @return all food reservations of a user
      */
-    @Query(value = "SELECT * FROM foodreservation WHERE user = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM foodreservation f NATURAL JOIN user u WHERE f.user = u.user_id AND u.user_id = ?1", nativeQuery = true)
     List<FoodReservation> getUsersFoodReservations(int userId);
 
 }

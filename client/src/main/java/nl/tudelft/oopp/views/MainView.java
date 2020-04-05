@@ -15,7 +15,7 @@ public class MainView extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/Welcome.fxml"));
 
         primaryStage.setTitle("Welcome to the application");
-        primaryStage.setScene(new Scene(root, 1280, 780));
+        primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.show();
         pStage = primaryStage;
     }
