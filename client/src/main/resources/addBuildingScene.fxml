@@ -52,15 +52,27 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Give a description of the building:" />
             <TextField fx:id="descriptionTextField" styleClass="textfield" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timetext" text="At what time does the building open and close? (please use this format XX:XX:XX)" wrappingWidth="299.089111328125" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timetext" text="At what time does the building open and close? (please use this format XX:XX:XX)" wrappingWidth="547.089111328125">
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin></Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="timetext" text="Please note: the building must open BEFORE 08:45:00 and close AFTER 17:45:00" wrappingWidth="547.089111328125">
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Open:" />
             <TextField fx:id="openTimeTextField" styleClass="textfield" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Close:" />
             <TextField fx:id="closeTimeTextField" styleClass="textfield" />
             <VBox prefHeight="22.0" prefWidth="640.0" />
-            <Button fx:id="addBuildingButton" maxHeight="38.0" minHeight="38.0" mnemonicParsing="false" onMouseClicked="#addBuildingButtonHandler" prefHeight="38.0" prefWidth="220.0" styleClass="addbutton" stylesheets="@CSS/addBuildingSceneStyle.css" text="Add" />
+            <Button fx:id="addBuildingButton" maxHeight="38.0" minHeight="38.0" mnemonicParsing="false" onMouseClicked="#addBuildingButtonHandler" prefHeight="38.0" prefWidth="220.0" styleClass="addbutton" stylesheets="@CSS/addBuildingSceneStyle.css" text="Add">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="TOP">
