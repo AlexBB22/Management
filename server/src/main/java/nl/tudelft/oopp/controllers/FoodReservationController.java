@@ -117,7 +117,7 @@ public class FoodReservationController {
      * This method deletes a food reservation made by a user.
      * @param foodReservationId - the id of the reservation that needs to be deleted
      */
-    @DeleteMapping("deleteBikeReservation/{foodReservationId}")
+    @DeleteMapping("deleteFoodReservation/{foodReservationId}")
     @ResponseBody
     public void deleteBikeReservation(@PathVariable(value = "foodReservationId") int foodReservationId) {
         try {
