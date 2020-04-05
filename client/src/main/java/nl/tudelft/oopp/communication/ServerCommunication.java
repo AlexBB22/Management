@@ -778,15 +778,6 @@ public class ServerCommunication {
         if (response.statusCode() != 200) {
             System.out.println("Error code = " + response.statusCode());
         }
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-        if (response.statusCode() != 200) {
-            System.out.println("Error code = " + response.statusCode());
-        }
     }
 
     /**

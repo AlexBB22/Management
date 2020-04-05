@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,10 +29,12 @@ public class Restaurant {
     private String restaurantName;
 
     @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id", unique = true)
     private Menu menu;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "building_fk")
     private Building building;
 

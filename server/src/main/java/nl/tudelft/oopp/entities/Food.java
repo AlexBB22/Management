@@ -2,6 +2,8 @@ package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class Food {
     private int price;
 
     @ManyToMany(mappedBy = "foods")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private List<Menu> menus = new ArrayList<Menu>();
 
     public Food() {

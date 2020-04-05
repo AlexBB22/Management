@@ -109,20 +109,6 @@ public class RoomController {
         try {
             Optional<Room> r = roomRepository.findById(roomId);
             Room room = r.get();
-            List<TimeSlot> timeSlots = room.getTimeslots();
-            for (TimeSlot timeslot : timeSlots) {
-                timeslot.getRoom().getTimeslots().remove(timeslot);
-
-                List<RoomReservation> roomReservations = timeslot.getRoomReservations();
-                for (RoomReservation roomReservation : roomReservations) {
-                    roomReservation.getUser_fk().getRoomReservations().remove(roomReservation);
-                    roomReservation.getTimeslot_fk().getRoomReservations().remove(roomReservation);
-                    roomReservationRepository.delete(roomReservation);
-                }
-                timeSlotRepository.delete(timeslot);
-            }
-            room.getType().getListOfRooms().remove(room);
-            room.getBuilding().getRooms().remove(room);
             roomRepository.delete(room);
 
         } catch (Exception e) {

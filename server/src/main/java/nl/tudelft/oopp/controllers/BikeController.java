@@ -77,8 +77,17 @@ public class BikeController {
     @PostMapping("/addBikes/{amount}/{buildingName}")
     @ResponseBody
     public void addBikes(@PathVariable (value = "amount") int amount, @PathVariable(value = "buildingName") String buildingName) {
-        Optional<Building> b = buildingRepository.findById(buildingName);
+
+        String[] nameArray = buildingName.split("_");
+        String name = nameArray[0];
+        for (int i = 1; i < nameArray.length; i++) {
+            name = name + " " + nameArray[i];
+        }
+
+        Optional<Building> b = buildingRepository.findById(name);
         Building building = b.get();
+
+
         for (int i = 0; i < amount; i++) {
             Bike bike = new Bike();
             building.addBike(bike);

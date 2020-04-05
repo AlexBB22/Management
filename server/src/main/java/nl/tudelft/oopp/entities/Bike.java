@@ -3,6 +3,8 @@ package nl.tudelft.oopp.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +29,12 @@ public class Bike {
     int bikeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "building_name")
     private Building building;
 
     @OneToMany(mappedBy = "bikeFk")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<BikeReservation> bikeReservations = new ArrayList<BikeReservation>();
 
     public Bike(){
