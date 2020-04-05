@@ -264,7 +264,6 @@ public class ServerCommunication {
 
     /**
      * Get request function template.
-     * TODO: Test that this function works for all cases
      * @param urlStr the url that has to be turned into a request
      * @return object that is retrieved through the request
      * @throws URISyntaxException exception if syntax is incorrect
