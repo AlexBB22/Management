@@ -137,10 +137,10 @@ class FoodReservationTest {
 
     @Test
     void toStringTest() {
-        String res = "Food order unique ID: " +
-                1 + ", Food: "+ "Burger" +
-                ", Restaurant: " +  "Cafeteria" + ",\nDay: " +
-                "1970-01-01" + ", Start Time: "
+        String res = "Food order unique ID: "
+                + 1 + ", Food: " + "Burger"
+                + ", Restaurant: " +  "Cafeteria" + ",\nDay: "
+                + "1970-01-01" + ", Start Time: "
                 + "01:00:01" + ", End Time: " + "01:00:05";
         assertEquals(fr1.toString(), res);
     }

@@ -1,5 +1,13 @@
 package nl.tudelft.oopp.controllers;
 
+import static nl.tudelft.oopp.MainApp.switchScene;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,21 +28,13 @@ import nl.tudelft.oopp.communication.FoodReservation;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.communication.UserReservationInfo;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import static nl.tudelft.oopp.MainApp.switchScene;
-
 public class SeeAllFoodOrdersSceneController implements Initializable {
     @FXML
     private VBox foodOrderInfoList;
     private static int reservationID;
     private static int status;
 
-    public static int getReservationID(){
+    public static int getReservationID() {
         return reservationID;
     }
 

@@ -582,6 +582,13 @@ public class ServerCommunication {
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<Food>>(){});
     }
 
+    /**
+     * This method gives a list of strings containing the food orders for a specific user.
+     * @author Niels Tomassen
+     * @return a list of food orders for a specific user
+     * @throws IOException - input/output exception
+     * @throws URISyntaxException - thrown if url is invalid
+     */
     public static ArrayList<String> getFoodReservations() throws URISyntaxException, IOException {
         String url = String.format("http://localhost:8080/getUsersFoodReservations/%s", MainApp.user.getUserId());
         String jsonRes = request(url);
@@ -720,8 +727,8 @@ public class ServerCommunication {
     }
 
     /**
-     * This method deletes a room reservation.
-     * @author - Sartori Kendra
+     * This method deletes a food reservation.
+     * @author - Niels Tomassen
      * @param id - the id of the room that needs to be deleted
      * @return -1 if it fails, 1 if it succeeds
      * @throws URISyntaxException - exception thrown if the syntax is incorrect

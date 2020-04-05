@@ -115,16 +115,17 @@ public class FoodReservation { //implements Serializable {
     public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
+
     /**
      * The representation of a food reservation as a string.
      * @author - Niels Tomassen
      * @return - a string containing information about a food reservation
      */
     public String toString() {
-        return "Food order unique ID: " +
-                this.reservationId + ", Food: "+ this.foodFk.getName() +
-                ", Restaurant: " + this.restaurantFk.getRestaurantName() + ",\nDay: " +
-                this.day + ", Start Time: "
+        return "Food order unique ID: "
+                + this.reservationId + ", Food: " + this.foodFk.getName()
+                + ", Restaurant: " + this.restaurantFk.getRestaurantName() + ",\nDay: "
+                + this.day + ", Start Time: "
                 + this.startTime + ", End Time: " + this.endTime;
     }
 }
