@@ -118,7 +118,7 @@ public class SeeAllFoodOrdersSceneController implements Initializable {
         SeeAllFoodOrdersSceneController.status = 1;
         Parent root = FXMLLoader.load(getClass().getResource("/deleteReservationPopUp.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 308, 135);
         st.setScene(sc);
         st.show();
     }
