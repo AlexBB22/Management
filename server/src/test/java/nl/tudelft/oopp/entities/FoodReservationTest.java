@@ -142,6 +142,7 @@ class FoodReservationTest {
                 + ", Restaurant: " +  "Cafeteria" + ",\nDay: "
                 + "1970-01-01" + ", Start Time: "
                 + "01:00:01" + ", End Time: " + "01:00:05";
-        assertEquals(fr1.toString(), res);
+        String fr1ToString = fr1.toString();
+        assertEquals(fr1ToString, res);
     }
 }
