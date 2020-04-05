@@ -137,11 +137,22 @@ class FoodReservationTest {
 
     @Test
     void toStringTest() {
+        String day = "2001-12-02";
+        Date date = Date.valueOf(day);
+        fr1.setDay(date);
+
+        String startTime = "08:45:00";
+        Time start = Time.valueOf(startTime);
+        fr1.setStartTime(start);
+
+        String endTime = "10:45:00";
+        Time end = Time.valueOf(endTime);
+        fr1.setEndTime(end);
         String res = "Food order unique ID: "
                 + 1 + ", Food: " + "Burger"
                 + ", Restaurant: " +  "Cafeteria" + ",\nDay: "
-                + "1970-01-01" + ", Start Time: "
-                + "01:00:01" + ", End Time: " + "01:00:05";
+                + "2001-12-02" + ", Start Time: "
+                + "08:45:00" + ", End Time: " + "10:45:00";
         String fr1ToString = fr1.toString();
         assertEquals(fr1ToString, res);
     }
