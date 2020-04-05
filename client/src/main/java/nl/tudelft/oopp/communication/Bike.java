@@ -5,11 +5,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class Bike {
-
     @JsonProperty("bike_id")
     private int bikeId;
     private Building building;
     private List<BikeReservation> bikeReservations;
+
+
+    public Bike() {
+
+    }
+
+    /**
+     * Constructor for a bike.
+     * @param bikeId - the id of the bike
+     * @param building - the building in which the bike resides
+     * @param bikeReservations - the reservations this bike is associated to
+     */
+    public Bike(int bikeId, Building building, List<BikeReservation> bikeReservations) {
+        this.bikeId = bikeId;
+        this.building = building;
+        this.bikeReservations = bikeReservations;
+    }
 
     public int getBikeId() {
         return bikeId;

@@ -21,6 +21,12 @@ public class UserTest {
     }
 
     @Test
+    void emptyConstructorTest() {
+        User u2 = new User();
+        assertNotNull(u2);
+    }
+
+    @Test
     public void getSetRole() {
         User user = new User(2, "email", "username", "password");
         Role role = new Role(1, "admin");
@@ -87,6 +93,95 @@ public class UserTest {
         System.out.println(toString);
         System.out.println(user.toString());
         assertEquals(toString, user.toString());
+    }
+
+    @Test
+    void getBikeReservationsTest() {
+        Bike b1 = new Bike();
+        Bike b2 = new Bike();
+        BikeReservation br1 = new BikeReservation(new Date(20200401));
+        br1.setBike_fk(b1);
+        BikeReservation br2 = new BikeReservation(new Date(20200402));
+        br1.setBike_fk(b2);
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+        bikeReservations.add(br2);
+        User u1 = new User(1, "123@test", "Kanish", "password");
+
+        u1.setBikeReservations(bikeReservations);
+        assertEquals(bikeReservations, u1.getBikeReservations());
+    }
+
+    @Test
+    void setBikeReservationsTest() {
+        Bike b1 = new Bike();
+        Bike b2 = new Bike();
+        BikeReservation br1 = new BikeReservation(new Date(20200401));
+        br1.setBike_fk(b1);
+        BikeReservation br2 = new BikeReservation(new Date(20200402));
+        br1.setBike_fk(b2);
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+        bikeReservations.add(br2);
+        User u1 = new User(1, "123@test", "Kanish", "password");
+
+        u1.setBikeReservations(bikeReservations);
+
+        Bike b3 = new Bike();
+        BikeReservation br3 = new BikeReservation(new Date(20200404));
+        br3.setBike_fk(b3);
+        bikeReservations.add(br3);
+
+        List<BikeReservation> newList = new ArrayList<>();
+        newList.addAll(bikeReservations);
+        u1.setBikeReservations(newList);
+
+        assertEquals(newList, u1.getBikeReservations());
+    }
+
+    @Test
+    void addBikeReservationsTest() {
+        Bike b1 = new Bike();
+        Bike b2 = new Bike();
+        BikeReservation br1 = new BikeReservation(new Date(20200401));
+        br1.setBike_fk(b1);
+        br1.setBike_fk(b2);
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+        User u1 = new User(1, "123@test", "Kanish", "password");
+        BikeReservation br2 = new BikeReservation(new Date(20200402));
+
+        u1.setBikeReservations(bikeReservations);
+        u1.addBikeReservation(br2);
+
+        List<BikeReservation> actual = new ArrayList<>();
+        actual.add(br1);
+        actual.add(br2);
+
+        assertEquals(actual, u1.getBikeReservations());
+    }
+
+    @Test
+    void removeBikeReservationsTest() {
+        Bike b1 = new Bike();
+        Bike b2 = new Bike();
+        BikeReservation br1 = new BikeReservation(new Date(20200401));
+        br1.setBike_fk(b1);
+        BikeReservation br2 = new BikeReservation(new Date(20200402));
+        br1.setBike_fk(b2);
+        List<BikeReservation> bikeReservations = new ArrayList<>();
+        bikeReservations.add(br1);
+        bikeReservations.add(br2);
+        User u1 = new User(1, "123@test", "Kanish", "password");
+
+        u1.setBikeReservations(bikeReservations);
+        u1.removeBikeReservation(br2);
+
+        List<BikeReservation> actual = new ArrayList<>();
+        actual.add(br1);
+
+        assertEquals(actual, u1.getBikeReservations());
+
     }
 
 }

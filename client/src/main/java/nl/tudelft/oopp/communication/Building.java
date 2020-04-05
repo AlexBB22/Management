@@ -85,9 +85,6 @@ public class Building {
                 + ", opening=" + opening
                 + ", closing=" + closing
                 + ", buildingName='" + buildingName + '\''
-                + ", rooms=" + rooms
-                + ", restaurants=" + restaurants
-                + ", bikes=" + bikes
                 + '}';
     }
 

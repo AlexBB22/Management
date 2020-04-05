@@ -32,7 +32,7 @@
                       </HBox.margin>
                   </Text>
                </children>
-                <Text fx:id="building" layoutX="10.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.7999918460846">
+                <Text fx:id="building" fill="WHITE" layoutX="10.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.7999918460846">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>
