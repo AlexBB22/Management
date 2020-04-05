@@ -88,4 +88,11 @@ class RestaurantTest {
         r1.setMenu(m2);
         assertEquals(m2, r1.getMenu());
     }
+
+    @Test
+    void toStringTest() {
+        String res = "Cafeteria";
+        assertEquals(res, r1.toString());
+    }
+
 }
