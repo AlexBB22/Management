@@ -74,7 +74,7 @@ public class BikeController {
      * @param buildingName the name of the building it should be added to
      * @author Scott.
      */
-    @GetMapping("/addBikes/{amount}/{buildingName}")
+    @PostMapping("/addBikes/{amount}/{buildingName}")
     @ResponseBody
     public void addBikes(@PathVariable (value = "amount") int amount, @PathVariable(value = "buildingName") String buildingName) {
         Optional<Building> b = buildingRepository.findById(buildingName);
