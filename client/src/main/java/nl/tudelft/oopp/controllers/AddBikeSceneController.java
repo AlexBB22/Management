@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.controllers;
 
+import static nl.tudelft.oopp.MainApp.switchScene;
+
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -20,9 +22,6 @@ import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.ServerCommunication;
 import nl.tudelft.oopp.views.MainView;
-
-import static nl.tudelft.oopp.MainApp.switchScene;
-
 
 public class AddBikeSceneController implements Initializable {
 
