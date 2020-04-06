@@ -166,44 +166,6 @@ public class BuildingController {
 
             Optional<Building> b = buildingRepository.findById(name);
             Building building = b.get();
-            //deleting rooms correctly.
-            List<Room> rooms = building.getRooms();
-            for (Room room : rooms) {
-                List<TimeSlot> timeSlots = room.getTimeslots();
-                for (TimeSlot timeslot : timeSlots) {
-                    timeslot.getRoom().getTimeslots().remove(timeslot);
-
-                    List<RoomReservation> roomReservations = timeslot.getRoomReservations();
-                    for (RoomReservation roomReservation : roomReservations) {
-                        roomReservation.getUser_fk().getRoomReservations().remove(roomReservation);
-                        roomReservation.getTimeslot_fk().getRoomReservations().remove(roomReservation);
-                        roomReservationRepository.delete(roomReservation);
-                    }
-                    timeSlotRepository.delete(timeslot);
-                }
-                room.getType().getListOfRooms().remove(room);
-                building.getRooms().remove(room);
-                roomRepository.delete(room);
-            }
-            //deleting bikes properly
-            List<Bike> bikes = building.getBikes();
-            for (Bike bike : bikes) {
-                List<BikeReservation> bikeReservations = bike.getBikeReservations();
-                for (BikeReservation bikeReservation : bikeReservations) {
-                    bikeReservation.getBike_fk().getBikeReservations().remove(bikeReservation);
-                    bikeReservation.getBike_user_fk().getBikeReservations().remove(bikeReservation);
-
-                    bikeReservationRepository.delete(bikeReservation);
-                }
-                building.getBikes().remove(bike);
-                bikeRepository.delete(bike);
-            }
-
-            List<Restaurant> restaurants = building.getRestaurants();
-            for (Restaurant restaurant : restaurants) {
-                building.getRestaurants().remove(restaurant);
-                restaurantRepository.delete(restaurant);
-            }
             buildingRepository.delete(building);
             System.out.println("building deleted successfully");
 

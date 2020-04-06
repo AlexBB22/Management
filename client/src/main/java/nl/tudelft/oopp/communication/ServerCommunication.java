@@ -778,15 +778,6 @@ public class ServerCommunication {
         if (response.statusCode() != 200) {
             System.out.println("Error code = " + response.statusCode());
         }
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-        if (response.statusCode() != 200) {
-            System.out.println("Error code = " + response.statusCode());
-        }
     }
 
     /**
@@ -812,5 +803,33 @@ public class ServerCommunication {
         if (response.statusCode() != 200) {
             System.out.println("Error code = " + response.statusCode());
         }
+    }
+
+    /**
+     * sends a request to the server to add bikes.
+     * @param amount the amount of bikes to add
+     * @param building the building to add to
+     * @throws URISyntaxException exception if URI syntax is wrong
+     */
+    public static boolean createBikes(int amount, String building) throws URISyntaxException {
+        String url = String.format("http://localhost:8080/addBikes/%s/%s", amount, building);
+        URI uri = new URI(url);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).POST(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return false;
+        }
+        return true;
     }
 }

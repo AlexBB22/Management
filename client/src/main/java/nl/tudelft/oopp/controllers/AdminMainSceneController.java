@@ -65,4 +65,19 @@ public class AdminMainSceneController implements Initializable {
     public void deleteRoomButtonHandler(MouseEvent mouseEvent) throws IOException {
         switchScene(mouseEvent, "/deleteRoomScene.fxml", "Delete Room");
     }
+
+    /**
+     * opens up a stage for adding bikes.
+     * @param mouseEvent the clicking on the button.
+     * @throws IOException throws exception if input is wrong.
+     * @author Kanish.
+     */
+    @FXML
+    public void addBikesToBuildingHandler(MouseEvent mouseEvent) throws  IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/addBikeScene.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 600, 400);
+        st.setScene(sc);
+        st.show();
+    }
 }
