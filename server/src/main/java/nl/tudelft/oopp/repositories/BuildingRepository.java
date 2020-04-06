@@ -16,4 +16,5 @@ public interface BuildingRepository extends JpaRepository<Building, String> {
 
     @Query(value = "SELECT * FROM building b WHERE b.building_name=?1", nativeQuery = true)
     List<Building> findByBuildingName(String buildingName);
+
 }

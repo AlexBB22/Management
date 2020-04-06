@@ -66,9 +66,10 @@ public class RestaurantController {
      * @param buildingName name of the building
      * @param restaurant the restaurant
      */
-    @PostMapping("/AddRestaurant/{buildingName}")
+    @PostMapping("/AddRestaurant/{restaurantName}/{buildingName}")
     @ResponseBody
     public void addRestaurant(@PathVariable (value = "buildingName") String buildingName,
+                              @PathVariable (value = "restaurantName") String restaurantName,
                               @RequestBody Restaurant restaurant) {
         Restaurant newRestaurant = restaurant;
 
@@ -80,6 +81,7 @@ public class RestaurantController {
 
         newRestaurant.setBuilding(building);
         newRestaurant.setMenu(menu);
+        newRestaurant.setRestaurantName(restaurantName);
         building.addRestaurant(newRestaurant);
 
         restaurantRepository.save(newRestaurant);

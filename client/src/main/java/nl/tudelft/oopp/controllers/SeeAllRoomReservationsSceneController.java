@@ -5,6 +5,7 @@ import static nl.tudelft.oopp.MainApp.switchScene;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -95,8 +96,14 @@ public class SeeAllRoomReservationsSceneController implements Initializable {
         reservationinfo.setStyle("-fx-border-style: solid;");
         reservationinfo.setStyle("-fx-background-color: #99ebff;");
 
+        String dayString = uri.getDay();
+        LocalDate dayLocalDate = LocalDate.parse(dayString);
+        LocalDate today = LocalDate.now();
 
         Button deleteButton = new Button("Remove");
+        if (today.compareTo(dayLocalDate) > 0) {
+            deleteButton.setVisible(false);
+        }
         deleteButton.setStyle("-fx-base: blue");
 
         deleteButton.setAlignment(Pos.CENTER_LEFT);
@@ -133,7 +140,7 @@ public class SeeAllRoomReservationsSceneController implements Initializable {
         SeeAllRoomReservationsSceneController.setStatus(1);
         Parent root = FXMLLoader.load(getClass().getResource("/deleteReservationPopUp.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 305, 131);
         st.setScene(sc);
         st.show();
     }

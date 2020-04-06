@@ -15,17 +15,6 @@ import org.apache.commons.codec.binary.Hex;
 public class Hasher {
 
     /**
-     * Main method made to simply test the password hashing.
-     * @author Kanish Dwivedi
-     * @param args - arguments that can be given during runtime to the main method.
-     */
-    public static void main(String[] args) {
-        String password = "kanish";
-        //just a test
-        System.out.println(Hasher.hashPassword(password));
-    }
-
-    /**
      * The method that hashes the given password using PBKDF2 hasing algorithm.
      * @author Kanish Dwivedi
      * @param password - The password that needs to be hashed (as an array of char)

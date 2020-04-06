@@ -131,12 +131,6 @@ public class BuildingController {
                                @PathVariable (value = "openingTime") Time openingTime,
                                 @PathVariable (value = "closingTime") Time closingTime) {
 
-        String[] nameArray = buildingName.split("_");
-        String name = nameArray[0];
-        for (int i = 1; i < nameArray.length; i++) {
-            name = name + " " + nameArray[i];
-        }
-
         //adding spaces back that were removed during the building of the URL.
         String[] descriptionArray = description.split("_");
         String buildingDescription = descriptionArray[0];
@@ -144,7 +138,7 @@ public class BuildingController {
             buildingDescription = buildingDescription + " " + descriptionArray[i];
         }
 
-        Building newBuilding = new Building(name, nonReservableSpace, carParkingSpaces, buildingDescription, openingTime, closingTime);
+        Building newBuilding = new Building(buildingName, nonReservableSpace, carParkingSpaces, buildingDescription, openingTime, closingTime);
 
         System.out.println("Added a new building to the database");
         buildingRepository.save(newBuilding);
@@ -158,52 +152,8 @@ public class BuildingController {
     @ResponseBody
     public void deleteBuilding(@PathVariable (value = "buildingName") String buildingName) {
         try {
-            String[] nameArray = buildingName.split("_");
-            String name = nameArray[0];
-            for (int i = 1; i < nameArray.length; i++) {
-                name = name + " " + nameArray[i];
-            }
-
-            Optional<Building> b = buildingRepository.findById(name);
+            Optional<Building> b = buildingRepository.findById(buildingName);
             Building building = b.get();
-            //deleting rooms correctly.
-            List<Room> rooms = building.getRooms();
-            for (Room room : rooms) {
-                List<TimeSlot> timeSlots = room.getTimeslots();
-                for (TimeSlot timeslot : timeSlots) {
-                    timeslot.getRoom().getTimeslots().remove(timeslot);
-
-                    List<RoomReservation> roomReservations = timeslot.getRoomReservations();
-                    for (RoomReservation roomReservation : roomReservations) {
-                        roomReservation.getUser_fk().getRoomReservations().remove(roomReservation);
-                        roomReservation.getTimeslot_fk().getRoomReservations().remove(roomReservation);
-                        roomReservationRepository.delete(roomReservation);
-                    }
-                    timeSlotRepository.delete(timeslot);
-                }
-                room.getType().getListOfRooms().remove(room);
-                building.getRooms().remove(room);
-                roomRepository.delete(room);
-            }
-            //deleting bikes properly
-            List<Bike> bikes = building.getBikes();
-            for (Bike bike : bikes) {
-                List<BikeReservation> bikeReservations = bike.getBikeReservations();
-                for (BikeReservation bikeReservation : bikeReservations) {
-                    bikeReservation.getBike_fk().getBikeReservations().remove(bikeReservation);
-                    bikeReservation.getBike_user_fk().getBikeReservations().remove(bikeReservation);
-
-                    bikeReservationRepository.delete(bikeReservation);
-                }
-                building.getBikes().remove(bike);
-                bikeRepository.delete(bike);
-            }
-
-            List<Restaurant> restaurants = building.getRestaurants();
-            for (Restaurant restaurant : restaurants) {
-                building.getRestaurants().remove(restaurant);
-                restaurantRepository.delete(restaurant);
-            }
             buildingRepository.delete(building);
             System.out.println("building deleted successfully");
 

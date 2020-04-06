@@ -2,6 +2,7 @@ package nl.tudelft.oopp.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -120,6 +121,37 @@ public class TimeSlotTest {
         ts.setEnd_time(time);
         assertEquals(ts.getStart_time(), time2);
         assertEquals(ts.getEnd_time(), time);
+    }
+
+    @Test
+    void removeRoomReservationTest() {
+        TimeSlot ts = new TimeSlot(new Time(12345), new Time(6789));
+        RoomReservation r1 = new RoomReservation(new Date(20200402));
+        RoomReservation r2 = new RoomReservation(new Date(20200403));
+        List<RoomReservation> roomReservations = new ArrayList<>();
+        roomReservations.add(r1);
+        roomReservations.add(r2);
+        ts.setRoomReservations(roomReservations);
+        ts.removeRoomReservation(r2);
+
+        List<RoomReservation> actual = new ArrayList<>();
+        actual.add(r1);
+
+        assertEquals(actual, ts.getRoomReservations());
+
+    }
+
+    @Test
+    void equalsTest2() {
+        TimeSlot ts = new TimeSlot(new Time(12345), new Time(6789));
+        TimeSlot ts2 = new TimeSlot(new Time(12345), new Time(9874));
+        assertNotEquals(ts, ts2);
+    }
+
+    @Test
+    void hashCodeTest() {
+        TimeSlot ts = new TimeSlot(new Time(12345), new Time(6789));
+        assertEquals(12345, ts.hashCode());
     }
 
 }

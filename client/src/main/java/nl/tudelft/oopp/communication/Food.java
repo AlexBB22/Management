@@ -52,4 +52,8 @@ public class Food {
     public List<Menu> getMenus() {
         return this.menus;
     }
+
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
+    }
 }

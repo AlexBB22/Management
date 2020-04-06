@@ -46,7 +46,6 @@ import nl.tudelft.oopp.communication.UserTodo;
 public class MainSceneController implements Initializable {
 
     @FXML private Text username;
-    @FXML private Text res;
     private static int status = 0;
     @FXML private GridPane mainGrid;
     @FXML private Text todayDay;
@@ -269,7 +268,7 @@ public class MainSceneController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 232, 208);
         st.setScene(sc);
         st.show();
     }
@@ -285,7 +284,7 @@ public class MainSceneController implements Initializable {
     }
 
     public void changeResConfirmed() {
-        res.setText("The room has been successfully reserved!");
+        result.setText("The room has been successfully reserved!");
     }
 
     public void bikeReservationConfirmed() {
@@ -501,6 +500,11 @@ public class MainSceneController implements Initializable {
     @FXML
     public void seeAllBikeReservationsButtonHandler(MouseEvent mouseEvent) throws IOException {
         switchScene(mouseEvent, "/seeAllBikeReservations.fxml", "All bike reservations");
+    }
+
+    @FXML
+    public void seeAllFoodOrdersButtonHandler(MouseEvent mouseEvent) throws IOException {
+        switchScene(mouseEvent, "/seeAllFoodOrders.fxml", "All food orders");
     }
 
 

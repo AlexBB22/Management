@@ -43,12 +43,26 @@ import nl.tudelft.oopp.communication.ServerCommunication;
 
 public class BikeReservationSceneController implements Initializable {
 
+
     @FXML
     private VBox buildingList;
     @FXML
     private Text username;
     @FXML
     private DatePicker datePickerBike;
+
+    /** redirects to account details popup on click.
+     * @param mouseEvent event created by the button
+     * @throws IOException exception thrown if file does not exist
+     */
+    @FXML
+    public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
+        Stage st = new Stage();
+        Scene sc = new Scene(root, 232, 208);
+        st.setScene(sc);
+        st.show();
+    }
 
     private static String buildingName;
     private static String day;
@@ -80,6 +94,7 @@ public class BikeReservationSceneController implements Initializable {
         switchScene(mouseEvent, "/mainScene.fxml", "TuDelft Reservation Application");
 
     }
+
 
     /**
      * You won't see the buildings where there are no bikes left to reserve.
@@ -140,6 +155,17 @@ public class BikeReservationSceneController implements Initializable {
             //set hasReserved to false now
             hasReserved = false;
         } else {
+            LocalDate today = LocalDate.now();
+            LocalDate dayLocalDate = datePickerBike.getValue();
+
+            if (today.compareTo(dayLocalDate) > 0) {
+                Alert warning = new Alert(Alert.AlertType.INFORMATION);
+                warning.setHeaderText("Conflict");
+                warning.setContentText("You cannot reserve a bike in the past. \n Please choose another date");
+                warning.show();
+                datePickerBike.getEditor().clear();
+                return;
+            }
             getBuildings();
         }
     }
@@ -276,22 +302,31 @@ public class BikeReservationSceneController implements Initializable {
         Image resImg = null;
         if (buildingName.equals("AS")) {
             resImg = new Image("images/aerospace_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("Pulse")) {
             resImg = new Image("images/pulse_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("NS")) {
             resImg = new Image("images/natuurkunde_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("DW")) {
             resImg = new Image("images/dw_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("ME")) {
             resImg = new Image("images/mechanicalengineering_building.jpg");
+            return resImg;
         }
         if (buildingName.equals("CSE")) {
             resImg = new Image("images/cs_building.png");
+            return resImg;
         }
+        resImg = new Image("images/no_Image.png");
         return resImg;
     }
+
+
 }

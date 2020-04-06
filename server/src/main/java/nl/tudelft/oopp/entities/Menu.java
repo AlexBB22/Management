@@ -2,7 +2,6 @@ package nl.tudelft.oopp.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "menu")
@@ -26,12 +27,14 @@ public class Menu {
     @Column(name = "menu_id")
     private int menuId;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinTable(name = "menu_food", joinColumns = @JoinColumn(name = "menu_fk", referencedColumnName = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "food_fk", referencedColumnName = "food_Id"))
     List<Food> foods = new ArrayList<Food>();
 
     @OneToOne(mappedBy = "menu")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Restaurant restaurant;
 
     public Menu() {

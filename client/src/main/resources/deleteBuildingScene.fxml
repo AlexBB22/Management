@@ -65,7 +65,7 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Deleting is permanent and can not be reverted. " wrappingWidth="410.1366024017334" />
                      </children>
                   </HBox>
-                  <VBox prefHeight="72.0" prefWidth="496.0" />
+                  <VBox prefHeight="77.0" prefWidth="496.0" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="66.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
@@ -73,7 +73,18 @@
                               <Image url="@images/warningSign.png" />
                            </image>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Warning: when deleting a building the rooms, the restaurants, bikes and all reservations of that building will be deleted to." wrappingWidth="433.1146240234375" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Warning: when deleting a building the rooms, the restaurants and bikes of that building will be deleted too." wrappingWidth="433.1146240234375" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="77.0" prefWidth="496.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="66.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/warningSign.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="questiontext" text="Warning: you can't delete buildings with active bike, food or room reservations." wrappingWidth="429.5496826171875" />
                      </children>
                   </HBox>
                </children>

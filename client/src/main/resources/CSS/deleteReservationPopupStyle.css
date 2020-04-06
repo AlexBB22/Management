@@ -1,0 +1,53 @@
+* {
+    -linearBackground1:   #9494b8;
+    -linearBackground2:   #47476b;
+    -barColor: #eee6ff;
+    -menuButtonColor: #8581ff;
+    -weekItemBoxOutline: #6600cc;
+}
+
+.grid {
+    -fx-background-color: linear-gradient(to right, -linearBackground1, -linearBackground2, transparent 500%);
+}
+
+.selectButton {
+    -fx-background-color: #ff4da6;
+    -fx-text-fill: white;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-opacity: 0.5;
+}
+
+.selectButton2 {
+    -fx-background-color: #66ff66;
+    -fx-text-fill: black;
+    -fx-opacity: 0.5;
+}
+
+.selectButton3 {
+    -fx-background-color: #ff0000;
+    -fx-text-fill: white;
+    -fx-opacity: 0.4;
+}
+
+.selectButton2:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+}
+
+.selectButton3:hover {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+}
+
+.root{
+    -fx-padding: 5;
+    -fx-border-style: none;
+    -fx-border-width: 0;
+    -fx-border-insets: 0;
+}
+
+.fontBold{
+    -fx-font-weight: bold;
+    -fx-opacity: 0.7;
+}

@@ -1,100 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<VBox alignment="CENTER" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.ReservationPopUpSceneController">
+<VBox alignment="CENTER" prefHeight="230.0" prefWidth="290.0" styleClass="grid" stylesheets="@CSS/reservationPopUpSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.ReservationPopUpSceneController">
     <children>
-        <HBox alignment="CENTER" prefHeight="86.0" prefWidth="300.0">
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="These are the details of your new reservation" textAlignment="CENTER" wrappingWidth="149.98046875">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Text>
-            </children>
-        </HBox>
-        <HBox alignment="CENTER">
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
-                </Text>
-                <Text fx:id="reservationUserName" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.99999856948853">
-                    <HBox.margin>
-                        <Insets left="20.0" />
-                    </HBox.margin></Text>
-            </children>
-        </HBox>
-        <HBox alignment="CENTER">
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Building:">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Text>
-
-                <Text fx:id="building" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.00000619888306">
-                    <HBox.margin>
-                        <Insets left="20.0" />
-                    </HBox.margin></Text>
-
-            </children>
-        </HBox>
-        <HBox alignment="CENTER" layoutX="10.0" layoutY="189.0">
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room:" wrappingWidth="44.57769775390625">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Text>
-                <Text fx:id="room" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
-                    <HBox.margin>
-                        <Insets left="20.0" />
-                    </HBox.margin></Text>
-            </children>
-        </HBox>
-        <HBox alignment="CENTER" layoutX="10.0" layoutY="180.0">
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" wrappingWidth="44.262879371643066">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Text>
-                <Text fx:id="date" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
-                    <HBox.margin>
-                        <Insets left="20.0" />
-                    </HBox.margin></Text>
-            </children>
-        </HBox>
-        <HBox alignment="CENTER" layoutX="10.0" layoutY="171.0">
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Timeslot:">
-                    <HBox.margin>
-                        <Insets right="10.0" />
-                    </HBox.margin>
-                </Text>
-                <Text fx:id="time" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="130.00000286102295">
-                    <HBox.margin>
-                        <Insets left="20.0" />
-                    </HBox.margin></Text>
-            </children>
-        </HBox>
-        <HBox alignment="CENTER" prefHeight="38.0" prefWidth="300.0">
-            <children>
-                <Text fx:id="resConfirmed" strokeType="OUTSIDE" strokeWidth="0.0" />
-            </children></HBox>
-        <HBox alignment="CENTER">
-            <children>
-                <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onMouseClicked="#backBtnHandler" text="Cancel" />
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.20001530647278" />
-                <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#makeNewReservation" text="Reserve" />
-            </children>
-        </HBox>
+      <AnchorPane prefHeight="221.0" prefWidth="247.0">
+         <children>
+              <HBox alignment="CENTER" layoutX="28.0" layoutY="68.0" styleClass="fontBold">
+                  <children>
+                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+                          <HBox.margin>
+                              <Insets />
+                          </HBox.margin>
+                      </Text>
+                      <Text fx:id="reservationUserName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.99999856948853">
+                          <HBox.margin>
+                              <Insets left="22.0" />
+                          </HBox.margin>
+                  </Text>
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" layoutX="28.0" layoutY="86.0" styleClass="fontBold">
+                  <children>
+                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Building:">
+                          <HBox.margin>
+                              <Insets right="10.0" />
+                          </HBox.margin>
+                      </Text>
+      
+                                  <Text fx:id="building" fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.00000619888306">
+                          <HBox.margin>
+                              <Insets left="21.0" />
+                          </HBox.margin>
+                  </Text>
+      
+                              </children>
+              </HBox>
+              <HBox alignment="CENTER" layoutX="29.0" layoutY="104.0" styleClass="fontBold">
+                  <children>
+                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Room:" wrappingWidth="44.57769775390625">
+                          <HBox.margin>
+                              <Insets right="10.0" />
+                          </HBox.margin>
+                      </Text>
+                      <Text fx:id="room" fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
+                          <HBox.margin>
+                              <Insets left="26.0" />
+                          </HBox.margin>
+                  </Text>
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" layoutX="29.0" layoutY="120.0" styleClass="fontBold">
+                  <children>
+                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" wrappingWidth="44.262879371643066">
+                          <HBox.margin>
+                              <Insets right="10.0" />
+                          </HBox.margin>
+                      </Text>
+                      <Text fx:id="date" fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.99999380111694">
+                          <HBox.margin>
+                              <Insets left="26.0" />
+                          </HBox.margin>
+                  </Text>
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" layoutX="29.0" layoutY="136.0" styleClass="fontBold">
+                  <children>
+                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Timeslot:">
+                          <HBox.margin>
+                              <Insets right="10.0" />
+                          </HBox.margin>
+                      </Text>
+                      <Text fx:id="time" fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="130.00000286102295">
+                          <HBox.margin>
+                              <Insets left="19.0" />
+                          </HBox.margin>
+                  </Text>
+                  </children>
+              </HBox>
+              <HBox alignment="CENTER" layoutX="11.0" layoutY="183.0" prefHeight="26.0" prefWidth="249.0">
+                  <children>
+                      <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onMouseClicked="#backBtnHandler" prefHeight="26.0" prefWidth="125.0" text="Cancel">
+                     <styleClass>
+                        <String fx:value="fontBold" />
+                        <String fx:value="selectButton3" />
+                     </styleClass>
+                  </Button>
+                      <Button fx:id="reserveButton" mnemonicParsing="false" onAction="#makeNewReservation" prefHeight="26.0" prefWidth="125.0" text="Reserve">
+                     <styleClass>
+                        <String fx:value="fontBold" />
+                        <String fx:value="selectButton2" />
+                     </styleClass>
+                  </Button>
+                  </children>
+              </HBox>
+            <TextFlow layoutX="47.0" layoutY="14.0" prefHeight="19.0" prefWidth="186.0" styleClass="selectButton" textAlignment="CENTER">
+               <children>
+                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reservation Details" textAlignment="CENTER" wrappingWidth="149.98046875">
+                          <font>
+                              <Font size="14.0" />
+                          </font>
+                      </Text>
+               </children>
+            </TextFlow>
+                <Text fx:id="resConfirmed" fill="WHITE" layoutX="14.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="72.79998469352722" />
+         </children>
+      </AnchorPane>
     </children>
 </VBox>

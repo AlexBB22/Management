@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -84,11 +85,14 @@ public class AddBuildingSceneController implements Initializable {
     public void addBuildingButtonHandler(MouseEvent mouseEvent) {
         try {
             //removing spaces so the description can be send in the url using _ to later identify where spaces should be.
-            String spaceBuildingName = buildingNameTextField.getText();
-            String[] buildingArray = spaceBuildingName.split(" ");
-            String buildingName = buildingArray[0];
-            for (int i = 1; i < buildingArray.length; i++) {
-                buildingName = buildingName + "_" + buildingArray[i];
+            String buildingName = buildingNameTextField.getText();
+
+            List<Building> buildings = ServerCommunication.getBuildings();
+            for (Building b : buildings) {
+                if (b.getBuilding_Name().equals(buildingName)) {
+                    confirmationText.setText("Please choose a name that doesn't exit yet.");
+                    return;
+                }
             }
 
             Boolean nonResSpace = nonResSpaceCheckBox.isSelected();
@@ -106,6 +110,8 @@ public class AddBuildingSceneController implements Initializable {
             Time closeTime = Time.valueOf(closeTimeTextField.getText());
             ServerCommunication.createBuilding(buildingName, nonResSpace, carParkingSpace, description, openTime, closeTime);
             confirmationText.setText("Building added successfully.");
+            AdminMainSceneController.setStatus(2);
+            switchScene(mouseEvent, "/adminMainScene.fxml", "Admin Window");
 
         } catch (Exception e) {
             confirmationText.setText("Building failed to add.");
@@ -127,7 +133,7 @@ public class AddBuildingSceneController implements Initializable {
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 232, 208);
         st.setScene(sc);
         st.show();
     }

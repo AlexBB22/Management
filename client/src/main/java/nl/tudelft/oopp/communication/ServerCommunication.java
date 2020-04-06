@@ -221,7 +221,6 @@ public class ServerCommunication {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         ArrayList<Building> buildings = mapper.readValue(res, new TypeReference<ArrayList<Building>>(){});
-        System.out.println("Hello is this working");
 
         return buildings;
     }
@@ -265,7 +264,6 @@ public class ServerCommunication {
 
     /**
      * Get request function template.
-     * TODO: Test that this function works for all cases
      * @param urlStr the url that has to be turned into a request
      * @return object that is retrieved through the request
      * @throws URISyntaxException exception if syntax is incorrect
@@ -540,13 +538,27 @@ public class ServerCommunication {
 
     /**
      * A method which gets all the restaurants available in a given building.
-     * @param buildingName the name of the building for which you want to find all available methods
+     * @param buildingName the name of the building for which you want to find all available restaurants
      * @return A list of restaurants which are available in a building
      * @throws URISyntaxException - url exception
      * @throws IOException - input/output exception
      */
     public static ArrayList<Restaurant> getRestaurants(String buildingName) throws URISyntaxException, IOException {
         String url = String.format("http://localhost:8080/ListRestaurants/%s", buildingName);
+        String jsonRes = request(url);
+        System.out.println("These are all the restaurants: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<Restaurant>>(){});
+    }
+
+    /**
+     * A method which gets all the restaurants available in the DB.
+     * @return A list of restaurants which are available in the DB
+     * @throws URISyntaxException - url exception
+     * @throws IOException - input/output exception
+     */
+    public static ArrayList<Restaurant> getAllRestaurants() throws URISyntaxException, IOException {
+        String url = "http://localhost:8080/getAllRestaurants";
         String jsonRes = request(url);
         System.out.println("These are all the restaurants: " + jsonRes);
         ObjectMapper mapper = new ObjectMapper();
@@ -566,6 +578,21 @@ public class ServerCommunication {
         System.out.println("These are all the food options for this restaurant: " + jsonRes);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonRes, new TypeReference<ArrayList<Food>>(){});
+    }
+
+    /**
+     * This method gives a list of strings containing the food orders for a specific user.
+     * @author Niels Tomassen
+     * @return a list of food orders for a specific user
+     * @throws IOException - input/output exception
+     * @throws URISyntaxException - thrown if url is invalid
+     */
+    public static ArrayList<String> getFoodReservations() throws URISyntaxException, IOException {
+        String url = String.format("http://localhost:8080/getUsersFoodReservations/%s", MainApp.user.getUserId());
+        String jsonRes = request(url);
+        System.out.println("These are all the food reservations for this user: " + jsonRes);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(jsonRes, new TypeReference<ArrayList<String>>(){});
     }
 
     /**
@@ -698,6 +725,36 @@ public class ServerCommunication {
     }
 
     /**
+     * This method deletes a food reservation.
+     * @author - Niels Tomassen
+     * @param id - the id of the room that needs to be deleted
+     * @return -1 if it fails, 1 if it succeeds
+     * @throws URISyntaxException - exception thrown if the syntax is incorrect
+     */
+    public static int deleteFoodReservation(int id) throws URISyntaxException {
+        String urlString = String.format("http://localhost:8080/deleteFoodReservation/%s", id);
+        URI url = new URI(urlString);
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(url).header("Content-type", "application/json").DELETE().build();
+
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return -1;
+        }
+        return 1;
+
+    }
+
+    /**
      * sends a request to the server to delete a building.
      * @param buildingName the name of the building
      * @throws URISyntaxException exception if URI syntax is wrong.
@@ -746,5 +803,33 @@ public class ServerCommunication {
         if (response.statusCode() != 200) {
             System.out.println("Error code = " + response.statusCode());
         }
+    }
+
+    /**
+     * sends a request to the server to add bikes.
+     * @param amount the amount of bikes to add
+     * @param building the building to add to
+     * @throws URISyntaxException exception if URI syntax is wrong
+     */
+    public static boolean createBikes(int amount, String building) throws URISyntaxException {
+        String url = String.format("http://localhost:8080/addBikes/%s/%s", amount, building);
+        URI uri = new URI(url);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).POST(HttpRequest.BodyPublishers.ofString("")).build();
+
+        //Sending HTTP Request and getting response
+        HttpResponse<String> response;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Error code = " + response.statusCode());
+            return false;
+        }
+        return true;
     }
 }

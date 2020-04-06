@@ -130,7 +130,6 @@ public class RoomReservationSceneController implements Initializable {
         hasReserved = false;
 
         username.setText(MainApp.user.getUserName());
-        // TODO: populate combo boxes and show available rooms
         ArrayList<Building> buildings = null;
         try {
             buildings = ServerCommunication.getBuildings();
@@ -245,6 +244,9 @@ public class RoomReservationSceneController implements Initializable {
         }
         if (MainApp.user.getRole().getRoleName().equals("Teacher")) {
             getRoomsForTeacher();
+        }
+        if (MainApp.user.getRole().getRoleName().equals("Admin")) {
+            getRoomsForAdmin();
         }
 
         //Set up the static variables attribute
@@ -426,6 +428,74 @@ public class RoomReservationSceneController implements Initializable {
 
     }
 
+    /**
+     * This method initiates the communication with the database to first get a list of all available rooms
+     * and then also get a list of all overridable rooms (ie. rooms previously reserved by teachers, students and staff)
+     *
+     * @author - Sartori Kendra
+     * @throws IOException - Exception thrown if I/O fails
+     * @throws URISyntaxException - Exception thrown if the URl which is used to communicate with DB is invalid
+     */
+    public void getRoomsForAdmin() throws IOException, URISyntaxException {
+        // Clear vbox before adding all the room items into it
+        roomList.getChildren().clear();
+
+        //Making the title "Available rooms" and adding it to the main Vbox
+        Text availableRoomTitle = new Text("Available Rooms");
+        availableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        availableRoomTitle.setFill(Color.BLUE);
+        roomList.getChildren().add(availableRoomTitle);
+
+        //Getting the start and end time the user selected to make query to DB
+        String[] timeSlot = timeSlotComboBox.getValue().split("-");
+        String starttime = timeSlot[0];
+        String endtime = timeSlot[1];
+
+        //Get List of available rooms
+        ArrayList<AvailableRoom> availableRooms = ServerCommunication.getOnlyAvailableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime);
+
+        if (availableRooms.size() == 0) {
+            Text info = new Text("No available rooms.");
+            info.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+            roomList.getChildren().add(info);
+            roomList.setMargin(info, new Insets(5, 0, 10, 15));
+        } else {
+            //Calling method createAvailableView with each room so that its shown to the user and added into the vbox
+            for (AvailableRoom ar: availableRooms) {
+                createAvailableRoomView(ar);
+            }
+        }
+
+        //Making the title "Overridable rooms" and adding it after all the Available rooms have been added to the VBox
+        Text overridableRoomTitle = new Text("Overridable Rooms");
+        overridableRoomTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        overridableRoomTitle.setFill(Color.BLUE);
+        roomList.getChildren().add(overridableRoomTitle);
+
+        //Get List of overridable rooms
+        //Call with roleId = 1 and roleId = 2, as Admin wants overridable rooms of Students (which are role 1) and staff (which are role 2) and Teachers (which are role 3)
+        ArrayList<OverridableRoom> overridableRooms = ServerCommunication.getOnlyOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime, 1);
+        ArrayList<OverridableRoom> overridableRooms2 = ServerCommunication.getOnlyOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime, 2);
+        ArrayList<OverridableRoom> overridableRooms3 = ServerCommunication.getOnlyOverridableRooms(buildingComboBox.getValue(), datePicker.getValue(),
+                starttime, endtime, 3);
+        overridableRooms.addAll(overridableRooms2);
+        overridableRooms.addAll(overridableRooms3);
+
+        if (overridableRooms.size() == 0) {
+            Text info = new Text("No overridable rooms.");
+            info.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+            roomList.getChildren().add(info);
+            roomList.setMargin(info, new Insets(5, 0, 10, 15));
+        } else {
+            //Calling method creatOverridableView with each room so that its shown to the user and added into the vbox
+            for (OverridableRoom or: overridableRooms) {
+                createOverridableRoomView(or);
+            }
+        }
+    }
 
     /**
      * This method simply creates the HBox entity that will show all important information and contain functionality
@@ -713,7 +783,7 @@ public class RoomReservationSceneController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/reservationPopUpScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 290, 230);
         st.setScene(sc);
         st.show();
     }
@@ -731,7 +801,7 @@ public class RoomReservationSceneController implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("/overrideReservationPopUpScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 309, 198);
         st.setScene(sc);
         st.show();
     }
@@ -745,7 +815,7 @@ public class RoomReservationSceneController implements Initializable {
     public void accountButtonHandler(MouseEvent mouseEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/accountPopupScene.fxml"));
         Stage st = new Stage();
-        Scene sc = new Scene(root, 300, 400);
+        Scene sc = new Scene(root, 232, 208);
         st.setScene(sc);
         st.show();
     }

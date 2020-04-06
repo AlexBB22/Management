@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,40 +14,45 @@
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/adminMainSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AdminMainSceneController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="527.5681762695312" minWidth="10.0" prefWidth="465.67584228515625" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.2582092285156" minWidth="10.0" prefWidth="447.508544921875" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="386.8516845703125" minWidth="10.0" prefWidth="366.991455078125" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="128.60001220703126" minHeight="10.0" prefHeight="99.39999618530274" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="385.59997558593744" minHeight="10.0" prefHeight="333.1999816894531" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="283.6000122070313" minHeight="10.0" prefHeight="257.2000183105469" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="385.59997558593744" minHeight="10.0" prefHeight="327.94598388671875" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="293.8785400390625" minHeight="10.0" prefHeight="289.05401611328125" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox>
+      <VBox prefHeight="132.0" prefWidth="466.0">
          <children>
-            <ImageView fitHeight="90.0" fitWidth="194.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/tudelftLogo.png" />
-               </image>
+            <HBox alignment="CENTER_LEFT" prefHeight="128.0" prefWidth="479.0">
                <VBox.margin>
                   <Insets left="20.0" top="10.0" />
                </VBox.margin>
-            </ImageView>
-            <ImageView fx:id="backbutton" fitHeight="46.0" fitWidth="49.0" nodeOrientation="INHERIT" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/backBtn.png" />
-               </image>
-               <VBox.margin>
-                  <Insets bottom="25.0" />
-               </VBox.margin>
-            </ImageView>
+               <children>
+                  <ImageView fitHeight="95.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/tudelftLogo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="backbutton" fitHeight="63.0" fitWidth="64.0" nodeOrientation="INHERIT" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/backBtn.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
+         <GridPane.margin>
+            <Insets top="30.0" />
+         </GridPane.margin>
       </VBox>
       <VBox prefHeight="159.0" prefWidth="525.0" styleClass="gridaddbuilding" stylesheets="@CSS/adminMainSceneStyle.css" GridPane.rowIndex="1">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="238.0">
                <VBox.margin>
-                  <Insets left="260.0" top="10.0" />
+                  <Insets left="200.0" top="10.0" />
                </VBox.margin>
                <children>
                   <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#createBuildingButtonHandler" pickOnBounds="true" preserveRatio="true">
@@ -71,7 +77,7 @@
          <children>
             <HBox alignment="BOTTOM_LEFT">
                <VBox.margin>
-                  <Insets left="220.0" top="10.0" />
+                  <Insets left="200.0" top="10.0" />
                </VBox.margin>
                <children>
                   <ImageView fitHeight="90.0" fitWidth="95.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#deleteBuildingButtonHandler" pickOnBounds="true" preserveRatio="true">
@@ -95,11 +101,10 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="deleteBuildingButton" mnemonicParsing="false" onMouseClicked="#deleteBuildingButtonHandler" prefHeight="120.0" prefWidth="400.0" styleClass="deletebuildingbutton" stylesheets="@CSS/adminMainSceneStyle.css" text="delete Building">
+            <Button fx:id="deleteBuildingButton" mnemonicParsing="false" onMouseClicked="#deleteBuildingButtonHandler" prefHeight="120.0" prefWidth="352.0" styleClass="deletebuildingbutton" stylesheets="@CSS/adminMainSceneStyle.css" text="delete Building">
                <VBox.margin>
-                  <Insets left="115.0" top="10.0" />
+                  <Insets left="70.0" top="10.0" />
                </VBox.margin></Button>
-            <VBox prefHeight="50.0" prefWidth="640.0" />
             <HBox>
                <children>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -107,8 +112,14 @@
                         <Image url="@images/warningSign.png" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: when deleting a building the rooms, the restaurants, bikes and all reservations of that building will be deleted to" wrappingWidth="294.21636962890625" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: when deleting a building the rooms, the restaurants and bikes of that building will be deleted too." wrappingWidth="294.21636962890625">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Text>
                </children>
+               <VBox.margin>
+                  <Insets left="70.0" top="5.0" />
+               </VBox.margin>
             </HBox>
             <HBox>
                <children>
@@ -117,8 +128,11 @@
                         <Image url="@images/warningSign.png" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: deleting is permanent and can not be reverted" wrappingWidth="293.336669921875" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: deleting is permanent and can not be reverted." wrappingWidth="293.336669921875" />
                </children>
+               <VBox.margin>
+                  <Insets left="70.0" top="5.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
@@ -126,7 +140,7 @@
          <children>
             <HBox alignment="CENTER_LEFT">
                <VBox.margin>
-                  <Insets left="260.0" top="10.0" />
+                  <Insets left="200.0" top="10.0" />
                </VBox.margin>
                <children>
                   <ImageView fitHeight="60.0" fitWidth="60.0" onMouseClicked="#createRoomButtonHandler" pickOnBounds="true" preserveRatio="true">
@@ -151,7 +165,7 @@
          <children>
             <HBox alignment="BOTTOM_LEFT">
                <VBox.margin>
-                  <Insets left="220.0" top="10.0" />
+                  <Insets left="200.0" top="10.0" />
                </VBox.margin>
                <children>
                   <ImageView fitHeight="90.0" fitWidth="95.0" onMouseClicked="#deleteRoomButtonHandler" pickOnBounds="true" preserveRatio="true">
@@ -175,9 +189,9 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="deleteRoomButton" mnemonicParsing="false" onMouseClicked="#deleteRoomButtonHandler" prefHeight="120.0" prefWidth="400.0" styleClass="deleteroombutton" stylesheets="@CSS/adminMainSceneStyle.css" text="delete Room">
+            <Button fx:id="deleteRoomButton" mnemonicParsing="false" onMouseClicked="#deleteRoomButtonHandler" prefHeight="110.0" prefWidth="351.0" styleClass="deleteroombutton" stylesheets="@CSS/adminMainSceneStyle.css" text="delete Room">
                <VBox.margin>
-                  <Insets left="115.0" top="10.0" />
+                  <Insets left="70.0" top="10.0" />
                </VBox.margin>
             </Button>
             <HBox />
@@ -188,12 +202,15 @@
                         <Image url="@images/warningSign.png" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: all roomreservations for this room will be deleted" wrappingWidth="293.336669921875" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: you can't delete rooms with active reservations." wrappingWidth="293.336669921875" />
                </children>
+               <VBox.margin>
+                  <Insets left="70.0" top="10.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
-      <ImageView fx:id="profile" fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <ImageView fx:id="profile" fitWidth="50.0" onMouseClicked="#accountButtonHandler" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <image>
             <Image url="@images/userIcon.png" />
          </image>
@@ -201,10 +218,37 @@
             <Insets right="50.0" top="50.0" />
          </GridPane.margin>
       </ImageView>
-      <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="105.0" top="74.0" />
          </GridPane.margin>
       </Text>
+      <Text fx:id="adminText" fill="#25bd2f" strokeType="OUTSIDE" strokeWidth="0.0" translateX="100.0" GridPane.columnIndex="1" />
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="66.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons8-add-100.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="95.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bikeIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Button fx:id="addBikeButton" mnemonicParsing="false" onMouseClicked="#addBikesToBuildingHandler" prefHeight="121.0" prefWidth="339.0" styleClass="addBikeButton" text="add Bikes to Building">
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </GridPane>
