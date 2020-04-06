@@ -42,7 +42,7 @@ public class AddBikeSceneController implements Initializable {
             e.printStackTrace();
         }
         for (Building b : buildingList) {
-            selectBuildingBox.getItems().add(b.getBuilding_Name());
+            selectBuildingBox.getItems().add(b.getBuilding_Name() + " #bikes: " + b.getBikes().size());
         }
     }
 

@@ -52,7 +52,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <ComboBox fx:id="selectBuildingBox" prefHeight="33.0" prefWidth="169.0" promptText="Select a Building" />
+            <ComboBox fx:id="selectBuildingBox" prefHeight="33.0" prefWidth="209.0" promptText="Select a Building" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
