@@ -1,5 +1,11 @@
 package nl.tudelft.oopp.controllers;
 
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -10,12 +16,7 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.ServerCommunication;
 
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+
 
 public class AddBikeSceneController implements Initializable {
 
