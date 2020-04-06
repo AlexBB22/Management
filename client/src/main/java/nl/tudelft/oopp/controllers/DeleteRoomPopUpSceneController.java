@@ -50,10 +50,10 @@ public class DeleteRoomPopUpSceneController implements Initializable {
     public void confirmButtonHandler() throws URISyntaxException, IOException {
         ServerCommunication.deleteRoom(DeleteRoomSceneController.getRoomId());
         Stage stage = (Stage) cancelButton.getScene().getWindow();
+        AdminMainSceneController.setStatus(3);
         stage.close();
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/adminMainScene.fxml"));
         Parent root = loader.load();
-        AdminMainSceneController.setStatus(3);
         MainView.getPrimaryStage().setScene(new Scene(root));
     }
 }

@@ -63,10 +63,10 @@ public class DeleteBuildingPopUpSceneController implements Initializable {
         }
         ServerCommunication.deleteBuilding(name);
         Stage stage = (Stage) cancelButton.getScene().getWindow();
+        AdminMainSceneController.setStatus(4);
         stage.close();
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/adminMainScene.fxml"));
         Parent root = loader.load();
-        AdminMainSceneController.setStatus(4);
         MainView.getPrimaryStage().setScene(new Scene(root));
     }
 }
