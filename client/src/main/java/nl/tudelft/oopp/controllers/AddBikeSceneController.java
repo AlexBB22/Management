@@ -65,9 +65,10 @@ public class AddBikeSceneController implements Initializable {
         }
         int numberBikes = Integer.parseInt(bikeInputField.getText());
 
-        String buildingName = selectBuildingBox.getValue();
+        String[] buildingName = selectBuildingBox.getValue().split(" ");
+        String realBuildingName = buildingName[0];
 
-        if (ServerCommunication.createBikes(numberBikes, buildingName)) {
+        if (ServerCommunication.createBikes(numberBikes, realBuildingName)) {
             AdminMainSceneController.setStatus(5);
             closeScene();
             FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/adminMainScene.fxml"));
