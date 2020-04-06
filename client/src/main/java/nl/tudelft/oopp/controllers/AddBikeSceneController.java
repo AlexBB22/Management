@@ -46,7 +46,13 @@ public class AddBikeSceneController implements Initializable {
         stage.close();
     }
 
-    public void addBikesToBuilding(javafx.scene.input.MouseEvent mouseEvent) {
+    /**
+     * add bikes to building.
+     * @param mouseEvent the clicking of the mouse on the button.
+     * @throws URISyntaxException throws exception if url syntax is invalid.
+     * @author Scott.
+     */
+    public void addBikesToBuilding(javafx.scene.input.MouseEvent mouseEvent) throws URISyntaxException {
         if (bikeInputField.getText() == null || selectBuildingBox.getValue() == null) {
             responseText.setText("Please kindly fill out all values");
         }
@@ -58,6 +64,8 @@ public class AddBikeSceneController implements Initializable {
             buildingName = buildingName + "_" + nameArray[i];
         }
 
-        //TODO: Call a method here in ServerCommunication to add the bikes iteratively
+        if (ServerCommunication.createBikes(numberBikes, buildingName)) {
+            closeScene();
+        }
     }
 }

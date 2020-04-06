@@ -811,7 +811,7 @@ public class ServerCommunication {
      * @param building the building to add to
      * @throws URISyntaxException exception if URI syntax is wrong
      */
-    public static void createBikes(int amount, String building) throws URISyntaxException {
+    public static boolean createBikes(int amount, String building) throws URISyntaxException {
         String url = String.format("http://localhost:8080/addBikes/%s/%s", amount, building);
         URI uri = new URI(url);
 
@@ -824,10 +824,12 @@ public class ServerCommunication {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
             e.printStackTrace();
-            return;
+            return false;
         }
         if (response.statusCode() != 200) {
             System.out.println("Error code = " + response.statusCode());
+            return false;
         }
+        return true;
     }
 }
