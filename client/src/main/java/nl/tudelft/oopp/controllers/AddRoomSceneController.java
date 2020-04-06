@@ -193,6 +193,8 @@ public class AddRoomSceneController implements Initializable {
 
             ServerCommunication.createRoom(capacity, roomName, buildingName, typeint);
             confirmationText.setText("Room added successfully.");
+            AdminMainSceneController.setStatus(1);
+            switchScene(mouseEvent, "/adminMainScene.fxml", "Admin Window");
 
         } catch (Exception e) {
             confirmationText.setText("Room failed to add.");

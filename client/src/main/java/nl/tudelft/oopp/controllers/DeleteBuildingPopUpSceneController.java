@@ -1,15 +1,20 @@
 package nl.tudelft.oopp.controllers;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import nl.tudelft.oopp.MainApp;
 import nl.tudelft.oopp.communication.ServerCommunication;
-
+import nl.tudelft.oopp.views.MainView;
 
 
 public class DeleteBuildingPopUpSceneController implements Initializable {
@@ -46,10 +51,11 @@ public class DeleteBuildingPopUpSceneController implements Initializable {
     /**
      * calls servercommunication to delete the building.
      * @throws URISyntaxException exception if URI syntax is incorrect.
+     * @throws IOException input/output exception
      * @author Scott.
      */
     @FXML
-    public void confirmButtonHandler() throws URISyntaxException {
+    public void confirmButtonHandler() throws URISyntaxException, IOException {
         String[] nameArray = buildingName.getText().split(" ");
         String name = nameArray[0];
         for (int i = 1; i < nameArray.length; i++) {
@@ -57,6 +63,10 @@ public class DeleteBuildingPopUpSceneController implements Initializable {
         }
         ServerCommunication.deleteBuilding(name);
         Stage stage = (Stage) cancelButton.getScene().getWindow();
+        AdminMainSceneController.setStatus(4);
         stage.close();
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/adminMainScene.fxml"));
+        Parent root = loader.load();
+        MainView.getPrimaryStage().setScene(new Scene(root));
     }
 }
