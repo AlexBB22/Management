@@ -17,7 +17,6 @@ import nl.tudelft.oopp.communication.Building;
 import nl.tudelft.oopp.communication.ServerCommunication;
 
 
-
 public class AddBikeSceneController implements Initializable {
 
     @FXML private TextField bikeInputField;
@@ -37,7 +36,7 @@ public class AddBikeSceneController implements Initializable {
             e.printStackTrace();
         }
         for (Building b : buildingList) {
-            selectBuildingBox.getItems().add(b.getBuilding_Name());
+            selectBuildingBox.getItems().add(b.getBuilding_Name() + " #bikes: " + b.getBikes().size());
         }
     }
 
