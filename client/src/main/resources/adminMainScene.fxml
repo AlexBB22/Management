@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/adminMainSceneStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AdminMainSceneController">
   <columnConstraints>
@@ -223,7 +218,7 @@
             <Insets right="105.0" top="74.0" />
          </GridPane.margin>
       </Text>
-      <Text fx:id="adminText" fill="#25bd2f" strokeType="OUTSIDE" strokeWidth="0.0" translateX="-75.0" GridPane.columnIndex="1" />
+      <Text fx:id="adminText" fill="#25bd2f" strokeType="OUTSIDE" strokeWidth="0.0" translateX="100.0" GridPane.columnIndex="1" />
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

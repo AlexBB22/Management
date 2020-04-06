@@ -52,6 +52,10 @@ public class AdminMainSceneController implements Initializable {
             adminText.setText("Successfully deleted a building!");
             setStatus(0);
         }
+        if (status == 5) {
+            adminText.setText("Successfully added bikes to a building!");
+            setStatus(0);
+        }
     }
 
     @FXML
