@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/adminMainSceneStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AdminMainSceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/adminMainSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AdminMainSceneController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="527.5681762695312" minWidth="10.0" prefWidth="465.67584228515625" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.2582092285156" minWidth="10.0" prefWidth="447.508544921875" />
@@ -107,7 +112,7 @@
                         <Image url="@images/warningSign.png" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: when deleting a building the rooms, the restaurants, bikes and all reservations of that building will be deleted too." wrappingWidth="294.21636962890625">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: when deleting a building the rooms, the restaurants and bikes of that building will be deleted too." wrappingWidth="294.21636962890625">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Text>
@@ -197,7 +202,7 @@
                         <Image url="@images/warningSign.png" />
                      </image>
                   </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: all roomreservations for this room will be deleted." wrappingWidth="293.336669921875" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="warningtext" text="Warning: you can't delete rooms with active reservations." wrappingWidth="293.336669921875" />
                </children>
                <VBox.margin>
                   <Insets left="70.0" top="10.0" />
