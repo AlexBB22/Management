@@ -110,6 +110,8 @@ public class AddBuildingSceneController implements Initializable {
             Time closeTime = Time.valueOf(closeTimeTextField.getText());
             ServerCommunication.createBuilding(buildingName, nonResSpace, carParkingSpace, description, openTime, closeTime);
             confirmationText.setText("Building added successfully.");
+            AdminMainSceneController.setStatus(2);
+            switchScene(mouseEvent, "/adminMainScene.fxml", "Admin Window");
 
         } catch (Exception e) {
             confirmationText.setText("Building failed to add.");

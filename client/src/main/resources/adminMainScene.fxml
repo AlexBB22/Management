@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/adminMainSceneStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AdminMainSceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="grid" stylesheets="@CSS/adminMainSceneStyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.controllers.AdminMainSceneController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="527.5681762695312" minWidth="10.0" prefWidth="465.67584228515625" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.2582092285156" minWidth="10.0" prefWidth="447.508544921875" />
@@ -223,6 +223,7 @@
             <Insets right="105.0" top="74.0" />
          </GridPane.margin>
       </Text>
+      <Text fx:id="adminText" fill="#25bd2f" strokeType="OUTSIDE" strokeWidth="0.0" translateX="-75.0" GridPane.columnIndex="1" />
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

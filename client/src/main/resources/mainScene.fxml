@@ -620,6 +620,6 @@
             </HBox>
          </children>
       </Pane>
-      <Text fx:id="result" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateX="650.0" translateY="-40.0" />
+      <Text fx:id="result" fill="#26972d" strokeType="OUTSIDE" strokeWidth="0.0" text="    " translateX="580.0" translateY="-40.0" />
    </children>
 </GridPane>
