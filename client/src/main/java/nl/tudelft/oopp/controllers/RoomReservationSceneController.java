@@ -130,7 +130,6 @@ public class RoomReservationSceneController implements Initializable {
         hasReserved = false;
 
         username.setText(MainApp.user.getUserName());
-        // TODO: populate combo boxes and show available rooms
         ArrayList<Building> buildings = null;
         try {
             buildings = ServerCommunication.getBuildings();

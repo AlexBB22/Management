@@ -85,7 +85,7 @@
                            <Cursor fx:constant="TEXT" />
                         </cursor>
                      </PasswordField>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Use eight or more characters with combination of letters, numbers and symbols" wrappingWidth="316.42535400390625">
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Use eight or more characters " wrappingWidth="316.42535400390625">
                         <VBox.margin>
                            <Insets left="15.0" top="6.0" />
                         </VBox.margin>

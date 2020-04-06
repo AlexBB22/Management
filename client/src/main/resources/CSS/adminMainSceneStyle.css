@@ -80,3 +80,14 @@
 
     -fx-background-color: linear-gradient(to bottom right, rgb(255, 164, 164), white)
 }
+
+
+.addBikeButton{
+    -fx-background-color: #ddfede;
+    -fx-border-color: #00ff4a;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 30px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-border-width: 3px;
+}

@@ -53,12 +53,29 @@ public class NewUserSceneController implements Initializable {
         String username = usernameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
+        System.out.println(password.length());
+
 
         //Setting submitResponse to appropriate cases:
-        if (rolename == null || username == null || email == null || password == null) {
-            submitResponse.setText("Please kindly fill out all fields");
+        if (rolename == null || username == null || email == null) {
+            submitResponse.setText("");
+            submitResponse.setText("Please fill out all fields");
             return;
         }
+
+        if (password.length() < 8) {
+            submitResponse.setText("");
+            submitResponse.setText("Please enter a password with more than 8 characters");
+            return;
+        }
+
+        if (!email.contains("@")) {
+            submitResponse.setText("");
+            submitResponse.setText("Please use a valid email");
+            return;
+        }
+
+
         submitResponse.setText("Thanks for your info, give us a moment to verify");
 
         //get roleId that corresponds to the role the user selected
