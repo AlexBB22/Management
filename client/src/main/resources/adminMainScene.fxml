@@ -24,24 +24,25 @@
     <RowConstraints maxHeight="293.8785400390625" minHeight="10.0" prefHeight="289.05401611328125" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox>
+      <VBox prefHeight="132.0" prefWidth="466.0">
          <children>
-            <ImageView fitHeight="81.0" fitWidth="245.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/tudelftLogo.png" />
-               </image>
+            <HBox alignment="CENTER_LEFT" prefHeight="128.0" prefWidth="479.0">
                <VBox.margin>
                   <Insets left="20.0" top="10.0" />
                </VBox.margin>
-            </ImageView>
-            <ImageView fx:id="backbutton" fitHeight="46.0" fitWidth="49.0" nodeOrientation="INHERIT" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/backBtn.png" />
-               </image>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </ImageView>
+               <children>
+                  <ImageView fitHeight="95.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/tudelftLogo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="backbutton" fitHeight="63.0" fitWidth="64.0" nodeOrientation="INHERIT" onMouseClicked="#backBtnHandler" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/backBtn.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
          <GridPane.margin>
             <Insets top="30.0" />
