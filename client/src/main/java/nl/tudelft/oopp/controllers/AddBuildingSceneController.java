@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -84,11 +85,14 @@ public class AddBuildingSceneController implements Initializable {
     public void addBuildingButtonHandler(MouseEvent mouseEvent) {
         try {
             //removing spaces so the description can be send in the url using _ to later identify where spaces should be.
-            String spaceBuildingName = buildingNameTextField.getText();
-            String[] buildingArray = spaceBuildingName.split(" ");
-            String buildingName = buildingArray[0];
-            for (int i = 1; i < buildingArray.length; i++) {
-                buildingName = buildingName + "_" + buildingArray[i];
+            String buildingName = buildingNameTextField.getText();
+
+            List<Building> buildings = ServerCommunication.getBuildings();
+            for (Building b : buildings) {
+                if (b.getBuilding_Name().equals(buildingName)) {
+                    confirmationText.setText("Please choose a name that doesn't exit yet.");
+                    return;
+                }
             }
 
             Boolean nonResSpace = nonResSpaceCheckBox.isSelected();

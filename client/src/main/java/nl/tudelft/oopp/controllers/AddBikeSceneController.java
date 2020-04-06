@@ -65,11 +65,7 @@ public class AddBikeSceneController implements Initializable {
         }
         int numberBikes = Integer.parseInt(bikeInputField.getText());
 
-        String[] nameArray = selectBuildingBox.getValue().split(" ");
-        String buildingName = nameArray[0];
-        for (int i = 1; i < nameArray.length; i++) {
-            buildingName = buildingName + "_" + nameArray[i];
-        }
+        String buildingName = selectBuildingBox.getValue();
 
         if (ServerCommunication.createBikes(numberBikes, buildingName)) {
             AdminMainSceneController.setStatus(5);
