@@ -21,9 +21,37 @@ public class AdminMainSceneController implements Initializable {
     @FXML
     private Text username;
 
+    @FXML
+    private Text adminText;
+
+    private static int status;
+
+    public static void setStatus(int newStatus) {
+        status = newStatus;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText(MainApp.user.getUserName());
+        if (status == 1) {
+            adminText.setText("Successfully added a room!");
+            setStatus(0);
+        }
+
+        if (status == 2) {
+            adminText.setText("Successfully added a building!");
+            setStatus(0);
+        }
+
+        if (status == 3) {
+            adminText.setText("Successfully deleted a room!");
+            setStatus(0);
+        }
+
+        if (status == 4) {
+            adminText.setText("Successfully deleted a building!");
+            setStatus(0);
+        }
     }
 
     @FXML
