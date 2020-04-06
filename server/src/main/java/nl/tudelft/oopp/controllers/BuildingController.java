@@ -131,12 +131,6 @@ public class BuildingController {
                                @PathVariable (value = "openingTime") Time openingTime,
                                 @PathVariable (value = "closingTime") Time closingTime) {
 
-        String[] nameArray = buildingName.split("_");
-        String name = nameArray[0];
-        for (int i = 1; i < nameArray.length; i++) {
-            name = name + " " + nameArray[i];
-        }
-
         //adding spaces back that were removed during the building of the URL.
         String[] descriptionArray = description.split("_");
         String buildingDescription = descriptionArray[0];
@@ -144,7 +138,7 @@ public class BuildingController {
             buildingDescription = buildingDescription + " " + descriptionArray[i];
         }
 
-        Building newBuilding = new Building(name, nonReservableSpace, carParkingSpaces, buildingDescription, openingTime, closingTime);
+        Building newBuilding = new Building(buildingName, nonReservableSpace, carParkingSpaces, buildingDescription, openingTime, closingTime);
 
         System.out.println("Added a new building to the database");
         buildingRepository.save(newBuilding);
@@ -158,13 +152,7 @@ public class BuildingController {
     @ResponseBody
     public void deleteBuilding(@PathVariable (value = "buildingName") String buildingName) {
         try {
-            String[] nameArray = buildingName.split("_");
-            String name = nameArray[0];
-            for (int i = 1; i < nameArray.length; i++) {
-                name = name + " " + nameArray[i];
-            }
-
-            Optional<Building> b = buildingRepository.findById(name);
+            Optional<Building> b = buildingRepository.findById(buildingName);
             Building building = b.get();
             buildingRepository.delete(building);
             System.out.println("building deleted successfully");

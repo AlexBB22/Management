@@ -102,5 +102,10 @@
          </GridPane.margin>
       </Text>
       <Text fx:id="confirmationText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please do not put spaces in the buildingname." GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets left="1.0" top="150.0" />
+         </GridPane.margin>
+      </Text>
    </children>
 </GridPane>

@@ -84,12 +84,7 @@ public class AddBuildingSceneController implements Initializable {
     public void addBuildingButtonHandler(MouseEvent mouseEvent) {
         try {
             //removing spaces so the description can be send in the url using _ to later identify where spaces should be.
-            String spaceBuildingName = buildingNameTextField.getText();
-            String[] buildingArray = spaceBuildingName.split(" ");
-            String buildingName = buildingArray[0];
-            for (int i = 1; i < buildingArray.length; i++) {
-                buildingName = buildingName + "_" + buildingArray[i];
-            }
+            String buildingName = buildingNameTextField.getText();
 
             Boolean nonResSpace = nonResSpaceCheckBox.isSelected();
             int carParkingSpace = Integer.parseInt(carParkingSpaceTextField.getText());
